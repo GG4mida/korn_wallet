@@ -3,6 +3,4 @@ import styles from '../../styles.json';
 
 const {tailwind, getColor} = create(styles);
 
-export {
-  tailwind, getColor
-};
+export {tailwind, getColor};

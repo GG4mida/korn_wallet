@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {Header} from 'react-native-elements';
 import {tailwind} from '../core/tailwind';
@@ -52,39 +52,35 @@ const HeaderRightComponent = () => {
 };
 
 const ListItem = (props: any) => {
-  const { item } = props;
+  const {item} = props;
   return (
     <View
-          style={tailwind(
-            'bg-white flex flex-row justify-between items-center border-b border-gray-100 p-4',
-          )}>
-          <View style={tailwind('flex flex-row items-center')}>
-            <Icon name={item.icon} size={18} style={tailwind('text-gray-800')} />
-            <Text style={tailwind('text-gray-800 text-base ml-3')}>
-              {item.name}
-            </Text>
-          </View>
-          <Icon
-            name="arrow-right"
-            size={16}
-            style={tailwind('text-gray-700')}
-          />
-        </View>
-  )
+      style={tailwind(
+        'bg-white flex flex-row justify-between items-center border-b border-gray-100 p-4',
+      )}>
+      <View style={tailwind('flex flex-row items-center')}>
+        <Icon name={item.icon} size={18} style={tailwind('text-gray-800')} />
+        <Text style={tailwind('text-gray-800 text-base ml-3')}>
+          {item.name}
+        </Text>
+      </View>
+      <Icon name="arrow-right" size={16} style={tailwind('text-gray-700')} />
+    </View>
+  );
 };
 
 const ListGroup = (props: any) => {
-  const { group } = props;
+  const {group} = props;
   return (
     <View style={tailwind('mb-4')}>
-      {
-        group.map((item: any, index: number)=> <ListItem key={index} item={item}/>)
-      }
+      {group.map((item: any, index: number) => (
+        <ListItem key={index} item={item} />
+      ))}
     </View>
-  )
+  );
 };
 
-const ProfileScreen = ({navigation}: any) => {
+const ProfileScreen = ({}: any) => {
   return (
     <View style={tailwind('flex-1')}>
       <Header
@@ -100,9 +96,9 @@ const ProfileScreen = ({navigation}: any) => {
       />
 
       <View style={tailwind('py-4')}>
-        {
-          profileItems.map((item: any, index: number)=> <ListGroup key={index} group={item} />)
-        }
+        {profileItems.map((item: any, index: number) => (
+          <ListGroup key={index} group={item} />
+        ))}
       </View>
     </View>
   );

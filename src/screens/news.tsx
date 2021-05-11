@@ -1,30 +1,30 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {Header, Tab} from 'react-native-elements';
 import {tailwind} from '../core/tailwind';
 
-import { Navigation, NavigationTabs } from '../constants/tab_news';
+import {NavigationTabs} from '../constants/tab_news';
 
 const TabListItem = (props: any) => {
-  const { item } = props;
+  const {item} = props;
   return (
     <Tab.Item
-        title={item.name}
-        titleStyle={{
-          paddingVertical: 2,
-          marginBottom: 3,
-          color: '#222',
-          fontSize: 16
-        }}
-        containerStyle={{
-          backgroundColor:"#fff"
-        }}
-      />
-  )
-}
+      title={item.name}
+      titleStyle={{
+        paddingVertical: 2,
+        marginBottom: 3,
+        color: '#222',
+        fontSize: 16,
+      }}
+      containerStyle={{
+        backgroundColor: '#fff',
+      }}
+    />
+  );
+};
 
 const HeaderCenterComponent = (props: any) => {
-  const { value, onChange } = props;
+  const {value, onChange} = props;
   return (
     <Tab
       value={value}
@@ -33,10 +33,9 @@ const HeaderCenterComponent = (props: any) => {
         backgroundColor: '#444',
         bottom: -1,
       }}>
-      
-      {
-        NavigationTabs.map((item: any, index: number)=> <TabListItem key={index} item={item}/>)
-      }
+      {NavigationTabs.map((item: any, index: number) => (
+        <TabListItem key={index} item={item} />
+      ))}
     </Tab>
   );
 };
@@ -69,9 +68,8 @@ const NewsItem = () => {
   );
 };
 
-const NewsScreen = ({navigation}: any) => {
-
-  const onChange = (index: number)=> {
+const NewsScreen = ({}: any) => {
+  const onChange = (index: number) => {
     console.info('on change:', index);
   };
 
@@ -80,9 +78,11 @@ const NewsScreen = ({navigation}: any) => {
       <Header
         statusBarProps={{barStyle: 'dark-content'}}
         barStyle="dark-content"
-        centerComponent={<HeaderCenterComponent onChange={onChange} value={1} />}
+        centerComponent={
+          <HeaderCenterComponent onChange={onChange} value={1} />
+        }
         centerContainerStyle={{
-          flex: 4
+          flex: 4,
         }}
         containerStyle={{
           paddingBottom: 0,
