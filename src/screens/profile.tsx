@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {Header} from 'react-native-elements';
-import {tailwind} from '../core/tailwind';
+import {tailwind, getColor} from '@/core/tailwind';
+import ScreenHeader from '@/components/common/screenHeader';
 
 const profileItems = [
   [
@@ -45,8 +45,8 @@ const profileItems = [
 
 const HeaderRightComponent = () => {
   return (
-    <View>
-      <Icon name="bell" size={18} color="#222" />
+    <View style={tailwind('flex flex-row items-center')}>
+      <Icon name="bell" size={18} color={getColor('gray-600')} />
     </View>
   );
 };
@@ -83,18 +83,7 @@ const ListGroup = (props: any) => {
 const ProfileScreen = ({}: any) => {
   return (
     <View style={tailwind('flex-1')}>
-      <Header
-        statusBarProps={{barStyle: 'dark-content'}}
-        barStyle="dark-content"
-        centerComponent={{text: '我', style: {color: '#222', fontSize: 16}}}
-        rightComponent={<HeaderRightComponent />}
-        containerStyle={{
-          backgroundColor: '#fff',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}
-      />
-
+      <ScreenHeader title="我" rightComponent={<HeaderRightComponent />} />
       <View style={tailwind('py-4')}>
         {profileItems.map((item: any, index: number) => (
           <ListGroup key={index} group={item} />

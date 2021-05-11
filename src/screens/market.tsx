@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Image, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {Header} from 'react-native-elements';
-import {tailwind} from '../core/tailwind';
-import {formatChange} from '../utils/formater';
+import {tailwind, getColor} from '@/core/tailwind';
+import {formatChange} from '@/utils/formater';
+import ScreenHeader from '@/components/common/screenHeader';
+import SortSvg from '@/assets/svg/sort.svg';
 
 const marketList = [
   {
@@ -34,8 +35,8 @@ const marketList = [
 
 const HeaderRightComponent = () => {
   return (
-    <View>
-      <Icon name="search" size={18} color="#222" />
+    <View style={tailwind('flex flex-row items-center')}>
+      <Icon name="search" size={18} color={getColor('gray-600')} />
     </View>
   );
 };
@@ -61,14 +62,20 @@ const MarketItem = (props: any) => {
       <View style={tailwind('flex flex-row items-center')}>
         <Image source={icon} style={tailwind('w-6 h-6 rounded-full')} />
         <View style={tailwind('ml-3')}>
-          <Text style={tailwind('text-gray-800 text-base')}>{name}</Text>
-          <Text style={tailwind('text-gray-600 text-xs')}>{label}</Text>
+          <Text style={tailwind('text-gray-800 text-lg')}>{name}</Text>
+          <Text style={tailwind('text-gray-500 text-xs')}>{label}</Text>
         </View>
       </View>
 
-      <View style={tailwind('flex flex-col items-end')}>
-        <Text style={tailwind('text-xs text-gray-600')}>$ {price_usd}</Text>
-        <Text style={tailwind('text-base text-gray-800')}>¥ {price_cny}</Text>
+      <View style={tailwind('flex flex-col items-end w-1/3')}>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-xs text-gray-600 italic mr-1')}>$</Text>
+          <Text style={tailwind('text-xs text-gray-600')}>{price_usd}</Text>
+        </View>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-base text-gray-800 italic mr-1')}>$</Text>
+          <Text style={tailwind('text-base text-gray-800')}>{price_cny}</Text>
+        </View>
       </View>
 
       <View style={tailwind('flex flex-row items-center')}>
@@ -83,22 +90,25 @@ const MarketItem = (props: any) => {
 
 const MarketScreen = ({}: any) => {
   return (
-    <View style={tailwind('flex-1')}>
-      <Header
-        statusBarProps={{barStyle: 'dark-content'}}
-        barStyle="dark-content"
-        centerComponent={{
-          text: '行情',
-          style: {color: '#222', fontSize: 16},
-        }}
-        rightComponent={<HeaderRightComponent />}
-        containerStyle={{
-          backgroundColor: '#fff',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}
-      />
-
+    <View style={tailwind('flex-1 bg-white')}>
+      <ScreenHeader title="行情" rightComponent={<HeaderRightComponent />} />
+      <View
+        style={tailwind(
+          'flex flex-row items-center justify-between border-b border-gray-100 px-4 py-2',
+        )}>
+        <View style={tailwind('flex flex-1 flex-row items-center')}>
+          <Text style={tailwind('text-sm text-gray-500')}>币种</Text>
+          <SortSvg fill={getColor('gray-400')} width={16} height={16} />
+        </View>
+        <View style={tailwind('flex flex-1 flex-row items-center justify-end')}>
+          <Text style={tailwind('text-sm text-gray-500')}>价格</Text>
+          <SortSvg fill={getColor('gray-400')} width={16} height={16} />
+        </View>
+        <View style={tailwind('flex flex-1 flex-row items-center justify-end')}>
+          <Text style={tailwind('text-sm text-gray-500')}>涨跌幅</Text>
+          <SortSvg fill={getColor('gray-400')} width={16} height={16} />
+        </View>
+      </View>
       <View>
         {marketList.map((market: any, index: number) => (
           <MarketItem key={index} market={market} />

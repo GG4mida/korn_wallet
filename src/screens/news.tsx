@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {Header, Tab} from 'react-native-elements';
-import {tailwind} from '../core/tailwind';
-
-import {NavigationTabs} from '../constants/tab_news';
+import {tailwind} from '@/core/tailwind';
+import {NavigationTabs} from '@/constants/tab_news';
 
 const TabListItem = (props: any) => {
   const {item} = props;
