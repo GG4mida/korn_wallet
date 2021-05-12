@@ -199,7 +199,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				346E19E200AA07346CB7E7B5 /* [CP] Embed Pods Frameworks */,
 				887A6E5A3B2279492A069388 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -222,7 +221,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				F5AB152BF72D4DF9F0E59E50 /* [CP] Embed Pods Frameworks */,
 				2B673DD1DFDC66FB87BA4009 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -321,23 +319,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chain_wallet/Pods-chain_wallet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		346E19E200AA07346CB7E7B5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		887A6E5A3B2279492A069388 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -375,23 +356,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5AB152BF72D4DF9F0E59E50 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chain_wallet/Pods-chain_wallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chain_wallet/Pods-chain_wallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chain_wallet/Pods-chain_wallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC65E23245E2DD35649BFDA6 /* [CP] Check Pods Manifest.lock */ = {
