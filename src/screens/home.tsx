@@ -1,64 +1,56 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {ScrollView, View, Image, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import {tailwind, getColor} from '@/core/tailwind';
-import ScreenHeader from '@/components/common/screenHeader';
 
-const HeaderRightComponent = () => {
+const UserProfile = () => {
   return (
-    <View style={tailwind('flex flex-row items-center')}>
-      <Icon name="file" size={18} color={getColor('gray-600')} />
+    <LinearGradient
+      colors={['#FF9800', '#F44336']}
+      start={{x: 1, y: 0}}
+      end={{x: 0.2, y: 0}}
+      style={tailwind('p-6 rounded-xl')}>
+      <View style={tailwind('flex flex-row justify-between mb-4')}>
+        <Text style={tailwind('text-white')}>账户金额</Text>
+      </View>
+      <View style={tailwind('flex flex-row justify-between items-end')}>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-3xl text-white italic mr-1')}>$</Text>
+          <Text style={tailwind('text-3xl text-white font-bold')}>321321</Text>
+        </View>
+
+        <View style={tailwind('flex flex-row items-center')}>
+          <Icon name="arrow-up" size={20} style={tailwind('text-white mr-1')} />
+          <Text style={tailwind('text-lg text-white')}>23.33%</Text>
+        </View>
+      </View>
+    </LinearGradient>
+  );
+};
+
+const SectionHeader = () => {
+  return (
+    <View
+      style={tailwind('mt-8 mb-5 flex flex-row justify-between items-center')}>
+      <Text style={tailwind('text-xl text-gray-700')}>持仓</Text>
+      <TouchableOpacity
+        onPress={() => null}
+        activeOpacity={0.5}
+        style={tailwind('flex flex-row items-center')}>
+        <Text style={tailwind('text-base text-yellow-500 mr-1')}>交易记录</Text>
+        <Icon name="arrow-right" size={18} color={getColor('yellow-500')} />
+      </TouchableOpacity>
     </View>
   );
 };
 
-const HomeScreen = ({}: any) => {
+const UserHolds = () => {
   return (
-    <View style={tailwind('flex-1 bg-white')}>
-      <ScreenHeader title="首页" rightComponent={<HeaderRightComponent />} />
-      <View style={tailwind('p-3')}>
-        <View style={tailwind('bg-yellow-600 rounded-xl')}>
-          <LinearGradient
-            colors={['#FF9800', '#F44336']}
-            start={{x: 1, y: 0}}
-            end={{x: 0.2, y: 0}}
-            style={tailwind('p-6 rounded-xl')}>
-            <View style={tailwind('flex flex-row justify-between mb-4')}>
-              <Text style={tailwind('text-white')}>账户金额</Text>
-            </View>
-            <View style={tailwind('flex flex-row justify-between items-end')}>
-              <View style={tailwind('flex flex-row items-center')}>
-                <Text style={tailwind('text-3xl text-white italic mr-1')}>
-                  $
-                </Text>
-                <Text style={tailwind('text-3xl text-white font-bold')}>
-                  321321
-                </Text>
-              </View>
-
-              <View style={tailwind('flex flex-row items-center')}>
-                <Icon
-                  name="arrow-up"
-                  size={20}
-                  style={tailwind('text-white mr-1')}
-                />
-                <Text style={tailwind('text-lg text-white')}>23.33%</Text>
-              </View>
-            </View>
-          </LinearGradient>
-        </View>
-
-        <View
-          style={tailwind(
-            'mt-8 mb-5 flex flex-row justify-between items-center',
-          )}>
-          <Text style={tailwind('text-xl text-gray-700')}>持仓</Text>
-          <Text style={tailwind('text-base text-gray-500')}>交易记录</Text>
-        </View>
-
+    <View style={tailwind('mb-5')}>
+      <TouchableOpacity onPress={() => null} activeOpacity={0.5}>
         <LinearGradient
-          colors={['#f2f3f4', '#f2f3f4']}
+          colors={[getColor('gray-100'), getColor('gray-100')]}
           style={tailwind('p-5 rounded-xl mb-3')}>
           <View style={tailwind('flex flex-row justify-between')}>
             <View style={tailwind('flex items-center flex-row')}>
@@ -79,9 +71,11 @@ const HomeScreen = ({}: any) => {
             </View>
           </View>
         </LinearGradient>
+      </TouchableOpacity>
 
+      <TouchableOpacity onPress={() => null} activeOpacity={0.5}>
         <LinearGradient
-          colors={['#f2f3f4', '#f2f3f4']}
+          colors={[getColor('gray-100'), getColor('gray-100')]}
           style={tailwind('p-5 rounded-xl mb-3')}>
           <View style={tailwind('flex flex-row justify-between')}>
             <View style={tailwind('flex items-center flex-row')}>
@@ -102,9 +96,11 @@ const HomeScreen = ({}: any) => {
             </View>
           </View>
         </LinearGradient>
+      </TouchableOpacity>
 
+      <TouchableOpacity onPress={() => null} activeOpacity={0.5}>
         <LinearGradient
-          colors={['#f2f3f4', '#f2f3f4']}
+          colors={[getColor('gray-100'), getColor('gray-100')]}
           style={tailwind('p-5 rounded-xl mb-3')}>
           <View style={tailwind('flex flex-row justify-between')}>
             <View style={tailwind('flex items-center flex-row')}>
@@ -125,8 +121,20 @@ const HomeScreen = ({}: any) => {
             </View>
           </View>
         </LinearGradient>
-      </View>
+      </TouchableOpacity>
     </View>
+  );
+};
+
+const HomeScreen = ({}: any) => {
+  return (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={tailwind('flex-1 bg-gray-50 p-5')}>
+      <UserProfile />
+      <SectionHeader />
+      <UserHolds />
+    </ScrollView>
   );
 };
 
