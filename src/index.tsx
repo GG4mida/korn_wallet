@@ -3,11 +3,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AnimatedTabBar from '@gorhom/animated-tabbar';
+import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import NavigationHelper from '@/core/navigation';
 import TabHome from '@/constants/tabHome';
 import Screen from '@/screens';
+import {store} from '@/store';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,21 +38,38 @@ const MainTabs = ({navigation, route}: any) => {
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={MainTabs}
-            options={{title: '首页'}}
-          />
-          <Stack.Screen
-            name="Detail"
-            component={Screen.TickerDetailScreen}
-            options={{title: '详情'}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Startup"
+              component={Screen.StartupScreen}
+              options={{title: '启动页'}}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Screen.LoginScreen}
+              options={{title: '登录'}}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Screen.RegisterScreen}
+              options={{title: '注册'}}
+            />
+            <Stack.Screen
+              name="Home"
+              component={MainTabs}
+              options={{title: '首页'}}
+            />
+            <Stack.Screen
+              name="Detail"
+              component={Screen.TickerDetailScreen}
+              options={{title: '详情'}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
   );
 }

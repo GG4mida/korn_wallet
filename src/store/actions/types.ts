@@ -1,0 +1,7 @@
+export const TICKER_REQUEST = 'TICKER_REQUEST';
+export const TICKER_SUCCESS = 'TICKER_SUCCESS';
+export const TICKER_FAILED = 'TICKER_FAILED';
+
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';

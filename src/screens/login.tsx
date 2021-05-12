@@ -1,0 +1,15 @@
+import React from 'react';
+import {View, Text} from 'react-native';
+import {tailwind} from '@/core/tailwind';
+
+const LoginScreen = ({}: any) => {
+  return (
+    <View style={tailwind('flex-1 bg-gray-50')}>
+      <View style={tailwind('py-4')}>
+        <Text>登录页</Text>
+      </View>
+    </View>
+  );
+};
+
+export default LoginScreen;

@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android --port=8083",
     "ios": "react-native run-ios --port=8083",
-    "start": "react-native start --port=8083 --reset-cache",
+    "start": "react-native start --port=8083",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prepare": "husky install"
@@ -28,6 +28,10 @@
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^8.1.0",
     "react-native-webview": "^11.4.3",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "tailwind-rn": "^3.0.1",
     "tailwindcss": "^2.1.2"
   },
@@ -42,6 +46,7 @@
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^26.6.3",
     "babel-plugin-root-import": "^6.6.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.14.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
