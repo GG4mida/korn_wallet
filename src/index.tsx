@@ -43,14 +43,14 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-              name="Startup"
-              component={Screen.StartupScreen}
-              options={{title: '启动页'}}
-            />
-            <Stack.Screen
               name="Login"
               component={Screen.LoginScreen}
               options={{title: '登录'}}
+            />
+            <Stack.Screen
+              name="Startup"
+              component={Screen.StartupScreen}
+              options={{title: '启动页'}}
             />
             <Stack.Screen
               name="Register"

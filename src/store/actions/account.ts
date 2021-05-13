@@ -4,7 +4,6 @@ import AccountService from '@/services/account';
 const login = (username: string, password: string) => {
   return (dispatch: any) => {
     dispatch(request());
-
     AccountService.login(username, password).then(
       (user: any) => {
         dispatch(success(user));

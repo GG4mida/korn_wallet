@@ -8,7 +8,7 @@ export default function account(state = {}, action: any) {
       };
     case TYPES.LOGIN_SUCCESS:
       return {
-        items: action.user,
+        token: action.token,
       };
     case TYPES.LOGIN_FAILURE:
       return {
