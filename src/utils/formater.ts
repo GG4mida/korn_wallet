@@ -10,4 +10,4 @@ const formatChange = (val: number) => {
   return '0.00%';
 };
 
-export {formatChange};
+export default {formatChange};

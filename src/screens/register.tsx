@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
+import Styles from '@/core/styles';
 import Icon from 'react-native-vector-icons/Feather';
 import LogoSvg from '@/assets/svg/logo.svg';
 
@@ -34,45 +35,53 @@ const RegisterScreen = ({navigation}: any) => {
         <View style={tailwind('p-8')}>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={tailwind(
-                'p-3 bg-gray-50 border border-gray-200 rounded-full',
-              )}
+              style={Styles.textInput}
+              maxFontSizeMultiplier={2}
+              allowFontScaling={false}
+              autoCapitalize="none"
+              autoCompleteType="off"
+              autoCorrect={false}
+              textContentType="username"
+              onChangeText={() => null}
               placeholder="用户名..."
-              onChangeText={() => null}
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={tailwind(
-                'p-3 bg-gray-50 border border-gray-200　rounded-full',
-              )}
-              placeholder="用户密码..."
+              style={Styles.textInput}
+              autoCapitalize="none"
+              autoCompleteType="off"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
               onChangeText={() => null}
+              placeholder="登录密码..."
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={tailwind(
-                'p-3 bg-gray-50 border border-gray-200　rounded-full',
-              )}
+              style={Styles.textInput}
+              autoCapitalize="none"
+              autoCompleteType="off"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+              onChangeText={() => null}
               placeholder="确认密码..."
-              onChangeText={() => null}
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TouchableOpacity
               onPress={() => null}
               activeOpacity={0.5}
-              style={tailwind(
-                'p-2 bg-green-500 rounded-full flex flex-row items-center justify-center',
-              )}>
+              style={Styles.button}>
               <Text style={tailwind('text-base text-white')}>注册</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
       <View style={tailwind('flex flex-row items-center justify-center mb-10')}>
-        <Text style={tailwind('text-gray-500 text-sm')}>3.2.3</Text>
+        <Text style={tailwind('text-gray-500 text-base')}>3.2.3</Text>
       </View>
     </View>
   );

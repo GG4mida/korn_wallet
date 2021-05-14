@@ -1,12 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import {useDispatch, useSelector} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
+import Styles from '@/core/styles';
+import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
+import AccountAction from '@/store/actions/account';
+import {LoadingActivity, LoadingMask} from '@/components/loading';
 
-const LoginScreen = ({navigation}: any) => {
+const LoginScreen: React.FC = ({navigation}: any) => {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+  const {loading} = useSelector(state => state.account);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <LoadingActivity loading={loading} />,
+    });
+  }, [navigation, loading]);
+
   const handleRegisterPress = () => {
     navigation.navigate('Register');
+  };
+
+  const handleSubmitPress = () => {
+    if (loading === true) {
+      return false;
+    }
+    if (!username) {
+      Toaster.show('请输入用户名');
+      return false;
+    }
+
+    if (!Validator.usernameValidator(username)) {
+      Toaster.show('用户名格式错误');
+      return false;
+    }
+
+    if (!password) {
+      Toaster.show('请输入登录密码');
+      return false;
+    }
+
+    if (!Validator.passwordValidator(password)) {
+      Toaster.show('登录密码格式错误');
+      return false;
+    }
+
+    dispatch(AccountAction.login(username, password));
   };
 
   return (
@@ -23,29 +67,34 @@ const LoginScreen = ({navigation}: any) => {
         <View style={tailwind('p-8')}>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={tailwind(
-                'p-3 bg-gray-50 border border-gray-200 rounded-full',
-              )}
+              style={Styles.textInput}
+              maxFontSizeMultiplier={2}
+              allowFontScaling={false}
+              autoCapitalize="none"
+              autoCompleteType="off"
+              autoCorrect={false}
+              textContentType="username"
+              onChangeText={setUserName}
               placeholder="用户名..."
-              onChangeText={() => null}
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={tailwind(
-                'p-3 bg-gray-50 border border-gray-200 rounded-full',
-              )}
-              placeholder="用户密码..."
-              onChangeText={() => null}
+              style={Styles.textInput}
+              autoCapitalize="none"
+              autoCompleteType="off"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+              onChangeText={setPassword}
+              placeholder="登录密码..."
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TouchableOpacity
-              onPress={() => null}
+              onPress={handleSubmitPress}
               activeOpacity={0.5}
-              style={tailwind(
-                'p-2 bg-green-500 rounded-full flex flex-row items-center justify-center',
-              )}>
+              style={Styles.button}>
               <Text style={tailwind('text-base text-white')}>登录</Text>
             </TouchableOpacity>
           </View>
@@ -54,17 +103,19 @@ const LoginScreen = ({navigation}: any) => {
               style={tailwind('flex flex-row items-center justify-center')}
               activeOpacity={0.5}
               onPress={handleRegisterPress}>
-              <Text style={tailwind('text-gray-600 text-sm mr-1')}>
+              <Text style={tailwind('text-gray-600 text-base')}>
                 没有账户，免费注册
               </Text>
-              <Icon name="arrow-right" size={16} color={getColor('gray-600')} />
+              <Icon name="arrow-right" size={20} color={getColor('gray-600')} />
             </TouchableOpacity>
           </View>
         </View>
       </View>
       <View style={tailwind('flex flex-row items-center justify-center mb-10')}>
-        <Text style={tailwind('text-gray-500 text-sm')}>3.2.3</Text>
+        <Text style={tailwind('text-gray-500 text-base')}>3.2.3</Text>
       </View>
+
+      <LoadingMask loading={loading} />
     </View>
   );
 };
