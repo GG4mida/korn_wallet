@@ -41,12 +41,12 @@ const LoginScreen: React.FC = ({navigation}: any) => {
     }
 
     if (!password) {
-      Toaster.show('请输入登录密码');
+      Toaster.show('请输入用户密码');
       return false;
     }
 
     if (!Validator.passwordValidator(password)) {
-      Toaster.show('登录密码格式错误');
+      Toaster.show('用户密码格式错误');
       return false;
     }
 
@@ -87,7 +87,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               secureTextEntry={true}
               textContentType="password"
               onChangeText={setPassword}
-              placeholder="登录密码..."
+              placeholder="用户密码..."
             />
           </View>
           <View style={tailwind('mb-5')}>

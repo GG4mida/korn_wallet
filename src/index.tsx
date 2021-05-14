@@ -7,6 +7,7 @@ import {Provider} from 'react-redux';
 import {RootSiblingParent} from 'react-native-root-siblings';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
+import ViewContainer from '@/components/container';
 import NavigationHelper from '@/core/navigation';
 import TabHome from '@/constants/tabHome';
 import Screen from '@/screens';
@@ -42,35 +43,37 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaProvider>
         <RootSiblingParent>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Login"
-                component={Screen.LoginScreen}
-                options={{title: '登录'}}
-              />
-              <Stack.Screen
-                name="Startup"
-                component={Screen.StartupScreen}
-                options={{title: '启动页'}}
-              />
-              <Stack.Screen
-                name="Register"
-                component={Screen.RegisterScreen}
-                options={{title: '注册'}}
-              />
-              <Stack.Screen
-                name="Home"
-                component={MainTabs}
-                options={{title: '首页'}}
-              />
-              <Stack.Screen
-                name="Detail"
-                component={Screen.TickerDetailScreen}
-                options={{title: '详情'}}
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
+          <ViewContainer>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen
+                  name="Login"
+                  component={Screen.LoginScreen}
+                  options={{title: '登录'}}
+                />
+                <Stack.Screen
+                  name="Startup"
+                  component={Screen.StartupScreen}
+                  options={{title: '启动页'}}
+                />
+                <Stack.Screen
+                  name="Register"
+                  component={Screen.RegisterScreen}
+                  options={{title: '注册'}}
+                />
+                <Stack.Screen
+                  name="Home"
+                  component={MainTabs}
+                  options={{title: '首页'}}
+                />
+                <Stack.Screen
+                  name="Detail"
+                  component={Screen.TickerDetailScreen}
+                  options={{title: '详情'}}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </ViewContainer>
         </RootSiblingParent>
       </SafeAreaProvider>
     </Provider>
