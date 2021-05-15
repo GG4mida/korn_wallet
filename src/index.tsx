@@ -8,32 +8,37 @@ import {RootSiblingParent} from 'react-native-root-siblings';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import ViewContainer from '@/components/container';
-import NavigationHelper from '@/core/navigation';
-import TabHome from '@/constants/tabHome';
+import HeaderHelper from '@/core/header';
+import {RouteConfig, RouteMain} from '@/constants/navigation';
 import Screen from '@/screens';
 import {store} from '@/store';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const {Navigation, NavigationTabs} = TabHome;
 
 const MainTabs = ({navigation, route}: any) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: NavigationHelper.getHeaderTitle(route),
-      headerRight: NavigationHelper.getHeaderRight(navigation, route),
+      headerTitle: HeaderHelper.getHeaderTitle(route),
+      headerRight: HeaderHelper.getHeaderRight(navigation, route),
     });
   }, [navigation, route]);
 
   return (
     <Tab.Navigator
       tabBar={props => (
-        <AnimatedTabBar preset="flashy" tabs={NavigationTabs} {...props} />
+        <AnimatedTabBar preset="flashy" tabs={RouteMain} {...props} />
       )}>
-      <Tab.Screen name={Navigation.Home} component={Screen.HomeScreen} />
-      <Tab.Screen name={Navigation.Ticker} component={Screen.TickerScreen} />
-      <Tab.Screen name={Navigation.News} component={Screen.NewsScreen} />
-      <Tab.Screen name={Navigation.Profile} component={Screen.ProfileScreen} />
+      <Tab.Screen name={RouteConfig.Home.name} component={Screen.HomeScreen} />
+      <Tab.Screen
+        name={RouteConfig.Ticker.name}
+        component={Screen.TickerScreen}
+      />
+      <Tab.Screen name={RouteConfig.News.name} component={Screen.NewsScreen} />
+      <Tab.Screen
+        name={RouteConfig.Profile.name}
+        component={Screen.ProfileScreen}
+      />
     </Tab.Navigator>
   );
 };
@@ -47,29 +52,29 @@ export default function App() {
             <NavigationContainer>
               <Stack.Navigator>
                 <Stack.Screen
-                  name="Login"
-                  component={Screen.LoginScreen}
-                  options={{title: '登录'}}
-                />
-                <Stack.Screen
-                  name="Startup"
-                  component={Screen.StartupScreen}
-                  options={{title: '启动页'}}
-                />
-                <Stack.Screen
-                  name="Register"
-                  component={Screen.RegisterScreen}
-                  options={{title: '注册'}}
-                />
-                <Stack.Screen
-                  name="Home"
+                  name={RouteConfig.Home.name}
                   component={MainTabs}
-                  options={{title: '首页'}}
+                  options={{title: RouteConfig.Home.title}}
                 />
                 <Stack.Screen
-                  name="Detail"
+                  name={RouteConfig.Login.name}
+                  component={Screen.LoginScreen}
+                  options={{title: RouteConfig.Login.title}}
+                />
+                <Stack.Screen
+                  name={RouteConfig.Startup.name}
+                  component={Screen.StartupScreen}
+                  options={{title: RouteConfig.Startup.title}}
+                />
+                <Stack.Screen
+                  name={RouteConfig.Register.name}
+                  component={Screen.RegisterScreen}
+                  options={{title: RouteConfig.Register.title}}
+                />
+                <Stack.Screen
+                  name={RouteConfig.TickerDetail.name}
                   component={Screen.TickerDetailScreen}
-                  options={{title: '详情'}}
+                  options={{title: RouteConfig.TickerDetail.title}}
                 />
               </Stack.Navigator>
             </NavigationContainer>

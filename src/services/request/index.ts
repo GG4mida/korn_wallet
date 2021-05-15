@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {Toaster} from '@/utils';
 import Config from 'react-native-config';
+import {Storage} from '@/utils';
+import {StorageKeys} from '@/constants/enum';
 
 const checkResponse = (response: any) => {
   if (!response) {
@@ -17,12 +19,23 @@ const checkResponse = (response: any) => {
   return data;
 };
 
+const getUserToken = async () => {
+  const res = await Storage.getItem(StorageKeys.USER_TOKEN);
+
+  console.info('res:');
+  console.info(res);
+
+  return res;
+};
+
 axios.defaults.timeout = 100000;
 axios.defaults.baseURL = Config.API_URL;
 
 axios.interceptors.request.use(
-  config => {
+  async config => {
+    const userToken = await getUserToken();
     config.headers = {
+      Authorization: userToken,
       'Content-Type': 'application/json',
     };
     return config;

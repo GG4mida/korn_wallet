@@ -3,10 +3,11 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useDispatch, useSelector} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
-import Styles from '@/core/styles';
+import styles from '@/core/styles';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import AccountAction from '@/store/actions/account';
+import {RouteConfig} from '@/constants/navigation';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
@@ -14,7 +15,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const {loading} = useSelector(state => state.account);
+  const {loading} = useSelector((state: any) => state.account);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -26,7 +27,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
     navigation.navigate('Register');
   };
 
-  const handleSubmitPress = () => {
+  const handleSubmitPress = async () => {
     if (loading === true) {
       return false;
     }
@@ -50,7 +51,13 @@ const LoginScreen: React.FC = ({navigation}: any) => {
       return false;
     }
 
-    dispatch(AccountAction.login(username, password));
+    const loginResult: any = await dispatch(
+      AccountAction.login(username, password),
+    );
+
+    if (loginResult && loginResult.token) {
+      navigation.navigate(RouteConfig.Home.name);
+    }
   };
 
   return (
@@ -67,7 +74,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
         <View style={tailwind('p-8')}>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={Styles.textInput}
+              style={styles.textInput}
               maxFontSizeMultiplier={2}
               allowFontScaling={false}
               autoCapitalize="none"
@@ -80,7 +87,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
           </View>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={Styles.textInput}
+              style={styles.textInput}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
@@ -94,7 +101,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
             <TouchableOpacity
               onPress={handleSubmitPress}
               activeOpacity={0.5}
-              style={Styles.button}>
+              style={styles.button}>
               <Text style={tailwind('text-base text-white')}>登录</Text>
             </TouchableOpacity>
           </View>
@@ -114,7 +121,6 @@ const LoginScreen: React.FC = ({navigation}: any) => {
       <View style={tailwind('flex flex-row items-center justify-center mb-10')}>
         <Text style={tailwind('text-gray-500 text-base')}>3.2.3</Text>
       </View>
-
       <LoadingMask loading={loading} />
     </View>
   );
