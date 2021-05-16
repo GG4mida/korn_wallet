@@ -3,10 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AnimatedTabBar from '@gorhom/animated-tabbar';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {RootSiblingParent} from 'react-native-root-siblings';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-
 import ViewContainer from '@/components/container';
 import HeaderHelper from '@/core/header';
 import {RouteConfig, RouteMain} from '@/constants/navigation';
@@ -43,41 +42,62 @@ const MainTabs = ({navigation, route}: any) => {
   );
 };
 
+const AuthorizedRoutes = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={RouteConfig.Home.name}
+        component={MainTabs}
+        options={{title: RouteConfig.Home.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.TickerDetail.name}
+        component={Screen.TickerDetailScreen}
+        options={{title: RouteConfig.TickerDetail.title}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const AnonymousRoutes = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={RouteConfig.Login.name}
+        component={Screen.LoginScreen}
+        options={{title: RouteConfig.Login.title}}
+      />
+      <Stack.Screen
+        name={RouteConfig.Splash.name}
+        component={Screen.SplashScreen}
+        options={{title: RouteConfig.Splash.title}}
+      />
+      <Stack.Screen
+        name={RouteConfig.Signin.name}
+        component={Screen.SigninScreen}
+        options={{title: RouteConfig.Signin.title}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const RouteContainer = () => {
+  const {token} = useSelector((state: any) => state.account);
+  return (
+    <NavigationContainer>
+      {token ? <AuthorizedRoutes /> : <AnonymousRoutes />}
+    </NavigationContainer>
+  );
+};
+
 export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
         <RootSiblingParent>
           <ViewContainer>
-            <NavigationContainer>
-              <Stack.Navigator>
-                <Stack.Screen
-                  name={RouteConfig.Home.name}
-                  component={MainTabs}
-                  options={{title: RouteConfig.Home.title}}
-                />
-                <Stack.Screen
-                  name={RouteConfig.Login.name}
-                  component={Screen.LoginScreen}
-                  options={{title: RouteConfig.Login.title}}
-                />
-                <Stack.Screen
-                  name={RouteConfig.Startup.name}
-                  component={Screen.StartupScreen}
-                  options={{title: RouteConfig.Startup.title}}
-                />
-                <Stack.Screen
-                  name={RouteConfig.Register.name}
-                  component={Screen.RegisterScreen}
-                  options={{title: RouteConfig.Register.title}}
-                />
-                <Stack.Screen
-                  name={RouteConfig.TickerDetail.name}
-                  component={Screen.TickerDetailScreen}
-                  options={{title: RouteConfig.TickerDetail.title}}
-                />
-              </Stack.Navigator>
-            </NavigationContainer>
+            <RouteContainer />
           </ViewContainer>
         </RootSiblingParent>
       </SafeAreaProvider>

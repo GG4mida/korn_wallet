@@ -2,18 +2,17 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useDispatch, useSelector} from 'react-redux';
+import {RouteConfig} from '@/constants/navigation';
 import {tailwind, getColor} from '@/core/tailwind';
 import styles from '@/core/styles';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import AccountAction from '@/store/actions/account';
-import {RouteConfig} from '@/constants/navigation';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-
   const dispatch = useDispatch();
   const {loading} = useSelector((state: any) => state.account);
 
@@ -23,8 +22,8 @@ const LoginScreen: React.FC = ({navigation}: any) => {
     });
   }, [navigation, loading]);
 
-  const handleRegisterPress = () => {
-    navigation.navigate('Register');
+  const handleSigninPress = () => {
+    navigation.navigate(RouteConfig.Signin.name);
   };
 
   const handleSubmitPress = async () => {
@@ -51,13 +50,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
       return false;
     }
 
-    const loginResult: any = await dispatch(
-      AccountAction.login(username, password),
-    );
-
-    if (loginResult && loginResult.token) {
-      navigation.navigate(RouteConfig.Home.name);
-    }
+    await dispatch(AccountAction.login(username, password));
   };
 
   return (
@@ -109,7 +102,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
             <TouchableOpacity
               style={tailwind('flex flex-row items-center justify-center')}
               activeOpacity={0.5}
-              onPress={handleRegisterPress}>
+              onPress={handleSigninPress}>
               <Text style={tailwind('text-gray-600 text-base')}>
                 没有账户，免费注册
               </Text>

@@ -13,7 +13,7 @@ const HeaderLeftComponent = () => {
   );
 };
 
-const RegisterScreen = ({navigation}: any) => {
+const SigninScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: tailwind('text-gray-600'),
@@ -87,4 +87,4 @@ const RegisterScreen = ({navigation}: any) => {
   );
 };
 
-export default RegisterScreen;
+export default SigninScreen;

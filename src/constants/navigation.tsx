@@ -10,12 +10,12 @@ const RouteConfig = {
     name: 'LOGIN',
     title: '登录',
   },
-  Register: {
-    name: 'REGISTER',
+  Signin: {
+    name: 'SIGNIN',
     title: '注册',
   },
-  Startup: {
-    name: 'STARTUP',
+  Splash: {
+    name: 'SPLASH',
     title: '启动页',
   },
   Home: {
@@ -47,7 +47,7 @@ const RouteMain: any = {
       color: labelColor,
     },
     icon: {
-      component: () => <Icon name="pocket" size={18} color={iconColor} />,
+      component: () => <Icon name="home" size={18} color={iconColor} />,
     },
   },
   [RouteConfig.Ticker.name]: {
@@ -56,7 +56,7 @@ const RouteMain: any = {
       color: labelColor,
     },
     icon: {
-      component: () => <Icon name="pocket" size={18} color={iconColor} />,
+      component: () => <Icon name="trending-up" size={18} color={iconColor} />,
     },
   },
   [RouteConfig.News.name]: {
@@ -65,7 +65,7 @@ const RouteMain: any = {
       color: labelColor,
     },
     icon: {
-      component: () => <Icon name="pocket" size={18} color={iconColor} />,
+      component: () => <Icon name="compass" size={18} color={iconColor} />,
     },
   },
   [RouteConfig.Profile.name]: {
@@ -74,7 +74,7 @@ const RouteMain: any = {
       color: labelColor,
     },
     icon: {
-      component: () => <Icon name="pocket" size={18} color={iconColor} />,
+      component: () => <Icon name="user" size={18} color={iconColor} />,
     },
   },
 };

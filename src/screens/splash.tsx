@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 import {tailwind} from '@/core/tailwind';
 import TickerAction from '@/store/actions/ticker';
 
-const StartUpScreen = ({}: any) => {
+const SplashScreen = ({}: any) => {
   const tickerStore = useSelector(state => state.ticker);
   const dispatch = useDispatch();
 
@@ -24,4 +24,4 @@ const StartUpScreen = ({}: any) => {
   );
 };
 
-export default StartUpScreen;
+export default SplashScreen;

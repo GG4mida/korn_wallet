@@ -1,6 +1,6 @@
-import StartupScreen from './startup';
+import SplashScreen from './splash';
 import LoginScreen from './login';
-import RegisterScreen from './register';
+import SigninScreen from './signin';
 import HomeScreen from './home';
 import ProfileScreen from './profile';
 import NewsScreen from './news';
@@ -8,9 +8,9 @@ import TickerScreen from './ticker';
 import TickerDetailScreen from './tickerDetail';
 
 export default {
-  StartupScreen,
+  SplashScreen,
   LoginScreen,
-  RegisterScreen,
+  SigninScreen,
   HomeScreen,
   ProfileScreen,
   NewsScreen,
