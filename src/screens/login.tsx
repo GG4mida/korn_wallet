@@ -23,7 +23,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
   }, [navigation, loading]);
 
   const handleSigninPress = () => {
-    navigation.navigate(RouteConfig.Signin.name);
+    navigation.navigate(RouteConfig.Signup.name);
   };
 
   const handleSubmitPress = async () => {
@@ -76,6 +76,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               textContentType="username"
               onChangeText={setUserName}
               placeholder="用户名..."
+              value={username}
             />
           </View>
           <View style={tailwind('mb-5')}>
@@ -88,6 +89,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               textContentType="password"
               onChangeText={setPassword}
               placeholder="用户密码..."
+              value={password}
             />
           </View>
           <View style={tailwind('mb-5')}>

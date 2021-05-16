@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
-import Styles from '@/core/styles';
+import styles from '@/core/styles';
+import {Toaster, Validator} from '@/utils';
+import AccountAction from '@/store/actions/account';
 import Icon from 'react-native-vector-icons/Feather';
 import LogoSvg from '@/assets/svg/logo.svg';
 
@@ -13,13 +16,57 @@ const HeaderLeftComponent = () => {
   );
 };
 
-const SigninScreen = ({navigation}: any) => {
+const SignupScreen = ({navigation}: any) => {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
+
+  const dispatch = useDispatch();
+  const {loading} = useSelector((state: any) => state.account);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: tailwind('text-gray-600'),
       headerBackImage: () => <HeaderLeftComponent />,
     });
   }, [navigation]);
+
+  const handleSubmitPress = async () => {
+    if (loading === true) {
+      return false;
+    }
+    if (!username) {
+      Toaster.show('请输入用户名');
+      return false;
+    }
+
+    if (!Validator.usernameValidator(username)) {
+      Toaster.show('用户名格式错误');
+      return false;
+    }
+
+    if (!password) {
+      Toaster.show('请输入用户密码');
+      return false;
+    }
+
+    if (!Validator.passwordValidator(password)) {
+      Toaster.show('用户密码格式错误');
+      return false;
+    }
+
+    if (!rePassword) {
+      Toaster.show('请再次输入密码');
+      return false;
+    }
+
+    if (password !== rePassword) {
+      Toaster.show('两次输入密码不一致');
+      return false;
+    }
+
+    await dispatch(AccountAction.register(username, password, rePassword));
+  };
 
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
@@ -35,46 +82,49 @@ const SigninScreen = ({navigation}: any) => {
         <View style={tailwind('p-8')}>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={Styles.textInput}
+              style={styles.textInput}
               maxFontSizeMultiplier={2}
               allowFontScaling={false}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
               textContentType="username"
-              onChangeText={() => null}
+              onChangeText={setUserName}
               placeholder="用户名..."
+              value={username}
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={Styles.textInput}
+              style={styles.textInput}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
-              onChangeText={() => null}
+              onChangeText={setPassword}
               placeholder="登录密码..."
+              value={password}
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TextInput
-              style={Styles.textInput}
+              style={styles.textInput}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
-              onChangeText={() => null}
+              onChangeText={setRePassword}
               placeholder="确认密码..."
+              value={rePassword}
             />
           </View>
           <View style={tailwind('mb-5')}>
             <TouchableOpacity
-              onPress={() => null}
+              onPress={handleSubmitPress}
               activeOpacity={0.5}
-              style={Styles.button}>
+              style={styles.button}>
               <Text style={tailwind('text-base text-white')}>注册</Text>
             </TouchableOpacity>
           </View>
@@ -87,4 +137,4 @@ const SigninScreen = ({navigation}: any) => {
   );
 };
 
-export default SigninScreen;
+export default SignupScreen;

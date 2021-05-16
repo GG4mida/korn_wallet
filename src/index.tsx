@@ -74,9 +74,9 @@ const AnonymousRoutes = () => {
         options={{title: RouteConfig.Splash.title}}
       />
       <Stack.Screen
-        name={RouteConfig.Signin.name}
-        component={Screen.SigninScreen}
-        options={{title: RouteConfig.Signin.title}}
+        name={RouteConfig.Signup.name}
+        component={Screen.SignupScreen}
+        options={{title: RouteConfig.Signup.title}}
       />
     </Stack.Navigator>
   );

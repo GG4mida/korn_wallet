@@ -10,8 +10,8 @@ const RouteConfig = {
     name: 'LOGIN',
     title: '登录',
   },
-  Signin: {
-    name: 'SIGNIN',
+  Signup: {
+    name: 'SIGNUP',
     title: '注册',
   },
   Splash: {
