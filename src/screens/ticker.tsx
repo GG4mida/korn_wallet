@@ -3,7 +3,6 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Feather';
 import {tailwind, getColor} from '@/core/tailwind';
-import {formatChange} from '@/utils/formater';
 import SortSvg from '@/assets/svg/sort.svg';
 import TickerAction from '@/store/actions/ticker';
 
@@ -75,9 +74,7 @@ const MarketItem = (props: any) => {
 
       <View style={tailwind('flex flex-row items-center')}>
         <Icon name={changeIcon} size={16} style={tailwind(changeStyle)} />
-        <Text style={tailwind(`${changeStyle} text-base`)}>
-          {formatChange(market.change)}
-        </Text>
+        <Text style={tailwind(`${changeStyle} text-base`)}>12.12%</Text>
       </View>
     </TouchableOpacity>
   );
