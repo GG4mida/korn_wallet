@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Feather';
 import {tailwind, getColor} from '@/core/tailwind';
 import SortSvg from '@/assets/svg/sort.svg';
-import TickerAction from '@/store/actions/ticker';
 
 const marketList = [
   {
@@ -153,16 +151,6 @@ const TickerHeader = () => {
 };
 
 const TickerScreen = ({}: any) => {
-  const favorites = useSelector(state => state.ticker.favorites);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(TickerAction.getFavorites());
-  }, [dispatch]);
-
-  console.info('ticker screen favorites:');
-  console.info(favorites);
-
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
       <TickerTabs />

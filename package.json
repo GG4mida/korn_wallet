@@ -18,6 +18,8 @@
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "axios": "^0.21.1",
+    "dva-core": "^2.0.4",
+    "dva-loading": "^3.0.22",
     "immer": "^9.0.2",
     "react": "17.0.1",
     "react-native": "0.64.0",
@@ -36,9 +38,6 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-webview": "^11.4.3",
     "react-redux": "^7.2.4",
-    "redux": "^4.1.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
     "tailwind-rn": "^3.0.1",
     "tailwindcss": "^2.1.2"
   },

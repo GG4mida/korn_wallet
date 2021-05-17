@@ -1,18 +1,19 @@
 import request from './request';
 
-const login = (username: string, password: string) => {
-  return request.post('/api/account/login', {username, password});
+const login = (data: any) => {
+  return request.post('/api/account/login', data);
 };
 
-const signup = (username: string, password: string, repassword: string) => {
-  return request.post('/api/account/register', {
-    username,
-    password,
-    repassword,
-  });
+const signup = (data: any) => {
+  return request.post('/api/account/register', data);
+};
+
+const logout = () => {
+  return request.post('/api/account/logout');
 };
 
 export default {
   login,
   signup,
+  logout,
 };

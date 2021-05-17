@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
 import styles from '@/core/styles';
 import {Toaster, Validator} from '@/utils';
-import AccountAction from '@/store/actions/account';
 import Icon from 'react-native-vector-icons/Feather';
 import LogoSvg from '@/assets/svg/logo.svg';
 
@@ -21,7 +20,7 @@ const SignupScreen = ({navigation}: any) => {
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const {loading} = useSelector((state: any) => state.account);
 
   React.useLayoutEffect(() => {
@@ -65,11 +64,11 @@ const SignupScreen = ({navigation}: any) => {
       return false;
     }
 
-    const signupRes = await dispatch(
-      AccountAction.signup(username, password, repassword),
-    );
+    // const signupRes = await dispatch(
+    //   // AccountAction.signup(username, password, repassword),
+    // );
 
-    console.info(signupRes);
+    // console.info(signupRes);
   };
 
   return (

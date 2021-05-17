@@ -1,20 +1,22 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {useDispatch, useSelector} from 'react-redux';
-import {RouteConfig} from '@/constants/navigation';
+import {useSelector, useDispatch} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
+import {RouteConfig} from '@/constants/navigation';
 import styles from '@/core/styles';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
-import AccountAction from '@/store/actions/account';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
-  const {loading} = useSelector((state: any) => state.account);
+  const loading = useSelector(
+    (state: any) => state.loading.effects['account/login'],
+  );
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -49,8 +51,13 @@ const LoginScreen: React.FC = ({navigation}: any) => {
       Toaster.show('用户密码格式错误');
       return false;
     }
-
-    await dispatch(AccountAction.login(username, password));
+    await dispatch({
+      type: 'account/login',
+      payload: {
+        username,
+        password,
+      },
+    });
   };
 
   return (
@@ -96,6 +103,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
             <TouchableOpacity
               onPress={handleSubmitPress}
               activeOpacity={0.5}
+              disabled={loading}
               style={styles.button}>
               <Text style={tailwind('text-base text-white')}>登录</Text>
             </TouchableOpacity>

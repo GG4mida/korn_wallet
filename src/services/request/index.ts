@@ -64,7 +64,7 @@ const get = (url: string, params = {}) => {
   });
 };
 
-const post = (url: string, data: any) => {
+const post = (url: string, data: any = {}) => {
   return new Promise((resolve, reject) => {
     axios
       .post(url, data)

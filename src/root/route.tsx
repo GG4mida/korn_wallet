@@ -3,14 +3,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AnimatedTabBar from '@gorhom/animated-tabbar';
-import {Provider, useSelector} from 'react-redux';
-import {RootSiblingParent} from 'react-native-root-siblings';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import ViewContainer from '@/components/container';
+import {useSelector} from 'react-redux';
 import HeaderHelper from '@/core/header';
 import {RouteConfig, RouteMain} from '@/constants/navigation';
 import Screen from '@/screens';
-import {store} from '@/store';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -83,24 +79,12 @@ const AnonymousRoutes = () => {
 };
 
 const RouteContainer = () => {
-  const {token} = useSelector((state: any) => state.account);
+  const accountState = useSelector((state: any) => state.account);
   return (
     <NavigationContainer>
-      {token ? <AuthorizedRoutes /> : <AnonymousRoutes />}
+      {accountState.token ? <AuthorizedRoutes /> : <AnonymousRoutes />}
     </NavigationContainer>
   );
 };
 
-export default function App() {
-  return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <RootSiblingParent>
-          <ViewContainer>
-            <RouteContainer />
-          </ViewContainer>
-        </RootSiblingParent>
-      </SafeAreaProvider>
-    </Provider>
-  );
-}
+export default RouteContainer;
