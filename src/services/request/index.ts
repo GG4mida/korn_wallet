@@ -20,12 +20,7 @@ const checkResponse = (response: any) => {
 };
 
 const getUserToken = async () => {
-  const res = await Storage.getItem(StorageKeys.USER_TOKEN);
-
-  console.info('res:');
-  console.info(res);
-
-  return res;
+  return await Storage.getItem(StorageKeys.USER_TOKEN);
 };
 
 axios.defaults.timeout = 100000;

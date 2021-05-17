@@ -19,7 +19,7 @@ const HeaderLeftComponent = () => {
 const SignupScreen = ({navigation}: any) => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
+  const [repassword, setRepassword] = useState('');
 
   const dispatch = useDispatch();
   const {loading} = useSelector((state: any) => state.account);
@@ -55,17 +55,21 @@ const SignupScreen = ({navigation}: any) => {
       return false;
     }
 
-    if (!rePassword) {
+    if (!repassword) {
       Toaster.show('请再次输入密码');
       return false;
     }
 
-    if (password !== rePassword) {
+    if (password !== repassword) {
       Toaster.show('两次输入密码不一致');
       return false;
     }
 
-    await dispatch(AccountAction.register(username, password, rePassword));
+    const signupRes = await dispatch(
+      AccountAction.signup(username, password, repassword),
+    );
+
+    console.info(signupRes);
   };
 
   return (
@@ -115,9 +119,9 @@ const SignupScreen = ({navigation}: any) => {
               autoCorrect={false}
               secureTextEntry={true}
               textContentType="password"
-              onChangeText={setRePassword}
+              onChangeText={setRepassword}
               placeholder="确认密码..."
-              value={rePassword}
+              value={repassword}
             />
           </View>
           <View style={tailwind('mb-5')}>
