@@ -5,7 +5,7 @@ const login = (data: any) => {
 };
 
 const signup = (data: any) => {
-  return request.post('/api/account/register', data);
+  return request.post('/api/account/signup', data);
 };
 
 const logout = () => {

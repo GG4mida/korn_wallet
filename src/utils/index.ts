@@ -1,6 +1,7 @@
 import Formater from './formater';
 import Toaster from './toaster';
 import Storage from './storage';
+import Device from './device';
 import Validator from './validator';
 
-export {Formater, Toaster, Validator, Storage};
+export {Formater, Toaster, Validator, Storage, Device};

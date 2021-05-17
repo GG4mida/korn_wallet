@@ -1,27 +1,39 @@
-const getFavorites = () => {
-  return fetch('http://127.0.0.1:7070/api/ticker/favorite/list')
-    .then(handleResponse)
-    .then(user => {
-      return user;
-    });
+import request from './request';
+
+const all = (data: any) => {
+  return request.get('/api/ticker/list', data);
 };
 
-const handleResponse = (response: any) => {
-  return response.text().then((text: any) => {
-    const data = text && JSON.parse(text);
+const buyin = (data: any) => {
+  return request.post('/api/ticker/buyin', data);
+};
 
-    console.info('handle response:');
-    console.info(data);
+const sell = (data: any) => {
+  return request.post('/api/ticker/sell', data);
+};
 
-    if (!response.ok) {
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
+const kline = (data: any) => {
+  return request.get('/api/kline/get', data);
+};
 
-    return data;
-  });
+const favorites = () => {
+  return request.get('/api/ticker/favorite/list');
+};
+
+const addFavorite = (data: any) => {
+  return request.post('/api/ticker/favorite/add', data);
+};
+
+const delFavorite = (data: any) => {
+  return request.post('/api/ticker/favorite/del', data);
 };
 
 export default {
-  getFavorites,
+  all,
+  buyin,
+  sell,
+  kline,
+  favorites,
+  addFavorite,
+  delFavorite,
 };

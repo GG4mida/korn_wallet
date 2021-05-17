@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, useDispatch} from 'react-redux';
@@ -10,8 +10,8 @@ import LogoSvg from '@/assets/svg/logo.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUserName] = useState('fuckusername');
+  const [password, setPassword] = useState('fuckpassword');
 
   const dispatch = useDispatch();
   const loading = useSelector(
@@ -24,9 +24,9 @@ const LoginScreen: React.FC = ({navigation}: any) => {
     });
   }, [navigation, loading]);
 
-  const handleSigninPress = () => {
+  const handleSigninPress = useCallback(() => {
     navigation.navigate(RouteConfig.Signup.name);
-  };
+  }, [navigation]);
 
   const handleSubmitPress = async () => {
     if (loading === true) {

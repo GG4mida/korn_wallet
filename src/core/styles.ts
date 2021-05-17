@@ -13,12 +13,14 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingVertical: 12,
+    paddingHorizontal: 40,
     backgroundColor: getColor('green-500'),
     borderRadius: 30,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     color: '#fff',
+    minWidth: 156,
   },
   loadingMask: {
     position: 'absolute',

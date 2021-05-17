@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
 import styles from '@/core/styles';
-import {Toaster, Validator} from '@/utils';
+import {Toaster, Validator, Device} from '@/utils';
+import {ResponseCode} from '@/constants/enum';
 import Icon from 'react-native-vector-icons/Feather';
 import LogoSvg from '@/assets/svg/logo.svg';
+import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const HeaderLeftComponent = () => {
   return (
@@ -20,15 +22,18 @@ const SignupScreen = ({navigation}: any) => {
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
 
-  // const dispatch = useDispatch();
-  const {loading} = useSelector((state: any) => state.account);
+  const dispatch = useDispatch();
+  const loading = useSelector(
+    (state: any) => state.loading.effects['account/signup'],
+  );
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: tailwind('text-gray-600'),
       headerBackImage: () => <HeaderLeftComponent />,
+      headerRight: () => <LoadingActivity loading={loading} />,
     });
-  }, [navigation]);
+  }, [navigation, loading]);
 
   const handleSubmitPress = async () => {
     if (loading === true) {
@@ -64,11 +69,24 @@ const SignupScreen = ({navigation}: any) => {
       return false;
     }
 
-    // const signupRes = await dispatch(
-    //   // AccountAction.signup(username, password, repassword),
-    // );
+    const signupRes: any = await dispatch({
+      type: 'account/signup',
+      payload: {
+        username,
+        password,
+        repassword,
+        uniqueId: Device.getUniqueId(),
+      },
+    });
 
-    // console.info(signupRes);
+    const {code, content} = signupRes;
+    if (code === ResponseCode.SUCCESS) {
+      Toaster.show(content, {
+        onHidden: () => {
+          navigation.goBack();
+        },
+      });
+    }
   };
 
   return (
@@ -127,6 +145,7 @@ const SignupScreen = ({navigation}: any) => {
             <TouchableOpacity
               onPress={handleSubmitPress}
               activeOpacity={0.5}
+              disabled={loading}
               style={styles.button}>
               <Text style={tailwind('text-base text-white')}>注册</Text>
             </TouchableOpacity>
@@ -136,6 +155,7 @@ const SignupScreen = ({navigation}: any) => {
       <View style={tailwind('flex flex-row items-center justify-center mb-10')}>
         <Text style={tailwind('text-gray-500 text-base')}>3.2.3</Text>
       </View>
+      <LoadingMask loading={loading} />
     </View>
   );
 };

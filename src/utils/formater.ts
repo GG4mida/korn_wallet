@@ -1,13 +1,6 @@
-const formatChange = (val: number) => {
-  if (val > 0) {
-    return `${val}%`;
-  }
-
-  if (val < 0) {
-    return `${Math.abs(val)}%`;
-  }
-
-  return '0.00%';
+const formatProfitRatio = (ratio: string) => {
+  const ratioNumber = (Math.abs(parseFloat(ratio)) * 100).toFixed(2);
+  return `${ratioNumber}%`;
 };
 
-export default {formatChange};
+export default {formatProfitRatio};
