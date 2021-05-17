@@ -5,9 +5,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
 import {tickerTab, tickerTabs} from '@/constants/tab';
 import Tab from '@/components/tab';
+import Sorter from '@/components/ticker/sorter';
 import styles from '@/core/styles';
 import {Formater} from '@/utils';
-import SortSvg from '@/assets/svg/sort.svg';
+import {SortField, SortRule} from '@/constants/enum';
 import EmptySvg from '@/assets/svg/empty.svg';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -92,7 +93,6 @@ const TickerFavorites = (props: any) => {
         <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
           暂无自选
         </Text>
-
         <TouchableOpacity
           onPress={() => props.emptyAction(tickerTab.ALL)}
           activeOpacity={0.5}
@@ -120,39 +120,18 @@ const TickerTabs = (props: any) => {
   return <Tab data={tickerTabs} value={value} onChange={onChange} />;
 };
 
-const TickerHeader = () => {
-  return (
-    <View
-      style={tailwind(
-        'flex flex-row items-center justify-between bg-white border-b border-gray-100 px-5 py-2',
-      )}>
-      <TouchableOpacity
-        onPress={() => null}
-        activeOpacity={0.5}
-        style={tailwind('flex flex-1 flex-row items-center')}>
-        <Text style={tailwind('text-sm text-gray-500')}>币种</Text>
-        <SortSvg fill={getColor('gray-400')} width={16} height={16} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => null}
-        activeOpacity={0.5}
-        style={tailwind('flex flex-1 flex-row items-center justify-end')}>
-        <Text style={tailwind('text-sm text-gray-500')}>价格</Text>
-        <SortSvg fill={getColor('gray-400')} width={16} height={16} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => null}
-        activeOpacity={0.5}
-        style={tailwind('flex flex-1 flex-row items-center justify-end')}>
-        <Text style={tailwind('text-sm text-gray-500')}>涨跌幅</Text>
-        <SortSvg fill={getColor('gray-400')} width={16} height={16} />
-      </TouchableOpacity>
-    </View>
-  );
+const TickerHeader = (props: any) => {
+  const {value, onChange} = props;
+  const {name, rule} = value;
+  return <Sorter name={name} rule={rule} onChange={onChange} />;
 };
 
 const TickerScreen = ({}: any) => {
   const [tab, setTab] = useState(tickerTab.ALL);
+  const [sorter, setSorter] = useState({
+    name: SortField.NAME,
+    rule: SortRule.NONE,
+  });
   const dispatch = useDispatch();
   const {all, favorites} = useSelector((state: any) => state.ticker);
   const loading = useSelector((state: any) => state.loading.models.ticker);
@@ -169,7 +148,7 @@ const TickerScreen = ({}: any) => {
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
       <TickerTabs value={tab} onChange={setTab} />
-      <TickerHeader />
+      <TickerHeader value={sorter} onChange={setSorter} />
       {tab === tickerTab.ALL ? (
         <TickerAll loading={loading} data={all} />
       ) : (
