@@ -74,7 +74,7 @@ const UserHolds = (props: any) => {
     return (
       <View style={tailwind('flex flex-col items-center justify-center py-8')}>
         <EmptySvg width={96} height={96} style={tailwind('mb-3')} />
-        <Text style={tailwind('mb-6 text-base text-gray-400 text-center')}>
+        <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
           暂无持仓
         </Text>
         <TouchableOpacity
@@ -142,8 +142,6 @@ const HomeScreen = ({navigation}: any) => {
   );
 
   useEffect(() => {
-    console.info('home use effect.');
-
     dispatch({
       type: 'user/full',
     });

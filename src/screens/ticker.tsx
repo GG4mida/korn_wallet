@@ -1,48 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import {useDispatch, useSelector} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
+import {tickerTab, tickerTabs} from '@/constants/tab';
+import Tab from '@/components/tab';
+import styles from '@/core/styles';
+import {Formater} from '@/utils';
 import SortSvg from '@/assets/svg/sort.svg';
+import EmptySvg from '@/assets/svg/empty.svg';
+import {ScrollView} from 'react-native-gesture-handler';
 
-const marketList = [
-  {
-    icon: require('../assets/img/btc.png'),
-    name: 'BTC',
-    label: '比特币',
-    change: 23.11,
-    price_usd: 2399.33,
-    price_cny: 329807.12,
-  },
-  {
-    icon: require('../assets/img/eth.png'),
-    name: 'ETH',
-    label: '以太坊',
-    change: -18.33,
-    price_usd: 2399.33,
-    price_cny: 329807.12,
-  },
-  {
-    icon: require('../assets/img/trx.png'),
-    name: 'TRX',
-    label: '波场',
-    change: 9.22,
-    price_usd: 2399.33,
-    price_cny: 329807.12,
-  },
-];
+const TickerItem = (props: any) => {
+  const {data} = props;
+  const {basic, meta} = data;
+  const {name, symbol, logo_png} = basic;
+  const {P: change, c: price} = meta;
 
-const MarketItem = (props: any) => {
-  const {market} = props;
-  const {icon, name, label, change, price_usd, price_cny} = market;
-
-  let changeIcon, changeStyle;
-  if (parseFloat(change) > 0) {
-    changeIcon = 'arrow-up';
-    changeStyle = 'text-red-600';
-  } else {
-    changeIcon = 'arrow-down';
-    changeStyle = 'text-green-600';
-  }
+  const changeStyle =
+    parseFloat(change) > 0 ? 'text-red-600' : 'text-green-600';
 
   return (
     <TouchableOpacity
@@ -51,72 +27,97 @@ const MarketItem = (props: any) => {
       style={tailwind(
         'bg-white flex flex-row justify-between items-center border-b border-gray-100 px-5 py-3',
       )}>
-      <View style={tailwind('flex flex-row items-center')}>
-        <Image source={icon} style={tailwind('w-6 h-6 rounded-full')} />
+      <View style={tailwind('flex flex-row w-1/3 items-center')}>
+        <Image
+          source={{uri: logo_png}}
+          style={tailwind('w-6 h-6 rounded-full')}
+        />
         <View style={tailwind('ml-3')}>
-          <Text style={tailwind('text-gray-800 text-lg')}>{name}</Text>
-          <Text style={tailwind('text-gray-500 text-xs')}>{label}</Text>
+          <Text style={tailwind('text-gray-800 text-lg')}>{symbol}</Text>
+          <Text style={tailwind('text-gray-500 text-xs')}>{name}</Text>
         </View>
       </View>
 
       <View style={tailwind('flex flex-col items-end w-1/3')}>
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-xs text-gray-600 italic mr-1')}>$</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>{price_usd}</Text>
+          <Text style={tailwind('text-xs text-gray-600')}>{price}</Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-base text-gray-800 italic mr-1')}>$</Text>
-          <Text style={tailwind('text-base text-gray-800')}>{price_cny}</Text>
+          <Text style={tailwind('text-base text-gray-800')}>{price}</Text>
         </View>
       </View>
 
-      <View style={tailwind('flex flex-row items-center')}>
-        <Icon name={changeIcon} size={16} style={tailwind(changeStyle)} />
-        <Text style={tailwind(`${changeStyle} text-base`)}>12.12%</Text>
+      <View style={tailwind('flex flex-row w-1/3 items-center justify-end')}>
+        <Text style={tailwind(`${changeStyle} text-base`)}>
+          {Formater.formatTickerChange(change)}
+        </Text>
       </View>
     </TouchableOpacity>
   );
 };
 
-const TickerList = () => {
+const TickerAll = (props: any) => {
+  const {data} = props;
+  if (data.length === 0) {
+    return (
+      <View
+        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
+        <EmptySvg width={96} height={96} style={tailwind('mb-3')} />
+        <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
+          暂无行情数据，请稍候查看
+        </Text>
+      </View>
+    );
+  }
+
   return (
-    <View>
-      {marketList.map((market: any, index: number) => (
-        <MarketItem key={index} market={market} />
+    <ScrollView showsVerticalScrollIndicator={false} style={tailwind('flex-1')}>
+      {data.map((dataItem: any, index: number) => (
+        <TickerItem data={dataItem} key={`ticker_all_${index}`} />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
-const TickerTabs = () => {
-  return (
-    <View
-      style={tailwind(
-        'flex flex-row items-center justify-center bg-gray-50 border-b border-gray-100 p-3',
-      )}>
+const TickerFavorites = (props: any) => {
+  const {data} = props;
+
+  if (data.length === 0) {
+    return (
       <View
-        style={tailwind(
-          'flex flex-row bg-white border border-gray-100 rounded-3xl',
-        )}>
+        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
+        <EmptySvg width={96} height={96} style={tailwind('mb-3')} />
+        <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
+          暂无自选
+        </Text>
+
         <TouchableOpacity
-          onPress={() => null}
+          onPress={() => props.emptyAction(tickerTab.ALL)}
           activeOpacity={0.5}
-          style={tailwind(
-            'w-20 py-2 px-3 bg-red-500 rounded-3xl flex flex-row items-center justify-center',
-          )}>
-          <Text style={tailwind('text-white')}>自选</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => null}
-          activeOpacity={0.5}
-          style={tailwind(
-            'w-20 py-2 px-3 flex flex-row items-center justify-center',
-          )}>
-          <Text style={tailwind('text-gray-700')}>所有</Text>
+          style={styles.button}>
+          <Text style={tailwind('text-base text-white mr-1')}>
+            前往行情页面添加
+          </Text>
+          <Icon name="arrow-right" size={18} color={getColor('white')} />
         </TouchableOpacity>
       </View>
-    </View>
+    );
+  }
+
+  return (
+    <ScrollView showsVerticalScrollIndicator={false} style={tailwind('flex-1')}>
+      {data.map((dataItem: any, index: number) => (
+        <TickerItem data={dataItem} key={`ticker_favorite_${index}`} />
+      ))}
+    </ScrollView>
   );
+};
+
+const TickerTabs = (props: any) => {
+  const {value, onChange} = props;
+  return <Tab data={tickerTabs} value={value} onChange={onChange} />;
 };
 
 const TickerHeader = () => {
@@ -151,11 +152,33 @@ const TickerHeader = () => {
 };
 
 const TickerScreen = ({}: any) => {
+  const [tab, setTab] = useState(tickerTab.ALL);
+  const dispatch = useDispatch();
+  const {all, favorites} = useSelector((state: any) => state.ticker);
+  const loading = useSelector((state: any) => state.loading.models.ticker);
+
+  useEffect(() => {
+    dispatch({
+      type: 'ticker/all',
+    });
+    dispatch({
+      type: 'ticker/favorites',
+    });
+  }, [dispatch]);
+
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
-      <TickerTabs />
+      <TickerTabs value={tab} onChange={setTab} />
       <TickerHeader />
-      <TickerList />
+      {tab === tickerTab.ALL ? (
+        <TickerAll loading={loading} data={all} />
+      ) : (
+        <TickerFavorites
+          loading={loading}
+          data={favorites}
+          emptyAction={setTab}
+        />
+      )}
     </View>
   );
 };

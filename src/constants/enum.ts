@@ -8,4 +8,6 @@ enum ResponseCode {
   NOTAUTH = 401,
 }
 
-export {StorageKeys, ResponseCode};
+const TICKER_STANDARD = 'USD';
+
+export {StorageKeys, ResponseCode, TICKER_STANDARD};
