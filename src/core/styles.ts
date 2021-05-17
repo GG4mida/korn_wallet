@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingVertical: 12,
-    paddingHorizontal: 40,
+    paddingHorizontal: 25,
     backgroundColor: getColor('green-500'),
     borderRadius: 30,
     flexDirection: 'row',

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,6 +11,36 @@ import {Formater} from '@/utils';
 import {SortField, SortRule} from '@/constants/enum';
 import EmptySvg from '@/assets/svg/empty.svg';
 import {ScrollView} from 'react-native-gesture-handler';
+
+const SorterFunc = (data: any, sorter: any) => {
+  if (!data || data.length === 0) {
+    return [];
+  }
+  const {name: sortName, rule: sortRule} = sorter;
+  data.sort((a: any, b: any) => {
+    let sortFieldValA, sortFieldValB;
+    if (sortName === SortField.NAME) {
+      sortFieldValA = a.basic.symbol;
+      sortFieldValB = b.basic.symbol;
+    }
+    if (sortName === SortField.PRICE) {
+      sortFieldValA = a.meta.c;
+      sortFieldValB = b.meta.c;
+    }
+    if (sortName === SortField.CHANGE) {
+      sortFieldValA = a.meta.P;
+      sortFieldValB = b.meta.P;
+    }
+    if (sortRule === SortRule.ASC) {
+      return sortFieldValA - sortFieldValB ? 1 : -1;
+    }
+    if (sortRule === SortRule.DESC) {
+      return sortFieldValB - sortFieldValA ? 1 : -1;
+    }
+  });
+
+  return data;
+};
 
 const TickerItem = (props: any) => {
   const {data} = props;
@@ -60,14 +90,19 @@ const TickerItem = (props: any) => {
 };
 
 const TickerAll = (props: any) => {
-  const {data} = props;
+  const {data, sorter} = props;
+
+  const tickerList = useMemo(() => {
+    return SorterFunc(data, sorter);
+  }, [data, sorter]);
+
   if (data.length === 0) {
     return (
       <View
         style={tailwind('flex flex-1 flex-col items-center justify-center')}>
-        <EmptySvg width={96} height={96} style={tailwind('mb-3')} />
+        <EmptySvg width={80} height={80} style={tailwind('mb-3')} />
         <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
-          暂无行情数据，请稍候查看
+          暂无行情数据
         </Text>
       </View>
     );
@@ -75,7 +110,7 @@ const TickerAll = (props: any) => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={tailwind('flex-1')}>
-      {data.map((dataItem: any, index: number) => (
+      {tickerList.map((dataItem: any, index: number) => (
         <TickerItem data={dataItem} key={`ticker_all_${index}`} />
       ))}
     </ScrollView>
@@ -83,13 +118,17 @@ const TickerAll = (props: any) => {
 };
 
 const TickerFavorites = (props: any) => {
-  const {data} = props;
+  const {data, sorter} = props;
+
+  const tickerList = useMemo(() => {
+    return SorterFunc(data, sorter);
+  }, [data, sorter]);
 
   if (data.length === 0) {
     return (
       <View
         style={tailwind('flex flex-1 flex-col items-center justify-center')}>
-        <EmptySvg width={96} height={96} style={tailwind('mb-3')} />
+        <EmptySvg width={80} height={80} style={tailwind('mb-3')} />
         <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
           暂无自选
         </Text>
@@ -108,7 +147,7 @@ const TickerFavorites = (props: any) => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={tailwind('flex-1')}>
-      {data.map((dataItem: any, index: number) => (
+      {tickerList.map((dataItem: any, index: number) => (
         <TickerItem data={dataItem} key={`ticker_favorite_${index}`} />
       ))}
     </ScrollView>
@@ -150,11 +189,12 @@ const TickerScreen = ({}: any) => {
       <TickerTabs value={tab} onChange={setTab} />
       <TickerHeader value={sorter} onChange={setSorter} />
       {tab === tickerTab.ALL ? (
-        <TickerAll loading={loading} data={all} />
+        <TickerAll loading={loading} data={all} sorter={sorter} />
       ) : (
         <TickerFavorites
           loading={loading}
           data={favorites}
+          sorter={sorter}
           emptyAction={setTab}
         />
       )}

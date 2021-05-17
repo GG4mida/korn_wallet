@@ -1,7 +1,11 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
-import SortSvg from '@/assets/svg/sort.svg';
+
+import SortAscSvg from '@/assets/svg/sortAsc.svg';
+import SortDescSvg from '@/assets/svg/sortDesc.svg';
+import SortNoneSvg from '@/assets/svg/sortNone.svg';
+
 import {SortRule, SortField} from '@/constants/enum';
 
 const SORT_HEADERS = [
@@ -21,6 +25,24 @@ const SORT_HEADERS = [
     sort: true,
   },
 ];
+
+const SorterIcon = (props: any) => {
+  const {rule, name, item} = props;
+  const {name: itemName} = item;
+  const fillSize = 12;
+  const fillColor = getColor('gray-500');
+  if (name === itemName) {
+    if (rule === SortRule.ASC) {
+      return <SortAscSvg fill={fillColor} width={fillSize} height={fillSize} />;
+    }
+    if (rule === SortRule.DESC) {
+      return (
+        <SortDescSvg fill={fillColor} width={fillSize} height={fillSize} />
+      );
+    }
+  }
+  return <SortNoneSvg fill={fillColor} width={fillSize} height={fillSize} />;
+};
 
 const Sorter = (props: any) => {
   const {name, rule, onChange} = props;
@@ -67,7 +89,7 @@ const Sorter = (props: any) => {
             <Text style={tailwind('text-sm text-gray-500')}>
               {sortItem.label}
             </Text>
-            <SortSvg fill={getColor('gray-400')} width={16} height={16} />
+            <SorterIcon rule={rule} name={name} item={sortItem} />
           </TouchableOpacity>
         );
       })}

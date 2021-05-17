@@ -12,7 +12,7 @@ import EmptySvg from '@/assets/svg/empty.svg';
 
 const UserProfile = (props: any) => {
   const {data} = props;
-  const {balance_current, profit_ratio} = data;
+  const {balance_current = 0, profit_ratio = 0} = data;
 
   return (
     <LinearGradient
@@ -32,7 +32,7 @@ const UserProfile = (props: any) => {
         </View>
 
         <View style={tailwind('flex flex-row items-center')}>
-          <Icon name="arrow-up" size={20} style={tailwind('text-white mr-1')} />
+          <Icon name="arrow-up" size={18} style={tailwind('text-white mr-1')} />
           <Text style={tailwind('text-lg text-white')}>
             {Formater.formatProfitRatio(profit_ratio)}
           </Text>
@@ -73,7 +73,7 @@ const UserHolds = (props: any) => {
 
     return (
       <View style={tailwind('flex flex-col items-center justify-center py-8')}>
-        <EmptySvg width={96} height={96} style={tailwind('mb-3')} />
+        <EmptySvg width={80} height={80} style={tailwind('mb-3')} />
         <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
           暂无持仓
         </Text>
