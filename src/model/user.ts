@@ -5,10 +5,25 @@ import {ResponseCode} from '@/constants/enum';
 const UserModel = {
   namespace: 'user',
   state: {
+    base: {},
     full: {},
     holds: [],
   },
   effects: {
+    *base({payload}: any, {call, put}: any): any {
+      const data = yield call(UserService.base, payload);
+      const {code, content} = data;
+      if (ResponseCode.SUCCESS === code) {
+        yield put({
+          type: 'setBase',
+          payload: {
+            data: content,
+          },
+        });
+      }
+      return data;
+    },
+
     *full({payload}: any, {call, put}: any): any {
       const data = yield call(UserService.full, payload);
       const {code, content} = data;
@@ -39,6 +54,13 @@ const UserModel = {
   },
 
   reducers: {
+    setBase(state: any, action: any) {
+      const nextState = produce(state, (draftState: any) => {
+        draftState.base = action.payload.data;
+      });
+      return nextState;
+    },
+
     setFull(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.full = action.payload.data;

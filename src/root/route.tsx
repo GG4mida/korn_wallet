@@ -65,11 +65,6 @@ const AnonymousRoutes = () => {
         options={{title: RouteConfig.Login.title}}
       />
       <Stack.Screen
-        name={RouteConfig.Splash.name}
-        component={Screen.SplashScreen}
-        options={{title: RouteConfig.Splash.title}}
-      />
-      <Stack.Screen
         name={RouteConfig.Signup.name}
         component={Screen.SignupScreen}
         options={{title: RouteConfig.Signup.title}}
@@ -78,11 +73,42 @@ const AnonymousRoutes = () => {
   );
 };
 
+const SplashRoutes = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={RouteConfig.Splash.name}
+        component={Screen.SplashScreen}
+        options={{title: RouteConfig.Splash.title}}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const RouteContainer = () => {
-  const accountState = useSelector((state: any) => state.account);
+  const {token} = useSelector((state: any) => state.account);
+  const {base} = useSelector((state: any) => state.user);
+  const {initialized} = useSelector((state: any) => state.system);
+
+  if (!initialized) {
+    return (
+      <NavigationContainer>
+        <SplashRoutes />
+      </NavigationContainer>
+    );
+  }
+
+  if (token && base && base.id) {
+    return (
+      <NavigationContainer>
+        <AuthorizedRoutes />
+      </NavigationContainer>
+    );
+  }
+
   return (
     <NavigationContainer>
-      {accountState.token ? <AuthorizedRoutes /> : <AnonymousRoutes />}
+      <AnonymousRoutes />
     </NavigationContainer>
   );
 };

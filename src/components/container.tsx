@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-const TIMER_INTERVAL = 3000;
+const TIMER_INTERVAL = 300000;
 
 const Container: React.FC = props => {
   const dispatch = useDispatch();
