@@ -7,3 +7,4 @@ declare module '*.svg' {
 
 declare module 'dva-core';
 declare module 'dva-loading';
+declare module 'react-native-svg-charts';

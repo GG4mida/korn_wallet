@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
 import {tickerTab, tickerTabs} from '@/constants/tab';
@@ -8,6 +9,7 @@ import Tab from '@/components/tab';
 import Sorter from '@/components/ticker/sorter';
 import styles from '@/core/styles';
 import {Formater} from '@/utils';
+import {RouteConfig} from '@/constants/navigation';
 import {SortField, SortRule} from '@/constants/enum';
 import EmptySvg from '@/assets/svg/empty.svg';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -69,9 +71,14 @@ const TickerItem = (props: any) => {
   const changeStyle =
     parseFloat(change) > 0 ? 'text-red-600' : 'text-green-600';
 
+  const navigation = useNavigation();
+  const handleItemPress = (item: any) => {
+    navigation.navigate(RouteConfig.TickerDetail.name, item);
+  };
+
   return (
     <TouchableOpacity
-      onPress={() => null}
+      onPress={() => handleItemPress(data)}
       activeOpacity={0.5}
       style={tailwind(
         'bg-white flex flex-row justify-between items-center border-b border-gray-100 px-5 py-3',
@@ -89,11 +96,11 @@ const TickerItem = (props: any) => {
 
       <View style={tailwind('flex flex-col items-end w-1/3')}>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600 italic mr-1')}>$</Text>
+          <Text style={tailwind('text-xs text-gray-600 italic')}>$</Text>
           <Text style={tailwind('text-xs text-gray-600')}>{price}</Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-800 italic mr-1')}>$</Text>
+          <Text style={tailwind('text-base text-gray-800 italic')}>$</Text>
           <Text style={tailwind('text-base text-gray-800')}>{price}</Text>
         </View>
       </View>

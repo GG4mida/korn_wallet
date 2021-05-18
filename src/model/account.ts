@@ -19,9 +19,7 @@ const AccountModel = {
 
         yield put({
           type: 'setToken',
-          payload: {
-            data: token,
-          },
+          payload: token,
         });
       }
 
@@ -36,9 +34,7 @@ const AccountModel = {
       const data = yield call(AccountService.logout, payload);
       yield put({
         type: 'setToken',
-        payload: {
-          data: null,
-        },
+        payload: null,
       });
       return data;
     },
@@ -47,7 +43,7 @@ const AccountModel = {
   reducers: {
     setToken(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.token = action.payload.data;
+        draftState.token = action.payload;
       });
       return nextState;
     },

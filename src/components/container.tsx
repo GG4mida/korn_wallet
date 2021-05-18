@@ -4,7 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode} from '@/constants/enum';
 
-const TIMER_INTERVAL = 300000;
+const TIMER_INTERVAL = 5000;
 const SPLASH_INTERVAL = 2000;
 
 const Container: React.FC = props => {
@@ -51,9 +51,7 @@ const Container: React.FC = props => {
         if (userBaseRes.code === ResponseCode.SUCCESS) {
           await dispatch({
             type: 'account/setToken',
-            payload: {
-              data: userToken,
-            },
+            payload: userToken,
           });
         }
       }
@@ -66,9 +64,7 @@ const Container: React.FC = props => {
         const setInitialized = async () => {
           await dispatch({
             type: 'system/setInitialized',
-            payload: {
-              data: true,
-            },
+            payload: true,
           });
 
           SplashScreen.hide();

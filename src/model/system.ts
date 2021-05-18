@@ -15,9 +15,7 @@ const SystemModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setInfo',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -27,14 +25,14 @@ const SystemModel = {
   reducers: {
     setInfo(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.info = action.payload.data;
+        draftState.info = action.payload;
       });
       return nextState;
     },
 
     setInitialized(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.initialized = action.payload.data;
+        draftState.initialized = action.payload;
       });
       return nextState;
     },

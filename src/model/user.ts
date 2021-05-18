@@ -16,9 +16,7 @@ const UserModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setBase',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -30,9 +28,7 @@ const UserModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setFull',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -44,9 +40,7 @@ const UserModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setHolds',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -56,21 +50,21 @@ const UserModel = {
   reducers: {
     setBase(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.base = action.payload.data;
+        draftState.base = action.payload;
       });
       return nextState;
     },
 
     setFull(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.full = action.payload.data;
+        draftState.full = action.payload;
       });
       return nextState;
     },
 
     setHolds(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.holds = action.payload.data;
+        draftState.holds = action.payload;
       });
       return nextState;
     },

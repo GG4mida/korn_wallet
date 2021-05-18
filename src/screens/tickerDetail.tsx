@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {
   ScrollView,
   View,
   Image,
   Text,
+  ActivityIndicator,
+  StyleSheet,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {LineChart} from 'react-native-chart-kit';
+import {useRoute} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {LineChart, YAxis, XAxis} from 'react-native-svg-charts';
+import {Formater, Storage, DateTime} from '@/utils';
+import {klineTab, klineTabs} from '@/constants/tab';
 import {tailwind, getColor} from '@/core/tailwind';
 
 const HeaderLeftComponent = () => {
@@ -33,6 +39,17 @@ const HeaderRightComponent = () => {
 };
 
 const TickerBase = () => {
+  const route = useRoute();
+
+  const data: any = route.params;
+
+  const {basic, meta} = data;
+  const {name, symbol, logo_png} = basic;
+  const {P: change, c: price} = meta;
+
+  const changeStyle =
+    parseFloat(change) > 0 ? 'text-red-600' : 'text-green-600';
+
   return (
     <View
       style={tailwind(
@@ -40,241 +57,307 @@ const TickerBase = () => {
       )}>
       <View style={tailwind('flex flex-row items-center')}>
         <Image
-          source={require('../assets/img/btc.png')}
+          source={{uri: logo_png}}
           style={tailwind('w-8 h-8 rounded-full')}
         />
         <View style={tailwind('ml-3')}>
-          <Text style={tailwind('text-gray-800 text-lg')}>BTC</Text>
-          <Text style={tailwind('text-gray-500 text-xs')}>比特币</Text>
+          <Text style={tailwind('text-gray-800 text-lg')}>{symbol}</Text>
+          <Text style={tailwind('text-gray-500 text-xs')}>{name}</Text>
         </View>
       </View>
 
       <View style={tailwind('flex flex-col items-end w-1/3')}>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600 italic mr-1')}>$</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>7999.12</Text>
+          <Text style={tailwind('text-xs text-gray-600 italic')}>$</Text>
+          <Text style={tailwind('text-xs text-gray-600')}>{price}</Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-800 italic mr-1')}>$</Text>
-          <Text style={tailwind('text-base text-gray-800')}>301233.22</Text>
+          <Text style={tailwind('text-base text-gray-600 italic')}>$</Text>
+          <Text style={tailwind('text-base text-gray-600')}>{price}</Text>
         </View>
       </View>
       <View style={tailwind('flex flex-row items-center')}>
-        <Icon name="arrow-up" size={16} style={tailwind('text-red-600')} />
-        <Text style={tailwind('text-red-600 text-base')}>12.33%</Text>
+        <Text style={tailwind(`${changeStyle} text-base`)}>
+          {Formater.formatTickerChange(change)}
+        </Text>
       </View>
     </View>
   );
 };
 
 const TickerTrade = () => {
+  const route = useRoute();
+
+  const data: any = route.params;
+  const {meta} = data;
+  const {h: dayHigh, l: dayLow, n: dayCount, v: dayVolumn} = meta;
+
+  const dayCountData: any = Formater.formatBigNumber(dayCount);
+  const dayVolumnData: any = Formater.formatBigNumber(dayVolumn);
+
   return (
     <View
       style={tailwind(
-        'flex flex-row items-center flex-wrap justify-between bg-white border-b border-gray-100 p-1',
+        'flex flex-row items-center flex-wrap justify-between bg-white border-b border-gray-100 p-2',
       )}>
       <View
         style={tailwind(
           'flex flex-row items-center justify-between px-3 py-1 w-1/2',
         )}>
-        <Text style={tailwind('text-gray-500 text-sm')}>今日涨幅</Text>
-        <Text style={tailwind('text-red-600 text-sm')}>+12.33%</Text>
+        <Text style={tailwind('text-gray-400 text-sm')}>24h最高</Text>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>{dayHigh}</Text>
+        </View>
       </View>
       <View
         style={tailwind(
           'flex flex-row items-center justify-between px-3 py-1 w-1/2',
         )}>
-        <Text style={tailwind('text-gray-500 text-sm')}>最新价格</Text>
-        <Text style={tailwind('text-red-600 text-sm')}>+12.33%</Text>
+        <Text style={tailwind('text-gray-400 text-sm')}>24h成交量</Text>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-gray-600 text-sm')}>
+            {dayCountData.value}
+          </Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>
+            {dayCountData.unit}
+          </Text>
+        </View>
       </View>
       <View
         style={tailwind(
           'flex flex-row items-center justify-between px-3 py-1 w-1/2',
         )}>
-        <Text style={tailwind('text-gray-500 text-sm')}>24小时量</Text>
-        <Text style={tailwind('text-red-600 text-sm')}>+12.33%</Text>
+        <Text style={tailwind('text-gray-400 text-sm')}>24h最低</Text>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>{dayLow}</Text>
+        </View>
       </View>
       <View
         style={tailwind(
           'flex flex-row items-center justify-between px-3 py-1 w-1/2',
         )}>
-        <Text style={tailwind('text-gray-500 text-sm')}>24小时额</Text>
-        <Text style={tailwind('text-red-600 text-sm')}>+12.33%</Text>
+        <Text style={tailwind('text-gray-400 text-sm')}>24h成交额</Text>
+        <View style={tailwind('flex flex-row items-center')}>
+          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>
+            {dayVolumnData.value}
+          </Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>
+            {dayVolumnData.unit}
+          </Text>
+        </View>
       </View>
     </View>
   );
 };
 
-const TickerChartBar = () => {
+const TickerChartBar = (props: any) => {
+  const {data, value, onChange} = props;
   return (
     <View
       style={tailwind(
         'flex flex-row items-center justify-between border-b border-gray-100 bg-gray-50 px-3 py-2',
       )}>
-      <View style={tailwind('rounded-xl px-5 py-2')}>
-        <Text style={tailwind('text-gray-700')}>天</Text>
-      </View>
-      <View style={tailwind('rounded-lg px-5 py-2')}>
-        <Text style={tailwind('text-gray-700')}>周</Text>
-      </View>
-      <View
-        style={tailwind(
-          'bg-gray-100 border border-gray-200 rounded-2xl px-5 py-2',
-        )}>
-        <Text style={tailwind('text-gray-700')}>月</Text>
-      </View>
-      <View style={tailwind('rounded-lg px-5 py-2')}>
-        <Text style={tailwind('text-gray-700')}>年</Text>
-      </View>
-      <View style={tailwind('rounded-lg px-5 py-2')}>
-        <Text style={tailwind('text-gray-700')}>全部</Text>
-      </View>
+      {data.map((tabItem: any, index: number) => {
+        return (
+          <TouchableOpacity
+            key={index}
+            activeOpacity={0.5}
+            onPress={() => onChange(tabItem.name)}
+            style={tailwind(
+              `rounded-full px-5 py-2 border border-gray-50 ${
+                tabItem.name === value
+                  ? 'bg-gray-100 border border-gray-200'
+                  : ''
+              }`,
+            )}>
+            <Text style={tailwind('text-gray-700')}>{tabItem.label}</Text>
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 };
 
-const TickerChart = () => {
-  const labels: string[] = [];
-  const datas = [];
-  for (let i = 10; i < 400; i++) {
-    labels.push(`00:${i}`);
-    datas.push(Math.random() * 100);
-  }
+const TickerChart = (props: any) => {
+  const {type} = props;
+  const route = useRoute();
+  const ticker: any = route.params;
+  const {basic} = ticker;
+  const {symbol} = basic;
 
-  const formatLabel = (value: string) => {
-    const {length} = labels;
-    const showNum = 5;
+  const dispatch = useDispatch();
+  const {data} = useSelector((state: any) => state.kline);
+  const loading = useSelector((state: any) => state.loading.models.kline);
 
-    const labelDistance = Math.floor(length / showNum);
+  const dataKey = `${symbol}${type}`;
+  const klineData = data[dataKey];
 
-    const valueIndex = labels.indexOf(value);
-    if (valueIndex % labelDistance !== 0) {
-      return '';
+  const klineFormatedData = useMemo(() => {
+    const result: any = {label: [], value: []};
+    if (klineData && klineData.length) {
+      klineData.forEach((item: any) => {
+        const [time, price] = item;
+
+        let formatedTime = null;
+        if (type === klineTab.DAY) {
+          formatedTime = DateTime.format(time, DateTime.FORMATTER_TIME);
+        } else {
+          formatedTime = DateTime.format(time, DateTime.FORMATER_DAY);
+        }
+
+        result.label.push(formatedTime);
+        result.value.push(parseFloat(price));
+      });
     }
-    return `${value}`;
+    return result;
+  }, [klineData, type]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const klineCache = await Storage.getItem(dataKey);
+      if (klineCache) {
+        return;
+      }
+      dispatch({
+        type: 'kline/get',
+        payload: {
+          coin: symbol,
+          type,
+        },
+      });
+    }
+
+    fetchData();
+  }, [dispatch, type, symbol, dataKey]);
+
+  const {label, value} = klineFormatedData;
+
+  const formatYLabel = (labelVal: string) => {
+    return Formater.formatNumber(labelVal);
   };
 
+  const formatXLabel = (labelVal: string, index: number) => {
+    return label[index];
+  };
+
+  if (loading === true) {
+    return (
+      <View style={styles.chart_container}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   return (
-    <View style={tailwind('border-b border-gray-100')}>
-      <LineChart
-        data={{
-          labels: labels,
-          datasets: [
-            {
-              data: datas,
-            },
-          ],
+    <View style={styles.chart_container}>
+      <YAxis
+        data={value}
+        contentInset={{top: 10, bottom: 10, right: 10}}
+        svg={{
+          fill: getColor('gray-500'),
+          fontSize: 12,
         }}
-        width={Dimensions.get('window').width - 20}
-        height={220}
-        withDots={false}
-        withShadow={false}
-        formatXLabel={value => {
-          return formatLabel(value);
-        }}
-        withVerticalLabels={true}
-        withHorizontalLabels={true}
-        withVerticalLines={false}
-        withHorizontalLines={false}
-        chartConfig={{
-          decimalPlaces: 4,
-          backgroundGradientFrom: '#fff',
-          backgroundGradientTo: '#fff',
-          color: () => getColor('green-600'),
-          labelColor: () => getColor('gray-600'),
-          strokeWidth: 1,
-          style: {
-            borderRadius: 0,
-            width: 1,
-            backgroundColor: '#fff',
-          },
-        }}
-        bezier={true}
-        style={{
-          paddingTop: 15,
-          paddingHorizontal: 10,
-          backgroundColor: '#fff',
-        }}
+        numberOfTicks={5}
+        formatLabel={formatYLabel}
       />
-    </View>
-  );
-};
-
-const TickerNews = () => {
-  return (
-    <View style={tailwind('mt-3')}>
-      <View style={tailwind('bg-white p-4 mb-3')}>
-        <View style={tailwind('mb-1')}>
-          <Text style={tailwind('text-sm text-gray-500')}>15:32</Text>
-        </View>
-
-        <View style={tailwind('mb-1')}>
-          <Text style={tailwind('text-lg font-medium text-gray-800')}>
-            USDT 筹码分布从较为集中变为高度集中
-          </Text>
-        </View>
-
-        <View style={tailwind('mb-2')}>
-          <Text style={tailwind('text-base text-gray-600')}>
-            根据 LongHash 大数据监控，USDT
-            筹码分布从较为集中变为高度集中，筹码集中度上升。其中，68.08% 的 USDT
-            集中于 Huobi 交易所。
-          </Text>
-        </View>
-
-        <View>
-          <Text style={tailwind('text-sm text-gray-500')}>Twitter</Text>
-        </View>
-      </View>
-      <View style={tailwind('bg-white p-4 mb-3')}>
-        <View style={tailwind('mb-1')}>
-          <Text style={tailwind('text-sm text-gray-500')}>15:32</Text>
-        </View>
-
-        <View style={tailwind('mb-1')}>
-          <Text style={tailwind('text-lg font-medium text-gray-800')}>
-            USDT 筹码分布从较为集中变为高度集中
-          </Text>
-        </View>
-
-        <View style={tailwind('mb-2')}>
-          <Text style={tailwind('text-base text-gray-600')}>
-            根据 LongHash 大数据监控，USDT
-            筹码分布从较为集中变为高度集中，筹码集中度上升。其中，68.08% 的 USDT
-            集中于 Huobi 交易所。
-          </Text>
-        </View>
-
-        <View>
-          <Text style={tailwind('text-sm text-gray-500')}>Twitter</Text>
-        </View>
-      </View>
-      <View style={tailwind('bg-white p-4 mb-3')}>
-        <View style={tailwind('mb-1')}>
-          <Text style={tailwind('text-sm text-gray-500')}>15:32</Text>
-        </View>
-
-        <View style={tailwind('mb-1')}>
-          <Text style={tailwind('text-lg font-medium text-gray-800')}>
-            USDT 筹码分布从较为集中变为高度集中
-          </Text>
-        </View>
-
-        <View style={tailwind('mb-2')}>
-          <Text style={tailwind('text-base text-gray-600')}>
-            根据 LongHash 大数据监控，USDT
-            筹码分布从较为集中变为高度集中，筹码集中度上升。其中，68.08% 的 USDT
-            集中于 Huobi 交易所。
-          </Text>
-        </View>
-
-        <View>
-          <Text style={tailwind('text-sm text-gray-500')}>Twitter</Text>
-        </View>
+      <View>
+        <LineChart
+          animate={true}
+          style={styles.chart_content}
+          data={value}
+          svg={{stroke: getColor('green-600')}}
+          contentInset={{top: 10, bottom: 10, left: 10, right: 0}}
+        />
+        <XAxis
+          data={value}
+          numberOfTicks={5}
+          formatLabel={formatXLabel}
+          contentInset={{left: 20, right: 0}}
+          svg={{fontSize: 12, fill: getColor('gray-500')}}
+        />
       </View>
     </View>
   );
 };
+
+// const TickerNews = () => {
+//   return (
+//     <View style={tailwind('mt-3')}>
+//       <View style={tailwind('bg-white p-4 mb-3')}>
+//         <View style={tailwind('mb-1')}>
+//           <Text style={tailwind('text-sm text-gray-500')}>15:32</Text>
+//         </View>
+
+//         <View style={tailwind('mb-1')}>
+//           <Text style={tailwind('text-lg font-medium text-gray-800')}>
+//             USDT 筹码分布从较为集中变为高度集中
+//           </Text>
+//         </View>
+
+//         <View style={tailwind('mb-2')}>
+//           <Text style={tailwind('text-base text-gray-600')}>
+//             根据 LongHash 大数据监控，USDT
+//             筹码分布从较为集中变为高度集中，筹码集中度上升。其中，68.08% 的 USDT
+//             集中于 Huobi 交易所。
+//           </Text>
+//         </View>
+
+//         <View>
+//           <Text style={tailwind('text-sm text-gray-500')}>Twitter</Text>
+//         </View>
+//       </View>
+//       <View style={tailwind('bg-white p-4 mb-3')}>
+//         <View style={tailwind('mb-1')}>
+//           <Text style={tailwind('text-sm text-gray-500')}>15:32</Text>
+//         </View>
+
+//         <View style={tailwind('mb-1')}>
+//           <Text style={tailwind('text-lg font-medium text-gray-800')}>
+//             USDT 筹码分布从较为集中变为高度集中
+//           </Text>
+//         </View>
+
+//         <View style={tailwind('mb-2')}>
+//           <Text style={tailwind('text-base text-gray-600')}>
+//             根据 LongHash 大数据监控，USDT
+//             筹码分布从较为集中变为高度集中，筹码集中度上升。其中，68.08% 的 USDT
+//             集中于 Huobi 交易所。
+//           </Text>
+//         </View>
+
+//         <View>
+//           <Text style={tailwind('text-sm text-gray-500')}>Twitter</Text>
+//         </View>
+//       </View>
+//       <View style={tailwind('bg-white p-4 mb-3')}>
+//         <View style={tailwind('mb-1')}>
+//           <Text style={tailwind('text-sm text-gray-500')}>15:32</Text>
+//         </View>
+
+//         <View style={tailwind('mb-1')}>
+//           <Text style={tailwind('text-lg font-medium text-gray-800')}>
+//             USDT 筹码分布从较为集中变为高度集中
+//           </Text>
+//         </View>
+
+//         <View style={tailwind('mb-2')}>
+//           <Text style={tailwind('text-base text-gray-600')}>
+//             根据 LongHash 大数据监控，USDT
+//             筹码分布从较为集中变为高度集中，筹码集中度上升。其中，68.08% 的 USDT
+//             集中于 Huobi 交易所。
+//           </Text>
+//         </View>
+
+//         <View>
+//           <Text style={tailwind('text-sm text-gray-500')}>Twitter</Text>
+//         </View>
+//       </View>
+//     </View>
+//   );
+// };
 
 const TickerActions = () => {
   return (
@@ -312,6 +395,8 @@ const TickerActions = () => {
 };
 
 const TickerDetailScreen = ({navigation}: any) => {
+  const [tab, setTab] = useState(klineTab.DAY);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: tailwind('text-gray-600'),
@@ -327,14 +412,32 @@ const TickerDetailScreen = ({navigation}: any) => {
         showsVerticalScrollIndicator={false}>
         <TickerBase />
         <TickerTrade />
-        <TickerChartBar />
-        <TickerChart />
-        <TickerNews />
+        <TickerChartBar value={tab} data={klineTabs} onChange={setTab} />
+        <TickerChart type={tab} />
+        {/* <TickerNews /> */}
       </ScrollView>
-
       <TickerActions />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  chart_container: {
+    height: 260,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    paddingBottom: 20,
+    paddingTop: 15,
+    backgroundColor: getColor('white'),
+    borderBottomColor: getColor('gray-100'),
+  },
+  chart_content: {
+    height: 240,
+    flexGrow: 1,
+    width: Dimensions.get('window').width - 80,
+  },
+});
 
 export default TickerDetailScreen;

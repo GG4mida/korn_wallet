@@ -1,17 +1,11 @@
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
-import {StorageKeys} from '@/constants/enum';
 
 const storage = new Storage({
   size: 1000,
   storageBackend: AsyncStorage,
   defaultExpires: 1000 * 3600 * 24 * 365,
   enableCache: true,
-  sync: {
-    [StorageKeys.USER_TOKEN]: async () => {
-      return '';
-    },
-  },
 });
 
 const setItem = (key: string, data: any, expires: number = 0) => {
@@ -26,10 +20,14 @@ const setItem = (key: string, data: any, expires: number = 0) => {
 };
 
 const getItem = (key: string) => {
-  return storage.load({
-    key: key,
-    syncInBackground: false,
-  });
+  return storage
+    .load({
+      key: key,
+      syncInBackground: false,
+    })
+    .catch(() => {
+      return null;
+    });
 };
 
 const removeItem = (key: string) => {

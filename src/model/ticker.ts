@@ -16,9 +16,7 @@ const TickerModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setAll',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -30,9 +28,7 @@ const TickerModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setFavorites',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -42,14 +38,14 @@ const TickerModel = {
   reducers: {
     setAll(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.all = action.payload.data;
+        draftState.all = action.payload;
       });
       return nextState;
     },
 
     setFavorites(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.favorites = action.payload.data;
+        draftState.favorites = action.payload;
       });
       return nextState;
     },
