@@ -9,36 +9,47 @@ const SPLASH_INTERVAL = 2000;
 
 const Container: React.FC = props => {
   const dispatch = useDispatch();
-
   const {all, favorites} = useSelector((state: any) => state.ticker);
+  const {base} = useSelector((state: any) => state.user);
 
   useEffect(() => {
     let tickerAllTimer: any = null;
-    if (all && all.length) {
-      tickerAllTimer = setInterval(() => {
-        dispatch({
-          type: 'ticker/all',
-        });
-      }, TIMER_INTERVAL);
+    let tickerFavoritesTimer: any = null;
+
+    async function fetchTicker() {
+      if (!base || !base.id) {
+        return;
+      }
+
+      if (all && all.length) {
+        tickerAllTimer = setInterval(() => {
+          dispatch({
+            type: 'ticker/all',
+          });
+        }, TIMER_INTERVAL);
+      }
+
+      if (favorites && favorites.length) {
+        tickerFavoritesTimer = setInterval(() => {
+          dispatch({
+            type: 'ticker/favorites',
+          });
+        }, TIMER_INTERVAL);
+      }
     }
 
-    let tickerFavoritesTimer: any = null;
-    if (favorites && favorites.length) {
-      tickerFavoritesTimer = setInterval(() => {
-        dispatch({
-          type: 'ticker/favorites',
-        });
-      }, TIMER_INTERVAL);
-    }
+    fetchTicker();
 
     return () => {
       tickerAllTimer && clearInterval(tickerAllTimer);
       tickerFavoritesTimer && clearInterval(tickerFavoritesTimer);
     };
-  }, [dispatch, all, favorites]);
+  }, [dispatch, all, favorites, base]);
 
   useEffect(() => {
     let initTimer: any = null;
+
+    console.info('wtf');
 
     async function fetchData() {
       const userToken = await Storage.getItem(StorageKeys.USER_TOKEN);
@@ -47,12 +58,13 @@ const Container: React.FC = props => {
         const userBaseRes: any = await dispatch({
           type: 'user/base',
         });
-
         if (userBaseRes.code === ResponseCode.SUCCESS) {
           await dispatch({
             type: 'account/setToken',
             payload: userToken,
           });
+        } else {
+          Storage.removeItem(StorageKeys.USER_TOKEN);
         }
       }
 

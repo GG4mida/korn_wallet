@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {LineChart, YAxis, XAxis} from 'react-native-svg-charts';
+import {LineChart, Grid} from 'react-native-svg-charts';
 import {Formater, Storage, DateTime} from '@/utils';
 import {klineTab, klineTabs} from '@/constants/tab';
 import {tailwind, getColor} from '@/core/tailwind';
@@ -233,15 +233,7 @@ const TickerChart = (props: any) => {
     fetchData();
   }, [dispatch, type, symbol, dataKey]);
 
-  const {label, value} = klineFormatedData;
-
-  const formatYLabel = (labelVal: string) => {
-    return Formater.formatNumber(labelVal);
-  };
-
-  const formatXLabel = (labelVal: string, index: number) => {
-    return label[index];
-  };
+  const {value} = klineFormatedData;
 
   if (loading === true) {
     return (
@@ -253,32 +245,14 @@ const TickerChart = (props: any) => {
 
   return (
     <View style={styles.chart_container}>
-      <YAxis
+      <LineChart
+        animate={true}
+        style={styles.chart_content}
         data={value}
-        contentInset={{top: 10, bottom: 10, right: 10}}
-        svg={{
-          fill: getColor('gray-500'),
-          fontSize: 12,
-        }}
-        numberOfTicks={5}
-        formatLabel={formatYLabel}
-      />
-      <View>
-        <LineChart
-          animate={true}
-          style={styles.chart_content}
-          data={value}
-          svg={{stroke: getColor('green-600')}}
-          contentInset={{top: 10, bottom: 10, left: 10, right: 0}}
-        />
-        <XAxis
-          data={value}
-          numberOfTicks={5}
-          formatLabel={formatXLabel}
-          contentInset={{left: 20, right: 0}}
-          svg={{fontSize: 12, fill: getColor('gray-500')}}
-        />
-      </View>
+        svg={{stroke: getColor('green-600')}}
+        contentInset={{top: 10, bottom: 10, left: 10, right: 0}}>
+        <Grid svg={{stroke: getColor('gray-100')}} />
+      </LineChart>
     </View>
   );
 };
@@ -397,13 +371,20 @@ const TickerActions = () => {
 const TickerDetailScreen = ({navigation}: any) => {
   const [tab, setTab] = useState(klineTab.DAY);
 
+  const route = useRoute();
+  const ticker: any = route.params;
+  const {
+    basic: {name},
+  } = ticker;
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      headerTitle: name,
       headerBackTitleStyle: tailwind('text-gray-600'),
       headerBackImage: () => <HeaderLeftComponent />,
       headerRight: () => <HeaderRightComponent />,
     });
-  }, [navigation]);
+  }, [navigation, name]);
 
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
@@ -423,20 +404,18 @@ const TickerDetailScreen = ({navigation}: any) => {
 
 const styles = StyleSheet.create({
   chart_container: {
-    height: 260,
-    alignItems: 'center',
+    height: 240,
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    borderBottomWidth: 1,
-    paddingBottom: 20,
-    paddingTop: 15,
+    paddingHorizontal: 20,
     backgroundColor: getColor('white'),
+    borderBottomWidth: 1,
     borderBottomColor: getColor('gray-100'),
   },
   chart_content: {
-    height: 240,
-    flexGrow: 1,
-    width: Dimensions.get('window').width - 80,
+    height: 220,
+    width: Dimensions.get('window').width - 40,
   },
 });
 

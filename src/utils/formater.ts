@@ -41,9 +41,14 @@ const formatBigNumber = (volumn: string) => {
   return result;
 };
 
+const formatAmount = (amount: string) => {
+  return parseFloat(amount).toFixed(2);
+};
+
 export default {
   formatProfitRatio,
   formatTickerChange,
   formatBigNumber,
   formatNumber,
+  formatAmount,
 };

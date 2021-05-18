@@ -27,7 +27,7 @@ const UserProfile = (props: any) => {
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-2xl text-white italic mr-1')}>$</Text>
           <Text style={tailwind('text-2xl text-white font-bold')}>
-            {balance_current}
+            {Formater.formatAmount(balance_current)}
           </Text>
         </View>
 

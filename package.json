@@ -21,6 +21,7 @@
     "dayjs": "^1.10.4",
     "dva-core": "^2.0.4",
     "dva-loading": "^3.0.22",
+    "dva-logger": "^1.0.0",
     "immer": "^9.0.2",
     "react": "17.0.1",
     "react-native": "0.64.0",
