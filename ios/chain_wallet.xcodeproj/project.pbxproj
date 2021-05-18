@@ -12,7 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		32E0A9194456871B0B32EE02 /* libPods-chain_wallet-chain_walletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 498002B306878BBA9D66AE6F /* libPods-chain_wallet-chain_walletTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9E47DF47265395A7000E8E4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E47DF46265395A7000E8E4D /* LaunchScreen.storyboard */; };
+		9E47DF6726539A44000E8E4D /* splashIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E47DF6626539A44000E8E4D /* splashIcon.png */; };
 		B8773066F2604172DC15CB5E /* libPods-chain_wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459FC64BE6C1DD00070F8CF /* libPods-chain_wallet.a */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +41,8 @@
 		2E6790ED52B07B040ECCF0EC /* Pods-chain_wallet-chain_walletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chain_wallet-chain_walletTests.release.xcconfig"; path = "Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests.release.xcconfig"; sourceTree = "<group>"; };
 		498002B306878BBA9D66AE6F /* libPods-chain_wallet-chain_walletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chain_wallet-chain_walletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FDA557AA7677DD9866FAFE /* Pods-chain_wallet-chain_walletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chain_wallet-chain_walletTests.debug.xcconfig"; path = "Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = chain_wallet/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9E47DF46265395A7000E8E4D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9E47DF6626539A44000E8E4D /* splashIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashIcon.png; sourceTree = "<group>"; };
 		9EAC8E452636C2D50035EE49 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		9EAC8E592636CB180035EE49 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9EAC8E5A2636CB180035EE49 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -102,13 +104,14 @@
 		13B07FAE1A68108700A75B9A /* chain_wallet */ = {
 			isa = PBXGroup;
 			children = (
+				9E47DF6626539A44000E8E4D /* splashIcon.png */,
 				9EAC8E442636C2C40035EE49 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				9E47DF46265395A7000E8E4D /* LaunchScreen.storyboard */,
 			);
 			name = chain_wallet;
 			sourceTree = "<group>";
@@ -280,8 +283,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				9E47DF6726539A44000E8E4D /* splashIcon.png in Resources */,
+				9E47DF47265395A7000E8E4D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

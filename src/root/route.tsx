@@ -73,29 +73,12 @@ const AnonymousRoutes = () => {
   );
 };
 
-const SplashRoutes = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name={RouteConfig.Splash.name}
-        component={Screen.SplashScreen}
-        options={{title: RouteConfig.Splash.title}}
-      />
-    </Stack.Navigator>
-  );
-};
-
 const RouteContainer = () => {
   const {token} = useSelector((state: any) => state.account);
   const {base} = useSelector((state: any) => state.user);
   const {initialized} = useSelector((state: any) => state.system);
-
-  if (!initialized) {
-    return (
-      <NavigationContainer>
-        <SplashRoutes />
-      </NavigationContainer>
-    );
+  if (initialized === false) {
+    return null;
   }
 
   if (token && base && base.id) {
