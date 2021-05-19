@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {getColor, tailwind} from '@/core/tailwind';
-import commonStyles from '@/core/styles';
+import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
 import Slider from '@react-native-community/slider';
 
 const AnimatedView = Animated.View;
 let fall = new Animated.Value(1);
 
 const PanelShadow = (props: any) => {
-  const {handlePress} = props;
+  const {status, handlePress} = props;
 
   const animatedShadowOpacity = Animated.interpolate(fall, {
     inputRange: [0, 1],
@@ -18,9 +24,9 @@ const PanelShadow = (props: any) => {
   });
 
   return (
-    <TouchableWithoutFeedback style={tailwind('flex-1')} onPress={handlePress}>
+    <TouchableWithoutFeedback onPress={handlePress}>
       <AnimatedView
-        pointerEvents="none"
+        pointerEvents={status === true ? 'auto' : 'none'}
         style={[
           styles.shadow,
           {
@@ -34,8 +40,14 @@ const PanelShadow = (props: any) => {
 
 const PanelHeader = () => {
   return (
-    <View style={tailwind('bg-gray-100 py-3 items-center justify-center')}>
-      <Text style={tailwind('text-base text-gray-600 font-bold')}>买入</Text>
+    <View
+      style={tailwind(
+        'bg-gray-100 px-5 py-4 flex-row items-center justify-between',
+      )}>
+      <Text style={tailwind('text-base text-gray-600')}>买入</Text>
+      <TouchableOpacity activeOpacity={0.5} onPress={() => null}>
+        <Text style={tailwind('text-base text-red-500')}>提交</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -50,36 +62,51 @@ const PanelContent = () => {
 
   return (
     <View style={styles.content}>
-      <View style={tailwind('mb-5 flex-row items-center')}>
-        <Text style={tailwind('text-sm text-gray-500 mr-5')}>可用金额</Text>
-        <Text style={tailwind('text-base text-gray-800 flex-1')}>
-          $100000.12
-        </Text>
+      <View
+        style={tailwind(
+          'flex-row items-center justify-between border-b border-gray-50 py-3',
+        )}>
+        <Text style={tailwind('text-sm text-gray-500')}>可用金额</Text>
+        <Text style={tailwind('text-base text-gray-600')}>$100000.12</Text>
       </View>
-      <View style={tailwind('mb-5 flex-row items-center')}>
-        <Text style={tailwind('text-sm text-gray-500 mr-5')}>当前价格</Text>
-        <Text style={tailwind('text-base text-gray-800')}>$2222.33</Text>
+      <View
+        style={tailwind(
+          'flex-row items-center justify-between  border-b border-gray-50 py-3',
+        )}>
+        <Text style={tailwind('text-sm text-gray-500')}>当前价格</Text>
+        <Text style={tailwind('text-base text-gray-600')}>$2222.33</Text>
       </View>
-      <View style={tailwind('mb-3 flex-row items-start')}>
-        <Text style={tailwind('text-sm text-gray-500 mr-5')}>买入金额</Text>
-        <View style={tailwind('flex-1')}>
-          <Slider
-            value={value}
-            onValueChange={setValue}
-            step={1}
-            tapToSeek={true}
-            minimumValue={0}
-            maximumValue={100}
-            minimumTrackTintColor={getColor('red-600')}
-            maximumTrackTintColor={getColor('red-300')}
+      <View
+        style={tailwind(
+          'flex-row items-center justify-between border-b border-gray-50 py-3',
+        )}>
+        <Text style={tailwind('text-sm text-gray-500')}>买入金额</Text>
+        <Slider
+          value={value}
+          onValueChange={setValue}
+          step={1}
+          style={styles.slider}
+          tapToSeek={true}
+          minimumValue={0}
+          maximumValue={100}
+          minimumTrackTintColor={getColor('red-600')}
+          maximumTrackTintColor={getColor('red-300')}
+        />
+      </View>
+      <View
+        style={tailwind(
+          'flex-row items-center justify-between border-b border-gray-50 py-3',
+        )}>
+        <Text style={tailwind('text-sm text-gray-500')}>交易汇总</Text>
+        <View style={tailwind('flex-row items-center justify-end')}>
+          <Text style={tailwind('text-base text-gray-600')}>$12333.00</Text>
+          <ArrowRightSvg
+            fill={getColor('gray-600')}
+            width={16}
+            height={16}
+            style={tailwind('mx-2')}
           />
-
-          <View style={tailwind('flex-row items-center')}>
-            <Text style={tailwind('text-sm text-gray-500 mr-3')}>
-              $12333.00
-            </Text>
-            <Text style={tailwind('text-sm text-gray-500')}>12.33123 BTC</Text>
-          </View>
+          <Text style={tailwind('text-base text-gray-600')}>12.33123 BTC</Text>
         </View>
       </View>
     </View>
@@ -91,6 +118,7 @@ interface IProps {
 }
 
 const TickerBuyInPanel = (props: IProps) => {
+  const [status, setStatus] = useState(false);
   const {refs} = props;
 
   const handleShadowPress = () => {
@@ -101,23 +129,24 @@ const TickerBuyInPanel = (props: IProps) => {
     <React.Fragment>
       <BottomSheet
         ref={refs}
-        snapPoints={[320, 0]}
+        snapPoints={[300, 0]}
         borderRadius={0}
-        initialSnap={0}
+        initialSnap={1}
         callbackNode={fall}
+        onCloseEnd={() => setStatus(false)}
+        onOpenEnd={() => setStatus(true)}
         enabledInnerScrolling={false}
         renderHeader={() => <PanelHeader />}
         renderContent={() => <PanelContent />}
       />
-      <PanelShadow handlePress={handleShadowPress} />
+      <PanelShadow status={status} handlePress={handleShadowPress} />
     </React.Fragment>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    ...commonStyles.button,
-    backgroundColor: getColor('yellow-500'),
+  slider: {
+    width: 200,
   },
   shadow: {
     ...StyleSheet.absoluteFillObject,
@@ -125,7 +154,8 @@ const styles = StyleSheet.create({
   },
   content: {
     backgroundColor: 'white',
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
     height: 450,
   },
 });

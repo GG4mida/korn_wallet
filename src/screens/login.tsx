@@ -6,7 +6,7 @@ import {RouteConfig} from '@/constants/navigation';
 import styles from '@/core/styles';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
-import ArrowRightSvg from '@/assets/svg/arrow-left.svg';
+import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
