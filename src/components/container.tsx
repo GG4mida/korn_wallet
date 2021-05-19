@@ -4,7 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode} from '@/constants/enum';
 
-const TIMER_INTERVAL = 5000;
+const TIMER_INTERVAL = 500000; // TODO: 5000
 const SPLASH_INTERVAL = 2000;
 
 const Container: React.FC = props => {

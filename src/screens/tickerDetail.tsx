@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState, useMemo, useCallback} from 'react';
 import {
   ScrollView,
   View,
@@ -9,30 +9,64 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import {find} from 'lodash';
 import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {LineChart, Grid} from 'react-native-svg-charts';
 import {Formater, Storage, DateTime} from '@/utils';
 import {klineTab, klineTabs} from '@/constants/tab';
 import {tailwind, getColor} from '@/core/tailwind';
-
-const HeaderLeftComponent = () => {
-  return (
-    <View style={tailwind('ml-5 mr-2')}>
-      <Icon name="arrow-left" size={18} color={getColor('gray-600')} />
-    </View>
-  );
-};
+import HeaderBack from '@/components/header/back';
+import FavoriteSolidSvg from '@/assets/svg/favorite.svg';
+import FavoriteSvg from '@/assets/svg/favorite-o.svg';
 
 const HeaderRightComponent = () => {
-  const onPress = () => {
-    console.info('wtf');
-  };
+  const route = useRoute();
+  const dispatch = useDispatch();
+  const {favorites} = useSelector((state: any) => state.ticker);
+  const ticker: any = route.params;
+
+  const favoriteStatus = useMemo(() => {
+    const {
+      basic: {symbol},
+    } = ticker;
+    if (!favorites || favorites.length === 0) {
+      return false;
+    }
+
+    const favoriteItem = find(favorites, (item: any) => {
+      return item.basic.symbol === symbol;
+    });
+
+    return !!favoriteItem;
+  }, [ticker, favorites]);
+
+  const handleFavoritePress = useCallback(() => {
+    const {
+      basic: {symbol},
+    } = ticker;
+    const dispatchType =
+      favoriteStatus === true ? 'ticker/delFavorite' : 'ticker/addFavorite';
+    dispatch({
+      type: dispatchType,
+      payload: {
+        coin: symbol,
+      },
+    });
+  }, [dispatch, ticker, favoriteStatus]);
+
   return (
     <View style={tailwind('flex flex-row items-center px-5')}>
-      <TouchableOpacity onPress={onPress} activeOpacity={0.5}>
-        <Icon name="heart" size={18} color={getColor('gray-600')} />
+      <TouchableOpacity onPress={handleFavoritePress} activeOpacity={0.5}>
+        {favoriteStatus == true ? (
+          <FavoriteSolidSvg
+            width={20}
+            height={20}
+            fill={getColor('yellow-400')}
+          />
+        ) : (
+          <FavoriteSvg width={20} height={20} fill={getColor('gray-600')} />
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -243,6 +277,14 @@ const TickerChart = (props: any) => {
     );
   }
 
+  if (value.length === 0) {
+    return (
+      <View style={styles.chart_container}>
+        <Text style={tailwind('text-gray-400 text-sm')}>暂无数据</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.chart_container}>
       <LineChart
@@ -334,6 +376,40 @@ const TickerChart = (props: any) => {
 // };
 
 const TickerActions = () => {
+  const route = useRoute();
+  const ticker: any = route.params;
+  const {holds} = useSelector((state: any) => state.user);
+
+  const tickerHold = useMemo(() => {
+    const {
+      basic: {symbol},
+    } = ticker;
+
+    const result = {
+      volumn: 0,
+      amount: '0.00',
+    };
+
+    if (!holds || holds.length === 0) {
+      return result;
+    }
+    const holdItem = find(holds, {coin: symbol});
+    if (!holdItem) {
+      return result;
+    }
+
+    const {volumn, ticker_info} = holdItem;
+
+    console.info('data:');
+    console.info(volumn);
+    console.info(ticker_info);
+
+    result.volumn = volumn;
+    result.amount = '200000';
+
+    return result;
+  }, [ticker, holds]);
+
   return (
     <View
       style={tailwind(
@@ -342,12 +418,16 @@ const TickerActions = () => {
       <View>
         <View style={tailwind('flex flex-row items-center mb-1')}>
           <Text style={tailwind('text-gray-600 text-sm')}>持仓数量：</Text>
-          <Text style={tailwind('text-gray-600 text-sm')}>0</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>
+            {tickerHold.volumn}
+          </Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-gray-600 text-sm')}>持仓价值：</Text>
-          <Text style={tailwind('text-gray-600 text-sm italic mr-1')}>$</Text>
-          <Text style={tailwind('text-gray-600 text-sm')}>0.00</Text>
+          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>
+            {Formater.formatAmount(tickerHold.amount)}
+          </Text>
         </View>
       </View>
       <View style={tailwind('flex flex-row items-center')}>
@@ -381,7 +461,7 @@ const TickerDetailScreen = ({navigation}: any) => {
     navigation.setOptions({
       headerTitle: name,
       headerBackTitleStyle: tailwind('text-gray-600'),
-      headerBackImage: () => <HeaderLeftComponent />,
+      headerBackImage: () => <HeaderBack />,
       headerRight: () => <HeaderRightComponent />,
     });
   }, [navigation, name]);

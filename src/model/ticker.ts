@@ -33,6 +33,12 @@ const TickerModel = {
       }
       return data;
     },
+    *addFavorite({payload}: any, {call}: any): any {
+      return yield call(TickerService.addFavorite, payload);
+    },
+    *delFavorite({payload}: any, {call}: any): any {
+      return yield call(TickerService.delFavorite, payload);
+    },
   },
 
   reducers: {

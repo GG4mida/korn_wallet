@@ -1,6 +1,6 @@
 {
   "name": "chain_wallet",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -23,6 +23,7 @@
     "dva-loading": "^3.0.22",
     "dva-logger": "^1.0.0",
     "immer": "^9.0.2",
+    "lodash": "^4.17.21",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-config": "^1.4.2",

@@ -5,17 +5,9 @@ import {tailwind, getColor} from '@/core/tailwind';
 import styles from '@/core/styles';
 import {Toaster, Validator, Device} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
-import Icon from 'react-native-vector-icons/Feather';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
-
-const HeaderLeftComponent = () => {
-  return (
-    <View style={tailwind('ml-5 mr-2')}>
-      <Icon name="arrow-left" size={18} color={getColor('gray-600')} />
-    </View>
-  );
-};
+import HeaderBack from '@/components/header/back';
 
 const SignupScreen = ({navigation}: any) => {
   const [username, setUserName] = useState('');
@@ -30,7 +22,7 @@ const SignupScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: tailwind('text-gray-600'),
-      headerBackImage: () => <HeaderLeftComponent />,
+      headerBackImage: () => <HeaderBack />,
       headerRight: () => <LoadingActivity loading={loading} />,
     });
   }, [navigation, loading]);

@@ -1,12 +1,12 @@
 import React, {useState, useCallback} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import {useSelector, useDispatch} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import styles from '@/core/styles';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
+import ArrowRightSvg from '@/assets/svg/arrow-left.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
@@ -116,7 +116,11 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               <Text style={tailwind('text-gray-600 text-base')}>
                 没有账户，免费注册
               </Text>
-              <Icon name="arrow-right" size={20} color={getColor('gray-600')} />
+              <ArrowRightSvg
+                width={20}
+                height={20}
+                fill={getColor('gray-600')}
+              />
             </TouchableOpacity>
           </View>
         </View>
