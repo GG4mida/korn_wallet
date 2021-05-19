@@ -48,9 +48,6 @@ const Container: React.FC = props => {
 
   useEffect(() => {
     let initTimer: any = null;
-
-    console.info('wtf');
-
     async function fetchData() {
       const userToken = await Storage.getItem(StorageKeys.USER_TOKEN);
 

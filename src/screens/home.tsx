@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {ScrollView, View, Image, Text, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {TabActions} from '@react-navigation/native';
+import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import {tailwind, getColor} from '@/core/tailwind';
@@ -12,7 +12,14 @@ import EmptySvg from '@/assets/svg/empty.svg';
 
 const UserProfile = (props: any) => {
   const {data} = props;
-  const {balance_current = 0, profit_ratio = 0} = data;
+  const {balance_init = 0, profit = 0, profit_ratio = 0} = data;
+
+  const totalAmount = useMemo(() => {
+    return Formater.formatAmount(parseFloat(balance_init) + parseFloat(profit));
+  }, [balance_init, profit]);
+
+  const profitRatioIcon =
+    parseFloat(profit_ratio) >= 0 ? 'arrow-up' : 'arrow-down';
 
   return (
     <LinearGradient
@@ -20,19 +27,26 @@ const UserProfile = (props: any) => {
       start={{x: 1, y: 0}}
       end={{x: 0.2, y: 0}}
       style={tailwind('p-6 rounded-xl')}>
-      <View style={tailwind('flex flex-row justify-between mb-4')}>
-        <Text style={tailwind('text-white')}>账户金额</Text>
+      <View style={tailwind('flex flex-row items-center justify-between mb-4')}>
+        <Text style={tailwind('text-white text-sm')}>账户资产</Text>
+        <TouchableOpacity activeOpacity={0.5}>
+          <Text style={tailwind('text-white text-sm')}>详情</Text>
+        </TouchableOpacity>
       </View>
       <View style={tailwind('flex flex-row justify-between items-end')}>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-2xl text-white italic mr-1')}>$</Text>
+          <Text style={tailwind('text-2xl text-white italic')}>$</Text>
           <Text style={tailwind('text-2xl text-white font-bold')}>
-            {Formater.formatAmount(balance_current)}
+            {totalAmount}
           </Text>
         </View>
 
         <View style={tailwind('flex flex-row items-center')}>
-          <Icon name="arrow-up" size={18} style={tailwind('text-white mr-1')} />
+          <Icon
+            name={profitRatioIcon}
+            size={18}
+            style={tailwind('text-white')}
+          />
           <Text style={tailwind('text-lg text-white')}>
             {Formater.formatProfitRatio(profit_ratio)}
           </Text>
@@ -53,9 +67,7 @@ const SectionHeader = (props: any) => {
           onPress={() => null}
           activeOpacity={0.5}
           style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-yellow-500 mr-1')}>
-            交易记录
-          </Text>
+          <Text style={tailwind('text-base text-yellow-500')}>交易记录</Text>
           <Icon name="arrow-right" size={18} color={getColor('yellow-500')} />
         </TouchableOpacity>
       ) : null}
@@ -64,7 +76,13 @@ const SectionHeader = (props: any) => {
 };
 
 const UserHolds = (props: any) => {
-  const {data, navigation} = props;
+  const {data} = props;
+
+  const navigation = useNavigation();
+  const handleItemPress = (item: any) => {
+    navigation.navigate(RouteConfig.TickerDetail.name, item);
+  };
+
   if (data.length === 0) {
     const handleTickerPress = () => {
       const tickerAction = TabActions.jumpTo(RouteConfig.Ticker.name);
@@ -93,9 +111,16 @@ const UserHolds = (props: any) => {
   return (
     <View style={tailwind('mb-5')}>
       {data.map((hold: any, index: number) => {
+        const {coin, volumn, meta, basic} = hold;
+        const {c: price} = meta;
+        const {logo_png, name} = basic;
+        const holdAmount = Formater.formatAmount(
+          parseFloat(price) * parseFloat(volumn),
+        );
+        const holdCount = `${Formater.fixed(volumn, 4)} ${coin}`;
         return (
           <TouchableOpacity
-            onPress={() => null}
+            onPress={() => handleItemPress(hold)}
             activeOpacity={0.5}
             key={index}>
             <LinearGradient
@@ -104,19 +129,26 @@ const UserHolds = (props: any) => {
               <View style={tailwind('flex flex-row justify-between')}>
                 <View style={tailwind('flex items-center flex-row')}>
                   <Image
-                    source={require('../assets/img/btc.png')}
+                    source={{uri: logo_png}}
                     style={tailwind('w-8 h-8 mr-3 rounded-full')}
                   />
-                  <Text style={tailwind('text-gray-800 text-xl')}>BTC</Text>
+                  <View>
+                    <Text style={tailwind('text-gray-600 text-xl')}>
+                      {coin}
+                    </Text>
+                    <Text style={tailwind('text-gray-500 text-sm')}>
+                      {name}
+                    </Text>
+                  </View>
                 </View>
                 <View style={tailwind('items-end')}>
-                  <Text style={tailwind('text-gray-600 text-base')}>33.12</Text>
+                  <Text style={tailwind('text-gray-600 text-sm')}>
+                    {holdCount}
+                  </Text>
                   <View style={tailwind('flex flex-row items-center')}>
-                    <Text style={tailwind('text-gray-800 text-lg italic mr-1')}>
-                      $
-                    </Text>
+                    <Text style={tailwind('text-gray-800 text-xl')}>$</Text>
                     <Text style={tailwind('text-gray-800 text-xl')}>
-                      321321
+                      {holdAmount}
                     </Text>
                   </View>
                 </View>
@@ -129,7 +161,7 @@ const UserHolds = (props: any) => {
   );
 };
 
-const HomeScreen = ({navigation}: any) => {
+const HomeScreen = ({}: any) => {
   const dispatch = useDispatch();
 
   const {full, holds} = useSelector((state: any) => state.user);
@@ -149,6 +181,10 @@ const HomeScreen = ({navigation}: any) => {
     dispatch({
       type: 'user/holds',
     });
+
+    dispatch({
+      type: 'ticker/favorites',
+    });
   }, [dispatch]);
 
   return (
@@ -157,7 +193,7 @@ const HomeScreen = ({navigation}: any) => {
       style={tailwind('flex-1 bg-gray-50 p-5')}>
       <UserProfile data={full} loading={loadingFull} />
       <SectionHeader data={holds} />
-      <UserHolds data={holds} loading={loadingHolds} navigation={navigation} />
+      <UserHolds data={holds} loading={loadingHolds} />
     </ScrollView>
   );
 };
