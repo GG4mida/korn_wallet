@@ -1,5 +1,11 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -115,11 +121,20 @@ const TickerItem = (props: any) => {
 };
 
 const TickerAll = (props: any) => {
-  const {data, sorter} = props;
+  const {data, sorter, loading} = props;
 
   const tickerList = useMemo(() => {
     return SorterFunc(data, sorter);
   }, [data, sorter]);
+
+  if (loading === true) {
+    return (
+      <View
+        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   if (data.length === 0) {
     return (
@@ -143,11 +158,20 @@ const TickerAll = (props: any) => {
 };
 
 const TickerFavorites = (props: any) => {
-  const {data, sorter} = props;
+  const {data, sorter, loading} = props;
 
   const tickerList = useMemo(() => {
     return SorterFunc(data, sorter);
   }, [data, sorter]);
+
+  if (loading === true) {
+    return (
+      <View
+        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   if (data.length === 0) {
     return (

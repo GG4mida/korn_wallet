@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import styles from '@/core/styles';
+import {ResponseCode} from '@/constants/enum';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
@@ -51,13 +52,21 @@ const LoginScreen: React.FC = ({navigation}: any) => {
       Toaster.show('用户密码格式错误');
       return false;
     }
-    await dispatch({
+    const loginRes: any = await dispatch({
       type: 'account/login',
       payload: {
         username,
         password,
       },
     });
+
+    const {code} = loginRes;
+
+    if (code === ResponseCode.SUCCESS) {
+      dispatch({
+        type: 'user/base',
+      });
+    }
   };
 
   return (
