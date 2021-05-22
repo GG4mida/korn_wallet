@@ -2,10 +2,12 @@ import React, {useMemo, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, TouchableOpacity} from 'react-native';
 import {find} from 'lodash';
+import {Toaster} from '@/utils';
 import {tailwind, getColor} from '@/core/tailwind';
 import {useRoute} from '@react-navigation/native';
 import FavoriteSolidSvg from '@/assets/svg/favorite.svg';
 import FavoriteSvg from '@/assets/svg/favorite-o.svg';
+import {ResponseCode} from '@/constants/enum';
 
 const TickerFavorite = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,7 @@ const TickerFavorite = () => {
   const ticker: any = route.params;
 
   const {favorites} = useSelector((state: any) => state.ticker);
+  const loading = useSelector((state: any) => state.loading.models.ticker);
 
   const favoriteStatus = useMemo(() => {
     const {
@@ -30,17 +33,29 @@ const TickerFavorite = () => {
   }, [ticker, favorites]);
 
   const handleFavoritePress = useCallback(() => {
-    const {
-      basic: {symbol},
-    } = ticker;
-    const dispatchType =
-      favoriteStatus === true ? 'ticker/delFavorite' : 'ticker/addFavorite';
-    dispatch({
-      type: dispatchType,
-      payload: {
-        coin: symbol,
-      },
-    });
+    async function favoriteHandler() {
+      const {
+        basic: {symbol},
+      } = ticker;
+      const dispatchType =
+        favoriteStatus === true ? 'ticker/delFavorite' : 'ticker/addFavorite';
+      const favoriteRes: any = await dispatch({
+        type: dispatchType,
+        payload: {
+          coin: symbol,
+        },
+      });
+
+      const {code, content} = favoriteRes;
+      if (code === ResponseCode.SUCCESS) {
+        Toaster.show(content);
+        await dispatch({
+          type: 'ticker/favorites',
+        });
+      }
+    }
+
+    favoriteHandler();
   }, [dispatch, ticker, favoriteStatus]);
 
   let iconComponent = null;
@@ -56,7 +71,10 @@ const TickerFavorite = () => {
 
   return (
     <View style={tailwind('flex flex-row items-center px-5')}>
-      <TouchableOpacity onPress={handleFavoritePress} activeOpacity={0.5}>
+      <TouchableOpacity
+        disabled={loading}
+        onPress={handleFavoritePress}
+        activeOpacity={0.5}>
         {iconComponent}
       </TouchableOpacity>
     </View>

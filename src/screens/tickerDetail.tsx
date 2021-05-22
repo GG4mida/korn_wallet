@@ -28,7 +28,7 @@ const TickerDetailScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: name,
-      headerBackTitleStyle: tailwind('text-gray-600'),
+      headerBackTitleStyle: tailwind('text-blue-600'),
       headerBackImage: () => <HeaderBack />,
       headerRight: () => <TickerFavorite />,
     });

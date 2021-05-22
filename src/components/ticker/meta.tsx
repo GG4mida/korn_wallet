@@ -17,7 +17,7 @@ const TickerMeta = () => {
   return (
     <View
       style={tailwind(
-        'flex flex-row items-center flex-wrap justify-between bg-white border-b border-gray-100 p-2',
+        'flex flex-row items-center flex-wrap justify-between bg-white border-b border-gray-50 p-2',
       )}>
       <View
         style={tailwind(
@@ -25,7 +25,7 @@ const TickerMeta = () => {
         )}>
         <Text style={tailwind('text-gray-400 text-sm')}>24h最高</Text>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>$</Text>
           <Text style={tailwind('text-gray-600 text-sm')}>{dayHigh}</Text>
         </View>
       </View>
@@ -49,7 +49,7 @@ const TickerMeta = () => {
         )}>
         <Text style={tailwind('text-gray-400 text-sm')}>24h最低</Text>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>$</Text>
           <Text style={tailwind('text-gray-600 text-sm')}>{dayLow}</Text>
         </View>
       </View>
@@ -59,7 +59,7 @@ const TickerMeta = () => {
         )}>
         <Text style={tailwind('text-gray-400 text-sm')}>24h成交额</Text>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-gray-600 text-sm italic')}>$</Text>
+          <Text style={tailwind('text-gray-600 text-sm')}>$</Text>
           <Text style={tailwind('text-gray-600 text-sm')}>
             {dayVolumnData.value}
           </Text>

@@ -1,11 +1,5 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -70,7 +64,7 @@ const SorterFunc = (data: any, sorter: any) => {
 
 const TickerItem = (props: any) => {
   const {data} = props;
-  const {basic, meta} = data;
+  const {basic, meta, exchange} = data;
   const {name, symbol, logo_png} = basic;
   const {P: change, c: price} = meta;
 
@@ -82,12 +76,17 @@ const TickerItem = (props: any) => {
     navigation.navigate(RouteConfig.TickerDetail.name, item);
   };
 
+  const priceUSD = Formater.formatAmount(price);
+  const priceCNY = Formater.formatAmount(
+    parseFloat(price) * parseFloat(exchange),
+  );
+
   return (
     <TouchableOpacity
       onPress={() => handleItemPress(data)}
       activeOpacity={0.5}
       style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-100 px-5 py-3',
+        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-3',
       )}>
       <View style={tailwind('flex flex-row w-1/3 items-center')}>
         <Image
@@ -101,13 +100,15 @@ const TickerItem = (props: any) => {
       </View>
 
       <View style={tailwind('flex flex-col items-end w-1/3')}>
+        {exchange ? (
+          <View style={tailwind('flex flex-row items-center')}>
+            <Text style={tailwind('text-xs text-gray-600')}>¥</Text>
+            <Text style={tailwind('text-xs text-gray-600')}>{priceCNY}</Text>
+          </View>
+        ) : null}
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600 italic')}>$</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>{price}</Text>
-        </View>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-800 italic')}>$</Text>
-          <Text style={tailwind('text-base text-gray-800')}>{price}</Text>
+          <Text style={tailwind('text-base text-gray-800')}>$</Text>
+          <Text style={tailwind('text-base text-gray-800')}>{priceUSD}</Text>
         </View>
       </View>
 
@@ -121,20 +122,11 @@ const TickerItem = (props: any) => {
 };
 
 const TickerAll = (props: any) => {
-  const {data, sorter, loading} = props;
+  const {data, sorter} = props;
 
   const tickerList = useMemo(() => {
     return SorterFunc(data, sorter);
   }, [data, sorter]);
-
-  if (loading === true) {
-    return (
-      <View
-        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
 
   if (data.length === 0) {
     return (
@@ -158,20 +150,11 @@ const TickerAll = (props: any) => {
 };
 
 const TickerFavorites = (props: any) => {
-  const {data, sorter, loading} = props;
+  const {data, sorter} = props;
 
   const tickerList = useMemo(() => {
     return SorterFunc(data, sorter);
   }, [data, sorter]);
-
-  if (loading === true) {
-    return (
-      <View
-        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
 
   if (data.length === 0) {
     return (
@@ -222,7 +205,6 @@ const TickerScreen = ({}: any) => {
   });
   const dispatch = useDispatch();
   const {all, favorites} = useSelector((state: any) => state.ticker);
-  const loading = useSelector((state: any) => state.loading.models.ticker);
 
   useEffect(() => {
     dispatch({
@@ -238,10 +220,9 @@ const TickerScreen = ({}: any) => {
       <TickerTabs value={tab} onChange={setTab} />
       <TickerHeader value={sorter} onChange={setSorter} />
       {tab === tickerTab.ALL ? (
-        <TickerAll loading={loading} data={all} sorter={sorter} />
+        <TickerAll data={all} sorter={sorter} />
       ) : (
         <TickerFavorites
-          loading={loading}
           data={favorites}
           sorter={sorter}
           emptyAction={setTab}

@@ -73,7 +73,7 @@ const Sorter = (props: any) => {
   return (
     <View
       style={tailwind(
-        'flex flex-row items-center justify-between bg-white border-b border-gray-100 px-5 py-2',
+        'flex flex-row items-center justify-between bg-white border-b border-gray-50 px-5 py-2',
       )}>
       {SORT_HEADERS.map((sortItem: any, index: number) => {
         return (

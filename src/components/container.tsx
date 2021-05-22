@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
+import {StatusBar} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode} from '@/constants/enum';
 
-const TIMER_INTERVAL = 500000; // TODO: 5000
+const TIMER_INTERVAL = 5000; // TODO: 5000
 const SPLASH_INTERVAL = 2000;
 
 const Container: React.FC = props => {
@@ -92,7 +93,12 @@ const Container: React.FC = props => {
     };
   }, [dispatch]);
 
-  return <React.Fragment>{props.children}</React.Fragment>;
+  return (
+    <React.Fragment>
+      <StatusBar animated={true} barStyle="dark-content" />
+      {props.children}
+    </React.Fragment>
+  );
 };
 
 export default Container;

@@ -1,12 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
-import ArrowLeftSvg from '@/assets/svg/arrow-left.svg';
+import BackSvg from '@/assets/svg/back.svg';
 
 const HeaderBack = () => {
   return (
-    <View style={tailwind('ml-5 mr-2')}>
-      <ArrowLeftSvg width={18} height={18} fill={getColor('gray-600')} />
+    <View style={tailwind('ml-4 mr-2')}>
+      <BackSvg width={20} height={20} fill={getColor('blue-600')} />
     </View>
   );
 };

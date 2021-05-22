@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {tailwind, getColor} from '@/core/tailwind';
-import Icon from 'react-native-vector-icons/Feather';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {RouteConfig} from '@/constants/navigation';
 
-const HomeSectionHeader = (props: any) => {
-  const {data} = props;
+import {tailwind} from '@/core/tailwind';
+
+const HomeSectionHeader = () => {
+  const navigation = useNavigation();
+  const {holds} = useSelector((state: any) => state.user);
+
+  const handleOperatePress = useCallback(() => {
+    navigation.navigate(RouteConfig.Operate.name);
+  }, [navigation]);
+
   return (
     <View
       style={tailwind('mt-8 mb-5 flex flex-row justify-between items-center')}>
       <Text style={tailwind('text-xl text-gray-700')}>持仓</Text>
-      {data && data.length ? (
+      {holds && holds.length ? (
         <TouchableOpacity
-          onPress={() => null}
+          onPress={handleOperatePress}
           activeOpacity={0.5}
           style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-base text-yellow-500')}>交易记录</Text>
-          <Icon name="arrow-right" size={18} color={getColor('yellow-500')} />
         </TouchableOpacity>
       ) : null}
     </View>

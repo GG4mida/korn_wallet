@@ -67,7 +67,7 @@ const TickerAction = (props: IProps) => {
           </Text>
         </View>
       </View>
-      <View style={tailwind('flex flex-row items-center mb-5')}>
+      <View style={tailwind('flex flex-row items-center')}>
         <TouchableOpacity
           style={tailwind(
             'flex-1 items-center px-6 py-2 bg-yellow-500 rounded-3xl mr-2',

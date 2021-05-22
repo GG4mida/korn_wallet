@@ -49,7 +49,7 @@ const ListItem = (props: any) => {
       onPress={() => null}
       activeOpacity={0.5}
       style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-100 px-5 py-4',
+        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-4',
       )}>
       <View style={tailwind('flex flex-row items-center')}>
         <Icon name={item.icon} size={18} style={tailwind('text-gray-800')} />

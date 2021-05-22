@@ -29,7 +29,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
     navigation.navigate(RouteConfig.Signup.name);
   }, [navigation]);
 
-  const handleSubmitPress = async () => {
+  const handleSubmitPress = useCallback(async () => {
     if (loading === true) {
       return false;
     }
@@ -67,7 +67,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
         type: 'user/base',
       });
     }
-  };
+  }, [username, password, loading, dispatch]);
 
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>

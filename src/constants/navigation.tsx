@@ -22,6 +22,14 @@ const RouteConfig = {
     name: 'HOME',
     title: '首页',
   },
+  Wallet: {
+    name: 'WALLET',
+    title: '账户详情',
+  },
+  Operate: {
+    name: 'OPERATE',
+    title: '交易记录',
+  },
   Ticker: {
     name: 'TICKER',
     title: '行情',

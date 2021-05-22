@@ -4,6 +4,8 @@ import HomeScreen from './home';
 import ProfileScreen from './profile';
 import NewsScreen from './news';
 import TickerScreen from './ticker';
+import WalletScreen from './wallet';
+import OperateScreen from './operate';
 import TickerDetailScreen from './tickerDetail';
 
 export default {
@@ -13,5 +15,7 @@ export default {
   ProfileScreen,
   NewsScreen,
   TickerScreen,
+  WalletScreen,
+  OperateScreen,
   TickerDetailScreen,
 };

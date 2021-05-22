@@ -13,12 +13,11 @@ const TickerKlineBar = (props: IProps) => {
   return (
     <View
       style={tailwind(
-        'flex flex-row items-center justify-between border-b border-gray-100 bg-gray-50 px-3 py-2',
+        'flex flex-row items-center justify-between border-b border-gray-50 bg-gray-50 px-3 py-2',
       )}>
       {klineTabs.map((tabItem: any, index: number) => {
         const activeStyle =
-          tabItem.name === value ? 'bg-gray-100 border border-gray-200' : '';
-
+          tabItem.name === value ? 'bg-white border border-gray-100' : '';
         return (
           <TouchableOpacity
             key={index}

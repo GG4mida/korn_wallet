@@ -18,7 +18,7 @@ const TickerSummary = () => {
   return (
     <View
       style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-100 px-5 py-4',
+        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-4',
       )}>
       <View style={tailwind('flex flex-row items-center')}>
         <Image
@@ -33,11 +33,11 @@ const TickerSummary = () => {
 
       <View style={tailwind('flex flex-col items-end w-1/3')}>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600 italic')}>$</Text>
+          <Text style={tailwind('text-xs text-gray-600')}>$</Text>
           <Text style={tailwind('text-xs text-gray-600')}>{price}</Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-600 italic')}>$</Text>
+          <Text style={tailwind('text-base text-gray-600')}>$</Text>
           <Text style={tailwind('text-base text-gray-600')}>{price}</Text>
         </View>
       </View>

@@ -39,6 +39,12 @@ const TickerModel = {
     *delFavorite({payload}: any, {call}: any): any {
       return yield call(TickerService.delFavorite, payload);
     },
+    *buyin({payload}: any, {call}: any): any {
+      return yield call(TickerService.buyin, payload);
+    },
+    *sell({payload}: any, {call}: any): any {
+      return yield call(TickerService.sell, payload);
+    },
   },
 
   reducers: {

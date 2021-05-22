@@ -14,15 +14,12 @@ const AccountModel = {
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         const {token} = content;
-
         Storage.setItem(StorageKeys.USER_TOKEN, token);
-
         yield put({
           type: 'setToken',
           payload: token,
         });
       }
-
       return data;
     },
 
