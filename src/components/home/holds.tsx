@@ -9,7 +9,6 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Feather';
 import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import styles from '@/core/styles';
@@ -63,7 +62,6 @@ const HomeHolds = () => {
           <Text style={tailwind('text-base text-white mr-1')}>
             查看行情，立即添加持仓
           </Text>
-          <Icon name="arrow-right" size={18} color={getColor('white')} />
         </TouchableOpacity>
       </View>
     );

@@ -1,9 +1,8 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {tailwind, getColor} from '@/core/tailwind';
+import {tailwind} from '@/core/tailwind';
 import {tickerTab, tickerTabs} from '@/constants/tab';
 import Tab from '@/components/tab';
 import Sorter from '@/components/ticker/sorter';
@@ -171,7 +170,6 @@ const TickerFavorites = (props: any) => {
           <Text style={tailwind('text-base text-white mr-1')}>
             前往行情页面添加
           </Text>
-          <Icon name="arrow-right" size={18} color={getColor('white')} />
         </TouchableOpacity>
       </View>
     );

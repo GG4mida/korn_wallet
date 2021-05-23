@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import {tailwind} from '@/core/tailwind';
 
 const profileItems = [
@@ -52,12 +51,10 @@ const ListItem = (props: any) => {
         'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-4',
       )}>
       <View style={tailwind('flex flex-row items-center')}>
-        <Icon name={item.icon} size={18} style={tailwind('text-gray-800')} />
         <Text style={tailwind('text-gray-800 text-base ml-3')}>
           {item.name}
         </Text>
       </View>
-      <Icon name="arrow-right" size={16} style={tailwind('text-gray-700')} />
     </TouchableOpacity>
   );
 };

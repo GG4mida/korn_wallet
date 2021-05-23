@@ -21,7 +21,6 @@ const SignupScreen = ({navigation}: any) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackTitleStyle: tailwind('text-gray-600'),
       headerBackImage: () => <HeaderBack />,
       headerRight: () => <LoadingActivity loading={loading} />,
     });

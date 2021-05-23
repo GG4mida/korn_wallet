@@ -3,10 +3,10 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/Feather';
-import {tailwind} from '@/core/tailwind';
+import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import {Formater} from '@/utils';
+import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
 const HomeSummary = () => {
   const dispatch = useDispatch();
@@ -30,12 +30,9 @@ const HomeSummary = () => {
     return Formater.formatAmount(parseFloat(balance_init) + parseFloat(profit));
   }, [balance_init, profit]);
 
-  const profitRatioIcon =
-    parseFloat(profit_ratio) >= 0 ? 'arrow-up' : 'arrow-down';
-
   return (
     <LinearGradient
-      colors={['#FF9800', '#F44336']}
+      colors={[getColor('yellow-500'), getColor('red-500')]}
       start={{x: 1, y: 0}}
       end={{x: 0.2, y: 0}}
       style={tailwind('p-6 rounded-xl')}>
@@ -54,11 +51,11 @@ const HomeSummary = () => {
         </View>
 
         <View style={tailwind('flex flex-row items-center')}>
-          <Icon
-            name={profitRatioIcon}
-            size={18}
-            style={tailwind('text-white')}
-          />
+          {parseFloat(profit_ratio) >= 0 ? (
+            <IconArrowTop width={16} height={16} fill={getColor('white')} />
+          ) : (
+            <IconArrowDown width={16} height={16} fill={getColor('white')} />
+          )}
           <Text style={tailwind('text-lg text-white')}>
             {Formater.formatProfitRatio(profit_ratio)}
           </Text>

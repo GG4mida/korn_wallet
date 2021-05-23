@@ -7,8 +7,8 @@ import styles from '@/core/styles';
 import {ResponseCode} from '@/constants/enum';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
-import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
+import {IconArrowRight} from '@/components/icons';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
   const [username, setUserName] = useState('fuckusername');
@@ -125,9 +125,9 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               <Text style={tailwind('text-gray-600 text-base')}>
                 没有账户，免费注册
               </Text>
-              <ArrowRightSvg
-                width={20}
-                height={20}
+              <IconArrowRight
+                width={16}
+                height={16}
                 fill={getColor('gray-600')}
               />
             </TouchableOpacity>

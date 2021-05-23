@@ -1,10 +1,3 @@
-import React from 'react';
-import Icon from 'react-native-vector-icons/Feather';
-import {getColor} from '@/core/tailwind';
-
-const labelColor = getColor('pink-500');
-const iconColor = getColor('pink-500');
-
 const RouteConfig = {
   Login: {
     name: 'LOGIN',
@@ -48,43 +41,4 @@ const RouteConfig = {
   },
 };
 
-const RouteMain: any = {
-  [RouteConfig.Home.name]: {
-    label: RouteConfig.Home.title,
-    labelStyle: {
-      color: labelColor,
-    },
-    icon: {
-      component: () => <Icon name="home" size={18} color={iconColor} />,
-    },
-  },
-  [RouteConfig.Ticker.name]: {
-    label: RouteConfig.Ticker.title,
-    labelStyle: {
-      color: labelColor,
-    },
-    icon: {
-      component: () => <Icon name="trending-up" size={18} color={iconColor} />,
-    },
-  },
-  [RouteConfig.News.name]: {
-    label: RouteConfig.News.title,
-    labelStyle: {
-      color: labelColor,
-    },
-    icon: {
-      component: () => <Icon name="compass" size={18} color={iconColor} />,
-    },
-  },
-  [RouteConfig.Profile.name]: {
-    label: RouteConfig.Profile.title,
-    labelStyle: {
-      color: labelColor,
-    },
-    icon: {
-      component: () => <Icon name="user" size={18} color={iconColor} />,
-    },
-  },
-};
-
-export {RouteConfig, RouteMain};
+export {RouteConfig};

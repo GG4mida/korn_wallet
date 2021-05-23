@@ -2,9 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {tailwind, getColor} from '@/core/tailwind';
 
-import SortAscSvg from '@/assets/svg/sortAsc.svg';
-import SortDescSvg from '@/assets/svg/sortDesc.svg';
-import SortNoneSvg from '@/assets/svg/sortNone.svg';
+import {IconSortAsc, IconSortDesc, IconSortNone} from '@/components/icons';
 
 import {SortRule, SortField} from '@/constants/enum';
 
@@ -33,15 +31,17 @@ const SorterIcon = (props: any) => {
   const fillColor = getColor('gray-500');
   if (name === itemName) {
     if (rule === SortRule.ASC) {
-      return <SortAscSvg fill={fillColor} width={fillSize} height={fillSize} />;
+      return (
+        <IconSortAsc fill={fillColor} width={fillSize} height={fillSize} />
+      );
     }
     if (rule === SortRule.DESC) {
       return (
-        <SortDescSvg fill={fillColor} width={fillSize} height={fillSize} />
+        <IconSortDesc fill={fillColor} width={fillSize} height={fillSize} />
       );
     }
   }
-  return <SortNoneSvg fill={fillColor} width={fillSize} height={fillSize} />;
+  return <IconSortNone fill={fillColor} width={fillSize} height={fillSize} />;
 };
 
 const Sorter = (props: any) => {

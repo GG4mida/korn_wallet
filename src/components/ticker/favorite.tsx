@@ -5,8 +5,7 @@ import {find} from 'lodash';
 import {Toaster} from '@/utils';
 import {tailwind, getColor} from '@/core/tailwind';
 import {useRoute} from '@react-navigation/native';
-import FavoriteSolidSvg from '@/assets/svg/favorite.svg';
-import FavoriteSvg from '@/assets/svg/favorite-o.svg';
+import {IconFavorite} from '@/components/icons';
 import {ResponseCode} from '@/constants/enum';
 
 const TickerFavorite = () => {
@@ -58,16 +57,8 @@ const TickerFavorite = () => {
     favoriteHandler();
   }, [dispatch, ticker, favoriteStatus]);
 
-  let iconComponent = null;
-  if (favoriteStatus === true) {
-    iconComponent = (
-      <FavoriteSolidSvg width={20} height={20} fill={getColor('yellow-400')} />
-    );
-  } else {
-    iconComponent = (
-      <FavoriteSvg width={20} height={20} fill={getColor('gray-600')} />
-    );
-  }
+  const iconStyle =
+    favoriteStatus === true ? getColor('yellow-400') : getColor('gray-300');
 
   return (
     <View style={tailwind('flex flex-row items-center px-5')}>
@@ -75,7 +66,7 @@ const TickerFavorite = () => {
         disabled={loading}
         onPress={handleFavoritePress}
         activeOpacity={0.5}>
-        {iconComponent}
+        <IconFavorite width={20} height={20} fill={iconStyle} />
       </TouchableOpacity>
     </View>
   );

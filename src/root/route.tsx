@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -7,10 +8,12 @@ import HeaderHelper from '@/core/header';
 import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import Screen from '@/screens';
-import HomeSvg from '@/assets/svg/home-o.svg';
-import TickerSvg from '@/assets/svg/ticker-o.svg';
-import NewsSvg from '@/assets/svg/news-o.svg';
-import SettingSvg from '@/assets/svg/profile-o.svg';
+import {
+  IconTabHome,
+  IconTabNews,
+  IconTabProfile,
+  IconTabTicker,
+} from '@/components/icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,25 +35,41 @@ const MainTabs = ({navigation, route}: any) => {
           const iconSize = 20;
           if (route.name === RouteConfig.Home.name) {
             return (
-              <HomeSvg width={iconSize} height={iconSize} fill={fillColor} />
+              <IconTabHome
+                width={iconSize}
+                height={iconSize}
+                fill={fillColor}
+              />
             );
           }
 
           if (route.name === RouteConfig.Ticker.name) {
             return (
-              <TickerSvg width={iconSize} height={iconSize} fill={fillColor} />
+              <IconTabTicker
+                width={iconSize}
+                height={iconSize}
+                fill={fillColor}
+              />
             );
           }
 
           if (route.name === RouteConfig.News.name) {
             return (
-              <NewsSvg width={iconSize} height={iconSize} fill={fillColor} />
+              <IconTabNews
+                width={iconSize}
+                height={iconSize}
+                fill={fillColor}
+              />
             );
           }
 
           if (route.name === RouteConfig.Profile.name) {
             return (
-              <SettingSvg width={iconSize} height={iconSize} fill={fillColor} />
+              <IconTabProfile
+                width={iconSize}
+                height={iconSize}
+                fill={fillColor}
+              />
             );
           }
         },
@@ -58,9 +77,9 @@ const MainTabs = ({navigation, route}: any) => {
       tabBarOptions={{
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
-        style: tailwind('h-14 border-t border-gray-50'),
+        style: styles.tab_container,
         tabStyle: tailwind('py-2'),
-        labelStyle: tailwind('text-xs'),
+        labelStyle: tailwind('mt-1 text-xs'),
       }}>
       <Tab.Screen
         name={RouteConfig.Home.name}
@@ -155,5 +174,13 @@ const RouteContainer = () => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  tab_container: {
+    height: 88,
+    borderTopWidth: 1,
+    borderTopColor: getColor('gray-50'),
+  },
+});
 
 export default RouteContainer;
