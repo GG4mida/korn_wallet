@@ -1,9 +1,9 @@
 import produce from 'immer';
-import TickerService from '@/services/ticker';
+import CoinService from '@/services/coin';
 import {ResponseCode} from '@/constants/enum';
 
 const TickerModel = {
-  namespace: 'ticker',
+  namespace: 'coin',
   state: {
     all: [],
     favorites: [],
@@ -11,7 +11,7 @@ const TickerModel = {
   },
   effects: {
     *all({payload}: any, {call, put}: any): any {
-      const data = yield call(TickerService.all, payload);
+      const data = yield call(CoinService.all, payload);
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         yield put({
@@ -23,7 +23,7 @@ const TickerModel = {
     },
 
     *favorites({payload}: any, {call, put}: any): any {
-      const data = yield call(TickerService.favorites, payload);
+      const data = yield call(CoinService.favorites, payload);
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         yield put({
@@ -34,16 +34,16 @@ const TickerModel = {
       return data;
     },
     *addFavorite({payload}: any, {call}: any): any {
-      return yield call(TickerService.addFavorite, payload);
+      return yield call(CoinService.addFavorite, payload);
     },
     *delFavorite({payload}: any, {call}: any): any {
-      return yield call(TickerService.delFavorite, payload);
+      return yield call(CoinService.delFavorite, payload);
     },
     *buyin({payload}: any, {call}: any): any {
-      return yield call(TickerService.buyin, payload);
+      return yield call(CoinService.buyin, payload);
     },
     *sell({payload}: any, {call}: any): any {
-      return yield call(TickerService.sell, payload);
+      return yield call(CoinService.sell, payload);
     },
   },
 

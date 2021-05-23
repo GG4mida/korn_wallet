@@ -154,13 +154,13 @@ const AnonymousRoutes = () => {
 
 const RouteContainer = () => {
   const {token} = useSelector((state: any) => state.account);
-  const {base} = useSelector((state: any) => state.user);
+  const {info} = useSelector((state: any) => state.user);
   const {initialized} = useSelector((state: any) => state.system);
   if (initialized === false) {
     return null;
   }
 
-  if (token && base && base.id) {
+  if (token && info && info.id) {
     return (
       <NavigationContainer>
         <AuthorizedRoutes />

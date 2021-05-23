@@ -9,7 +9,7 @@ const HomeScreen = ({}: any) => {
 
   useEffect(() => {
     dispatch({
-      type: 'ticker/favorites',
+      type: 'coin/favorites',
     });
   }, [dispatch]);
 

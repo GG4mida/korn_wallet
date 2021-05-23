@@ -5,29 +5,17 @@ import {ResponseCode} from '@/constants/enum';
 const UserModel = {
   namespace: 'user',
   state: {
-    base: {},
-    full: {},
+    info: {},
     holds: [],
+    operates: [],
   },
   effects: {
-    *base({payload}: any, {call, put}: any): any {
-      const data = yield call(UserService.base, payload);
+    *info({payload}: any, {call, put}: any): any {
+      const data = yield call(UserService.info, payload);
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setBase',
-          payload: content,
-        });
-      }
-      return data;
-    },
-
-    *full({payload}: any, {call, put}: any): any {
-      const data = yield call(UserService.full, payload);
-      const {code, content} = data;
-      if (ResponseCode.SUCCESS === code) {
-        yield put({
-          type: 'setFull',
           payload: content,
         });
       }
@@ -45,6 +33,18 @@ const UserModel = {
       }
       return data;
     },
+
+    *operates({payload}: any, {call, put}: any): any {
+      const data = yield call(UserService.operates, payload);
+      const {code, content} = data;
+      if (ResponseCode.SUCCESS === code) {
+        yield put({
+          type: 'setOperates',
+          payload: content,
+        });
+      }
+      return data;
+    },
   },
 
   reducers: {
@@ -55,16 +55,16 @@ const UserModel = {
       return nextState;
     },
 
-    setFull(state: any, action: any) {
+    setHolds(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.full = action.payload;
+        draftState.holds = action.payload;
       });
       return nextState;
     },
 
-    setHolds(state: any, action: any) {
+    setOperates(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.holds = action.payload;
+        draftState.operates = action.payload;
       });
       return nextState;
     },

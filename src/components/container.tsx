@@ -5,58 +5,48 @@ import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode} from '@/constants/enum';
 
-const TIMER_INTERVAL = 5000; // TODO: 5000
+const TIMER_INTERVAL = 5000;
 const SPLASH_INTERVAL = 2000;
 
 const Container: React.FC = props => {
   const dispatch = useDispatch();
-  const {all, favorites} = useSelector((state: any) => state.ticker);
-  const {base} = useSelector((state: any) => state.user);
+  const {all} = useSelector((state: any) => state.ticker);
+  const {info} = useSelector((state: any) => state.user);
 
   useEffect(() => {
-    let tickerAllTimer: any = null;
-    let tickerFavoritesTimer: any = null;
-
-    async function fetchTicker() {
-      if (!base || !base.id) {
+    let marketTimer: any = null;
+    async function fetchMarket() {
+      if (!info || !info.id) {
         return;
       }
+      const handler = () => {
+        dispatch({
+          type: 'market/get',
+        });
 
-      if (all && all.length) {
-        tickerAllTimer = setInterval(() => {
-          dispatch({
-            type: 'ticker/all',
-          });
-        }, TIMER_INTERVAL);
-      }
-
-      if (favorites && favorites.length) {
-        tickerFavoritesTimer = setInterval(() => {
-          dispatch({
-            type: 'ticker/favorites',
-          });
-        }, TIMER_INTERVAL);
-      }
+        dispatch({
+          type: 'exchange/get',
+        });
+      };
+      handler();
+      marketTimer = setInterval(handler, TIMER_INTERVAL);
     }
 
-    fetchTicker();
-
+    fetchMarket();
     return () => {
-      tickerAllTimer && clearInterval(tickerAllTimer);
-      tickerFavoritesTimer && clearInterval(tickerFavoritesTimer);
+      marketTimer && clearInterval(marketTimer);
     };
-  }, [dispatch, all, favorites, base]);
+  }, [dispatch, all, info]);
 
   useEffect(() => {
     let initTimer: any = null;
     async function fetchData() {
       const userToken = await Storage.getItem(StorageKeys.USER_TOKEN);
-
       if (userToken) {
-        const userBaseRes: any = await dispatch({
-          type: 'user/base',
+        const userInfoRes: any = await dispatch({
+          type: 'user/info',
         });
-        if (userBaseRes.code === ResponseCode.SUCCESS) {
+        if (userInfoRes.code === ResponseCode.SUCCESS) {
           await dispatch({
             type: 'account/setToken',
             payload: userToken,
@@ -85,9 +75,7 @@ const Container: React.FC = props => {
         }, SPLASH_INTERVAL);
       }
     }
-
     fetchData();
-
     return () => {
       initTimer && clearTimeout(initTimer);
     };

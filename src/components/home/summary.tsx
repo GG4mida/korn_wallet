@@ -1,34 +1,35 @@
-import React, {useEffect, useMemo, useCallback} from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
-import {Formater} from '@/utils';
-import {IconArrowDown, IconArrowTop} from '@/components/icons';
+// import {Formater} from '@/utils';
+// import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
 const HomeSummary = () => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  useEffect(() => {
-    dispatch({
-      type: 'user/full',
-    });
-  }, [dispatch]);
+  const {info: userInfo, holds: userHolds} = useSelector(
+    (state: any) => state.user,
+  );
+  const {exchange} = useSelector((state: any) => state.exchange);
+  const {list: marketList} = useSelector((state: any) => state.market);
 
-  const {full} = useSelector((state: any) => state.user);
+  const userSummaryData = useMemo(() => {
+    console.info(userInfo);
+    console.info(exchange);
+    console.info(marketList);
+    console.info(userHolds);
+  }, [userInfo, exchange, marketList, userHolds]);
+
+  console.info('userProfitData');
+  console.info(userSummaryData);
 
   const handleWalletPress = useCallback(() => {
     navigation.navigate(RouteConfig.Wallet.name);
   }, [navigation]);
-
-  const {balance_init = 0, profit = 0, profit_ratio = 0} = full;
-
-  const totalAmount = useMemo(() => {
-    return Formater.formatAmount(parseFloat(balance_init) + parseFloat(profit));
-  }, [balance_init, profit]);
 
   return (
     <LinearGradient
@@ -42,7 +43,7 @@ const HomeSummary = () => {
           <Text style={tailwind('text-white text-base')}>详情</Text>
         </TouchableOpacity>
       </View>
-      <View style={tailwind('flex flex-row justify-between items-end')}>
+      {/* <View style={tailwind('flex flex-row justify-between items-end')}>
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-2xl text-white')}>$</Text>
           <Text style={tailwind('text-2xl text-white font-bold')}>
@@ -60,7 +61,7 @@ const HomeSummary = () => {
             {Formater.formatProfitRatio(profit_ratio)}
           </Text>
         </View>
-      </View>
+      </View> */}
     </LinearGradient>
   );
 };

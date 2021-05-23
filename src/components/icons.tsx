@@ -2,6 +2,8 @@ import IconArrowRight from '@/assets/svg/arrow-right.svg';
 import IconArrowLeft from '@/assets/svg/arrow-left.svg';
 import IconArrowTop from '@/assets/svg/arrow-top.svg';
 import IconArrowDown from '@/assets/svg/arrow-down.svg';
+import IconBack from '@/assets/svg/back.svg';
+import IconForward from '@/assets/svg/forward.svg';
 import IconFavorite from '@/assets/svg/favorite.svg';
 import IconSortAsc from '@/assets/svg/sort-asc.svg';
 import IconSortDesc from '@/assets/svg/sort-desc.svg';
@@ -13,6 +15,8 @@ import IconTabProfile from '@/assets/svg/tab-profile.svg';
 import IconEmpty from '@/assets/svg/empty.svg';
 
 export {
+  IconBack,
+  IconForward,
   IconArrowRight,
   IconArrowLeft,
   IconArrowTop,

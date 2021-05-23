@@ -1,19 +1,19 @@
 import request from './request';
 
-const base = () => {
-  return request.get('/api/user/base');
-};
-
-const full = () => {
-  return request.get('/api/user/full');
+const info = () => {
+  return request.get('/api/user/info');
 };
 
 const holds = () => {
   return request.get('/api/user/holds');
 };
 
+const operates = () => {
+  return request.get('/api/user/operates');
+};
+
 export default {
-  base,
-  full,
+  info,
   holds,
+  operates,
 };
