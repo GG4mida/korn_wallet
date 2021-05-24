@@ -20,4 +20,9 @@ enum ResponseCode {
   NOTAUTH = 401,
 }
 
-export {StorageKeys, ResponseCode, SortRule, SortField};
+enum CoinOpDirection {
+  BUYIN = 1,
+  SELL = -1,
+}
+
+export {StorageKeys, ResponseCode, SortRule, SortField, CoinOpDirection};

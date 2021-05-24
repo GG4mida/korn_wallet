@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {ScrollView, View, Text} from 'react-native';
+import {useSelector} from 'react-redux';
 import {tailwind} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
+import {Formater, DateTime} from '@/utils';
 
 const WalletScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
@@ -10,6 +12,41 @@ const WalletScreen = ({navigation}: any) => {
       headerBackImage: () => <HeaderBack />,
     });
   }, [navigation]);
+
+  const {info: userInfo, holds: userHolds} = useSelector(
+    (state: any) => state.user,
+  );
+  const {list: marketList} = useSelector((state: any) => state.market);
+
+  const userSummaryData = useMemo(() => {
+    let userHoldAmount = 0;
+    const {balance_current, balance_init, createtime} = userInfo;
+    const userBalanceCurrent = parseFloat(balance_current);
+    const userBalanceInit = parseFloat(balance_init);
+    if (userHolds && userHolds.length) {
+      for (const {coin, volumn} of userHolds) {
+        const {symbol} = coin;
+        const marketInfo = marketList[symbol];
+        if (!marketInfo) {
+          continue;
+        }
+        const {c: marketPrice} = marketInfo;
+        userHoldAmount += parseFloat(marketPrice) * parseFloat(volumn);
+      }
+    }
+    const userTotalAmount = userBalanceCurrent + userHoldAmount;
+    const userTotalProfit = userTotalAmount - userBalanceInit;
+    const userTotalProfitRatio = userTotalProfit / userBalanceInit;
+    return {
+      balanceCurrent: userBalanceCurrent,
+      balanceInit: userBalanceInit,
+      holdAmount: userHoldAmount,
+      totalAmount: userTotalAmount,
+      totalProfit: userTotalProfit,
+      totalProfitRatio: userTotalProfitRatio,
+      createtime: createtime,
+    };
+  }, [userInfo, marketList, userHolds]);
 
   return (
     <ScrollView
@@ -24,7 +61,9 @@ const WalletScreen = ({navigation}: any) => {
             <Text style={tailwind('text-gray-800 text-base')}>初始资金</Text>
             <View style={tailwind('flex flex-row items-center')}>
               <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>100000.00</Text>
+              <Text style={tailwind('text-lg text-gray-800')}>
+                {Formater.formatAmount(userSummaryData.balanceInit)}
+              </Text>
             </View>
           </View>
 
@@ -38,15 +77,36 @@ const WalletScreen = ({navigation}: any) => {
             style={tailwind(
               'px-5 py-3 mb-2 flex-row items-center justify-between bg-white',
             )}>
-            <Text style={tailwind('text-gray-800 text-base')}>当前资产</Text>
+            <Text style={tailwind('text-gray-800 text-base')}>累计资产</Text>
             <View style={tailwind('flex flex-row items-center')}>
               <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>120000.00</Text>
+              <Text style={tailwind('text-lg text-gray-800')}>
+                {Formater.formatAmount(userSummaryData.totalAmount)}
+              </Text>
             </View>
           </View>
 
           <Text style={tailwind('text-sm text-gray-500 mx-5')}>
-            当前账户累计资产，累计资产 = 账户奖金 + 持仓价值
+            当前账户累计资产，累计资产 = 账户余额 + 持仓价值
+          </Text>
+        </View>
+
+        <View style={tailwind('my-3')}>
+          <View
+            style={tailwind(
+              'px-5 py-3 mb-2 flex-row items-center justify-between bg-white',
+            )}>
+            <Text style={tailwind('text-gray-800 text-base')}>账户余额</Text>
+            <View style={tailwind('flex flex-row items-center')}>
+              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
+              <Text style={tailwind('text-lg text-gray-800')}>
+                {Formater.formatAmount(userSummaryData.balanceCurrent)}
+              </Text>
+            </View>
+          </View>
+
+          <Text style={tailwind('text-sm text-gray-500 mx-5')}>
+            当前账户余额
           </Text>
         </View>
 
@@ -58,7 +118,9 @@ const WalletScreen = ({navigation}: any) => {
             <Text style={tailwind('text-gray-800 text-base')}>持仓价值</Text>
             <View style={tailwind('flex flex-row items-center')}>
               <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>20000.00</Text>
+              <Text style={tailwind('text-lg text-gray-800')}>
+                {Formater.formatAmount(userSummaryData.holdAmount)}
+              </Text>
             </View>
           </View>
 
@@ -75,7 +137,9 @@ const WalletScreen = ({navigation}: any) => {
             <Text style={tailwind('text-gray-800 text-base')}>累计盈利</Text>
             <View style={tailwind('flex flex-row items-center')}>
               <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>20000.00</Text>
+              <Text style={tailwind('text-lg text-gray-800')}>
+                {Formater.formatAmount(userSummaryData.totalProfit)}
+              </Text>
             </View>
           </View>
 
@@ -91,7 +155,9 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>盈利率</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>20.00%</Text>
+              <Text style={tailwind('text-lg text-gray-800')}>
+                {Formater.formatProfitRatio(userSummaryData.totalProfitRatio)}
+              </Text>
             </View>
           </View>
 
@@ -106,7 +172,10 @@ const WalletScreen = ({navigation}: any) => {
             <Text style={tailwind('text-gray-800 text-base')}>注册时间</Text>
             <View style={tailwind('flex flex-row items-center')}>
               <Text style={tailwind('text-lg text-gray-800')}>
-                2021-05-21 13:12:45
+                {DateTime.format(
+                  userSummaryData.createtime,
+                  DateTime.FORMATER_DATETIME,
+                )}
               </Text>
             </View>
           </View>

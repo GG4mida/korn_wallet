@@ -16,9 +16,7 @@ const CoinAction = (props: IProps) => {
 
   const route = useRoute();
   const coin: any = route.params;
-  const {
-    basic: {symbol},
-  } = coin;
+  const {symbol} = coin;
   const {holds: holdList} = useSelector((state: any) => state.user);
   const {list: marketList} = useSelector((state: any) => state.market);
 

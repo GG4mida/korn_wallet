@@ -56,7 +56,7 @@ const HomeHolds = () => {
   }, [userHolds, marketList]);
 
   const handleItemPress = (item: any) => {
-    navigation.navigate(RouteConfig.CoinDetail.name, item);
+    navigation.navigate(RouteConfig.CoinDetail.name, item.coin);
   };
 
   if (loading === true) {

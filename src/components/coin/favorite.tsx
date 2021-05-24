@@ -24,7 +24,7 @@ const CoinFavorite = () => {
     }
 
     const favoriteItem = find(userFavorites, (item: any) => {
-      return item.basic.symbol === symbol;
+      return item.symbol === symbol;
     });
 
     return !!favoriteItem;

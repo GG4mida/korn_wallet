@@ -47,23 +47,29 @@ const PanelContent = () => {
   const [value, setValue] = useState(0);
   const route = useRoute();
   const dispatch = useDispatch();
-  const market: any = route.params;
-  const {full} = useSelector((state: any) => state.user);
-  const {balance_current} = full;
-  const {
-    meta: {c: price},
-    basic: {symbol},
-  } = market;
+  const coin: any = route.params;
+
+  const {symbol} = coin;
+
+  const {info: userInfo} = useSelector((state: any) => state.user);
+  const {list: marketList} = useSelector((state: any) => state.market);
+  const marketInfo = marketList[symbol];
+  const {c: marketPrice} = marketInfo;
+
+  const {balance_current} = userInfo;
 
   const buyInData = useMemo(() => {
     const buyInAmount = Formater.formatAmount(balance_current * (value / 100));
-    const buyInVolumn = Formater.fixed(parseFloat(buyInAmount) / price, 4);
+    const buyInVolumn = Formater.fixed(
+      parseFloat(buyInAmount) / parseFloat(marketPrice),
+      4,
+    );
 
     return {
       amount: buyInAmount,
       volumn: buyInVolumn,
     };
-  }, [value, price, balance_current]);
+  }, [value, marketPrice, balance_current]);
 
   const handleSumbitPress = useCallback(async () => {
     const MIN_BUYIN_AMOUNT = 100;
@@ -116,7 +122,7 @@ const PanelContent = () => {
           )}>
           <Text style={tailwind('text-sm text-gray-500')}>当前价格</Text>
           <Text style={tailwind('text-base text-gray-600')}>
-            ${Formater.formatAmount(price)}
+            ${Formater.formatAmount(marketPrice)}
           </Text>
         </View>
         <View

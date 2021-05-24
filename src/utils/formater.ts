@@ -42,7 +42,8 @@ const formatBigNumber = (volumn: string) => {
 };
 
 const formatAmount = (amount: string | number) => {
-  return parseFloat(amount + '').toFixed(2);
+  const res = parseFloat(amount + '').toFixed(2);
+  return res === '-0.00' ? '0.00' : res;
 };
 
 const fixed = (value: string | number, fixedNum = 2) => {
