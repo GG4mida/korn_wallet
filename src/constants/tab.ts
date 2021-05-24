@@ -1,15 +1,15 @@
-enum tickerTab {
+enum coinTab {
   ALL = 'ALL',
   FAVORITES = 'FAVORITES',
 }
 
-const tickerTabs = [
+const coinTabs = [
   {
-    name: tickerTab.ALL,
+    name: coinTab.ALL,
     label: '所有',
   },
   {
-    name: tickerTab.FAVORITES,
+    name: coinTab.FAVORITES,
     label: '自选',
   },
 ];
@@ -45,4 +45,4 @@ const klineTabs = [
   },
 ];
 
-export {tickerTab, tickerTabs, klineTab, klineTabs};
+export {coinTab, coinTabs, klineTab, klineTabs};

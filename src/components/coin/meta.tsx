@@ -3,13 +3,17 @@ import {View, Text} from 'react-native';
 import {Formater} from '@/utils';
 import {tailwind} from '@/core/tailwind';
 import {useRoute} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
-const TickerMeta = () => {
+const CoinMeta = () => {
   const route = useRoute();
 
-  const data: any = route.params;
-  const {meta} = data;
-  const {h: dayHigh, l: dayLow, n: dayCount, v: dayVolumn} = meta;
+  const coin: any = route.params;
+  const {symbol} = coin;
+
+  const {list: marketList} = useSelector((state: any) => state.market);
+  const marketInfo = marketList[symbol];
+  const {h: dayHigh, l: dayLow, n: dayCount, v: dayVolumn} = marketInfo;
 
   const dayCountData: any = Formater.formatBigNumber(dayCount);
   const dayVolumnData: any = Formater.formatBigNumber(dayVolumn);
@@ -72,4 +76,4 @@ const TickerMeta = () => {
   );
 };
 
-export default TickerMeta;
+export default CoinMeta;

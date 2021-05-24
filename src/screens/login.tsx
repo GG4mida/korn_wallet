@@ -64,7 +64,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
 
     if (code === ResponseCode.SUCCESS) {
       dispatch({
-        type: 'user/base',
+        type: 'user/info',
       });
     }
   }, [username, password, loading, dispatch]);

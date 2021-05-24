@@ -2,7 +2,7 @@ import produce from 'immer';
 import CoinService from '@/services/coin';
 import {ResponseCode} from '@/constants/enum';
 
-const TickerModel = {
+const CoinModel = {
   namespace: 'coin',
   state: {
     all: [],
@@ -64,4 +64,4 @@ const TickerModel = {
   },
 };
 
-export default TickerModel;
+export default CoinModel;

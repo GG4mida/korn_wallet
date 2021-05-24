@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {
   View,
   Image,
@@ -19,7 +19,8 @@ const HomeHolds = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const {holds} = useSelector((state: any) => state.user);
+  const {holds: userHolds} = useSelector((state: any) => state.user);
+  const {list: marketList} = useSelector((state: any) => state.market);
 
   const loading = useSelector(
     (state: any) => state.loading.effects['user/holds'],
@@ -31,8 +32,31 @@ const HomeHolds = () => {
     });
   }, [dispatch]);
 
+  const userHoldList = useMemo(() => {
+    if (!userHolds || userHolds.length === 0) {
+      return [];
+    }
+    const result = [];
+    for (const holdItem of userHolds) {
+      const {coin, volumn} = holdItem;
+      const {symbol} = coin;
+      const marketInfo = marketList[symbol];
+      if (!marketInfo) {
+        continue;
+      }
+      const {c: marketPrice} = marketInfo;
+      const holdAmount = parseFloat(marketPrice) * parseFloat(volumn);
+      result.push({
+        ...holdItem,
+        amount: holdAmount,
+      });
+    }
+
+    return result;
+  }, [userHolds, marketList]);
+
   const handleItemPress = (item: any) => {
-    navigation.navigate(RouteConfig.TickerDetail.name, item);
+    navigation.navigate(RouteConfig.CoinDetail.name, item);
   };
 
   if (loading === true) {
@@ -43,10 +67,10 @@ const HomeHolds = () => {
     );
   }
 
-  if (holds.length === 0) {
-    const handleTickerPress = () => {
-      const tickerAction = TabActions.jumpTo(RouteConfig.Ticker.name);
-      navigation.dispatch(tickerAction);
+  if (userHoldList.length === 0) {
+    const handleCoinPress = () => {
+      const coinAction = TabActions.jumpTo(RouteConfig.Coin.name);
+      navigation.dispatch(coinAction);
     };
 
     return (
@@ -56,7 +80,7 @@ const HomeHolds = () => {
           暂无持仓
         </Text>
         <TouchableOpacity
-          onPress={handleTickerPress}
+          onPress={handleCoinPress}
           activeOpacity={0.5}
           style={styles.button}>
           <Text style={tailwind('text-base text-white mr-1')}>
@@ -69,14 +93,10 @@ const HomeHolds = () => {
 
   return (
     <View style={tailwind('mb-5')}>
-      {holds.map((hold: any, index: number) => {
-        const {coin, volumn, meta, basic} = hold;
-        const {c: price} = meta;
-        const {logo_png, name} = basic;
-        const holdAmount = Formater.formatAmount(
-          parseFloat(price) * parseFloat(volumn),
-        );
-        const holdCount = `${Formater.fixed(volumn, 4)} ${coin}`;
+      {userHoldList.map((hold: any, index: number) => {
+        const {coin, volumn, amount} = hold;
+        const {logo_png, name, symbol} = coin;
+        const holdCount = `${Formater.fixed(volumn, 4)} ${symbol}`;
         return (
           <TouchableOpacity
             onPress={() => handleItemPress(hold)}
@@ -93,7 +113,7 @@ const HomeHolds = () => {
                   />
                   <View>
                     <Text style={tailwind('text-gray-600 text-xl')}>
-                      {coin}
+                      {symbol}
                     </Text>
                     <Text style={tailwind('text-gray-500 text-sm')}>
                       {name}
@@ -107,7 +127,7 @@ const HomeHolds = () => {
                   <View style={tailwind('flex flex-row items-center')}>
                     <Text style={tailwind('text-gray-800 text-xl')}>$</Text>
                     <Text style={tailwind('text-gray-800 text-xl')}>
-                      {holdAmount}
+                      {Formater.formatAmount(amount)}
                     </Text>
                   </View>
                 </View>

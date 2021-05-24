@@ -17,12 +17,11 @@ interface IProps {
   type: klineTab;
 }
 
-const TickerKline = (props: IProps) => {
+const CoinKline = (props: IProps) => {
   const {type} = props;
   const route = useRoute();
-  const ticker: any = route.params;
-  const {basic} = ticker;
-  const {symbol} = basic;
+  const coin: any = route.params;
+  const {symbol} = coin;
 
   const dispatch = useDispatch();
   const {data} = useSelector((state: any) => state.kline);
@@ -118,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TickerKline;
+export default CoinKline;

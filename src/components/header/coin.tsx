@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {tailwind} from '@/core/tailwind';
 
-const HeaderTicker = (props: any) => {
+const HeaderCoin = (props: any) => {
   const {navigation} = props;
 
   const onPress = () => {
@@ -16,4 +16,4 @@ const HeaderTicker = (props: any) => {
   );
 };
 
-export default HeaderTicker;
+export default HeaderCoin;

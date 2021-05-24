@@ -1,12 +1,12 @@
-const formatProfitRatio = (ratio: string) => {
+const formatProfitRatio = (ratio: string | number) => {
   if (!ratio) {
     return '0.00%';
   }
-  const ratioNumber = (Math.abs(parseFloat(ratio)) * 100).toFixed(2);
+  const ratioNumber = (Math.abs(parseFloat(ratio + '')) * 100).toFixed(2);
   return `${ratioNumber}%`;
 };
 
-const formatTickerChange = (change: string) => {
+const formatChange = (change: string) => {
   if (!change) {
     return '0.00%';
   }
@@ -51,7 +51,7 @@ const fixed = (value: string | number, fixedNum = 2) => {
 
 export default {
   formatProfitRatio,
-  formatTickerChange,
+  formatChange,
   formatBigNumber,
   formatNumber,
   formatAmount,

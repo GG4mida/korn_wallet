@@ -3,17 +3,20 @@ import {View, Text, Image} from 'react-native';
 import {tailwind} from '@/core/tailwind';
 import {Formater} from '@/utils';
 import {useRoute} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
-const TickerSummary = () => {
+const CoinSummary = () => {
   const route = useRoute();
-  const ticker: any = route.params;
-
-  const {basic, meta} = ticker;
-  const {name, symbol, logo_png} = basic;
-  const {P: change, c: price} = meta;
+  const coin: any = route.params;
+  const {name, symbol, logo_png} = coin;
+  const {list: marketList} = useSelector((state: any) => state.market);
+  const {exchange} = useSelector((state: any) => state.exchange);
+  const marketInfo = marketList[symbol];
+  const {c: marketPrice, P: marketChange} = marketInfo;
+  const marketPriceCNY = parseFloat(marketPrice) * parseFloat(exchange);
 
   const changeStyle =
-    parseFloat(change) > 0 ? 'text-red-600' : 'text-green-600';
+    parseFloat(marketChange) > 0 ? 'text-red-600' : 'text-green-600';
 
   return (
     <View
@@ -33,21 +36,25 @@ const TickerSummary = () => {
 
       <View style={tailwind('flex flex-col items-end w-1/3')}>
         <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600')}>$</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>{price}</Text>
+          <Text style={tailwind('text-xs text-gray-600')}>¥</Text>
+          <Text style={tailwind('text-xs text-gray-600')}>
+            {Formater.formatAmount(marketPriceCNY)}
+          </Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-base text-gray-600')}>$</Text>
-          <Text style={tailwind('text-base text-gray-600')}>{price}</Text>
+          <Text style={tailwind('text-base text-gray-600')}>
+            {Formater.formatAmount(marketPrice)}
+          </Text>
         </View>
       </View>
       <View style={tailwind('flex flex-row items-center')}>
         <Text style={tailwind(`${changeStyle} text-base`)}>
-          {Formater.formatTickerChange(change)}
+          {Formater.formatChange(marketChange)}
         </Text>
       </View>
     </View>
   );
 };
 
-export default TickerSummary;
+export default CoinSummary;

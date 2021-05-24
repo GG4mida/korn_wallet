@@ -38,7 +38,7 @@ interface IProps {
   refs: any;
 }
 
-const TickerSellPanel = (props: IProps) => {
+const CoinSellPanel = (props: IProps) => {
   const {refs} = props;
   return (
     <React.Fragment>
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TickerSellPanel;
+export default CoinSellPanel;

@@ -6,31 +6,29 @@ import {tailwind} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
 
 import {
-  TickerAction,
-  TickerKline,
-  TickerKlineBar,
-  TickerSummary,
-  TickerMeta,
-  TickerFavorite,
-  TickerBuyInPanel,
-  TickerSellPanel,
-} from '@/components/ticker';
+  CoinAction,
+  CoinKline,
+  CoinKlineBar,
+  CoinSummary,
+  CoinMeta,
+  CoinFavorite,
+  CoinBuyInPanel,
+  CoinSellPanel,
+} from '@/components/coin';
 
-const TickerDetailScreen = ({navigation}: any) => {
+const CoinDetailScreen = ({navigation}: any) => {
   const [tab, setTab] = useState(klineTab.DAY);
 
   const route = useRoute();
-  const ticker: any = route.params;
-  const {
-    basic: {name},
-  } = ticker;
+  const coin: any = route.params;
+  const {name} = coin;
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: name,
       headerBackTitleStyle: tailwind('text-blue-600'),
       headerBackImage: () => <HeaderBack />,
-      headerRight: () => <TickerFavorite />,
+      headerRight: () => <CoinFavorite />,
     });
   }, [navigation, name]);
 
@@ -50,21 +48,21 @@ const TickerDetailScreen = ({navigation}: any) => {
       <ScrollView
         style={tailwind('flex-1')}
         showsVerticalScrollIndicator={false}>
-        <TickerSummary />
-        <TickerMeta />
-        <TickerKlineBar value={tab} onChange={setTab} />
-        <TickerKline type={tab} />
+        <CoinSummary />
+        <CoinMeta />
+        <CoinKlineBar value={tab} onChange={setTab} />
+        <CoinKline type={tab} />
       </ScrollView>
 
-      <TickerAction
+      <CoinAction
         handleBuyInPress={handleBuyInPress}
         handleSellPress={handleSellPress}
       />
 
-      <TickerSellPanel refs={actionSellRef} />
-      <TickerBuyInPanel refs={actionBuyInRef} />
+      <CoinSellPanel refs={actionSellRef} />
+      <CoinBuyInPanel refs={actionBuyInRef} />
     </View>
   );
 };
 
-export default TickerDetailScreen;
+export default CoinDetailScreen;

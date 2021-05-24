@@ -47,13 +47,13 @@ const PanelContent = () => {
   const [value, setValue] = useState(0);
   const route = useRoute();
   const dispatch = useDispatch();
-  const ticker: any = route.params;
+  const market: any = route.params;
   const {full} = useSelector((state: any) => state.user);
   const {balance_current} = full;
   const {
     meta: {c: price},
     basic: {symbol},
-  } = ticker;
+  } = market;
 
   const buyInData = useMemo(() => {
     const buyInAmount = Formater.formatAmount(balance_current * (value / 100));
@@ -73,7 +73,7 @@ const PanelContent = () => {
       return false;
     }
     const buyinRes: any = await dispatch({
-      type: 'ticker/buyin',
+      type: 'coin/buyin',
       payload: {
         coin: symbol,
         amount: buyInData.amount,
@@ -170,7 +170,7 @@ interface IProps {
   refs: any;
 }
 
-const TickerBuyInPanel = (props: IProps) => {
+const CoinBuyInPanel = (props: IProps) => {
   const [status, setStatus] = useState(false);
   const {refs} = props;
 
@@ -212,4 +212,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TickerBuyInPanel;
+export default CoinBuyInPanel;

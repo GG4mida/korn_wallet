@@ -15,7 +15,7 @@ const UserModel = {
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         yield put({
-          type: 'setBase',
+          type: 'setInfo',
           payload: content,
         });
       }
@@ -48,9 +48,9 @@ const UserModel = {
   },
 
   reducers: {
-    setBase(state: any, action: any) {
+    setInfo(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.base = action.payload;
+        draftState.info = action.payload;
       });
       return nextState;
     },

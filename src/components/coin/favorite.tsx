@@ -8,36 +8,33 @@ import {useRoute} from '@react-navigation/native';
 import {IconFavorite} from '@/components/icons';
 import {ResponseCode} from '@/constants/enum';
 
-const TickerFavorite = () => {
+const CoinFavorite = () => {
   const dispatch = useDispatch();
   const route = useRoute();
-  const ticker: any = route.params;
+  const coin: any = route.params;
 
-  const {favorites} = useSelector((state: any) => state.ticker);
-  const loading = useSelector((state: any) => state.loading.models.ticker);
+  const {favorites: userFavorites} = useSelector((state: any) => state.coin);
+  const loading = useSelector((state: any) => state.loading.models.coin);
 
   const favoriteStatus = useMemo(() => {
-    const {
-      basic: {symbol},
-    } = ticker;
-    if (!favorites || favorites.length === 0) {
+    const {symbol} = coin;
+
+    if (!userFavorites || userFavorites.length === 0) {
       return false;
     }
 
-    const favoriteItem = find(favorites, (item: any) => {
+    const favoriteItem = find(userFavorites, (item: any) => {
       return item.basic.symbol === symbol;
     });
 
     return !!favoriteItem;
-  }, [ticker, favorites]);
+  }, [coin, userFavorites]);
 
   const handleFavoritePress = useCallback(() => {
     async function favoriteHandler() {
-      const {
-        basic: {symbol},
-      } = ticker;
+      const {symbol} = coin;
       const dispatchType =
-        favoriteStatus === true ? 'ticker/delFavorite' : 'ticker/addFavorite';
+        favoriteStatus === true ? 'coin/delFavorite' : 'coin/addFavorite';
       const favoriteRes: any = await dispatch({
         type: dispatchType,
         payload: {
@@ -49,13 +46,13 @@ const TickerFavorite = () => {
       if (code === ResponseCode.SUCCESS) {
         Toaster.show(content);
         await dispatch({
-          type: 'ticker/favorites',
+          type: 'coin/favorites',
         });
       }
     }
 
     favoriteHandler();
-  }, [dispatch, ticker, favoriteStatus]);
+  }, [dispatch, coin, favoriteStatus]);
 
   const iconStyle =
     favoriteStatus === true ? getColor('yellow-400') : getColor('gray-300');
@@ -72,4 +69,4 @@ const TickerFavorite = () => {
   );
 };
 
-export default TickerFavorite;
+export default CoinFavorite;

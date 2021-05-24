@@ -11,33 +11,35 @@ interface IProps {
   handleSellPress: () => void;
 }
 
-const TickerAction = (props: IProps) => {
+const CoinAction = (props: IProps) => {
   const {handleBuyInPress, handleSellPress} = props;
 
   const route = useRoute();
-  const ticker: any = route.params;
+  const coin: any = route.params;
   const {
     basic: {symbol},
-  } = ticker;
-  const {holds} = useSelector((state: any) => state.user);
+  } = coin;
+  const {holds: holdList} = useSelector((state: any) => state.user);
+  const {list: marketList} = useSelector((state: any) => state.market);
 
-  const tickerHold = useMemo(() => {
+  const coinHold = useMemo(() => {
     const result = {
       volumn: 0,
       amount: '0.00',
     };
 
-    if (!holds || holds.length === 0) {
+    if (!holdList || holdList.length === 0) {
       return result;
     }
-    const holdItem = find(holds, {coin: symbol});
-    if (!holdItem) {
+    const userHoldItem = find(holdList, {coin: symbol});
+    if (!userHoldItem) {
       return result;
     }
 
-    const {volumn, meta} = holdItem;
+    const marketData = marketList[symbol];
 
-    const {c: price} = meta;
+    const {volumn} = userHoldItem;
+    const {c: price} = marketData;
 
     result.volumn = volumn;
     result.amount = Formater.formatAmount(
@@ -45,7 +47,7 @@ const TickerAction = (props: IProps) => {
     );
 
     return result;
-  }, [symbol, holds]);
+  }, [symbol, holdList, marketList]);
 
   return (
     <View style={tailwind('bg-white border-t border-gray-100 py-5 px-5')}>
@@ -56,14 +58,14 @@ const TickerAction = (props: IProps) => {
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-gray-600 text-sm')}>持仓数量：</Text>
           <Text style={tailwind('text-gray-600 text-sm')}>
-            {`${Formater.fixed(tickerHold.volumn, 4)} ${symbol}`}
+            {`${Formater.fixed(coinHold.volumn, 4)} ${symbol}`}
           </Text>
         </View>
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-gray-600 text-sm')}>持仓市值：</Text>
           <Text style={tailwind('text-gray-600 text-sm')}>$</Text>
           <Text style={tailwind('text-gray-600 text-sm')}>
-            {tickerHold.amount}
+            {coinHold.amount}
           </Text>
         </View>
       </View>
@@ -89,4 +91,4 @@ const TickerAction = (props: IProps) => {
   );
 };
 
-export default TickerAction;
+export default CoinAction;

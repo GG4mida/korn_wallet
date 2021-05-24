@@ -12,9 +12,8 @@ import {
   IconTabHome,
   IconTabNews,
   IconTabProfile,
-  IconTabTicker,
+  IconTabCoin,
 } from '@/components/icons';
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -43,9 +42,9 @@ const MainTabs = ({navigation, route}: any) => {
             );
           }
 
-          if (route.name === RouteConfig.Ticker.name) {
+          if (route.name === RouteConfig.Coin.name) {
             return (
-              <IconTabTicker
+              <IconTabCoin
                 width={iconSize}
                 height={iconSize}
                 fill={fillColor}
@@ -87,9 +86,9 @@ const MainTabs = ({navigation, route}: any) => {
         options={{title: RouteConfig.Home.title}}
       />
       <Tab.Screen
-        name={RouteConfig.Ticker.name}
-        component={Screen.TickerScreen}
-        options={{title: RouteConfig.Ticker.title}}
+        name={RouteConfig.Coin.name}
+        component={Screen.CoinScreen}
+        options={{title: RouteConfig.Coin.title}}
       />
       <Tab.Screen
         name={RouteConfig.News.name}
@@ -115,9 +114,9 @@ const AuthorizedRoutes = () => {
       />
 
       <Stack.Screen
-        name={RouteConfig.TickerDetail.name}
-        component={Screen.TickerDetailScreen}
-        options={{title: RouteConfig.TickerDetail.title}}
+        name={RouteConfig.CoinDetail.name}
+        component={Screen.CoinDetailScreen}
+        options={{title: RouteConfig.CoinDetail.title}}
       />
 
       <Stack.Screen

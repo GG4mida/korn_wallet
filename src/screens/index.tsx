@@ -3,10 +3,10 @@ import SignupScreen from './signup';
 import HomeScreen from './home';
 import ProfileScreen from './profile';
 import NewsScreen from './news';
-import TickerScreen from './ticker';
 import WalletScreen from './wallet';
 import OperateScreen from './operate';
-import TickerDetailScreen from './tickerDetail';
+import CoinScreen from './coin';
+import CoinDetailScreen from './coinDetail';
 
 export default {
   LoginScreen,
@@ -14,8 +14,8 @@ export default {
   HomeScreen,
   ProfileScreen,
   NewsScreen,
-  TickerScreen,
   WalletScreen,
   OperateScreen,
-  TickerDetailScreen,
+  CoinScreen,
+  CoinDetailScreen,
 };

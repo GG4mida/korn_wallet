@@ -8,7 +8,7 @@ interface IProps {
   onChange: any;
 }
 
-const TickerKlineBar = (props: IProps) => {
+const CoinKlineBar = (props: IProps) => {
   const {value, onChange} = props;
   return (
     <View
@@ -34,4 +34,4 @@ const TickerKlineBar = (props: IProps) => {
   );
 };
 
-export default TickerKlineBar;
+export default CoinKlineBar;

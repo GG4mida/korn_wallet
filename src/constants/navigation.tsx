@@ -23,12 +23,12 @@ const RouteConfig = {
     name: 'OPERATE',
     title: '交易记录',
   },
-  Ticker: {
-    name: 'TICKER',
+  Coin: {
+    name: 'COIN',
     title: '行情',
   },
-  TickerDetail: {
-    name: 'TICKER_DETAIL',
+  CoinDetail: {
+    name: 'COIN_DETAIL',
     title: '行情',
   },
   News: {

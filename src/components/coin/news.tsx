@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {tailwind} from '@/core/tailwind';
 
-const TickerNews = () => {
+const CoinNews = () => {
   return (
     <View style={tailwind('mt-3')}>
       <View style={tailwind('bg-white p-4 mb-3')}>
@@ -78,4 +78,4 @@ const TickerNews = () => {
   );
 };
 
-export default TickerNews;
+export default CoinNews;
