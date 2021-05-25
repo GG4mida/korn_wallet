@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, ScrollView, Text, Image, TouchableOpacity} from 'react-native';
+import {useSelector} from 'react-redux';
 import {tailwind} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
 
@@ -67,6 +68,30 @@ const ListGroup = (props: any) => {
   );
 };
 
+const SettingProfile = () => {
+  const {info: userInfo} = useSelector((state: any) => state.user);
+
+  const {avatar, nick_name, login_name} = userInfo;
+
+  return (
+    <View
+      style={tailwind(
+        'bg-white p-5 flex-row items-center justify-between mb-3',
+      )}>
+      <View style={tailwind('flex-row items-center')}>
+        <Image
+          source={{uri: avatar}}
+          style={tailwind('w-10 h-10 rounded-full mr-4')}
+        />
+        <View style={tailwind('')}>
+          <Text style={tailwind('text-lg text-gray-800')}>{nick_name}</Text>
+          <Text style={tailwind('text-base text-gray-600')}>{login_name}</Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+
 const SettingScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -76,13 +101,16 @@ const SettingScreen = ({navigation}: any) => {
   }, [navigation]);
 
   return (
-    <View style={tailwind('flex-1 bg-gray-50')}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={tailwind('flex-1 bg-gray-50 py-5')}>
+      <SettingProfile />
       <View style={tailwind('py-4')}>
         {profileItems.map((item: any, index: number) => (
           <ListGroup key={index} group={item} />
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -8,6 +8,8 @@ import OperateScreen from './operate';
 import CoinScreen from './coin';
 import CoinDetailScreen from './coinDetail';
 import DiscoveryScreen from './discovery';
+import DiscoveryBrowserScreen from './discoveryBrowser';
+import DiscoveryBrowserItemScreen from './discoveryBrowserItem';
 
 export default {
   LoginScreen,
@@ -20,4 +22,6 @@ export default {
   CoinScreen,
   CoinDetailScreen,
   DiscoveryScreen,
+  DiscoveryBrowserScreen,
+  DiscoveryBrowserItemScreen,
 };

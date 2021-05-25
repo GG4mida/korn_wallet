@@ -122,6 +122,18 @@ const AuthorizedRoutes = () => {
         component={Screen.OperateScreen}
         options={{title: RouteConfig.Operate.title}}
       />
+
+      <Stack.Screen
+        name={RouteConfig.DiscoveryBrowser.name}
+        component={Screen.DiscoveryBrowserScreen}
+        options={{title: RouteConfig.DiscoveryBrowser.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.DiscoveryBrowserItem.name}
+        component={Screen.DiscoveryBrowserItemScreen}
+        options={{title: RouteConfig.DiscoveryBrowserItem.title}}
+      />
     </Stack.Navigator>
   );
 };

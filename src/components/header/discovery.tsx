@@ -2,16 +2,10 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {tailwind} from '@/core/tailwind';
 
-const HeaderDiscovery = (props: any) => {
-  const {navigation} = props;
-
-  const onPress = () => {
-    navigation.navigate('Detail');
-  };
-
+const HeaderDiscovery = () => {
   return (
     <View style={tailwind('px-5 flex flex-row items-center')}>
-      <TouchableOpacity onPress={onPress} activeOpacity={0.5} />
+      <TouchableOpacity onPress={() => null} activeOpacity={0.5} />
     </View>
   );
 };
