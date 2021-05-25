@@ -1,5 +1,5 @@
-import HomeSummary from './summary';
+import HomeJumbo from './jumbo';
 import HomeHolds from './holds';
 import HomeSectionHeader from './sectionHeader';
 
-export {HomeSummary, HomeHolds, HomeSectionHeader};
+export {HomeJumbo, HomeHolds, HomeSectionHeader};

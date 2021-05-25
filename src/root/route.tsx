@@ -11,7 +11,7 @@ import Screen from '@/screens';
 import {
   IconTabHome,
   IconTabNews,
-  IconTabProfile,
+  IconTabDiscovery,
   IconTabCoin,
 } from '@/components/icons';
 const Tab = createBottomTabNavigator();
@@ -28,46 +28,32 @@ const MainTabs = ({navigation, route}: any) => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        tabBarIcon: ({focused}) => {
-          const fillColor =
-            focused === true ? getColor('red-500') : getColor('gray-500');
+        tabBarIcon: ({color}) => {
           const iconSize = 20;
           if (route.name === RouteConfig.Home.name) {
             return (
-              <IconTabHome
-                width={iconSize}
-                height={iconSize}
-                fill={fillColor}
-              />
+              <IconTabHome width={iconSize} height={iconSize} fill={color} />
             );
           }
 
           if (route.name === RouteConfig.Coin.name) {
             return (
-              <IconTabCoin
-                width={iconSize}
-                height={iconSize}
-                fill={fillColor}
-              />
+              <IconTabCoin width={iconSize} height={iconSize} fill={color} />
             );
           }
 
           if (route.name === RouteConfig.News.name) {
             return (
-              <IconTabNews
-                width={iconSize}
-                height={iconSize}
-                fill={fillColor}
-              />
+              <IconTabNews width={iconSize} height={iconSize} fill={color} />
             );
           }
 
-          if (route.name === RouteConfig.Profile.name) {
+          if (route.name === RouteConfig.Discovery.name) {
             return (
-              <IconTabProfile
+              <IconTabDiscovery
                 width={iconSize}
                 height={iconSize}
-                fill={fillColor}
+                fill={color}
               />
             );
           }
@@ -96,9 +82,9 @@ const MainTabs = ({navigation, route}: any) => {
         options={{title: RouteConfig.News.title}}
       />
       <Tab.Screen
-        name={RouteConfig.Profile.name}
-        component={Screen.ProfileScreen}
-        options={{title: RouteConfig.Profile.title}}
+        name={RouteConfig.Discovery.name}
+        component={Screen.DiscoveryScreen}
+        options={{title: RouteConfig.Discovery.title}}
       />
     </Tab.Navigator>
   );
@@ -123,6 +109,12 @@ const AuthorizedRoutes = () => {
         name={RouteConfig.Wallet.name}
         component={Screen.WalletScreen}
         options={{title: RouteConfig.Wallet.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.Setting.name}
+        component={Screen.SettingScreen}
+        options={{title: RouteConfig.Setting.title}}
       />
 
       <Stack.Screen

@@ -29,7 +29,10 @@ const CoinAction = (props: IProps) => {
     if (!holdList || holdList.length === 0) {
       return result;
     }
-    const userHoldItem = find(holdList, {coin: symbol});
+    const userHoldItem = find(
+      holdList,
+      (item: any) => item.coin.symbol === symbol,
+    );
     if (!userHoldItem) {
       return result;
     }

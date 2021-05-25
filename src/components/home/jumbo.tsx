@@ -8,14 +8,13 @@ import {RouteConfig} from '@/constants/navigation';
 import {Formater} from '@/utils';
 import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
-const HomeSummary = () => {
+const HomeJumbo = () => {
   const navigation = useNavigation();
   const {info: userInfo, holds: userHolds} = useSelector(
     (state: any) => state.user,
   );
   const {list: marketList} = useSelector((state: any) => state.market);
-
-  const userSummaryData = useMemo(() => {
+  const renderData = useMemo(() => {
     let userHoldAmount = 0;
     const {balance_current, balance_init} = userInfo;
     const userBalanceCurrent = parseFloat(balance_current);
@@ -61,18 +60,17 @@ const HomeSummary = () => {
         <View style={tailwind('flex flex-row items-center')}>
           <Text style={tailwind('text-2xl text-white')}>$</Text>
           <Text style={tailwind('text-2xl text-white font-bold')}>
-            {Formater.formatAmount(userSummaryData.totalAmount)}
+            {Formater.formatAmount(renderData.totalAmount)}
           </Text>
         </View>
-
         <View style={tailwind('flex flex-row items-center')}>
-          {userSummaryData.totalProfit >= 0 ? (
+          {renderData.totalProfit >= 0 ? (
             <IconArrowTop width={16} height={16} fill={getColor('white')} />
           ) : (
             <IconArrowDown width={16} height={16} fill={getColor('white')} />
           )}
-          <Text style={tailwind('text-lg text-white')}>
-            {Formater.formatProfitRatio(userSummaryData.totalProfitRatio)}
+          <Text style={tailwind('text-lg text-white ml-1')}>
+            {Formater.formatProfitRatio(renderData.totalProfitRatio)}
           </Text>
         </View>
       </View>
@@ -80,4 +78,4 @@ const HomeSummary = () => {
   );
 };
 
-export default HomeSummary;
+export default HomeJumbo;

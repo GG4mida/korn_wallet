@@ -14,7 +14,7 @@
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/slider": "4.0.0-rc.3",
-    "@react-navigation/bottom-tabs": "^5.11.10",
+    "@react-navigation/bottom-tabs": "5.11.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "axios": "^0.21.1",

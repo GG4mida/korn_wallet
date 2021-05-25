@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {tailwind} from '@/core/tailwind';
+import HeaderBack from '@/components/header/back';
 
 const profileItems = [
   [
@@ -30,10 +31,6 @@ const profileItems = [
     },
   ],
   [
-    {
-      name: '用户协议',
-      icon: 'file',
-    },
     {
       name: '关于我们',
       icon: 'home',
@@ -70,7 +67,14 @@ const ListGroup = (props: any) => {
   );
 };
 
-const ProfileScreen = ({}: any) => {
+const SettingScreen = ({navigation}: any) => {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerBackTitleStyle: tailwind('text-blue-600'),
+      headerBackImage: () => <HeaderBack />,
+    });
+  }, [navigation]);
+
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
       <View style={tailwind('py-4')}>
@@ -82,4 +86,4 @@ const ProfileScreen = ({}: any) => {
   );
 };
 
-export default ProfileScreen;
+export default SettingScreen;

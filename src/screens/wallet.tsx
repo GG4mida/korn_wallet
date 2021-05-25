@@ -1,9 +1,10 @@
 import React, {useMemo} from 'react';
 import {ScrollView, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
-import {tailwind} from '@/core/tailwind';
+import {tailwind, getColor} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
 import {Formater, DateTime} from '@/utils';
+import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
 const WalletScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
@@ -60,10 +61,10 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>初始资金</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>
+              <Text style={tailwind('text-lg text-gray-800 mr-1')}>
                 {Formater.formatAmount(userSummaryData.balanceInit)}
               </Text>
+              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
             </View>
           </View>
 
@@ -79,10 +80,10 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>累计资产</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>
+              <Text style={tailwind('text-lg text-gray-800 mr-1')}>
                 {Formater.formatAmount(userSummaryData.totalAmount)}
               </Text>
+              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
             </View>
           </View>
 
@@ -98,10 +99,10 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>账户余额</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>
+              <Text style={tailwind('text-lg text-gray-800 mr-1')}>
                 {Formater.formatAmount(userSummaryData.balanceCurrent)}
               </Text>
+              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
             </View>
           </View>
 
@@ -117,10 +118,10 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>持仓价值</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>
+              <Text style={tailwind('text-lg text-gray-800 mr-1')}>
                 {Formater.formatAmount(userSummaryData.holdAmount)}
               </Text>
+              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
             </View>
           </View>
 
@@ -136,10 +137,10 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>累计盈利</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
-              <Text style={tailwind('text-lg text-gray-800')}>
+              <Text style={tailwind('text-lg text-gray-800 mr-1')}>
                 {Formater.formatAmount(userSummaryData.totalProfit)}
               </Text>
+              <Text style={tailwind('text-lg text-gray-800')}>$</Text>
             </View>
           </View>
 
@@ -155,7 +156,20 @@ const WalletScreen = ({navigation}: any) => {
             )}>
             <Text style={tailwind('text-gray-800 text-base')}>盈利率</Text>
             <View style={tailwind('flex flex-row items-center')}>
-              <Text style={tailwind('text-lg text-gray-800')}>
+              {userSummaryData.totalProfitRatio >= 0 ? (
+                <IconArrowTop
+                  width={16}
+                  height={16}
+                  fill={getColor('gray-800')}
+                />
+              ) : (
+                <IconArrowDown
+                  width={16}
+                  height={16}
+                  fill={getColor('gray-800')}
+                />
+              )}
+              <Text style={tailwind('text-lg text-gray-800 ml-1')}>
                 {Formater.formatProfitRatio(userSummaryData.totalProfitRatio)}
               </Text>
             </View>

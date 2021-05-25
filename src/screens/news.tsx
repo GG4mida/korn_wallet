@@ -34,11 +34,11 @@ const NewsTabs = () => {
   return (
     <View
       style={tailwind(
-        'flex flex-row items-center justify-center bg-gray-50 border-b border-gray-100 p-3',
+        'flex flex-row items-center justify-center bg-gray-50 border-b border-gray-50 p-3',
       )}>
       <View
         style={tailwind(
-          'flex flex-row bg-white border border-gray-100 rounded-3xl',
+          'flex flex-row bg-white border border-gray-50 rounded-3xl',
         )}>
         <TouchableOpacity
           onPress={() => null}
@@ -67,7 +67,6 @@ const NewsScreen = ({}: any) => {
       showsVerticalScrollIndicator={false}
       style={tailwind('flex-1 bg-gray-50')}>
       <NewsTabs />
-
       <NewsContent />
       <NewsContent />
       <NewsContent />

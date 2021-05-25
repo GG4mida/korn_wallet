@@ -43,7 +43,8 @@ const PanelShadow = (props: any) => {
   );
 };
 
-const PanelContent = () => {
+const PanelContent = (props: any) => {
+  const {handleSubmitSuccess} = props;
   const [value, setValue] = useState(0);
   const route = useRoute();
   const dispatch = useDispatch();
@@ -88,12 +89,17 @@ const PanelContent = () => {
 
     const {code, content} = buyinRes;
     if (code === ResponseCode.SUCCESS) {
-      Toaster.show(content);
+      dispatch({
+        type: 'user/info',
+      });
       dispatch({
         type: 'user/holds',
       });
+
+      Toaster.show(content);
+      handleSubmitSuccess();
     }
-  }, [dispatch, buyInData, symbol]);
+  }, [dispatch, buyInData, symbol, handleSubmitSuccess]);
 
   return (
     <View>
@@ -180,9 +186,9 @@ const CoinBuyInPanel = (props: IProps) => {
   const [status, setStatus] = useState(false);
   const {refs} = props;
 
-  const handleShadowPress = () => {
+  const handleSheetClose = useCallback(() => {
     refs.current.snapTo(1);
-  };
+  }, [refs]);
 
   return (
     <React.Fragment>
@@ -195,9 +201,11 @@ const CoinBuyInPanel = (props: IProps) => {
         onCloseEnd={() => setStatus(false)}
         onOpenEnd={() => setStatus(true)}
         enabledInnerScrolling={false}
-        renderContent={() => <PanelContent />}
+        renderContent={() => (
+          <PanelContent handleSubmitSuccess={handleSheetClose} />
+        )}
       />
-      <PanelShadow status={status} handlePress={handleShadowPress} />
+      <PanelShadow status={status} handlePress={handleSheetClose} />
     </React.Fragment>
   );
 };

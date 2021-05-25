@@ -12,7 +12,13 @@ import IconTabHome from '@/assets/svg/tab-home.svg';
 import IconTabCoin from '@/assets/svg/tab-coin.svg';
 import IconTabNews from '@/assets/svg/tab-news.svg';
 import IconTabProfile from '@/assets/svg/tab-profile.svg';
+import IconTabDiscovery from '@/assets/svg/tab-discovery.svg';
+import IconDiscoveryRank from '@/assets/svg/discovery-rank.svg';
+import IconDiscoveryBinance from '@/assets/svg/discovery-binance.svg';
+import IconDiscoveryBrowser from '@/assets/svg/discovery-browser.svg';
+import IconDiscoveryReminder from '@/assets/svg/discovery-reminder.svg';
 import IconEmpty from '@/assets/svg/empty.svg';
+import IconUser from '@/assets/svg/user.svg';
 
 export {
   IconBack,
@@ -29,5 +35,11 @@ export {
   IconTabCoin,
   IconTabNews,
   IconTabProfile,
+  IconTabDiscovery,
   IconEmpty,
+  IconDiscoveryRank,
+  IconDiscoveryBinance,
+  IconDiscoveryBrowser,
+  IconDiscoveryReminder,
+  IconUser,
 };

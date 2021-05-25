@@ -35,9 +35,13 @@ const RouteConfig = {
     name: 'NEWS',
     title: '资讯',
   },
-  Profile: {
-    name: 'PROFILE',
-    title: '我',
+  Discovery: {
+    name: 'DISCOVERY',
+    title: '发现',
+  },
+  Setting: {
+    name: 'SETTING',
+    title: '设置',
   },
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {tailwind} from '@/core/tailwind';
 
-const HeaderProfile = (props: any) => {
+const HeaderDiscovery = (props: any) => {
   const {navigation} = props;
 
   const onPress = () => {
@@ -16,4 +16,4 @@ const HeaderProfile = (props: any) => {
   );
 };
 
-export default HeaderProfile;
+export default HeaderDiscovery;

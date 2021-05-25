@@ -1,21 +1,23 @@
 import LoginScreen from './login';
 import SignupScreen from './signup';
 import HomeScreen from './home';
-import ProfileScreen from './profile';
+import SettingScreen from './setting';
 import NewsScreen from './news';
 import WalletScreen from './wallet';
 import OperateScreen from './operate';
 import CoinScreen from './coin';
 import CoinDetailScreen from './coinDetail';
+import DiscoveryScreen from './discovery';
 
 export default {
   LoginScreen,
   SignupScreen,
   HomeScreen,
-  ProfileScreen,
+  SettingScreen,
   NewsScreen,
   WalletScreen,
   OperateScreen,
   CoinScreen,
   CoinDetailScreen,
+  DiscoveryScreen,
 };

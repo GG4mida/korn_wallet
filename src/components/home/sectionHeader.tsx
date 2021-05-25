@@ -3,8 +3,8 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {RouteConfig} from '@/constants/navigation';
-
-import {tailwind} from '@/core/tailwind';
+import {IconArrowRight} from '@/components/icons';
+import {tailwind, getColor} from '@/core/tailwind';
 
 const HomeSectionHeader = () => {
   const navigation = useNavigation();
@@ -23,7 +23,7 @@ const HomeSectionHeader = () => {
           onPress={handleOperatePress}
           activeOpacity={0.5}
           style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-yellow-500')}>交易记录</Text>
+          <IconArrowRight width={22} height={22} fill={getColor('gray-700')} />
         </TouchableOpacity>
       ) : null}
     </View>
