@@ -20,6 +20,7 @@ const BrowserItem = (props: any) => {
   const handleItemPress = useCallback(() => {
     navigation.navigate(RouteConfig.DiscoveryBrowserItem.name, data);
   }, [navigation, data]);
+
   return (
     <TouchableOpacity
       activeOpacity={0.5}
@@ -39,7 +40,7 @@ const BrowserItem = (props: any) => {
 const BrowserList = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('flex flex-row flex-wrap items-center')}>
+    <View style={tailwind('flex flex-row flex-wrap items-center p-5')}>
       {data.map((coin: any, index: number) => {
         return <BrowserItem data={coin} key={`browser_${index}`} />;
       })}
@@ -80,7 +81,7 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={tailwind('flex-1 bg-gray-50 p-5')}>
+      style={tailwind('flex-1 bg-gray-50')}>
       <BrowserList data={coinList} />
     </ScrollView>
   );

@@ -1,33 +1,19 @@
 import React from 'react';
-import {View, ScrollView, Text, Image, TouchableOpacity} from 'react-native';
+import {View, ScrollView, Text, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
-import {tailwind} from '@/core/tailwind';
+import {tailwind, getColor} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
+import {IconForward} from '@/components/icons';
+import Avatar from '@/components/avatar';
 
 const profileItems = [
   [
     {
-      name: '钱包管理',
-      icon: 'pocket',
-    },
-  ],
-  [
-    {
-      name: '地址本',
-      icon: 'file-text',
-    },
-    {
-      name: '使用设置',
-      icon: 'settings',
-    },
-  ],
-  [
-    {
-      name: '帮助',
+      name: '使用帮助',
       icon: 'help-circle',
     },
     {
-      name: '反馈',
+      name: '问题反馈',
       icon: 'message-circle',
     },
   ],
@@ -35,6 +21,16 @@ const profileItems = [
     {
       name: '关于我们',
       icon: 'home',
+    },
+  ],
+  [
+    {
+      name: '注销',
+      icon: 'file-text',
+    },
+    {
+      name: '重置',
+      icon: 'settings',
     },
   ],
 ];
@@ -49,9 +45,10 @@ const ListItem = (props: any) => {
         'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-4',
       )}>
       <View style={tailwind('flex flex-row items-center')}>
-        <Text style={tailwind('text-gray-800 text-base ml-3')}>
-          {item.name}
-        </Text>
+        <Text style={tailwind('text-gray-800 text-base')}>{item.name}</Text>
+      </View>
+      <View>
+        <IconForward width={18} height={18} fill={getColor('gray-500')} />
       </View>
     </TouchableOpacity>
   );
@@ -70,25 +67,27 @@ const ListGroup = (props: any) => {
 
 const SettingProfile = () => {
   const {info: userInfo} = useSelector((state: any) => state.user);
-
-  const {avatar, nick_name, login_name} = userInfo;
-
+  const {nick_name, login_name} = userInfo;
   return (
-    <View
-      style={tailwind(
-        'bg-white p-5 flex-row items-center justify-between mb-3',
-      )}>
-      <View style={tailwind('flex-row items-center')}>
-        <Image
-          source={{uri: avatar}}
-          style={tailwind('w-10 h-10 rounded-full mr-4')}
-        />
-        <View style={tailwind('')}>
-          <Text style={tailwind('text-lg text-gray-800')}>{nick_name}</Text>
-          <Text style={tailwind('text-base text-gray-600')}>{login_name}</Text>
+    <TouchableOpacity
+      activeOpacity={0.5}
+      onPress={() => null}
+      style={tailwind('bg-white p-5')}>
+      <View style={tailwind('flex-row items-center justify-between')}>
+        <View style={tailwind('flex-row items-center')}>
+          <Avatar text={nick_name} />
+          <View style={tailwind('ml-4')}>
+            <Text style={tailwind('text-lg text-gray-800')}>{nick_name}</Text>
+            <Text style={tailwind('text-base text-gray-600')}>
+              {login_name}
+            </Text>
+          </View>
+        </View>
+        <View>
+          <IconForward width={18} height={18} fill={getColor('gray-500')} />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
