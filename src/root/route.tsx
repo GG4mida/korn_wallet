@@ -112,12 +112,6 @@ const AuthorizedRoutes = () => {
       />
 
       <Stack.Screen
-        name={RouteConfig.Setting.name}
-        component={Screen.SettingScreen}
-        options={{title: RouteConfig.Setting.title}}
-      />
-
-      <Stack.Screen
         name={RouteConfig.Operate.name}
         component={Screen.OperateScreen}
         options={{title: RouteConfig.Operate.title}}
@@ -133,6 +127,36 @@ const AuthorizedRoutes = () => {
         name={RouteConfig.DiscoveryBrowserItem.name}
         component={Screen.DiscoveryBrowserItemScreen}
         options={{title: RouteConfig.DiscoveryBrowserItem.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.Setting.name}
+        component={Screen.SettingScreen}
+        options={{title: RouteConfig.Setting.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.SettingHelp.name}
+        component={Screen.SettingHelpScreen}
+        options={{title: RouteConfig.SettingHelp.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.SettingFeedback.name}
+        component={Screen.SettingFeedbackScreen}
+        options={{title: RouteConfig.SettingFeedback.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.SettingProfile.name}
+        component={Screen.SettingProfileScreen}
+        options={{title: RouteConfig.SettingProfile.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.SettingAbout.name}
+        component={Screen.SettingAboutScreen}
+        options={{title: RouteConfig.SettingAbout.title}}
       />
     </Stack.Navigator>
   );

@@ -1,7 +1,6 @@
 import LoginScreen from './login';
 import SignupScreen from './signup';
 import HomeScreen from './home';
-import SettingScreen from './setting';
 import NewsScreen from './news';
 import WalletScreen from './wallet';
 import OperateScreen from './operate';
@@ -10,12 +9,16 @@ import CoinDetailScreen from './coinDetail';
 import DiscoveryScreen from './discovery';
 import DiscoveryBrowserScreen from './discoveryBrowser';
 import DiscoveryBrowserItemScreen from './discoveryBrowserItem';
+import SettingScreen from './setting';
+import SettingHelpScreen from './settingHelp';
+import SettingFeedbackScreen from './settingFeedback';
+import SettingAboutScreen from './settingAbout';
+import SettingProfileScreen from './settingProfile';
 
 export default {
   LoginScreen,
   SignupScreen,
   HomeScreen,
-  SettingScreen,
   NewsScreen,
   WalletScreen,
   OperateScreen,
@@ -24,4 +27,9 @@ export default {
   DiscoveryScreen,
   DiscoveryBrowserScreen,
   DiscoveryBrowserItemScreen,
+  SettingScreen,
+  SettingHelpScreen,
+  SettingAboutScreen,
+  SettingFeedbackScreen,
+  SettingProfileScreen,
 };

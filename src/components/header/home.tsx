@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
-import {getColor, tailwind} from '@/core/tailwind';
+import {View, Image, TouchableOpacity} from 'react-native';
+import {useSelector} from 'react-redux';
+import {tailwind} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
-import {IconUser} from '@/components/icons';
 
 const HeaderHome = (props: any) => {
   const {navigation} = props;
-
+  const {info: userInfo} = useSelector((state: any) => state.user);
+  const {avatar} = userInfo;
   const handleItemPress = () => {
     navigation.navigate(RouteConfig.Setting.name);
   };
@@ -14,7 +15,10 @@ const HeaderHome = (props: any) => {
   return (
     <View style={tailwind('px-5 flex flex-row items-center')}>
       <TouchableOpacity onPress={handleItemPress} activeOpacity={0.5}>
-        <IconUser width={16} height={16} fill={getColor('gray-600')} />
+        <Image
+          source={{uri: avatar}}
+          style={tailwind('w-4 h-4 rounded-full')}
+        />
       </TouchableOpacity>
     </View>
   );

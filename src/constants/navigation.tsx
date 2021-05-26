@@ -51,6 +51,22 @@ const RouteConfig = {
     name: 'SETTING',
     title: '设置',
   },
+  SettingHelp: {
+    name: 'SETTING-HELP',
+    title: '帮助文档',
+  },
+  SettingFeedback: {
+    name: 'SETTING-FEEDBACK',
+    title: '问题反馈',
+  },
+  SettingProfile: {
+    name: 'SETTING-PROFILE',
+    title: '个人信息',
+  },
+  SettingAbout: {
+    name: 'SETTING-ABOUT',
+    title: '关于我们',
+  },
 };
 
 export {RouteConfig};
