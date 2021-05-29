@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-const FORMATER_TIME = 'hh:mm';
+const FORMATER_TIME = 'HH:mm';
 
 const FORMATER_DAY = 'MM-DD';
 

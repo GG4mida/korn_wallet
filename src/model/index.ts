@@ -4,6 +4,7 @@ import KlineModel from './kline';
 import CoinModel from './coin';
 import MarketModel from './market';
 import SystemModel from './system';
+import NewsModel from './news';
 import ExchangeModel from './exchange';
 
 export default [
@@ -13,5 +14,6 @@ export default [
   SystemModel,
   MarketModel,
   KlineModel,
+  NewsModel,
   ExchangeModel,
 ];
