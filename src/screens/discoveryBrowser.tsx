@@ -14,19 +14,22 @@ import {useNavigation} from '@react-navigation/core';
 import {RouteConfig} from '@/constants/navigation';
 
 const BrowserItem = (props: any) => {
-  const {data} = props;
+  const {data, index} = props;
   const {logo_png, symbol} = data;
   const navigation = useNavigation();
   const handleItemPress = useCallback(() => {
     navigation.navigate(RouteConfig.DiscoveryBrowserItem.name, data);
   }, [navigation, data]);
 
+  const itemStyle =
+    index !== 0 && index % 3 === 2 ? 'border-b' : 'border-r border-b';
+
   return (
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleItemPress}
       style={tailwind(
-        'w-1/3 py-5 px-3 bg-white items-center justify-center mb-3',
+        `w-1/3 p-5 bg-white items-center justify-center border-gray-50 ${itemStyle}`,
       )}>
       <Image
         source={{uri: logo_png}}
@@ -40,9 +43,11 @@ const BrowserItem = (props: any) => {
 const BrowserList = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('flex flex-row flex-wrap items-center p-5')}>
+    <View style={tailwind('flex flex-row flex-wrap items-center')}>
       {data.map((coin: any, index: number) => {
-        return <BrowserItem data={coin} key={`browser_${index}`} />;
+        return (
+          <BrowserItem data={coin} key={`browser_${index}`} index={index} />
+        );
       })}
     </View>
   );

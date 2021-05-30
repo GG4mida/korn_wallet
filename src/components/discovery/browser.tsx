@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {tailwind, getColor} from '@/core/tailwind';
 import {IconDiscoveryBrowser, IconForward} from '@/components/icons';
 
-const Browser = () => {
+const DiscoveryBrowser = () => {
   const navigation = useNavigation();
 
   const handlePress = useCallback(() => {
@@ -45,4 +45,4 @@ const Browser = () => {
   );
 };
 
-export default Browser;
+export default DiscoveryBrowser;

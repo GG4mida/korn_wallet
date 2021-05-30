@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {tailwind, getColor} from '@/core/tailwind';
 import {IconDiscoveryReminder, IconForward} from '@/components/icons';
 
-const Reminder = () => {
+const DiscoveryReminder = () => {
   return (
     <LinearGradient
       colors={[getColor('yellow-500'), getColor('red-500')]}
@@ -35,4 +35,4 @@ const Reminder = () => {
   );
 };
 
-export default Reminder;
+export default DiscoveryReminder;

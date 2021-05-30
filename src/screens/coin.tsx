@@ -1,17 +1,12 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {View, Image, Text, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {tailwind} from '@/core/tailwind';
-import {coinTab, coinTabs} from '@/constants/tab';
-import Tab from '@/components/tab';
-import Sorter from '@/components/coin/sorter';
+import {coinTab} from '@/constants/tab';
+import {CoinSorter, CoinTab, CoinListItem} from '@/components/coinList';
 import styles from '@/core/styles';
-import {Formater} from '@/utils';
-import {RouteConfig} from '@/constants/navigation';
 import {SortField, SortRule} from '@/constants/enum';
 import EmptySvg from '@/assets/svg/empty.svg';
-import {ScrollView} from 'react-native-gesture-handler';
 
 const SorterFunc = (data: any, sorter: any) => {
   if (!data || data.length === 0) {
@@ -61,60 +56,6 @@ const SorterFunc = (data: any, sorter: any) => {
   return sortData;
 };
 
-const CoinItem = (props: any) => {
-  const {data} = props;
-  const {name, symbol, logo_png, priceUSD, priceCNY, change} = data;
-
-  const changeStyle =
-    parseFloat(change) > 0 ? 'text-red-600' : 'text-green-600';
-
-  const navigation = useNavigation();
-  const handleItemPress = (item: any) => {
-    navigation.navigate(RouteConfig.CoinDetail.name, item);
-  };
-
-  return (
-    <TouchableOpacity
-      onPress={() => handleItemPress(data)}
-      activeOpacity={0.5}
-      style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-3',
-      )}>
-      <View style={tailwind('flex flex-row w-1/3 items-center')}>
-        <Image
-          source={{uri: logo_png}}
-          style={tailwind('w-6 h-6 rounded-full')}
-        />
-        <View style={tailwind('ml-3')}>
-          <Text style={tailwind('text-gray-800 text-lg')}>{symbol}</Text>
-          <Text style={tailwind('text-gray-500 text-xs')}>{name}</Text>
-        </View>
-      </View>
-
-      <View style={tailwind('flex flex-col items-end w-1/3')}>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600')}>¥</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>
-            {Formater.formatAmount(priceCNY)}
-          </Text>
-        </View>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-800')}>$</Text>
-          <Text style={tailwind('text-base text-gray-800')}>
-            {Formater.formatAmount(priceUSD)}
-          </Text>
-        </View>
-      </View>
-
-      <View style={tailwind('flex flex-row w-1/3 items-center justify-end')}>
-        <Text style={tailwind(`${changeStyle} text-base`)}>
-          {Formater.formatChange(change)}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
-
 const CoinAll = (props: any) => {
   const {data, sorter} = props;
 
@@ -134,12 +75,18 @@ const CoinAll = (props: any) => {
     );
   }
 
+  const renderCoinItem = (prop: any) => {
+    const {item} = prop;
+    return <CoinListItem data={item} />;
+  };
+
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={tailwind('flex-1')}>
-      {coinList.map((dataItem: any, index: number) => (
-        <CoinItem data={dataItem} key={`coin_all_${index}`} />
-      ))}
-    </ScrollView>
+    <FlatList
+      data={coinList}
+      renderItem={renderCoinItem}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={item => item.symbol}
+    />
   );
 };
 
@@ -170,24 +117,29 @@ const CoinFavorites = (props: any) => {
     );
   }
 
+  const renderCoinItem = (prop: any) => {
+    const {item} = prop;
+    return <CoinListItem data={item} />;
+  };
+
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={tailwind('flex-1')}>
-      {coinList.map((dataItem: any, index: number) => (
-        <CoinItem data={dataItem} key={`coin_favorite_${index}`} />
-      ))}
-    </ScrollView>
+    <FlatList
+      data={coinList}
+      renderItem={renderCoinItem}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={item => item.symbol}
+    />
   );
 };
 
-const CoinTabs = (props: any) => {
-  const {value, onChange} = props;
-  return <Tab data={coinTabs} value={value} onChange={onChange} />;
-};
-
-const CoinHeader = (props: any) => {
-  const {value, onChange} = props;
-  const {name, rule} = value;
-  return <Sorter name={name} rule={rule} onChange={onChange} />;
+const CoinContent = (props: any) => {
+  const {tab, setTab, data, sorter} = props;
+  if (tab === coinTab.ALL) {
+    return <CoinAll data={data.all} sorter={sorter} />;
+  }
+  return (
+    <CoinFavorites data={data.favorites} sorter={sorter} emptyAction={setTab} />
+  );
 };
 
 const CoinScreen = ({}: any) => {
@@ -242,17 +194,14 @@ const CoinScreen = ({}: any) => {
 
   return (
     <View style={tailwind('flex-1 bg-gray-50')}>
-      <CoinTabs value={tab} onChange={setTab} />
-      <CoinHeader value={sorter} onChange={setSorter} />
-      {tab === coinTab.ALL ? (
-        <CoinAll data={coinListData.all} sorter={sorter} />
-      ) : (
-        <CoinFavorites
-          data={coinListData.favorites}
-          sorter={sorter}
-          emptyAction={setTab}
-        />
-      )}
+      <CoinTab value={tab} onChange={setTab} />
+      <CoinSorter sorter={sorter} onChange={setSorter} />
+      <CoinContent
+        data={coinListData}
+        sorter={sorter}
+        tab={tab}
+        setTab={setTab}
+      />
     </View>
   );
 };

@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {tailwind, getColor} from '@/core/tailwind';
 import {IconDiscoveryRank, IconForward} from '@/components/icons';
 
-const Rank = () => {
+const DiscoveryRank = () => {
   return (
     <LinearGradient
       colors={[getColor('yellow-500'), getColor('red-500')]}
@@ -34,4 +34,4 @@ const Rank = () => {
   );
 };
 
-export default Rank;
+export default DiscoveryRank;

@@ -1,4 +1,2 @@
-import LoadingActivity from './activity';
-import LoadingMask from './mask';
-
-export {LoadingActivity, LoadingMask};
+export {default as LoadingActivity} from './activity';
+export {default as LoadingMask} from './mask';

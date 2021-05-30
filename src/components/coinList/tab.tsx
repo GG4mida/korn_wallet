@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {tailwind} from '@/core/tailwind';
+import {coinTabs} from '@/constants/tab';
 
-const Tab = (props: any) => {
-  const {data, value, onChange} = props;
+const CoinTab = (props: any) => {
+  const {value, onChange} = props;
   return (
     <View
       style={tailwind(
@@ -13,7 +14,7 @@ const Tab = (props: any) => {
         style={tailwind(
           'flex flex-row bg-white border border-gray-50 rounded-3xl',
         )}>
-        {data.map((tabItem: any, index: number) => {
+        {coinTabs.map((tabItem: any, index: number) => {
           let containerStyle = null;
           let textStyle = null;
           if (tabItem.name === value) {
@@ -40,4 +41,4 @@ const Tab = (props: any) => {
   );
 };
 
-export default Tab;
+export default CoinTab;

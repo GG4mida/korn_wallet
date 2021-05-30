@@ -1,6 +1,4 @@
-import Rank from './rank';
-import Binance from './binance';
-import Browser from './browser';
-import Reminder from './reminder';
-
-export {Rank, Binance, Browser, Reminder};
+export {default as DiscoveryRank} from './rank';
+export {default as DiscoveryBinance} from './binance';
+export {default as DiscoveryBrowser} from './browser';
+export {default as DiscoveryReminder} from './reminder';

@@ -44,8 +44,9 @@ const SorterIcon = (props: any) => {
   return <IconSortNone fill={fillColor} width={fillSize} height={fillSize} />;
 };
 
-const Sorter = (props: any) => {
-  const {name, rule, onChange} = props;
+const CoinSorter = (props: any) => {
+  const {sorter, onChange} = props;
+  const {name, rule} = sorter;
 
   const handleSortPress = (item: any) => {
     const {name: sortName} = item;
@@ -97,4 +98,4 @@ const Sorter = (props: any) => {
   );
 };
 
-export default Sorter;
+export default CoinSorter;

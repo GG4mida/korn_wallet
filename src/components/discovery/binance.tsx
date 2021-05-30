@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {tailwind, getColor} from '@/core/tailwind';
 import {IconDiscoveryBinance, IconForward} from '@/components/icons';
 
-const Binance = () => {
+const DiscoveryBinance = () => {
   return (
     <LinearGradient
       colors={[getColor('gray-500'), getColor('green-500')]}
@@ -34,4 +34,4 @@ const Binance = () => {
   );
 };
 
-export default Binance;
+export default DiscoveryBinance;

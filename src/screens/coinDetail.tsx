@@ -14,7 +14,7 @@ import {
   CoinFavorite,
   CoinBuyInPanel,
   CoinSellPanel,
-} from '@/components/coin';
+} from '@/components/coinDetail';
 
 const CoinDetailScreen = ({navigation}: any) => {
   const [tab, setTab] = useState(klineTab.DAY);

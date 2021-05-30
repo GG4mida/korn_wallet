@@ -1,5 +1,3 @@
-import HomeJumbo from './jumbo';
-import HomeHolds from './holds';
-import HomeSectionHeader from './sectionHeader';
-
-export {HomeJumbo, HomeHolds, HomeSectionHeader};
+export {default as HomeJumbo} from './jumbo';
+export {default as HomeHolds} from './holds';
+export {default as HomeSectionHeader} from './sectionHeader';

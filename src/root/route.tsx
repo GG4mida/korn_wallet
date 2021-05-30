@@ -27,32 +27,32 @@ const MainTabs = ({navigation, route}: any) => {
 
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({route: routeInfo}) => ({
         tabBarIcon: ({color}) => {
-          const iconSize = 20;
-          if (route.name === RouteConfig.Home.name) {
+          const ICON_SIZE = 20;
+          if (routeInfo.name === RouteConfig.Home.name) {
             return (
-              <IconTabHome width={iconSize} height={iconSize} fill={color} />
+              <IconTabHome width={ICON_SIZE} height={ICON_SIZE} fill={color} />
             );
           }
 
-          if (route.name === RouteConfig.Coin.name) {
+          if (routeInfo.name === RouteConfig.Coin.name) {
             return (
-              <IconTabCoin width={iconSize} height={iconSize} fill={color} />
+              <IconTabCoin width={ICON_SIZE} height={ICON_SIZE} fill={color} />
             );
           }
 
-          if (route.name === RouteConfig.News.name) {
+          if (routeInfo.name === RouteConfig.News.name) {
             return (
-              <IconTabNews width={iconSize} height={iconSize} fill={color} />
+              <IconTabNews width={ICON_SIZE} height={ICON_SIZE} fill={color} />
             );
           }
 
-          if (route.name === RouteConfig.Discovery.name) {
+          if (routeInfo.name === RouteConfig.Discovery.name) {
             return (
               <IconTabDiscovery
-                width={iconSize}
-                height={iconSize}
+                width={ICON_SIZE}
+                height={ICON_SIZE}
                 fill={color}
               />
             );
