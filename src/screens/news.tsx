@@ -1,10 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {
-  ScrollView,
+  SectionList,
   View,
   Text,
   RefreshControl,
-  ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -40,9 +39,9 @@ const NewsItem = (props: any) => {
   const {createtime, title, content} = data;
   const dataTime = DateTime.format(createtime, DateTime.FORMATER_TIME);
   return (
-    <View style={tailwind('bg-white rounded-xl mb-3 p-5')}>
+    <View style={tailwind('bg-white rounded-xl p-5 border-b border-gray-50')}>
       <View style={tailwind('mb-2 flex-row items-center justify-between')}>
-        <Text style={tailwind('text-sm text-gray-500')}>{dataTime}</Text>
+        <Text style={tailwind('text-sm text-gray-600')}>{dataTime}</Text>
       </View>
 
       <View style={tailwind('mb-2')}>
@@ -78,85 +77,62 @@ const NewsItem = (props: any) => {
   );
 };
 
-const NewsContent = (props: any) => {
+const NewsHeader = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('pt-2 pb-5 px-5')}>
-      {data.map((item: any, index: number) => {
-        return <NewsItem data={item} key={`news_${index}`} />;
-      })}
+    <View style={tailwind('px-5 py-2 bg-white border-b border-gray-50')}>
+      <Text style={tailwind('text-base text-gray-600')}>{data.title}</Text>
     </View>
   );
 };
 
 const NewsScreen = ({}: any) => {
-  const [refreshing, setRefreshing] = useState(false);
-  const [paginating, setPagination] = useState(false);
-  const [pageIndex, setPageIndex] = useState(1);
-
-  const {list: newsData} = useSelector((state: any) => state.news);
-
   const dispatch = useDispatch();
-
   const fetchData = useCallback(async () => {
     await dispatch({
       type: 'news/get',
-      payload: {
-        pageIndex,
-        pageSize: 10,
-      },
     });
-  }, [dispatch, pageIndex]);
+  }, [dispatch]);
 
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
-  const handleScrollEnd = useCallback(
-    async e => {
-      const offsetY = e.nativeEvent.contentOffset.y;
-      const contentSizeHeight = e.nativeEvent.contentSize.height;
-      const oriageScrollHeight = e.nativeEvent.layoutMeasurement.height;
-      if (offsetY + oriageScrollHeight >= contentSizeHeight) {
-        setPagination(true);
-        setPageIndex(pageIndex + 1);
-        await fetchData();
-        setPagination(false);
-      }
-    },
-    [fetchData, pageIndex],
-  );
-
-  const handleRefresh = useCallback(async () => {
-    setRefreshing(true);
-    setPageIndex(1);
-    await fetchData();
-    setRefreshing(false);
+  const handleLoading = useCallback(() => {
+    fetchData();
   }, [fetchData]);
 
-  const {data} = newsData;
+  const {list: newsData} = useSelector((state: any) => state.news);
+  const loading = useSelector(
+    (state: any) => state.loading.effects['news/get'],
+  );
+
+  const renderSectionItem = (props: any) => {
+    const {item} = props;
+    return <NewsItem data={item} />;
+  };
+
+  const renderSectionHeader = (props: any) => {
+    const {section} = props;
+    return <NewsHeader data={section} />;
+  };
 
   return (
-    <View style={tailwind('flex-1 bg-gray-50 pt-3')}>
-      <ScrollView
-        onMomentumScrollEnd={handleScrollEnd}
+    <View style={tailwind('flex-1 bg-gray-50')}>
+      <SectionList
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
-            refreshing={refreshing}
-            onRefresh={handleRefresh}
+            refreshing={loading}
+            onRefresh={handleLoading}
             tintColor={getColor('gray-500')}
-            title=""
           />
         }
-        style={tailwind('flex-1')}>
-        <NewsContent data={data} />
-        {paginating ? (
-          <View style={tailwind('pb-6')}>
-            <ActivityIndicator color={getColor('gray-600')} />
-          </View>
-        ) : null}
-      </ScrollView>
+        sections={newsData}
+        renderItem={renderSectionItem}
+        renderSectionHeader={renderSectionHeader}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 };
