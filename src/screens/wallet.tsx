@@ -12,7 +12,7 @@ const WalletItem = (props: any) => {
       <View
         style={[
           styles.flex_container_between,
-          styles.bg_list,
+          styles.bg_foreground,
           styles.px_4,
           styles.py_3,
         ]}>
@@ -30,7 +30,7 @@ const WalletItem = (props: any) => {
       </View>
       {descr ? (
         <Text
-          style={[styles.text_sm, styles.text_muted, styles.mx_4, styles.my_2]}>
+          style={[styles.text_sm, styles.text_hint, styles.mx_4, styles.my_2]}>
           {descr}
         </Text>
       ) : null}

@@ -12,7 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {RouteConfig} from '@/constants/navigation';
 import {styleConfig, styles} from '@/styles';
 import {Formater} from '@/utils';
-import {IconEmpty} from '@/components/icons';
+import {IconEmpty, IconArrowRight} from '@/components/icons';
 
 const HomeHoldItem = (props: any) => {
   const {data} = props;
@@ -28,7 +28,7 @@ const HomeHoldItem = (props: any) => {
   return (
     <TouchableOpacity onPress={handleItemPress} activeOpacity={0.5}>
       <LinearGradient
-        colors={[styleConfig.color.bg_hold, styleConfig.color.bg_hold]}
+        colors={[styleConfig.color.background, styleConfig.color.background]}
         style={[styles.rounded_xl, styles.mb_3, styles.p_4]}>
         <View style={[styles.flex_container_between]}>
           <View style={[styles.flex_container_center]}>
@@ -127,7 +127,7 @@ const HomeHolds = () => {
     return (
       <View style={[styles.flex_container_center, styles.flex_col]}>
         <IconEmpty width={80} height={80} style={[styles.mb_3]} />
-        <Text style={[styles.text_md, styles.text_muted, styles.mb_3]}>
+        <Text style={[styles.text_md, styles.text_hint, styles.mb_3]}>
           暂无持仓
         </Text>
         <TouchableOpacity
@@ -137,6 +137,12 @@ const HomeHolds = () => {
           <Text style={[styles.text_md, styles.text_white]}>
             查看行情，立即添加持仓
           </Text>
+          <IconArrowRight
+            width={16}
+            height={16}
+            style={[styles.ml_1]}
+            fill={styleConfig.color.white}
+          />
         </TouchableOpacity>
       </View>
     );

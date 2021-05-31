@@ -5,7 +5,7 @@ import {styles} from '@/styles';
 const CoinNews = () => {
   return (
     <View style={[styles.mt_3]}>
-      <View style={[styles.bg_white, styles.p_4]}>
+      <View style={[styles.bg_foreground, styles.p_4]}>
         <View style={[styles.mb_1]}>
           <Text style={[styles.text_sm, styles.text_content_secondary]}>
             15:32

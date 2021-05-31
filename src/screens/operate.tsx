@@ -17,7 +17,7 @@ const OperateItem = (props: any) => {
   const panelStyle =
     direction === CoinOpDirection.BUYIN
       ? [styleConfig.color.yellow, styleConfig.color.red]
-      : [styleConfig.color.gray, styleConfig.color.green];
+      : [styleConfig.color.gray_500, styleConfig.color.green];
 
   const operateName = direction === CoinOpDirection.BUYIN ? '买入' : '卖出';
 
@@ -40,11 +40,11 @@ const OperateItem = (props: any) => {
           </Text>
           <Text style={[styles.text_white, styles.text_md]}>{operateName}</Text>
         </View>
-        <Text style={[styles.text_light, styles.text_md]}>10:32</Text>
+        <Text style={[styles.text_gray_50, styles.text_md]}>10:32</Text>
       </View>
       <View style={[styles.flex_row]}>
         <View style={[styles.w_1_3]}>
-          <Text style={[styles.text_sm, styles.text_light, styles.mb_1]}>
+          <Text style={[styles.text_sm, styles.text_gray_50, styles.mb_1]}>
             数量
           </Text>
           <Text style={[styles.text_md, styles.text_white]}>
@@ -52,7 +52,7 @@ const OperateItem = (props: any) => {
           </Text>
         </View>
         <View style={[styles.w_1_3, styles.items_end]}>
-          <Text style={[styles.text_sm, styles.text_light, styles.mb_1]}>
+          <Text style={[styles.text_sm, styles.text_gray_50, styles.mb_1]}>
             金额
           </Text>
           <Text style={[styles.text_md, styles.text_white]}>
@@ -60,7 +60,7 @@ const OperateItem = (props: any) => {
           </Text>
         </View>
         <View style={[styles.w_1_3, styles.items_end]}>
-          <Text style={[styles.text_sm, styles.text_light, styles.mb_1]}>
+          <Text style={[styles.text_sm, styles.text_gray_50, styles.mb_1]}>
             价格
           </Text>
           <Text style={[styles.text_md, styles.text_white]}>
@@ -82,8 +82,8 @@ const OperateList = (props: any) => {
         style={[
           styles.mb_4,
           styles.text_md,
-          styles.text_muted,
           styles.text_center,
+          styles.text_hint,
         ]}>
         累计 {dataCount} 条交易记录
       </Text>

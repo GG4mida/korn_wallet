@@ -26,7 +26,7 @@ const CoinSummary = () => {
     <View
       style={[
         styles.flex_container_between,
-        styles.bg_list,
+        styles.bg_foreground,
         styles.px_4,
         styles.py_3,
         styles.border_b,

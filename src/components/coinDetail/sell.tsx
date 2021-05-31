@@ -111,12 +111,12 @@ const PanelContent = (props: any) => {
   const holdVolumn = holdInfo ? Formater.fixed(holdInfo.volumn, 4) : 0;
 
   return (
-    <View style={[styles.bg_white, customStyle.content]}>
+    <View style={[styles.bg_foreground, customStyle.content]}>
       <View
         style={[
           styles.flex_container_between,
-          styles.bg_white,
-          styles.py_3,
+          styles.bg_background,
+          styles.py_2,
           styles.px_4,
           styles.border_b,
         ]}>
@@ -125,10 +125,10 @@ const PanelContent = (props: any) => {
           <Text style={[styles.text_md, styles.text_red]}>提交</Text>
         </TouchableOpacity>
       </View>
-      <View style={[styles.bg_white, styles.px_4]}>
+      <View style={[styles.bg_foreground, styles.px_4]}>
         <View
           style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
-          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+          <Text style={[styles.text_md, styles.text_content_secondary]}>
             可用数量
           </Text>
           <Text style={[styles.text_md, styles.text_content]}>
@@ -137,7 +137,7 @@ const PanelContent = (props: any) => {
         </View>
         <View
           style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
-          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+          <Text style={[styles.text_md, styles.text_content_secondary]}>
             当前价格
           </Text>
           <Text style={[styles.text_md, styles.text_content]}>
@@ -146,7 +146,7 @@ const PanelContent = (props: any) => {
         </View>
         <View
           style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
-          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+          <Text style={[styles.text_md, styles.text_content_secondary]}>
             卖出数量
           </Text>
           <View style={[styles.flex_container_center]}>
@@ -159,7 +159,7 @@ const PanelContent = (props: any) => {
               minimumValue={0}
               maximumValue={100}
               minimumTrackTintColor={styleConfig.color.red}
-              maximumTrackTintColor={styleConfig.color.gray}
+              maximumTrackTintColor={styleConfig.color.gray_300}
             />
             <Text
               style={[
@@ -173,7 +173,7 @@ const PanelContent = (props: any) => {
         </View>
         <View
           style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
-          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+          <Text style={[styles.text_md, styles.text_content_secondary]}>
             交易汇总
           </Text>
           <View

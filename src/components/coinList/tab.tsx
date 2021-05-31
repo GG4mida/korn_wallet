@@ -12,7 +12,7 @@ const CoinTabItem = (props: any) => {
       styles.flex_container_center,
       styles.px_5,
       styles.bg_red,
-      styles.rounded_2xl,
+      styles.rounded_3xl,
       customStyles.tab_item,
     ];
     textStyle = [styles.text_white];
@@ -20,7 +20,7 @@ const CoinTabItem = (props: any) => {
     containerStyle = [
       styles.flex_container_center,
       styles.px_5,
-      styles.rounded_2xl,
+      styles.rounded_3xl,
       customStyles.tab_item,
     ];
     textStyle = [styles.text_content];
@@ -59,17 +59,11 @@ const CoinTab = (props: any) => {
     <View
       style={[
         styles.flex_container_center,
-        styles.bg_screen,
+        styles.bg_background,
         styles.border_b,
         styles.py_3,
       ]}>
-      <View
-        style={[
-          styles.flex_row,
-          styles.bg_white,
-          styles.border_b,
-          styles.rounded_3xl,
-        ]}>
+      <View style={[styles.flex_row, styles.bg_foreground, styles.rounded_3xl]}>
         <CoinTabList value={value} onChange={onChange} />
       </View>
     </View>

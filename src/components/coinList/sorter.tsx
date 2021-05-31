@@ -26,7 +26,7 @@ const SorterIcon = (props: any) => {
   const {rule, name, item} = props;
   const {name: itemName} = item;
   const fillSize = 12;
-  const fillColor = styleConfig.color.gray;
+  const fillColor = styleConfig.color.gray_500;
   if (name === itemName) {
     if (rule === SortRule.ASC) {
       return (
@@ -76,7 +76,7 @@ const CoinSorter = (props: any) => {
     <View
       style={[
         styles.flex_container_between,
-        styles.bg_white,
+        styles.bg_foreground,
         styles.border_b,
         styles.px_4,
         styles.py_2,
@@ -96,7 +96,7 @@ const CoinSorter = (props: any) => {
             onPress={() => handleSortPress(sortItem)}
             activeOpacity={0.5}
             style={style}>
-            <Text style={[styles.text_sm, styles.text_muted]}>
+            <Text style={[styles.text_sm, styles.text_hint]}>
               {sortItem.label}
             </Text>
             <SorterIcon rule={rule} name={name} item={sortItem} />

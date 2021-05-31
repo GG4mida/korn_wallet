@@ -12,7 +12,7 @@ const DiscoveryRank = () => {
       <IconDiscoveryRank
         width={32}
         height={32}
-        fill={styleConfig.color.light}
+        fill={styleConfig.color.gray_100}
       />
     ),
     handlePress: () => null,

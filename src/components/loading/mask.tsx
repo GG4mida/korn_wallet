@@ -7,7 +7,7 @@ const LoadingMask = (props: any) => {
   if (!loading) {
     return null;
   }
-  return <View style={[styles.mask]} />;
+  return <View style={[styles.bg_mask]} />;
 };
 
 export default LoadingMask;

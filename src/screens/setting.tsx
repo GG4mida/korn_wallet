@@ -18,7 +18,7 @@ const SettingItem = (props: any) => {
         styles.flex_container_between,
         styles.px_5,
         styles.py_3,
-        styles.bg_setting,
+        styles.bg_foreground,
         styles.border_b,
       ]}>
       <View style={[styles.flex_container_center]}>
@@ -59,7 +59,7 @@ const SettingProfile = () => {
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleProfilePress}
-      style={[styles.bg_setting, styles.px_5, styles.py_3]}>
+      style={[styles.bg_foreground, styles.px_5, styles.py_3]}>
       <View style={[styles.flex_container_between]}>
         <View style={[styles.flex_container_center]}>
           <Image
@@ -188,7 +188,7 @@ const SettingScreen = ({navigation}: any) => {
           title={'确定要重置账户吗？'}
           text={'该操作将会清空账户数据，请谨慎考虑。'}
           handleSubmit={handleResetSubmit}
-          handleCancel={() => setLogoutConfirmVisible(false)}
+          handleCancel={() => setResetConfirmVisible(false)}
         />
       ) : null}
     </View>

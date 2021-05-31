@@ -15,12 +15,12 @@ const DiscoveryBrowser = () => {
   const config = {
     title: '区块浏览器',
     descr: '区块链上信息浏览及查询',
-    colors: [styleConfig.color.gray, styleConfig.color.green],
+    colors: [styleConfig.color.gray_500, styleConfig.color.green],
     icon: (
       <IconDiscoveryBrowser
         width={32}
         height={32}
-        fill={styleConfig.color.light}
+        fill={styleConfig.color.gray_100}
       />
     ),
     handlePress: handlePress,

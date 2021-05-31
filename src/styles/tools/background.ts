@@ -3,12 +3,6 @@ import {color} from '../config';
 import {StyleSheet} from 'react-native';
 
 const backgroundStyles = StyleSheet.create({
-  bg_white: {
-    backgroundColor: color.white,
-  },
-  bg_black: {
-    backgroundColor: color.black,
-  },
   bg_green: {
     backgroundColor: color.green,
   },
@@ -21,29 +15,44 @@ const backgroundStyles = StyleSheet.create({
   bg_yellow: {
     backgroundColor: color.yellow,
   },
-  bg_mask: {
-    backgroundColor: color.bg_mask,
+  bg_background: {
+    backgroundColor: color.background,
   },
-  bg_screen: {
-    backgroundColor: color.bg_screen,
+  bg_foreground: {
+    backgroundColor: color.foreground,
   },
-  bg_hold: {
-    backgroundColor: color.bg_hold,
+  bg_transparent: {
+    backgroundColor: color.transparent,
   },
-  bg_setting: {
-    backgroundColor: color.bg_setting,
+  bg_gray_50: {
+    backgroundColor: color.gray_50,
   },
-  bg_coin: {
-    backgroundColor: color.bg_coin,
+  bg_gray_100: {
+    backgroundColor: color.gray_100,
   },
-  bg_news: {
-    backgroundColor: color.bg_news,
+  bg_gray_200: {
+    backgroundColor: color.gray_200,
   },
-  bg_browser: {
-    backgroundColor: color.bg_browser,
+  bg_gray_300: {
+    backgroundColor: color.gray_300,
   },
-  bg_list: {
-    backgroundColor: color.bg_list,
+  bg_gray_400: {
+    backgroundColor: color.gray_400,
+  },
+  bg_gray_500: {
+    backgroundColor: color.gray_500,
+  },
+  bg_gray_600: {
+    backgroundColor: color.gray_600,
+  },
+  bg_gray_700: {
+    backgroundColor: color.gray_700,
+  },
+  bg_gray_800: {
+    backgroundColor: color.gray_800,
+  },
+  bg_gray_900: {
+    backgroundColor: color.gray_900,
   },
 });
 

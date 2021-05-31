@@ -60,7 +60,7 @@ const MainTabs = ({navigation, route}: any) => {
       })}
       tabBarOptions={{
         activeTintColor: styleConfig.color.red,
-        inactiveTintColor: styleConfig.color.muted,
+        inactiveTintColor: styleConfig.color.gray_500,
         style: [styles.tab_container],
         tabStyle: [styles.py_2],
         labelStyle: [styles.text_sm, styles.mt_1],

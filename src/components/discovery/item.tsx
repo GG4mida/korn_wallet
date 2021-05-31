@@ -19,14 +19,16 @@ const DiscoveryItem = (props: any) => {
             {icon}
             <View style={[styles.ml_3]}>
               <Text style={[styles.text_lg, styles.text_white]}>{title}</Text>
-              <Text style={[styles.text_md, styles.text_light]}>{descr}</Text>
+              <Text style={[styles.text_md, styles.text_gray_100]}>
+                {descr}
+              </Text>
             </View>
           </View>
           <View>
             <IconForward
               width={18}
               height={18}
-              fill={styleConfig.color.light}
+              fill={styleConfig.color.gray_100}
             />
           </View>
         </View>

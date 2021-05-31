@@ -16,7 +16,7 @@ const HomeScreen = ({}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={styles.screen_container_with_padding}>
+      style={[styles.screen_container_with_padding, styles.bg_foreground]}>
       <HomeJumbo />
       <HomeSectionHeader />
       <HomeHolds />

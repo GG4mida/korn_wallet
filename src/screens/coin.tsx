@@ -3,9 +3,9 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {coinTab} from '@/constants/tab';
 import {CoinSorter, CoinTab, CoinItem} from '@/components/coinList';
-import {styles} from '@/styles';
+import {styleConfig, styles} from '@/styles';
 import {SortField, SortRule} from '@/constants/enum';
-import {IconEmpty} from '@/components/icons';
+import {IconEmpty, IconArrowRight} from '@/components/icons';
 
 const SorterFunc = (data: any, sorter: any) => {
   if (!data || data.length === 0) {
@@ -67,7 +67,7 @@ const CoinAll = (props: any) => {
       <View
         style={[styles.flex_container_center, styles.flex_1, styles.flex_col]}>
         <IconEmpty width={80} height={80} style={[styles.mb_2]} />
-        <Text style={[styles.mb_2, styles.text_muted, styles.text_md]}>
+        <Text style={[styles.mb_2, styles.text_hint, styles.text_md]}>
           暂无行情数据
         </Text>
       </View>
@@ -101,7 +101,7 @@ const CoinFavorites = (props: any) => {
       <View
         style={[styles.flex_container_center, styles.flex_1, styles.flex_col]}>
         <IconEmpty width={80} height={80} style={[styles.mb_2]} />
-        <Text style={[styles.mb_3, styles.text_muted, styles.text_md]}>
+        <Text style={[styles.mb_3, styles.text_hint, styles.text_md]}>
           暂无自选
         </Text>
         <TouchableOpacity
@@ -109,8 +109,15 @@ const CoinFavorites = (props: any) => {
           activeOpacity={0.5}
           style={styles.button_green}>
           <Text style={[styles.text_md, styles.text_white]}>
-            前往行情页面添加
+            请前往行情页面添加
           </Text>
+
+          <IconArrowRight
+            width={16}
+            height={16}
+            style={[styles.ml_1]}
+            fill={styleConfig.color.white}
+          />
         </TouchableOpacity>
       </View>
     );

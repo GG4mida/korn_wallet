@@ -25,7 +25,7 @@ const CoinMeta = () => {
         styles.flex_wrap,
         styles.p_2,
         styles.border_b,
-        styles.bg_list,
+        styles.bg_foreground,
       ]}>
       <View
         style={[
@@ -34,7 +34,7 @@ const CoinMeta = () => {
           styles.py_1,
           styles.flex_container_between,
         ]}>
-        <Text style={[styles.text_sm, styles.text_muted]}>24h最高</Text>
+        <Text style={[styles.text_sm, styles.text_hint]}>24h最高</Text>
         <View style={[styles.flex_container_center]}>
           <Text style={[styles.text_sm, styles.text_content]}>${dayHigh}</Text>
         </View>
@@ -46,7 +46,7 @@ const CoinMeta = () => {
           styles.py_1,
           styles.flex_container_between,
         ]}>
-        <Text style={[styles.text_sm, styles.text_muted]}>24h成交量</Text>
+        <Text style={[styles.text_sm, styles.text_hint]}>24h成交量</Text>
         <View style={[styles.flex_container_center]}>
           <Text style={[styles.text_sm, styles.text_content]}>
             {`${dayCountData.value}${dayCountData.unit}`}
@@ -60,7 +60,7 @@ const CoinMeta = () => {
           styles.py_1,
           styles.flex_container_between,
         ]}>
-        <Text style={[styles.text_sm, styles.text_muted]}>24h最低</Text>
+        <Text style={[styles.text_sm, styles.text_hint]}>24h最低</Text>
         <View style={[styles.flex_container_center]}>
           <Text
             style={[styles.text_sm, styles.text_content]}>{`$${dayLow}`}</Text>
@@ -73,7 +73,7 @@ const CoinMeta = () => {
           styles.py_1,
           styles.flex_container_between,
         ]}>
-        <Text style={[styles.text_sm, styles.text_muted]}>24h成交额</Text>
+        <Text style={[styles.text_sm, styles.text_hint]}>24h成交额</Text>
         <View style={[styles.flex_container_center]}>
           <Text style={[styles.text_sm, styles.text_content]}>
             {`$${dayVolumnData.value}${dayVolumnData.unit}`}

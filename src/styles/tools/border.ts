@@ -8,10 +8,10 @@ const borderStyles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderLeftWidth: 1,
-    borderLeftColor: color.border_item,
-    borderRightColor: color.border_item,
-    borderTopColor: color.border_item,
-    borderBottomColor: color.border_item,
+    borderLeftColor: color.border_list,
+    borderRightColor: color.border_list,
+    borderTopColor: color.border_list,
+    borderBottomColor: color.border_list,
   },
 
   border_0: {
@@ -30,22 +30,22 @@ const borderStyles = StyleSheet.create({
 
   border_l: {
     borderLeftWidth: 1,
-    borderLeftColor: color.border_item,
+    borderLeftColor: color.border_list,
   },
 
   border_r: {
     borderRightWidth: 1,
-    borderRightColor: color.border_item,
+    borderRightColor: color.border_list,
   },
 
   border_t: {
     borderTopWidth: 1,
-    borderTopColor: color.border_item,
+    borderTopColor: color.border_list,
   },
 
   border_b: {
     borderBottomWidth: 1,
-    borderBottomColor: color.border_item,
+    borderBottomColor: color.border_list,
   },
 });
 

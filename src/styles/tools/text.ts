@@ -44,12 +44,6 @@ const textStyles = StyleSheet.create({
   text_white: {
     color: color.white,
   },
-  text_light: {
-    color: color.light,
-  },
-  text_muted: {
-    color: color.muted,
-  },
   text_leading: {
     color: color.leading,
   },
@@ -58,6 +52,39 @@ const textStyles = StyleSheet.create({
   },
   text_content_secondary: {
     color: color.content_secondary,
+  },
+  text_hint: {
+    color: color.hint,
+  },
+  text_gray_50: {
+    color: color.gray_50,
+  },
+  text_gray_100: {
+    color: color.gray_100,
+  },
+  text_gray_200: {
+    color: color.gray_200,
+  },
+  text_gray_300: {
+    color: color.gray_300,
+  },
+  text_gray_400: {
+    color: color.gray_400,
+  },
+  text_gray_500: {
+    color: color.gray_500,
+  },
+  text_gray_600: {
+    color: color.gray_600,
+  },
+  text_gray_700: {
+    color: color.gray_700,
+  },
+  text_gray_800: {
+    color: color.gray_800,
+  },
+  text_gray_900: {
+    color: color.gray_900,
   },
   text_left: {
     textAlign: 'left',

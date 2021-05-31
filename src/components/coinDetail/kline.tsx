@@ -81,7 +81,7 @@ const CoinKline = (props: IProps) => {
   if (value.length === 0) {
     return (
       <View style={customStyles.chart_container}>
-        <Text style={[styles.text_md, styles.text_muted]}>暂无数据</Text>
+        <Text style={[styles.text_md, styles.text_hint]}>暂无数据</Text>
       </View>
     );
   }
@@ -94,7 +94,7 @@ const CoinKline = (props: IProps) => {
         data={value}
         svg={{stroke: styleConfig.color.green}}
         contentInset={{top: 10, bottom: 10, left: 10, right: 0}}>
-        <Grid svg={{stroke: styleConfig.color.light}} />
+        <Grid svg={{stroke: styleConfig.color.background}} />
       </LineChart>
     </View>
   );
@@ -104,7 +104,7 @@ const customStyles = StyleSheet.create({
   chart_container: {
     ...styles.flex_container_center,
     ...styles.py_4,
-    ...styles.bg_white,
+    ...styles.bg_foreground,
     ...styles.border_b,
     height: 240,
   },

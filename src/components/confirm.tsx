@@ -40,7 +40,7 @@ const ConfirmShadow = (props: any) => {
 const ConfirmContent = (props: any) => {
   const {title, text, handleSubmit, handleCancel} = props;
   return (
-    <View style={[styles.bg_white, customStyle.content]}>
+    <View style={[styles.bg_foreground, customStyle.content]}>
       <View
         style={[
           styles.flex_col,

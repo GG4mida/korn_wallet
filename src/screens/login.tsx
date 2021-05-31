@@ -69,7 +69,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
   }, [username, password, loading, dispatch]);
 
   return (
-    <View style={[styles.screen_container_with_padding, styles.bg_white]}>
+    <View style={[styles.screen_container_with_padding, styles.bg_foreground]}>
       <View style={[styles.flex_1]}>
         <View
           style={[
@@ -140,14 +140,14 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               <IconArrowRight
                 width={16}
                 height={16}
-                fill={styleConfig.color.gray}
+                fill={styleConfig.color.content_secondary}
               />
             </TouchableOpacity>
           </View>
         </View>
       </View>
       <View style={[styles.flex_container_center, styles.mb_5]}>
-        <Text style={[styles.text_md, styles.text_muted]}>3.2.3</Text>
+        <Text style={[styles.text_md, styles.text_hint]}>3.2.3</Text>
       </View>
       <LoadingMask loading={loading} />
     </View>

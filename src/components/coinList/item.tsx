@@ -30,7 +30,7 @@ const CoinItem = (props: any) => {
         styles.border_b,
         styles.px_4,
         styles.py_3,
-        styles.bg_coin,
+        styles.bg_foreground,
       ]}>
       <View style={[styles.w_1_3, styles.flex_row, styles.items_center]}>
         <Image

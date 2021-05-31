@@ -24,7 +24,7 @@ const BrowserItem = (props: any) => {
   const itemStyle: any = [
     styles.w_1_3,
     styles.p_5,
-    styles.bg_browser,
+    styles.bg_foreground,
     styles.flex_container_center,
     styles.flex_col,
     styles.border_b,
@@ -96,7 +96,7 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={styles.screen_container}>
+      style={[styles.screen_container]}>
       <BrowserList data={coinList} />
     </ScrollView>
   );

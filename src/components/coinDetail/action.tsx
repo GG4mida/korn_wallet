@@ -51,7 +51,7 @@ const CoinAction = (props: IProps) => {
   }, [symbol, holdList, marketList]);
 
   return (
-    <View style={[styles.border_t, styles.p_4, styles.bg_white]}>
+    <View style={[styles.border_t, styles.p_4, styles.bg_foreground]}>
       <View
         style={[
           styles.flex_container_between,
