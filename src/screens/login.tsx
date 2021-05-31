@@ -1,14 +1,13 @@
 import React, {useState, useCallback} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
-import styles from '@/core/styles';
 import {ResponseCode} from '@/constants/enum';
 import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import {IconArrowRight} from '@/components/icons';
+import {styleConfig, styles} from '@/styles';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
   const [username, setUserName] = useState('fuckusername');
@@ -70,20 +69,33 @@ const LoginScreen: React.FC = ({navigation}: any) => {
   }, [username, password, loading, dispatch]);
 
   return (
-    <View style={tailwind('flex-1 bg-gray-50')}>
-      <View style={tailwind('flex-1')}>
+    <View style={[styles.screen_container_with_padding, styles.bg_white]}>
+      <View style={[styles.flex_1]}>
         <View
-          style={tailwind('flex flex-col justify-center items-center pt-8')}>
-          <LogoSvg fill={getColor('gray-400')} width={64} height={64} />
-          <Text style={tailwind('text-xl text-gray-800 mt-3 mb-1')}>Korn</Text>
-          <Text style={tailwind('text-base text-gray-600')}>
+          style={[
+            styles.flex_container_center,
+            styles.flex_col,
+            styles.py_5,
+            styles.mb_3,
+          ]}>
+          <LogoSvg width={64} height={64} />
+          <Text
+            style={[
+              styles.text_lg,
+              styles.mb_1,
+              styles.mt_2,
+              styles.text_leading,
+            ]}>
+            Korn
+          </Text>
+          <Text style={[styles.text_md, styles.text_content]}>
             Nothing else matters
           </Text>
         </View>
-        <View style={tailwind('p-8')}>
-          <View style={tailwind('mb-5')}>
+        <View style={[styles.px_3]}>
+          <View style={styles.mb_4}>
             <TextInput
-              style={styles.textInput}
+              style={styles.text_input}
               maxFontSizeMultiplier={2}
               allowFontScaling={false}
               autoCapitalize="none"
@@ -95,9 +107,9 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               value={username}
             />
           </View>
-          <View style={tailwind('mb-5')}>
+          <View style={styles.mb_4}>
             <TextInput
-              style={styles.textInput}
+              style={styles.text_input}
               autoCapitalize="none"
               autoCompleteType="off"
               autoCorrect={false}
@@ -108,34 +120,34 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               value={password}
             />
           </View>
-          <View style={tailwind('mb-5')}>
+          <View style={styles.mb_4}>
             <TouchableOpacity
               onPress={handleSubmitPress}
               activeOpacity={0.5}
               disabled={loading}
-              style={styles.button}>
-              <Text style={tailwind('text-base text-white')}>登录</Text>
+              style={styles.button_green}>
+              <Text style={[styles.text_md, styles.text_white]}>登录</Text>
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity
-              style={tailwind('flex flex-row items-center justify-center')}
+              style={[styles.flex_container_center]}
               activeOpacity={0.5}
               onPress={handleSigninPress}>
-              <Text style={tailwind('text-gray-600 text-base')}>
+              <Text style={[styles.text_md, styles.text_content_secondary]}>
                 没有账户，免费注册
               </Text>
               <IconArrowRight
                 width={16}
                 height={16}
-                fill={getColor('gray-600')}
+                fill={styleConfig.color.gray}
               />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      <View style={tailwind('flex flex-row items-center justify-center mb-10')}>
-        <Text style={tailwind('text-gray-500 text-base')}>3.2.3</Text>
+      <View style={[styles.flex_container_center, styles.mb_5]}>
+        <Text style={[styles.text_md, styles.text_muted]}>3.2.3</Text>
       </View>
       <LoadingMask loading={loading} />
     </View>

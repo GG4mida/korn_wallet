@@ -1,37 +1,77 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {tailwind} from '@/core/tailwind';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {klineTab, klineTabs} from '@/constants/tab';
+import {styles} from '@/styles';
 
 interface IProps {
   value: klineTab;
   onChange: any;
 }
 
+const CoinKlineBarItem = (props: any) => {
+  const {value, data, onChange} = props;
+
+  const itemStyle: any = [
+    styles.rounded_full,
+    styles.px_4,
+    styles.border,
+    customStyle.bar_item,
+  ];
+
+  let labelStyle = [styles.text_content_secondary];
+
+  if (data.name === value) {
+    itemStyle.push(...[styles.bg_red]);
+    labelStyle = [styles.text_white];
+  }
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.5}
+      onPress={() => onChange(data.name)}
+      style={itemStyle}>
+      <Text style={labelStyle}>{data.label}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const CoinKlineBarList = (props: any) => {
+  const {value, onChange} = props;
+  return (
+    <React.Fragment>
+      {klineTabs.map((tabItem: any, index: number) => {
+        return (
+          <CoinKlineBarItem
+            data={tabItem}
+            value={value}
+            key={`bar_${index}`}
+            onChange={onChange}
+          />
+        );
+      })}
+    </React.Fragment>
+  );
+};
+
 const CoinKlineBar = (props: IProps) => {
   const {value, onChange} = props;
   return (
     <View
-      style={tailwind(
-        'flex flex-row items-center justify-between border-b border-gray-50 bg-gray-50 px-3 py-2',
-      )}>
-      {klineTabs.map((tabItem: any, index: number) => {
-        const activeStyle =
-          tabItem.name === value ? 'bg-white border border-gray-100' : '';
-        return (
-          <TouchableOpacity
-            key={index}
-            activeOpacity={0.5}
-            onPress={() => onChange(tabItem.name)}
-            style={tailwind(
-              `rounded-full px-5 py-2 border border-gray-50 ${activeStyle}`,
-            )}>
-            <Text style={tailwind('text-gray-700')}>{tabItem.label}</Text>
-          </TouchableOpacity>
-        );
-      })}
+      style={[
+        styles.flex_container_between,
+        styles.border_b,
+        styles.px_3,
+        styles.py_2,
+      ]}>
+      <CoinKlineBarList value={value} onChange={onChange} />
     </View>
   );
 };
+
+const customStyle = StyleSheet.create({
+  bar_item: {
+    paddingVertical: 8,
+  },
+});
 
 export default CoinKlineBar;

@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {tailwind} from '@/core/tailwind';
+import {styles} from '@/styles';
 
 const NewsHeader = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('px-5 py-2 bg-white border-b border-gray-50')}>
-      <Text style={tailwind('text-base text-gray-600')}>{data.title}</Text>
+    <View style={[styles.border_b, styles.px_5, styles.py_2, styles.bg_news]}>
+      <Text style={[styles.text_md, styles.text_content_secondary]}>
+        {data.title}
+      </Text>
     </View>
   );
 };

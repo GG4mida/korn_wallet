@@ -1,12 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import {tailwind, getColor} from '@/core/tailwind';
 import {IconBack} from '@/components/icons';
+import {styleConfig, styles} from '@/styles';
 
 const HeaderBack = () => {
   return (
-    <View style={tailwind('ml-4 mr-1')}>
-      <IconBack width={20} height={20} fill={getColor('blue-600')} />
+    <View style={[styles.ml_3, styles.mr_1]}>
+      <IconBack width={20} height={20} fill={styleConfig.color.blue} />
     </View>
   );
 };

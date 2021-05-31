@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {tailwind} from '@/core/tailwind';
 import {DateTime} from '@/utils';
+import {styles} from '@/styles';
 
 const NUM_OF_CONTENT = 3;
 
@@ -30,20 +30,20 @@ const NewsItem = (props: any) => {
 
   const {data} = props;
   const {createtime, title, content} = data;
-  const dataTime = DateTime.format(createtime, DateTime.FORMATER_TIME);
+  const dateTime = DateTime.format(createtime, DateTime.FORMATER_TIME);
   return (
-    <View style={tailwind('bg-white rounded-xl p-5 border-b border-gray-50')}>
-      <View style={tailwind('mb-2 flex-row items-center justify-between')}>
-        <Text style={tailwind('text-sm text-gray-600')}>{dataTime}</Text>
+    <View style={[styles.bg_news, styles.border_b, styles.px_5, styles.py_3]}>
+      <View style={[styles.flex_container_between, styles.mb_1]}>
+        <Text style={[styles.text_sm, styles.text_muted]}>{dateTime}</Text>
       </View>
 
-      <View style={tailwind('mb-2')}>
-        <Text style={tailwind('text-base font-bold text-gray-800')}>
+      <View style={[styles.mb_1]}>
+        <Text style={[styles.text_leading, styles.text_bold, styles.text_md]}>
           {title}
         </Text>
       </View>
 
-      <View style={tailwind('mb-2')}>
+      <View style={[styles.mb_1]}>
         <Text
           numberOfLines={
             numberOfLines === 0
@@ -54,16 +54,14 @@ const NewsItem = (props: any) => {
           }
           ellipsizeMode="tail"
           onTextLayout={handleContentLayout}
-          style={tailwind('text-base text-gray-600')}>
+          style={[styles.text_content, styles.text_md]}>
           {content}
         </Text>
       </View>
 
       {numberOfLines > NUM_OF_CONTENT ? (
         <TouchableOpacity activeOpacity={0.5} onPress={handleCollapsePress}>
-          <Text style={tailwind('text-base text-blue-500')}>
-            {collapseText}
-          </Text>
+          <Text style={[styles.text_md, styles.text_blue]}>{collapseText}</Text>
         </TouchableOpacity>
       ) : null}
     </View>

@@ -2,7 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {View, ScrollView, Text, Image, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {tailwind, getColor} from '@/core/tailwind';
+import {styles, styleConfig} from '@/styles';
 import HeaderBack from '@/components/header/back';
 import {IconForward} from '@/components/icons';
 import Confirm from '@/components/confirm';
@@ -10,19 +10,26 @@ import {RouteConfig} from '@/constants/navigation';
 
 const SettingItem = (props: any) => {
   const {data} = props;
-
   return (
     <TouchableOpacity
       onPress={data.handlePress}
       activeOpacity={0.5}
-      style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-4',
-      )}>
-      <View style={tailwind('flex flex-row items-center')}>
-        <Text style={tailwind('text-gray-800 text-base')}>{data.name}</Text>
+      style={[
+        styles.flex_container_between,
+        styles.px_5,
+        styles.py_3,
+        styles.bg_setting,
+        styles.border_b,
+      ]}>
+      <View style={[styles.flex_container_center]}>
+        <Text style={[styles.text_md, styles.text_content]}>{data.name}</Text>
       </View>
       <View>
-        <IconForward width={18} height={18} fill={getColor('gray-500')} />
+        <IconForward
+          width={18}
+          height={18}
+          fill={styleConfig.color.content_secondary}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -31,7 +38,7 @@ const SettingItem = (props: any) => {
 const SettingGroup = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('mb-4')}>
+    <View style={[styles.mb_3]}>
       {data.map((item: any, index: number) => (
         <SettingItem key={index} data={item} />
       ))}
@@ -52,22 +59,28 @@ const SettingProfile = () => {
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleProfilePress}
-      style={tailwind('bg-white p-5')}>
-      <View style={tailwind('flex-row items-center justify-between')}>
-        <View style={tailwind('flex-row items-center')}>
+      style={[styles.bg_setting, styles.px_5, styles.py_3]}>
+      <View style={[styles.flex_container_between]}>
+        <View style={[styles.flex_container_center]}>
           <Image
             source={{uri: avatar}}
-            style={tailwind('w-10 h-10 rounded-full')}
+            style={[styles.img_user, styles.mr_3, styles.rounded_full]}
           />
-          <View style={tailwind('ml-4')}>
-            <Text style={tailwind('text-lg text-gray-800')}>{nick_name}</Text>
-            <Text style={tailwind('text-base text-gray-600')}>
+          <View>
+            <Text style={[styles.text_lg, styles.text_content]}>
+              {nick_name}
+            </Text>
+            <Text style={[styles.text_md, styles.text_content_secondary]}>
               {login_name}
             </Text>
           </View>
         </View>
         <View>
-          <IconForward width={18} height={18} fill={getColor('gray-500')} />
+          <IconForward
+            width={18}
+            height={18}
+            fill={styleConfig.color.content_secondary}
+          />
         </View>
       </View>
     </TouchableOpacity>
@@ -77,7 +90,7 @@ const SettingProfile = () => {
 const SettingContent = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('py-4')}>
+    <View style={[styles.py_4]}>
       {data.map((group: any, index: number) => (
         <SettingGroup key={`setting_${index}`} data={group} />
       ))}
@@ -91,7 +104,7 @@ const SettingScreen = ({navigation}: any) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackTitleStyle: tailwind('text-blue-600'),
+      headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
   }, [navigation]);
@@ -101,7 +114,6 @@ const SettingScreen = ({navigation}: any) => {
   }, []);
 
   const handleLogoutSubmit = useCallback(() => {
-    console.info('handleLogoutSubmit');
     setLogoutConfirmVisible(false);
   }, []);
 
@@ -110,7 +122,6 @@ const SettingScreen = ({navigation}: any) => {
   }, []);
 
   const handleResetSubmit = useCallback(() => {
-    console.info('handleResetSubmit');
     setResetConfirmVisible(false);
   }, []);
 
@@ -156,10 +167,10 @@ const SettingScreen = ({navigation}: any) => {
   ];
 
   return (
-    <View style={tailwind('flex-1')}>
+    <View style={[styles.screen_container]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={tailwind('flex-1 bg-gray-50 py-5')}>
+        style={[styles.screen_container, styles.py_4]}>
         <SettingProfile />
         <SettingContent data={settingItems} />
       </ScrollView>

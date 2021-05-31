@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {tailwind, getColor} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
 import {useNavigation} from '@react-navigation/core';
 import {RouteConfig} from '@/constants/navigation';
+import {styles, styleConfig} from '@/styles';
 
 const BrowserItem = (props: any) => {
   const {data, index} = props;
@@ -21,21 +21,31 @@ const BrowserItem = (props: any) => {
     navigation.navigate(RouteConfig.DiscoveryBrowserItem.name, data);
   }, [navigation, data]);
 
-  const itemStyle =
-    index !== 0 && index % 3 === 2 ? 'border-b' : 'border-r border-b';
+  const itemStyle: any = [
+    styles.w_1_3,
+    styles.p_5,
+    styles.bg_browser,
+    styles.flex_container_center,
+    styles.flex_col,
+    styles.border_b,
+  ];
+
+  if (index === 0 || index % 3 < 2) {
+    itemStyle.push(styles.border_r);
+  }
 
   return (
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleItemPress}
-      style={tailwind(
-        `w-1/3 p-5 bg-white items-center justify-center border-gray-50 ${itemStyle}`,
-      )}>
+      style={itemStyle}>
       <Image
         source={{uri: logo_png}}
-        style={tailwind('w-8 h-8 rounded-full mb-2')}
+        style={[styles.img_coin, styles.mb_2, styles.rounded_full]}
       />
-      <Text style={tailwind('text-base text-gray-700')}>{symbol}</Text>
+      <Text style={[styles.text_md, styles.text_content_secondary]}>
+        {symbol}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -43,7 +53,7 @@ const BrowserItem = (props: any) => {
 const BrowserList = (props: any) => {
   const {data} = props;
   return (
-    <View style={tailwind('flex flex-row flex-wrap items-center')}>
+    <View style={[styles.flex_row, styles.flex_wrap, styles.items_center]}>
       {data.map((coin: any, index: number) => {
         return (
           <BrowserItem data={coin} key={`browser_${index}`} index={index} />
@@ -70,15 +80,15 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackTitleStyle: tailwind('text-blue-600'),
+      headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
   }, [navigation]);
 
   if (loading === true) {
     return (
-      <View style={tailwind('flex-1 items-center justify-center')}>
-        <ActivityIndicator color={getColor('gray-600')} />
+      <View style={[styles.flex_1, styles.flex_container_center]}>
+        <ActivityIndicator />
       </View>
     );
   }
@@ -86,7 +96,7 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={tailwind('flex-1 bg-gray-50')}>
+      style={styles.screen_container}>
       <BrowserList data={coinList} />
     </ScrollView>
   );

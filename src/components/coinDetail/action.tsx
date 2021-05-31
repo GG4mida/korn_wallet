@@ -4,7 +4,7 @@ import {find} from 'lodash';
 import {useRoute} from '@react-navigation/native';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Formater} from '@/utils';
-import {tailwind} from '@/core/tailwind';
+import {styles} from '@/styles';
 
 interface IProps {
   handleBuyInPress: () => void;
@@ -51,42 +51,48 @@ const CoinAction = (props: IProps) => {
   }, [symbol, holdList, marketList]);
 
   return (
-    <View style={tailwind('bg-white border-t border-gray-100 py-5 px-5')}>
+    <View style={[styles.border_t, styles.p_4, styles.bg_white]}>
       <View
-        style={tailwind(
-          'flex-row items-center justify-between pb-3 mb-3 border-b border-gray-50',
-        )}>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-gray-600 text-sm')}>持仓数量：</Text>
-          <Text style={tailwind('text-gray-600 text-sm')}>
+        style={[
+          styles.flex_container_between,
+          styles.pb_3,
+          styles.mb_3,
+          styles.border_b,
+        ]}>
+        <View style={[styles.flex_container_center]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            持仓数量：
+          </Text>
+          <Text style={[styles.text_sm, styles.text_content]}>
             {`${Formater.fixed(coinHold.volumn, 4)} ${symbol}`}
           </Text>
         </View>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-gray-600 text-sm')}>持仓市值：</Text>
-          <Text style={tailwind('text-gray-600 text-sm')}>$</Text>
-          <Text style={tailwind('text-gray-600 text-sm')}>
-            {coinHold.amount}
+        <View style={[styles.flex_container_center]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            持仓市值：
+          </Text>
+          <Text style={[styles.text_sm, styles.text_content]}>
+            ${coinHold.amount}
           </Text>
         </View>
       </View>
-      <View style={tailwind('flex flex-row items-center')}>
-        <TouchableOpacity
-          style={tailwind(
-            'flex-1 items-center px-6 py-2 bg-yellow-500 rounded-3xl mr-2',
-          )}
-          onPress={handleBuyInPress}
-          activeOpacity={0.5}>
-          <Text style={tailwind('text-white text-base')}>买入</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={tailwind(
-            'flex-1 items-center px-6 py-2 bg-pink-500 rounded-3xl',
-          )}
-          onPress={handleSellPress}
-          activeOpacity={0.5}>
-          <Text style={tailwind('text-white text-base')}>卖出</Text>
-        </TouchableOpacity>
+      <View style={[styles.flex_container_between]}>
+        <View style={[styles.w_1_2, styles.px_2]}>
+          <TouchableOpacity
+            style={[styles.button_green, styles.button_sm]}
+            onPress={handleBuyInPress}
+            activeOpacity={0.5}>
+            <Text style={[styles.text_md, styles.text_white]}>买入</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[styles.w_1_2, styles.px_2]}>
+          <TouchableOpacity
+            style={[styles.button_yellow, styles.button_sm]}
+            onPress={handleSellPress}
+            activeOpacity={0.5}>
+            <Text style={[styles.text_md, styles.text_white]}>卖出</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

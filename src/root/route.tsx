@@ -1,13 +1,12 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
 import HeaderHelper from '@/core/header';
-import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import Screen from '@/screens';
+import {styleConfig, styles} from '@/styles';
 import {
   IconTabHome,
   IconTabNews,
@@ -60,11 +59,11 @@ const MainTabs = ({navigation, route}: any) => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-        style: styles.tab_container,
-        tabStyle: tailwind('py-2'),
-        labelStyle: tailwind('mt-1 text-xs'),
+        activeTintColor: styleConfig.color.red,
+        inactiveTintColor: styleConfig.color.muted,
+        style: [styles.tab_container],
+        tabStyle: [styles.py_2],
+        labelStyle: [styles.text_sm, styles.mt_1],
       }}>
       <Tab.Screen
         name={RouteConfig.Home.name}
@@ -201,13 +200,5 @@ const RouteContainer = () => {
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  tab_container: {
-    height: 88,
-    borderTopWidth: 1,
-    borderTopColor: getColor('gray-50'),
-  },
-});
 
 export default RouteContainer;

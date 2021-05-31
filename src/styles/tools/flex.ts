@@ -1,66 +1,66 @@
 import {StyleSheet} from 'react-native';
 
 const flexStyles = StyleSheet.create({
-  'flex-1': {
+  flex_1: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '0%',
   },
-  'flex-row': {
+  flex_row: {
     flexDirection: 'row',
   },
-  'flex-col': {
+  flex_col: {
     flexDirection: 'column',
   },
-  'flex-wrap': {
+  flex_wrap: {
     flexWrap: 'wrap',
   },
-  'flex-nowrap': {
+  flex_nowrap: {
     flexWrap: 'nowrap',
   },
-  'justify-start': {
+  justify_start: {
     justifyContent: 'flex-start',
   },
-  'justify-end': {
+  justify_end: {
     justifyContent: 'flex-end',
   },
-  'justify-center': {
+  justify_center: {
     justifyContent: 'center',
   },
-  'justify-between': {
+  justify_between: {
     justifyContent: 'space-between',
   },
-  'justify-around': {
+  justify_around: {
     justifyContent: 'space-around',
   },
-  'justify-evenly': {
+  justify_evenly: {
     justifyContent: 'space-evenly',
   },
-  'items-start': {
+  items_start: {
     alignItems: 'flex-start',
   },
-  'items-end': {
+  items_end: {
     alignItems: 'flex-end',
   },
-  'items-center': {
+  items_center: {
     alignItems: 'center',
   },
-  'items-baseline': {
+  items_baseline: {
     alignItems: 'baseline',
   },
-  'items-stretch': {
+  items_stretch: {
     alignItems: 'stretch',
   },
-  'self-start': {
+  self_start: {
     alignSelf: 'flex-start',
   },
-  'self-end': {
+  self_end: {
     alignSelf: 'flex-end',
   },
-  'self-center': {
+  self_center: {
     alignSelf: 'center',
   },
-  'self-stretch': {
+  self_stretch: {
     alignSelf: 'stretch',
   },
 });

@@ -1,13 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
-import Styles from '@/core/styles';
+import {styles} from '@/styles';
 
 const LoadingMask = (props: any) => {
   const {loading} = props;
   if (!loading) {
     return null;
   }
-  return <View style={Styles.loadingMask} />;
+  return <View style={[styles.mask]} />;
 };
 
 export default LoadingMask;

@@ -1,12 +1,11 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {tailwind} from '@/core/tailwind';
 import {coinTab} from '@/constants/tab';
-import {CoinSorter, CoinTab, CoinListItem} from '@/components/coinList';
-import styles from '@/core/styles';
+import {CoinSorter, CoinTab, CoinItem} from '@/components/coinList';
+import {styles} from '@/styles';
 import {SortField, SortRule} from '@/constants/enum';
-import EmptySvg from '@/assets/svg/empty.svg';
+import {IconEmpty} from '@/components/icons';
 
 const SorterFunc = (data: any, sorter: any) => {
   if (!data || data.length === 0) {
@@ -66,9 +65,9 @@ const CoinAll = (props: any) => {
   if (data.length === 0) {
     return (
       <View
-        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
-        <EmptySvg width={80} height={80} style={tailwind('mb-3')} />
-        <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
+        style={[styles.flex_container_center, styles.flex_1, styles.flex_col]}>
+        <IconEmpty width={80} height={80} style={[styles.mb_2]} />
+        <Text style={[styles.mb_2, styles.text_muted, styles.text_md]}>
           暂无行情数据
         </Text>
       </View>
@@ -77,7 +76,7 @@ const CoinAll = (props: any) => {
 
   const renderCoinItem = (prop: any) => {
     const {item} = prop;
-    return <CoinListItem data={item} />;
+    return <CoinItem data={item} />;
   };
 
   return (
@@ -100,16 +99,16 @@ const CoinFavorites = (props: any) => {
   if (data.length === 0) {
     return (
       <View
-        style={tailwind('flex flex-1 flex-col items-center justify-center')}>
-        <EmptySvg width={80} height={80} style={tailwind('mb-3')} />
-        <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
+        style={[styles.flex_container_center, styles.flex_1, styles.flex_col]}>
+        <IconEmpty width={80} height={80} style={[styles.mb_2]} />
+        <Text style={[styles.mb_3, styles.text_muted, styles.text_md]}>
           暂无自选
         </Text>
         <TouchableOpacity
           onPress={() => props.emptyAction(coinTab.ALL)}
           activeOpacity={0.5}
-          style={styles.button}>
-          <Text style={tailwind('text-base text-white mr-1')}>
+          style={styles.button_green}>
+          <Text style={[styles.text_md, styles.text_white]}>
             前往行情页面添加
           </Text>
         </TouchableOpacity>
@@ -119,7 +118,7 @@ const CoinFavorites = (props: any) => {
 
   const renderCoinItem = (prop: any) => {
     const {item} = prop;
-    return <CoinListItem data={item} />;
+    return <CoinItem data={item} />;
   };
 
   return (
@@ -193,7 +192,7 @@ const CoinScreen = ({}: any) => {
   }, [all, favorites, marketList, exchange]);
 
   return (
-    <View style={tailwind('flex-1 bg-gray-50')}>
+    <View style={styles.screen_container}>
       <CoinTab value={tab} onChange={setTab} />
       <CoinSorter sorter={sorter} onChange={setSorter} />
       <CoinContent

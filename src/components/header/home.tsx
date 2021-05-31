@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
-import {tailwind} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
+import {styles} from '@/styles';
 
 const HeaderHome = (props: any) => {
   const {navigation} = props;
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {avatar} = userInfo;
-  const handleItemPress = () => {
+  const handleItemPress = useCallback(() => {
     navigation.navigate(RouteConfig.Setting.name);
-  };
+  }, [navigation]);
 
   return (
-    <View style={tailwind('px-5 flex flex-row items-center')}>
+    <View style={[styles.px_4, styles.flex_container_center]}>
       <TouchableOpacity onPress={handleItemPress} activeOpacity={0.5}>
         <Image
           source={{uri: avatar}}
-          style={tailwind('w-4 h-4 rounded-full')}
+          style={[styles.rounded_full, styles.img_header]}
         />
       </TouchableOpacity>
     </View>

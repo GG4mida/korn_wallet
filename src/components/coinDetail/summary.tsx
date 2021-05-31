@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {tailwind} from '@/core/tailwind';
 import {Formater} from '@/utils';
 import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {styles} from '@/styles';
 
 const CoinSummary = () => {
   const route = useRoute();
@@ -15,43 +15,51 @@ const CoinSummary = () => {
   const {c: marketPrice, P: marketChange} = marketInfo;
   const marketPriceCNY = parseFloat(marketPrice) * parseFloat(exchange);
 
-  const changeStyle =
-    parseFloat(marketChange) > 0 ? 'text-red-600' : 'text-green-600';
+  const changeStyle: any = [styles.text_md];
+  if (parseFloat(marketChange) > 0) {
+    changeStyle.push(styles.text_red);
+  } else {
+    changeStyle.push(styles.text_green);
+  }
 
   return (
     <View
-      style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-4',
-      )}>
-      <View style={tailwind('flex flex-row items-center')}>
+      style={[
+        styles.flex_container_between,
+        styles.bg_list,
+        styles.px_4,
+        styles.py_3,
+        styles.border_b,
+      ]}>
+      <View style={[styles.flex_container_center]}>
         <Image
           source={{uri: logo_png}}
-          style={tailwind('w-8 h-8 rounded-full')}
+          style={[styles.img_coin, styles.rounded_full, styles.mr_3]}
         />
-        <View style={tailwind('ml-3')}>
-          <Text style={tailwind('text-gray-800 text-lg')}>{symbol}</Text>
-          <Text style={tailwind('text-gray-500 text-xs')}>{name}</Text>
+        <View>
+          <Text style={[styles.text_md, styles.text_bold, styles.text_content]}>
+            {symbol}
+          </Text>
+          <Text style={[styles.text_md, styles.text_content_secondary]}>
+            {name}
+          </Text>
         </View>
       </View>
 
-      <View style={tailwind('flex flex-col items-end w-1/3')}>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600')}>¥</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>
-            {Formater.formatAmount(marketPriceCNY)}
+      <View style={[styles.w_1_3, styles.items_end, styles.flex_col]}>
+        <View style={[styles.flex_container_center]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            ¥{Formater.formatAmount(marketPriceCNY)}
           </Text>
         </View>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-600')}>$</Text>
-          <Text style={tailwind('text-base text-gray-600')}>
-            {Formater.formatAmount(marketPrice)}
+        <View style={[styles.flex_container_center]}>
+          <Text style={[styles.text_md, styles.text_content]}>
+            ${Formater.formatAmount(marketPrice)}
           </Text>
         </View>
       </View>
-      <View style={tailwind('flex flex-row items-center')}>
-        <Text style={tailwind(`${changeStyle} text-base`)}>
-          {Formater.formatChange(marketChange)}
-        </Text>
+      <View style={[styles.flex_container_center]}>
+        <Text style={changeStyle}>{Formater.formatChange(marketChange)}</Text>
       </View>
     </View>
   );

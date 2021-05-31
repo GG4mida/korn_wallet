@@ -2,8 +2,8 @@ import React, {useState, useRef} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
-import {tailwind} from '@/core/tailwind';
 import HeaderBack from '@/components/header/back';
+import {styleConfig, styles} from '@/styles';
 
 import {
   CoinAction,
@@ -26,7 +26,7 @@ const CoinDetailScreen = ({navigation}: any) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: name,
-      headerBackTitleStyle: tailwind('text-blue-600'),
+      headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
       headerRight: () => <CoinFavorite />,
     });
@@ -44,21 +44,19 @@ const CoinDetailScreen = ({navigation}: any) => {
   };
 
   return (
-    <View style={tailwind('flex-1 bg-gray-50')}>
+    <View style={[styles.screen_container, styles.bg_green]}>
       <ScrollView
-        style={tailwind('flex-1')}
+        style={[styles.screen_container]}
         showsVerticalScrollIndicator={false}>
         <CoinSummary />
         <CoinMeta />
         <CoinKlineBar value={tab} onChange={setTab} />
         <CoinKline type={tab} />
       </ScrollView>
-
       <CoinAction
         handleBuyInPress={handleBuyInPress}
         handleSellPress={handleSellPress}
       />
-
       <CoinSellPanel refs={actionSellRef} />
       <CoinBuyInPanel refs={actionBuyInRef} />
     </View>

@@ -1,4 +1,4 @@
-import {colors} from '../config';
+import {color} from '../config';
 
 import {StyleSheet} from 'react-native';
 
@@ -8,44 +8,44 @@ const borderStyles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderLeftWidth: 1,
-    borderLeftColor: colors.color_border,
-    borderRightColor: colors.color_border,
-    borderTopColor: colors.color_border,
-    borderBottomColor: colors.color_border,
+    borderLeftColor: color.border_item,
+    borderRightColor: color.border_item,
+    borderTopColor: color.border_item,
+    borderBottomColor: color.border_item,
   },
 
-  'border-0': {
+  border_0: {
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderBottomWidth: 0,
     borderLeftWidth: 0,
   },
 
-  'border-transparent': {
+  border_transparent: {
     borderTopColor: 'transparent',
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',
     borderLeftColor: 'transparent',
   },
 
-  'border-l': {
+  border_l: {
     borderLeftWidth: 1,
-    borderLeftColor: colors.color_border,
+    borderLeftColor: color.border_item,
   },
 
-  'border-r': {
+  border_r: {
     borderRightWidth: 1,
-    borderRightColor: colors.color_border,
+    borderRightColor: color.border_item,
   },
 
-  'border-t': {
+  border_t: {
     borderTopWidth: 1,
-    borderTopColor: colors.color_border,
+    borderTopColor: color.border_item,
   },
 
-  'border-b': {
+  border_b: {
     borderBottomWidth: 1,
-    borderBottomColor: colors.color_border,
+    borderBottomColor: color.border_item,
   },
 });
 

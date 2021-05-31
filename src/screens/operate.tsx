@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {ScrollView, View, Text, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
-import {tailwind, getColor} from '@/core/tailwind';
+import {styles, styleConfig} from '@/styles';
 import HeaderBack from '@/components/header/back';
 import {CoinOpDirection} from '@/constants/enum';
 import {Formater} from '@/utils';
@@ -12,12 +12,12 @@ const OperateItem = (props: any) => {
 
   const {operate} = data;
 
-  const {coin_code, volumn, amount, price, direction, createtime} = operate;
+  const {coin_code, volumn, amount, price, direction} = operate;
 
   const panelStyle =
     direction === CoinOpDirection.BUYIN
-      ? [getColor('yellow-500'), getColor('red-500')]
-      : [getColor('gray-500'), getColor('green-500')];
+      ? [styleConfig.color.yellow, styleConfig.color.red]
+      : [styleConfig.color.gray, styleConfig.color.green];
 
   const operateName = direction === CoinOpDirection.BUYIN ? '买入' : '卖出';
 
@@ -26,33 +26,44 @@ const OperateItem = (props: any) => {
       colors={panelStyle}
       start={{x: 1, y: 0}}
       end={{x: 0.2, y: 0}}
-      style={tailwind('p-6 rounded-xl mb-4')}>
-      <View style={tailwind('flex flex-row items-center justify-between mb-4')}>
-        <View style={tailwind('flex-row items-center')}>
-          <Text style={tailwind('text-white text-lg font-bold mr-2')}>
+      style={[styles.p_5, styles.rounded_2xl, styles.mb_4]}>
+      <View style={[styles.flex_container_between, styles.mb_2]}>
+        <View style={[styles.flex_container_center]}>
+          <Text
+            style={[
+              styles.text_bold,
+              styles.text_white,
+              styles.text_lg,
+              styles.mr_2,
+            ]}>
             {coin_code}
           </Text>
-          <Text style={tailwind('text-gray-100 text-sm')}>{operateName}</Text>
+          <Text style={[styles.text_white, styles.text_md]}>{operateName}</Text>
         </View>
-
-        <Text style={tailwind('text-gray-200 text-sm')}>{createtime}</Text>
+        <Text style={[styles.text_light, styles.text_md]}>10:32</Text>
       </View>
-      <View style={tailwind('flex flex-row justify-between items-end')}>
-        <View style={tailwind('w-1/3')}>
-          <Text style={tailwind('text-sm text-gray-200 mb-1')}>数量</Text>
-          <Text style={tailwind('text-base text-white')}>
+      <View style={[styles.flex_row]}>
+        <View style={[styles.w_1_3]}>
+          <Text style={[styles.text_sm, styles.text_light, styles.mb_1]}>
+            数量
+          </Text>
+          <Text style={[styles.text_md, styles.text_white]}>
             {Formater.fixed(volumn, 4)}
           </Text>
         </View>
-        <View style={tailwind('w-1/3 items-end')}>
-          <Text style={tailwind('text-sm text-gray-200 mb-1')}>金额</Text>
-          <Text style={tailwind('text-base text-white')}>
+        <View style={[styles.w_1_3, styles.items_end]}>
+          <Text style={[styles.text_sm, styles.text_light, styles.mb_1]}>
+            金额
+          </Text>
+          <Text style={[styles.text_md, styles.text_white]}>
             ${Formater.formatAmount(amount)}
           </Text>
         </View>
-        <View style={tailwind('w-1/3 items-end')}>
-          <Text style={tailwind('text-sm text-gray-200 mb-1')}>价格</Text>
-          <Text style={tailwind('text-base text-white')}>
+        <View style={[styles.w_1_3, styles.items_end]}>
+          <Text style={[styles.text_sm, styles.text_light, styles.mb_1]}>
+            价格
+          </Text>
+          <Text style={[styles.text_md, styles.text_white]}>
             ${Formater.formatAmount(price)}
           </Text>
         </View>
@@ -66,8 +77,14 @@ const OperateList = (props: any) => {
   const dataCount = data.length;
 
   return (
-    <View style={tailwind('mb-5')}>
-      <Text style={tailwind('mb-4 text-base text-gray-600 text-center')}>
+    <View style={[styles.mb_4]}>
+      <Text
+        style={[
+          styles.mb_4,
+          styles.text_md,
+          styles.text_muted,
+          styles.text_center,
+        ]}>
         累计 {dataCount} 条交易记录
       </Text>
       {data.map((item: any, index: number) => {
@@ -87,7 +104,7 @@ const OperateScreen = ({navigation}: any) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackTitleStyle: tailwind('text-blue-600'),
+      headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
   }, [navigation]);
@@ -100,8 +117,8 @@ const OperateScreen = ({navigation}: any) => {
 
   if (loading === true) {
     return (
-      <View style={tailwind('flex-1 items-center justify-center')}>
-        <ActivityIndicator color={getColor('gray-600')} />
+      <View style={[styles.flex_1, styles.flex_container_center]}>
+        <ActivityIndicator />
       </View>
     );
   }
@@ -109,7 +126,7 @@ const OperateScreen = ({navigation}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={tailwind('flex-1 bg-gray-50 p-5')}>
+      style={styles.screen_container_with_padding}>
       <OperateList data={userOperates} loading={loading} />
     </ScrollView>
   );

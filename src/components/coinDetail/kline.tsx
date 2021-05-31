@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {LineChart, Grid} from 'react-native-svg-charts';
-import {tailwind, getColor} from '@/core/tailwind';
 import {useRoute} from '@react-navigation/native';
 import {Storage, DateTime} from '@/utils';
 import {klineTab} from '@/constants/tab';
+import {styleConfig, styles} from '@/styles';
 
 interface IProps {
   type: klineTab;
@@ -38,7 +38,7 @@ const CoinKline = (props: IProps) => {
 
         let formatedTime = null;
         if (type === klineTab.DAY) {
-          formatedTime = DateTime.format(time, DateTime.FORMATTER_TIME);
+          formatedTime = DateTime.format(time, DateTime.FORMATER_TIME);
         } else {
           formatedTime = DateTime.format(time, DateTime.FORMATER_DAY);
         }
@@ -72,7 +72,7 @@ const CoinKline = (props: IProps) => {
 
   if (loading === true) {
     return (
-      <View style={styles.chart_container}>
+      <View style={customStyles.chart_container}>
         <ActivityIndicator />
       </View>
     );
@@ -80,36 +80,33 @@ const CoinKline = (props: IProps) => {
 
   if (value.length === 0) {
     return (
-      <View style={styles.chart_container}>
-        <Text style={tailwind('text-gray-400 text-sm')}>暂无数据</Text>
+      <View style={customStyles.chart_container}>
+        <Text style={[styles.text_md, styles.text_muted]}>暂无数据</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.chart_container}>
+    <View style={customStyles.chart_container}>
       <LineChart
         animate={true}
-        style={styles.chart_content}
+        style={customStyles.chart_content}
         data={value}
-        svg={{stroke: getColor('green-600')}}
+        svg={{stroke: styleConfig.color.green}}
         contentInset={{top: 10, bottom: 10, left: 10, right: 0}}>
-        <Grid svg={{stroke: getColor('gray-100')}} />
+        <Grid svg={{stroke: styleConfig.color.light}} />
       </LineChart>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const customStyles = StyleSheet.create({
   chart_container: {
+    ...styles.flex_container_center,
+    ...styles.py_4,
+    ...styles.bg_white,
+    ...styles.border_b,
     height: 240,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: getColor('white'),
-    borderBottomWidth: 1,
-    borderBottomColor: getColor('gray-100'),
   },
   chart_content: {
     height: 220,

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {tailwind} from '@/core/tailwind';
+import {styles} from '@/styles';
 import {HomeJumbo, HomeHolds, HomeSectionHeader} from '@/components/home';
 
 const HomeScreen = ({}: any) => {
@@ -16,7 +16,7 @@ const HomeScreen = ({}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={tailwind('flex-1 bg-gray-50 p-5')}>
+      style={styles.screen_container_with_padding}>
       <HomeJumbo />
       <HomeSectionHeader />
       <HomeHolds />

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {
   View,
   Image,
@@ -9,11 +9,66 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
-import styles from '@/core/styles';
+import {styleConfig, styles} from '@/styles';
 import {Formater} from '@/utils';
-import EmptySvg from '@/assets/svg/empty.svg';
+import {IconEmpty} from '@/components/icons';
+
+const HomeHoldItem = (props: any) => {
+  const {data} = props;
+  const {coin, volumn, amount} = data;
+  const {logo_png, name, symbol} = coin;
+  const holdCount = `${Formater.fixed(volumn, 4)} ${symbol}`;
+
+  const navigation = useNavigation();
+  const handleItemPress = useCallback(() => {
+    navigation.navigate(RouteConfig.CoinDetail.name, data.coin);
+  }, [navigation, data]);
+
+  return (
+    <TouchableOpacity onPress={handleItemPress} activeOpacity={0.5}>
+      <LinearGradient
+        colors={[styleConfig.color.bg_hold, styleConfig.color.bg_hold]}
+        style={[styles.rounded_xl, styles.mb_3, styles.p_4]}>
+        <View style={[styles.flex_container_between]}>
+          <View style={[styles.flex_container_center]}>
+            <Image
+              source={{uri: logo_png}}
+              style={[styles.img_coin, styles.rounded_xl, styles.mr_3]}
+            />
+            <View>
+              <Text style={[styles.text_lg, styles.text_content]}>
+                {symbol}
+              </Text>
+              <Text style={[styles.text_md, styles.text_content_secondary]}>
+                {name}
+              </Text>
+            </View>
+          </View>
+          <View style={[styles.items_end]}>
+            <Text style={[styles.text_content_secondary, styles.text_md]}>
+              {holdCount}
+            </Text>
+            <Text style={[styles.text_content, styles.text_lg]}>
+              ${Formater.formatAmount(amount)}
+            </Text>
+          </View>
+        </View>
+      </LinearGradient>
+    </TouchableOpacity>
+  );
+};
+
+const HomeHoldList = (props: any) => {
+  const {data} = props;
+  return (
+    <React.Fragment>
+      {data.map((hold: any, index: number) => {
+        return <HomeHoldItem data={hold} key={`hold_${index}`} />;
+      })}
+    </React.Fragment>
+  );
+};
 
 const HomeHolds = () => {
   const dispatch = useDispatch();
@@ -55,13 +110,9 @@ const HomeHolds = () => {
     return result;
   }, [userHolds, marketList]);
 
-  const handleItemPress = (item: any) => {
-    navigation.navigate(RouteConfig.CoinDetail.name, item.coin);
-  };
-
   if (loading === true) {
     return (
-      <View style={tailwind('flex flex-col items-center justify-center py-8')}>
+      <View style={[styles.flex_container_center, styles.py_5]}>
         <ActivityIndicator />
       </View>
     );
@@ -74,16 +125,16 @@ const HomeHolds = () => {
     };
 
     return (
-      <View style={tailwind('flex flex-col items-center justify-center py-8')}>
-        <EmptySvg width={80} height={80} style={tailwind('mb-3')} />
-        <Text style={tailwind('mb-5 text-base text-gray-400 text-center')}>
+      <View style={[styles.flex_container_center, styles.flex_col]}>
+        <IconEmpty width={80} height={80} style={[styles.mb_3]} />
+        <Text style={[styles.text_md, styles.text_muted, styles.mb_3]}>
           暂无持仓
         </Text>
         <TouchableOpacity
           onPress={handleCoinPress}
           activeOpacity={0.5}
-          style={styles.button}>
-          <Text style={tailwind('text-base text-white mr-1')}>
+          style={styles.button_green}>
+          <Text style={[styles.text_md, styles.text_white]}>
             查看行情，立即添加持仓
           </Text>
         </TouchableOpacity>
@@ -92,50 +143,8 @@ const HomeHolds = () => {
   }
 
   return (
-    <View style={tailwind('mb-5')}>
-      {userHoldList.map((hold: any, index: number) => {
-        const {coin, volumn, amount} = hold;
-        const {logo_png, name, symbol} = coin;
-        const holdCount = `${Formater.fixed(volumn, 4)} ${symbol}`;
-        return (
-          <TouchableOpacity
-            onPress={() => handleItemPress(hold)}
-            activeOpacity={0.5}
-            key={index}>
-            <LinearGradient
-              colors={[getColor('gray-100'), getColor('gray-100')]}
-              style={tailwind('p-5 rounded-xl mb-3')}>
-              <View style={tailwind('flex flex-row justify-between')}>
-                <View style={tailwind('flex items-center flex-row')}>
-                  <Image
-                    source={{uri: logo_png}}
-                    style={tailwind('w-8 h-8 mr-3 rounded-full')}
-                  />
-                  <View>
-                    <Text style={tailwind('text-gray-600 text-xl')}>
-                      {symbol}
-                    </Text>
-                    <Text style={tailwind('text-gray-500 text-sm')}>
-                      {name}
-                    </Text>
-                  </View>
-                </View>
-                <View style={tailwind('items-end')}>
-                  <Text style={tailwind('text-gray-600 text-sm')}>
-                    {holdCount}
-                  </Text>
-                  <View style={tailwind('flex flex-row items-center')}>
-                    <Text style={tailwind('text-gray-800 text-xl')}>$</Text>
-                    <Text style={tailwind('text-gray-800 text-xl')}>
-                      {Formater.formatAmount(amount)}
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </LinearGradient>
-          </TouchableOpacity>
-        );
-      })}
+    <View style={[styles.mb_5]}>
+      <HomeHoldList data={userHoldList} />
     </View>
   );
 };

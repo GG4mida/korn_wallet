@@ -1,10 +1,8 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {tailwind, getColor} from '@/core/tailwind';
-
 import {IconSortAsc, IconSortDesc, IconSortNone} from '@/components/icons';
-
 import {SortRule, SortField} from '@/constants/enum';
+import {styles, styleConfig} from '@/styles';
 
 const SORT_HEADERS = [
   {
@@ -28,7 +26,7 @@ const SorterIcon = (props: any) => {
   const {rule, name, item} = props;
   const {name: itemName} = item;
   const fillSize = 12;
-  const fillColor = getColor('gray-500');
+  const fillColor = styleConfig.color.gray;
   if (name === itemName) {
     if (rule === SortRule.ASC) {
       return (
@@ -48,46 +46,57 @@ const CoinSorter = (props: any) => {
   const {sorter, onChange} = props;
   const {name, rule} = sorter;
 
-  const handleSortPress = (item: any) => {
-    const {name: sortName} = item;
-    let sortRule: any = null;
-    if (sortName === name) {
-      if (rule === SortRule.DESC) {
-        sortRule = SortRule.ASC;
-      }
-      if (rule === SortRule.ASC) {
-        sortRule = SortRule.NONE;
-      }
-      if (rule === SortRule.NONE) {
+  const handleSortPress = useCallback(
+    (item: any) => {
+      const {name: sortName} = item;
+      let sortRule: any = null;
+      if (sortName === name) {
+        if (rule === SortRule.DESC) {
+          sortRule = SortRule.ASC;
+        }
+        if (rule === SortRule.ASC) {
+          sortRule = SortRule.NONE;
+        }
+        if (rule === SortRule.NONE) {
+          sortRule = SortRule.DESC;
+        }
+      } else {
         sortRule = SortRule.DESC;
       }
-    } else {
-      sortRule = SortRule.DESC;
-    }
 
-    onChange({
-      name: sortName,
-      rule: sortRule,
-    });
-  };
+      onChange({
+        name: sortName,
+        rule: sortRule,
+      });
+    },
+    [name, onChange, rule],
+  );
 
   return (
     <View
-      style={tailwind(
-        'flex flex-row items-center justify-between bg-white border-b border-gray-50 px-5 py-2',
-      )}>
+      style={[
+        styles.flex_container_between,
+        styles.bg_white,
+        styles.border_b,
+        styles.px_4,
+        styles.py_2,
+      ]}>
       {SORT_HEADERS.map((sortItem: any, index: number) => {
+        const style: any = [
+          styles.flex_1,
+          styles.flex_row,
+          styles.items_center,
+        ];
+        if (index > 0) {
+          style.push(styles.justify_end);
+        }
         return (
           <TouchableOpacity
-            key={index}
+            key={`sorter_${index}`}
             onPress={() => handleSortPress(sortItem)}
             activeOpacity={0.5}
-            style={tailwind(
-              `flex flex-1 flex-row items-center ${
-                index > 0 ? 'justify-end' : ''
-              }`,
-            )}>
-            <Text style={tailwind('text-sm text-gray-500')}>
+            style={style}>
+            <Text style={[styles.text_sm, styles.text_muted]}>
               {sortItem.label}
             </Text>
             <SorterIcon rule={rule} name={name} item={sortItem} />

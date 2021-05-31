@@ -1,16 +1,20 @@
 import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {tailwind} from '@/core/tailwind';
 import {Formater} from '@/utils';
 import {RouteConfig} from '@/constants/navigation';
+import {styles} from '@/styles';
 
 const CoinItem = (props: any) => {
   const {data} = props;
   const {name, symbol, logo_png, priceUSD, priceCNY, change} = data;
 
-  const changeStyle =
-    parseFloat(change) > 0 ? 'text-red-600' : 'text-green-600';
+  const changeStyle: any = [styles.text_md];
+  if (parseFloat(change) > 0) {
+    changeStyle.push(styles.text_red);
+  } else {
+    changeStyle.push(styles.text_green);
+  }
 
   const navigation = useNavigation();
   const handleItemPress = (item: any) => {
@@ -21,39 +25,39 @@ const CoinItem = (props: any) => {
     <TouchableOpacity
       onPress={() => handleItemPress(data)}
       activeOpacity={0.5}
-      style={tailwind(
-        'bg-white flex flex-row justify-between items-center border-b border-gray-50 px-5 py-3',
-      )}>
-      <View style={tailwind('flex flex-row w-1/3 items-center')}>
+      style={[
+        styles.flex_container_center,
+        styles.border_b,
+        styles.px_4,
+        styles.py_3,
+        styles.bg_coin,
+      ]}>
+      <View style={[styles.w_1_3, styles.flex_row, styles.items_center]}>
         <Image
           source={{uri: logo_png}}
-          style={tailwind('w-6 h-6 rounded-full')}
+          style={[styles.rounded_full, styles.img_coin, styles.mr_3]}
         />
-        <View style={tailwind('ml-3')}>
-          <Text style={tailwind('text-gray-800 text-lg')}>{symbol}</Text>
-          <Text style={tailwind('text-gray-500 text-xs')}>{name}</Text>
-        </View>
-      </View>
-
-      <View style={tailwind('flex flex-col items-end w-1/3')}>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-xs text-gray-600')}>¥</Text>
-          <Text style={tailwind('text-xs text-gray-600')}>
-            {Formater.formatAmount(priceCNY)}
+        <View>
+          <Text style={[styles.text_md, styles.text_content, styles.text_bold]}>
+            {symbol}
           </Text>
-        </View>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-base text-gray-800')}>$</Text>
-          <Text style={tailwind('text-base text-gray-800')}>
-            {Formater.formatAmount(priceUSD)}
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            {name}
           </Text>
         </View>
       </View>
 
-      <View style={tailwind('flex flex-row w-1/3 items-center justify-end')}>
-        <Text style={tailwind(`${changeStyle} text-base`)}>
-          {Formater.formatChange(change)}
+      <View style={[styles.w_1_3, styles.flex_col, styles.items_end]}>
+        <Text style={[styles.text_sm, styles.text_content_secondary]}>
+          ¥{Formater.formatAmount(priceCNY)}
         </Text>
+        <Text style={[styles.text_md, styles.text_content]}>
+          ${Formater.formatAmount(priceUSD)}
+        </Text>
+      </View>
+
+      <View style={[styles.w_1_3, styles.items_end]}>
+        <Text style={changeStyle}>{Formater.formatChange(change)}</Text>
       </View>
     </TouchableOpacity>
   );

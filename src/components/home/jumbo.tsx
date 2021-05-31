@@ -3,9 +3,9 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {tailwind, getColor} from '@/core/tailwind';
 import {RouteConfig} from '@/constants/navigation';
 import {Formater} from '@/utils';
+import {styles, styleConfig} from '@/styles';
 import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
 const HomeJumbo = () => {
@@ -14,6 +14,7 @@ const HomeJumbo = () => {
     (state: any) => state.user,
   );
   const {list: marketList} = useSelector((state: any) => state.market);
+
   const renderData = useMemo(() => {
     let userHoldAmount = 0;
     const {balance_current, balance_init} = userInfo;
@@ -40,36 +41,41 @@ const HomeJumbo = () => {
     };
   }, [userInfo, marketList, userHolds]);
 
-  const handleWalletPress = useCallback(() => {
+  const handleDetailPress = useCallback(() => {
     navigation.navigate(RouteConfig.Wallet.name);
   }, [navigation]);
 
   return (
     <LinearGradient
-      colors={[getColor('yellow-500'), getColor('red-500')]}
+      colors={[styleConfig.color.yellow, styleConfig.color.red]}
       start={{x: 1, y: 0}}
       end={{x: 0.2, y: 0}}
-      style={tailwind('p-6 rounded-xl')}>
-      <View style={tailwind('flex flex-row items-center justify-between mb-4')}>
-        <Text style={tailwind('text-white text-base')}>账户资产</Text>
-        <TouchableOpacity activeOpacity={0.5} onPress={handleWalletPress}>
-          <Text style={tailwind('text-white text-base')}>详情</Text>
+      style={[styles.p_5, styles.rounded_2xl]}>
+      <View style={[styles.flex_container_between, styles.mb_3]}>
+        <Text style={[styles.text_white, styles.text_md]}>账户资产</Text>
+        <TouchableOpacity activeOpacity={0.5} onPress={handleDetailPress}>
+          <Text style={[styles.text_white, styles.text_md]}>详情</Text>
         </TouchableOpacity>
       </View>
-      <View style={tailwind('flex flex-row justify-between items-end')}>
-        <View style={tailwind('flex flex-row items-center')}>
-          <Text style={tailwind('text-2xl text-white')}>$</Text>
-          <Text style={tailwind('text-2xl text-white font-bold')}>
-            {Formater.formatAmount(renderData.totalAmount)}
-          </Text>
-        </View>
-        <View style={tailwind('flex flex-row items-center')}>
+      <View style={styles.flex_container_between}>
+        <Text style={[styles.text_bold, styles.text_white, styles.text_2xl]}>
+          ${Formater.formatAmount(renderData.totalAmount)}
+        </Text>
+        <View style={styles.flex_container_center}>
           {renderData.totalProfit >= 0 ? (
-            <IconArrowTop width={16} height={16} fill={getColor('white')} />
+            <IconArrowTop
+              width={16}
+              height={16}
+              fill={styleConfig.color.white}
+            />
           ) : (
-            <IconArrowDown width={16} height={16} fill={getColor('white')} />
+            <IconArrowDown
+              width={16}
+              height={16}
+              fill={styleConfig.color.white}
+            />
           )}
-          <Text style={tailwind('text-lg text-white ml-1')}>
+          <Text style={[styles.text_white, styles.text_lg]}>
             {Formater.formatProfitRatio(renderData.totalProfitRatio)}
           </Text>
         </View>

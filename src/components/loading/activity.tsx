@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
-import {tailwind, getColor} from '@/core/tailwind';
+import {styles} from '@/styles';
 
 const LoadingActivity = (props: any) => {
   const {loading} = props;
@@ -8,8 +8,8 @@ const LoadingActivity = (props: any) => {
     return null;
   }
   return (
-    <View style={tailwind('px-5')}>
-      <ActivityIndicator color={getColor('gray-600')} size="small" />
+    <View style={[styles.px_4]}>
+      <ActivityIndicator size="small" />
     </View>
   );
 };

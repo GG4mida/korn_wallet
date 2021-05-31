@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {tailwind} from '@/core/tailwind';
+import {styles} from '@/styles';
 
 const HeaderCoin = () => {
   return (
-    <View style={tailwind('px-5 flex flex-row items-center')}>
+    <View style={[styles.flex_container_center, styles.px_4]}>
       <TouchableOpacity onPress={() => null} activeOpacity={0.5} />
     </View>
   );

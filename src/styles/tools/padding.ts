@@ -8,196 +8,196 @@ const SPACE_4 = space.size * 4;
 const SPACE_5 = space.size * 5;
 
 const paddingStyles = StyleSheet.create({
-  'p-0': {
+  p_0: {
     paddingTop: 0,
     paddingRight: 0,
     paddingBottom: 0,
     paddingLeft: 0,
   },
-  'p-1': {
+  p_1: {
     paddingTop: SPACE_1,
     paddingRight: SPACE_1,
     paddingBottom: SPACE_1,
     paddingLeft: SPACE_1,
   },
-  'p-2': {
+  p_2: {
     paddingTop: SPACE_2,
     paddingRight: SPACE_2,
     paddingBottom: SPACE_2,
     paddingLeft: SPACE_2,
   },
-  'p-3': {
+  p_3: {
     paddingTop: SPACE_3,
     paddingRight: SPACE_3,
     paddingBottom: SPACE_3,
     paddingLeft: SPACE_3,
   },
-  'p-4': {
+  p_4: {
     paddingTop: SPACE_4,
     paddingRight: SPACE_4,
     paddingBottom: SPACE_4,
     paddingLeft: SPACE_4,
   },
-  'p-5': {
+  p_5: {
     paddingTop: SPACE_5,
     paddingRight: SPACE_5,
     paddingBottom: SPACE_5,
     paddingLeft: SPACE_5,
   },
 
-  'py-0': {
+  py_0: {
     paddingTop: 0,
     paddingBottom: 0,
   },
 
-  'py-1': {
+  py_1: {
     paddingTop: SPACE_1,
     paddingBottom: SPACE_1,
   },
 
-  'py-2': {
+  py_2: {
     paddingTop: SPACE_2,
     paddingBottom: SPACE_2,
   },
 
-  'py-3': {
+  py_3: {
     paddingTop: SPACE_3,
     paddingBottom: SPACE_3,
   },
 
-  'py-4': {
+  py_4: {
     paddingTop: SPACE_4,
     paddingBottom: SPACE_4,
   },
 
-  'py-5': {
+  py_5: {
     paddingTop: SPACE_5,
     paddingBottom: SPACE_5,
   },
 
-  'px-0': {
+  px_0: {
     paddingLeft: 0,
     paddingRight: 0,
   },
 
-  'px-1': {
+  px_1: {
     paddingLeft: SPACE_1,
     paddingRight: SPACE_1,
   },
 
-  'px-2': {
+  px_2: {
     paddingLeft: SPACE_2,
     paddingRight: SPACE_2,
   },
 
-  'px-3': {
+  px_3: {
     paddingLeft: SPACE_3,
     paddingRight: SPACE_3,
   },
 
-  'px-4': {
+  px_4: {
     paddingLeft: SPACE_4,
     paddingRight: SPACE_4,
   },
 
-  'px-5': {
+  px_5: {
     paddingLeft: SPACE_5,
     paddingRight: SPACE_5,
   },
 
-  'pl-0': {
+  pl_0: {
     paddingLeft: 0,
   },
 
-  'pl-1': {
+  pl_1: {
     paddingLeft: SPACE_1,
   },
 
-  'pl-2': {
+  pl_2: {
     paddingLeft: SPACE_2,
   },
 
-  'pl-3': {
+  pl_3: {
     paddingLeft: SPACE_3,
   },
 
-  'pl-4': {
+  pl_4: {
     paddingLeft: SPACE_4,
   },
 
-  'pl-5': {
+  pl_5: {
     paddingLeft: SPACE_5,
   },
 
-  'pr-0': {
+  pr_0: {
     paddingRight: 0,
   },
 
-  'pr-1': {
+  pr_1: {
     paddingRight: SPACE_1,
   },
 
-  'pr-2': {
+  pr_2: {
     paddingRight: SPACE_2,
   },
 
-  'pr-3': {
+  pr_3: {
     paddingRight: SPACE_3,
   },
 
-  'pr-4': {
+  pr_4: {
     paddingRight: SPACE_4,
   },
 
-  'pr-5': {
+  pr_5: {
     paddingRight: SPACE_5,
   },
 
-  'pt-0': {
+  pt_0: {
     paddingTop: 0,
   },
 
-  'pt-1': {
+  pt_1: {
     paddingTop: SPACE_1,
   },
 
-  'pt-2': {
+  pt_2: {
     paddingTop: SPACE_2,
   },
 
-  'pt-3': {
+  pt_3: {
     paddingTop: SPACE_3,
   },
 
-  'pt-4': {
+  pt_4: {
     paddingTop: SPACE_4,
   },
 
-  'pt-5': {
+  pt_5: {
     paddingTop: SPACE_5,
   },
 
-  'pb-0': {
+  pb_0: {
     paddingBottom: 0,
   },
 
-  'pb-1': {
+  pb_1: {
     paddingBottom: SPACE_1,
   },
 
-  'pb-2': {
+  pb_2: {
     paddingBottom: SPACE_2,
   },
 
-  'pb-3': {
+  pb_3: {
     paddingBottom: SPACE_3,
   },
 
-  'pb-4': {
+  pb_4: {
     paddingBottom: SPACE_4,
   },
 
-  'pb-5': {
+  pb_5: {
     paddingBottom: SPACE_5,
   },
 });

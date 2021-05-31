@@ -3,10 +3,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {View, TouchableOpacity} from 'react-native';
 import {find} from 'lodash';
 import {Toaster} from '@/utils';
-import {tailwind, getColor} from '@/core/tailwind';
 import {useRoute} from '@react-navigation/native';
 import {IconFavorite} from '@/components/icons';
 import {ResponseCode} from '@/constants/enum';
+import {styles, styleConfig} from '@/styles';
 
 const CoinFavorite = () => {
   const dispatch = useDispatch();
@@ -55,10 +55,12 @@ const CoinFavorite = () => {
   }, [dispatch, coin, favoriteStatus]);
 
   const iconStyle =
-    favoriteStatus === true ? getColor('yellow-400') : getColor('gray-300');
+    favoriteStatus === true
+      ? styleConfig.color.yellow
+      : styleConfig.color.light;
 
   return (
-    <View style={tailwind('flex flex-row items-center px-5')}>
+    <View style={[styles.flex_container_center, styles.px_4]}>
       <TouchableOpacity
         disabled={loading}
         onPress={handleFavoritePress}

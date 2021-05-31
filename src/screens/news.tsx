@@ -1,8 +1,8 @@
 import React, {useEffect, useCallback} from 'react';
 import {SectionList, View, RefreshControl} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getColor, tailwind} from '@/core/tailwind';
 import {NewsItem, NewsHeader} from '@/components/news';
+import {styles} from '@/styles';
 
 const NewsScreen = ({}: any) => {
   const dispatch = useDispatch();
@@ -36,15 +36,11 @@ const NewsScreen = ({}: any) => {
   };
 
   return (
-    <View style={tailwind('flex-1 bg-gray-50')}>
+    <View style={styles.screen_container}>
       <SectionList
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={handleLoading}
-            tintColor={getColor('gray-500')}
-          />
+          <RefreshControl refreshing={loading} onRefresh={handleLoading} />
         }
         sections={newsData}
         renderItem={renderSectionItem}

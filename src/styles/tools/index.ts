@@ -1,17 +1,23 @@
-import borderStyle from './border';
-import flexStyle from './flex';
-import marginStyle from './margin';
-import paddingStyle from './padding';
-import roundedStyle from './rounded';
-import sizeStyle from './size';
-import textStyle from './text';
+import borderStyles from './border';
+import flexStyles from './flex';
+import marginStyles from './margin';
+import paddingStyles from './padding';
+import roundedStyles from './rounded';
+import sizeStyles from './size';
+import textStyles from './text';
+import positionStyles from './position';
+import backgroundStyles from './background';
 
-export {
-  borderStyle,
-  flexStyle,
-  marginStyle,
-  paddingStyle,
-  roundedStyle,
-  sizeStyle,
-  textStyle,
+const toolStyles = {
+  ...borderStyles,
+  ...flexStyles,
+  ...marginStyles,
+  ...paddingStyles,
+  ...roundedStyles,
+  ...sizeStyles,
+  ...textStyles,
+  ...positionStyles,
+  ...backgroundStyles,
 };
+
+export default toolStyles;

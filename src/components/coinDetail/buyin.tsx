@@ -10,12 +10,12 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {useDispatch, useSelector} from 'react-redux';
 import {useRoute} from '@react-navigation/native';
-import {getColor, tailwind} from '@/core/tailwind';
 import {Toaster} from '@/utils';
 import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
 import Slider from '@react-native-community/slider';
 import {Formater} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
+import {styles, styleConfig} from '@/styles';
 
 const AnimatedView = Animated.View;
 let fall = new Animated.Value(1);
@@ -33,7 +33,8 @@ const PanelShadow = (props: any) => {
       <AnimatedView
         pointerEvents={status === true ? 'auto' : 'none'}
         style={[
-          styles.shadow,
+          styles.absolute_fill,
+          styles.bg_black,
           {
             opacity: animatedShadowOpacity,
           },
@@ -49,14 +50,11 @@ const PanelContent = (props: any) => {
   const route = useRoute();
   const dispatch = useDispatch();
   const coin: any = route.params;
-
   const {symbol} = coin;
-
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {list: marketList} = useSelector((state: any) => state.market);
   const marketInfo = marketList[symbol];
   const {c: marketPrice} = marketInfo;
-
   const {balance_current} = userInfo;
 
   const buyInData = useMemo(() => {
@@ -65,7 +63,6 @@ const PanelContent = (props: any) => {
       parseFloat(buyInAmount) / parseFloat(marketPrice),
       4,
     );
-
     return {
       amount: buyInAmount,
       volumn: buyInVolumn,
@@ -74,7 +71,6 @@ const PanelContent = (props: any) => {
 
   const handleSumbitPress = useCallback(async () => {
     const MIN_BUYIN_AMOUNT = 100;
-
     if (parseFloat(buyInData.amount) <= MIN_BUYIN_AMOUNT) {
       Toaster.show(`买入金额不能小于$${MIN_BUYIN_AMOUNT}`);
       return false;
@@ -86,7 +82,6 @@ const PanelContent = (props: any) => {
         amount: buyInData.amount,
       },
     });
-
     const {code, content} = buyinRes;
     if (code === ResponseCode.SUCCESS) {
       dispatch({
@@ -102,73 +97,83 @@ const PanelContent = (props: any) => {
   }, [dispatch, buyInData, symbol, handleSubmitSuccess]);
 
   return (
-    <View>
+    <View style={[styles.bg_white, customStyle.content]}>
       <View
-        style={tailwind(
-          'bg-gray-100 px-5 py-4 flex-row items-center justify-between',
-        )}>
-        <Text style={tailwind('text-base text-gray-600')}>买入</Text>
+        style={[
+          styles.flex_container_between,
+          styles.bg_white,
+          styles.py_3,
+          styles.px_4,
+          styles.border_b,
+        ]}>
+        <Text style={[styles.text_md, styles.text_content]}>买入</Text>
         <TouchableOpacity activeOpacity={0.5} onPress={handleSumbitPress}>
-          <Text style={tailwind('text-base text-red-500')}>提交</Text>
+          <Text style={[styles.text_md, styles.text_red]}>提交</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.content}>
+      <View style={[styles.bg_white, styles.px_4]}>
         <View
-          style={tailwind(
-            'flex-row items-center justify-between border-b border-gray-50 py-2',
-          )}>
-          <Text style={tailwind('text-sm text-gray-500')}>可用金额</Text>
-          <Text style={tailwind('text-base text-gray-600')}>
+          style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            可用金额
+          </Text>
+          <Text style={[styles.text_md, styles.text_content]}>
             ${Formater.formatAmount(balance_current)}
           </Text>
         </View>
         <View
-          style={tailwind(
-            'flex-row items-center justify-between  border-b border-gray-50 py-2',
-          )}>
-          <Text style={tailwind('text-sm text-gray-500')}>当前价格</Text>
-          <Text style={tailwind('text-base text-gray-600')}>
+          style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            当前价格
+          </Text>
+          <Text style={[styles.text_md, styles.text_content]}>
             ${Formater.formatAmount(marketPrice)}
           </Text>
         </View>
         <View
-          style={tailwind(
-            'flex-row items-center justify-between border-b border-gray-50 py-2',
-          )}>
-          <Text style={tailwind('text-sm text-gray-500')}>买入金额</Text>
-          <View style={tailwind('flex flex-row items-center')}>
+          style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            买入金额
+          </Text>
+          <View style={[styles.flex_container_center]}>
             <Slider
               value={value}
               onValueChange={setValue}
               step={1}
-              style={styles.slider}
+              style={customStyle.slider}
               tapToSeek={true}
               minimumValue={0}
               maximumValue={100}
-              minimumTrackTintColor={getColor('red-600')}
-              maximumTrackTintColor={getColor('red-300')}
+              minimumTrackTintColor={styleConfig.color.red}
+              maximumTrackTintColor={styleConfig.color.gray}
             />
-            <Text style={tailwind('w-12 text-right text-base text-gray-600')}>
+            <Text
+              style={[
+                styles.text_md,
+                styles.text_content_secondary,
+                styles.ml_1,
+              ]}>
               {value}%
             </Text>
           </View>
         </View>
         <View
-          style={tailwind(
-            'flex-row items-center justify-between border-b border-gray-50 py-2',
-          )}>
-          <Text style={tailwind('text-sm text-gray-500')}>交易汇总</Text>
-          <View style={tailwind('flex-row items-center justify-end')}>
-            <Text style={tailwind('text-base text-gray-600')}>
+          style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
+          <Text style={[styles.text_sm, styles.text_content_secondary]}>
+            交易汇总
+          </Text>
+          <View
+            style={[styles.flex_row, styles.items_center, styles.justify_end]}>
+            <Text style={[styles.text_md, styles.text_content]}>
               ${buyInData.amount}
             </Text>
             <ArrowRightSvg
-              fill={getColor('gray-600')}
+              fill={styleConfig.color.content}
               width={16}
               height={16}
-              style={tailwind('mx-2')}
+              style={[styles.mx_2]}
             />
-            <Text style={tailwind('text-base text-gray-600')}>
+            <Text style={[styles.text_md, styles.text_content]}>
               {buyInData.volumn} {symbol}
             </Text>
           </View>
@@ -210,19 +215,12 @@ const CoinBuyInPanel = (props: IProps) => {
   );
 };
 
-const styles = StyleSheet.create({
+const customStyle = StyleSheet.create({
+  content: {
+    height: 300,
+  },
   slider: {
     width: 130,
-  },
-  shadow: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#000',
-  },
-  content: {
-    backgroundColor: 'white',
-    paddingHorizontal: 20,
-    paddingVertical: 5,
-    height: 450,
   },
 });
 

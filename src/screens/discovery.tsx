@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {tailwind} from '@/core/tailwind';
+import {styles} from '@/styles';
 import {
   DiscoveryRank,
   DiscoveryBinance,
@@ -12,7 +12,7 @@ const DiscoveryScreen = ({}: any) => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={tailwind('flex-1 bg-gray-50 p-5')}>
+      style={styles.screen_container_with_padding}>
       <DiscoveryReminder />
       <DiscoveryBrowser />
       <DiscoveryRank />
