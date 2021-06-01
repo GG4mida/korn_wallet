@@ -12,8 +12,13 @@ const operates = () => {
   return request.get('/api/user/operates');
 };
 
+const update = (data: any) => {
+  return request.post('/api/user/update', data);
+};
+
 export default {
   info,
   holds,
   operates,
+  update,
 };

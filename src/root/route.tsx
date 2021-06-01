@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
@@ -17,6 +13,7 @@ import {
   IconTabDiscovery,
   IconTabCoin,
 } from '@/components/icons';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -199,7 +196,7 @@ const RouteContainer = () => {
   }
 
   return (
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer>
       <AnonymousRoutes />
     </NavigationContainer>
   );

@@ -2,10 +2,21 @@ import React, {useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {styles} from '@/styles';
-import {HomeJumbo, HomeHolds, HomeSectionHeader} from '@/components/home';
+import {
+  HomeJumbo,
+  HomeHolds,
+  HomeSectionHeader,
+  HomeHeaderTheme,
+} from '@/components/home';
 
-const HomeScreen = ({}: any) => {
+const HomeScreen = ({navigation}: any) => {
   const dispatch = useDispatch();
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => <HomeHeaderTheme />,
+    });
+  }, [navigation]);
 
   useEffect(() => {
     dispatch({

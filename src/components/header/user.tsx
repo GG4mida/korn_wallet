@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {RouteConfig} from '@/constants/navigation';
 import {styles} from '@/styles';
 
-const HeaderHome = (props: any) => {
+const HeaderUser = (props: any) => {
   const {navigation} = props;
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {avatar} = userInfo;
@@ -24,4 +24,4 @@ const HeaderHome = (props: any) => {
   );
 };
 
-export default HeaderHome;
+export default HeaderUser;

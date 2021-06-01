@@ -1,5 +1,12 @@
 import React, {useState, useCallback} from 'react';
-import {View, ScrollView, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  Switch,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {styles, styleConfig} from '@/styles';
@@ -46,6 +53,38 @@ const SettingGroup = (props: any) => {
   );
 };
 
+const SettingTheme = () => {
+  return (
+    <TouchableOpacity
+      onPress={() => null}
+      activeOpacity={0.5}
+      style={[
+        styles.flex_container_between,
+        styles.px_5,
+        styles.py_3,
+        styles.mb_3,
+        styles.bg_foreground,
+        styles.border_b,
+      ]}>
+      <View style={[styles.flex_container_center]}>
+        <Text style={[styles.text_md, styles.text_content]}>主题</Text>
+      </View>
+      <View>
+        <Switch
+          trackColor={{
+            false: styleConfig.color.gray_500,
+            true: styleConfig.color.green,
+          }}
+          thumbColor={styleConfig.color.white}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={() => null}
+          value={true}
+        />
+      </View>
+    </TouchableOpacity>
+  );
+};
+
 const SettingProfile = () => {
   const navigation = useNavigation();
   const {info: userInfo} = useSelector((state: any) => state.user);
@@ -59,7 +98,7 @@ const SettingProfile = () => {
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleProfilePress}
-      style={[styles.bg_foreground, styles.px_5, styles.py_3]}>
+      style={[styles.bg_foreground, styles.px_5, styles.py_3, styles.mb_3]}>
       <View style={[styles.flex_container_between]}>
         <View style={[styles.flex_container_center]}>
           <Image
@@ -67,7 +106,8 @@ const SettingProfile = () => {
             style={[styles.img_user, styles.mr_3, styles.rounded_full]}
           />
           <View>
-            <Text style={[styles.text_lg, styles.text_content]}>
+            <Text
+              style={[styles.text_md, styles.text_bold, styles.text_content]}>
               {nick_name}
             </Text>
             <Text style={[styles.text_md, styles.text_content_secondary]}>
@@ -90,7 +130,7 @@ const SettingProfile = () => {
 const SettingContent = (props: any) => {
   const {data} = props;
   return (
-    <View style={[styles.py_4]}>
+    <View style={[styles.mb_3]}>
       {data.map((group: any, index: number) => (
         <SettingGroup key={`setting_${index}`} data={group} />
       ))}
@@ -147,7 +187,7 @@ const SettingScreen = ({navigation}: any) => {
         handlePress: () => handleHelpPress(),
       },
       {
-        name: '问题反馈',
+        name: '使用反馈',
         handlePress: handleFeedbackPress,
       },
     ],
@@ -175,6 +215,7 @@ const SettingScreen = ({navigation}: any) => {
         showsVerticalScrollIndicator={false}
         style={[styles.screen_container, styles.py_4]}>
         <SettingProfile />
+        <SettingTheme />
         <SettingContent data={settingItems} />
       </ScrollView>
 

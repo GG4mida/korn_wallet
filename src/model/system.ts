@@ -7,6 +7,7 @@ const SystemModel = {
   state: {
     initialized: false,
     info: {},
+    avatars: [],
   },
   effects: {
     *info({payload}: any, {call, put}: any): any {
@@ -20,12 +21,30 @@ const SystemModel = {
       }
       return data;
     },
+    *avatars({payload}: any, {call, put}: any): any {
+      const data = yield call(SystemService.avatars, payload);
+      const {code, content} = data;
+      if (ResponseCode.SUCCESS === code) {
+        yield put({
+          type: 'setAvatars',
+          payload: content,
+        });
+      }
+      return data;
+    },
   },
 
   reducers: {
     setInfo(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.info = action.payload;
+      });
+      return nextState;
+    },
+
+    setAvatars(state: any, action: any) {
+      const nextState = produce(state, (draftState: any) => {
+        draftState.avatars = action.payload;
       });
       return nextState;
     },

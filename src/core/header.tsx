@@ -1,10 +1,7 @@
 import React from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {RouteConfig} from '@/constants/navigation';
-import HeaderHome from '@/components/header/home';
-import HeaderCoin from '@/components/header/coin';
-import HeaderNews from '@/components/header/news';
-import HeaderDiscovery from '@/components/header/discovery';
+import {HeaderUser} from '@/components/header';
 
 const getHeaderTitle = (route: any) => {
   const routeName =
@@ -29,18 +26,7 @@ const getHeaderRight = (navigation: any, route: any) => {
   let headerRightComponent: any = null;
   switch (routeName) {
     case RouteConfig.Home.name:
-      headerRightComponent = <HeaderHome navigation={navigation} />;
-      break;
-    case RouteConfig.Coin.name:
-      headerRightComponent = <HeaderCoin navigation={navigation} />;
-      break;
-    case RouteConfig.News.name:
-      headerRightComponent = <HeaderNews navigation={navigation} />;
-      break;
-    case RouteConfig.Discovery.name:
-      headerRightComponent = <HeaderDiscovery navigation={navigation} />;
-      break;
-    case RouteConfig.News.name:
+      headerRightComponent = <HeaderUser navigation={navigation} />;
       break;
     default:
       return null;
