@@ -4,7 +4,14 @@ import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {styles, styleConfig} from '@/styles';
 import HeaderBack from '@/components/header/back';
-import {IconForward} from '@/components/icons';
+import {
+  IconForward,
+  IconSettingHelp,
+  IconSettingFeedback,
+  IconSettingAbout,
+  IconSettingLogout,
+  IconSettingReset,
+} from '@/components/icons';
 import Confirm from '@/components/confirm';
 import {RouteConfig} from '@/constants/navigation';
 
@@ -22,7 +29,10 @@ const SettingItem = (props: any) => {
         styles.border_b,
       ]}>
       <View style={[styles.flex_container_center]}>
-        <Text style={[styles.text_md, styles.text_content]}>{data.name}</Text>
+        {data.icon}
+        <Text style={[styles.text_md, styles.text_content, styles.ml_2]}>
+          {data.name}
+        </Text>
       </View>
       <View>
         <IconForward
@@ -142,26 +152,61 @@ const SettingScreen = ({navigation}: any) => {
       {
         name: '帮助文档',
         handlePress: () => handleHelpPress(),
+        icon: (
+          <IconSettingHelp
+            width={20}
+            height={20}
+            fill={styleConfig.color.content}
+          />
+        ),
       },
       {
         name: '问题反馈',
         handlePress: handleFeedbackPress,
+        icon: (
+          <IconSettingFeedback
+            width={20}
+            height={20}
+            fill={styleConfig.color.content}
+          />
+        ),
       },
     ],
     [
       {
         name: '关于我们',
         handlePress: handleAboutPress,
+        icon: (
+          <IconSettingAbout
+            width={20}
+            height={20}
+            fill={styleConfig.color.content}
+          />
+        ),
       },
     ],
     [
       {
         name: '退出登录',
         handlePress: handleLogoutPress,
+        icon: (
+          <IconSettingLogout
+            width={20}
+            height={20}
+            fill={styleConfig.color.content}
+          />
+        ),
       },
       {
         name: '重置',
         handlePress: handleResetPress,
+        icon: (
+          <IconSettingReset
+            width={20}
+            height={20}
+            fill={styleConfig.color.content}
+          />
+        ),
       },
     ],
   ];

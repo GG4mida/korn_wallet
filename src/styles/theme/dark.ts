@@ -1,14 +1,14 @@
 const color = {
-  border_list: 'rgba(31, 41, 55, 0.2)',
+  border_list: 'rgba(249, 250, 251, 1)',
   border_input: 'rgba(229, 231, 235, 1)',
 
-  background: 'rgba(31, 41, 55, 1)',
-  foreground: 'rgba(55, 65, 81, 1)',
+  background: 'rgba(249, 250, 251, 1)',
+  foreground: 'rgba(255, 255, 255, 1)',
 
-  leading: 'rgba(243, 244, 246, 1)',
-  content: 'rgba(229, 231, 235, 1)',
-  content_secondary: 'rgba(209, 213, 219, 1)',
-  hint: 'rgba(156, 163, 175, 1)',
+  leading: 'rgba(31, 41, 55, 1)',
+  content: 'rgba(55, 65, 81, 1)',
+  content_secondary: 'rgba(75, 85, 99, 1)',
+  hint: 'rgba(107, 114, 128, 1)',
 
   red: 'rgba(239, 68, 68, 1)',
   green: 'rgba(16, 185, 129, 1)',

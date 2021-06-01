@@ -104,6 +104,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               textContentType="username"
               onChangeText={setUserName}
               placeholder="用户名..."
+              placeholderTextColor={styleConfig.color.hint}
               value={username}
             />
           </View>
@@ -117,6 +118,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               textContentType="password"
               onChangeText={setPassword}
               placeholder="用户密码..."
+              placeholderTextColor={styleConfig.color.hint}
               value={password}
             />
           </View>

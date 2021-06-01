@@ -19,3 +19,8 @@ export {default as IconDiscoveryBrowser} from '@/assets/svg/discovery-browser.sv
 export {default as IconDiscoveryReminder} from '@/assets/svg/discovery-reminder.svg';
 export {default as IconEmpty} from '@/assets/svg/empty.svg';
 export {default as IconUser} from '@/assets/svg/user.svg';
+export {default as IconSettingHelp} from '@/assets/svg/setting-help.svg';
+export {default as IconSettingAbout} from '@/assets/svg/setting-about.svg';
+export {default as IconSettingFeedback} from '@/assets/svg/setting-feedback.svg';
+export {default as IconSettingLogout} from '@/assets/svg/setting-logout.svg';
+export {default as IconSettingReset} from '@/assets/svg/setting-reset.svg';

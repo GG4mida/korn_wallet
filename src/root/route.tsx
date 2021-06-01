@@ -1,5 +1,9 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
@@ -188,14 +192,14 @@ const RouteContainer = () => {
 
   if (token && info && info.id) {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={DefaultTheme}>
         <AuthorizedRoutes />
       </NavigationContainer>
     );
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={DarkTheme}>
       <AnonymousRoutes />
     </NavigationContainer>
   );

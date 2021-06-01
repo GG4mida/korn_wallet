@@ -10,6 +10,7 @@ const formStyles = StyleSheet.create({
     borderColor: color.border_input,
     paddingVertical: 12,
     paddingHorizontal: 18,
+    color: color.content,
   },
 });
 

@@ -6,7 +6,7 @@ import {ResponseCode} from '@/constants/enum';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import HeaderBack from '@/components/header/back';
-import {styles} from '@/styles';
+import {styles, styleConfig} from '@/styles';
 
 const SignupScreen = ({navigation}: any) => {
   const [username, setUserName] = useState('');
@@ -115,6 +115,7 @@ const SignupScreen = ({navigation}: any) => {
               textContentType="username"
               onChangeText={setUserName}
               placeholder="用户名..."
+              placeholderTextColor={styleConfig.color.hint}
               value={username}
             />
           </View>
@@ -128,6 +129,7 @@ const SignupScreen = ({navigation}: any) => {
               textContentType="password"
               onChangeText={setPassword}
               placeholder="登录密码..."
+              placeholderTextColor={styleConfig.color.hint}
               value={password}
             />
           </View>
@@ -141,6 +143,7 @@ const SignupScreen = ({navigation}: any) => {
               textContentType="password"
               onChangeText={setRepassword}
               placeholder="确认密码..."
+              placeholderTextColor={styleConfig.color.hint}
               value={repassword}
             />
           </View>
