@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect} from 'react';
 import {
-  ScrollView,
   View,
   Image,
   Text,
+  FlatList,
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
@@ -14,52 +14,40 @@ import {RouteConfig} from '@/constants/navigation';
 import {styles, styleConfig} from '@/styles';
 
 const BrowserItem = (props: any) => {
-  const {data, index} = props;
-  const {logo_png, symbol} = data;
+  const {data} = props;
+  const {logo_png, symbol, explorer} = data;
   const navigation = useNavigation();
   const handleItemPress = useCallback(() => {
     navigation.navigate(RouteConfig.DiscoveryBrowserItem.name, data);
   }, [navigation, data]);
 
-  const itemStyle: any = [
-    styles.w_1_3,
-    styles.p_5,
-    styles.bg_foreground,
-    styles.flex_container_center,
-    styles.flex_col,
-    styles.border_b,
-  ];
-
-  if (index === 0 || index % 3 < 2) {
-    itemStyle.push(styles.border_r);
-  }
-
   return (
     <TouchableOpacity
       activeOpacity={0.5}
       onPress={handleItemPress}
-      style={itemStyle}>
-      <Image
-        source={{uri: logo_png}}
-        style={[styles.img_coin, styles.mb_2, styles.rounded_full]}
-      />
-      <Text style={[styles.text_md, styles.text_content_secondary]}>
-        {symbol}
-      </Text>
+      style={[
+        styles.px_4,
+        styles.py_3,
+        styles.flex_container_between,
+        styles.bg_foreground,
+        styles.border_b,
+      ]}>
+      <View style={[styles.flex_container_center]}>
+        <Image
+          source={{uri: logo_png}}
+          style={[styles.img_coin, styles.mr_3, styles.rounded_full]}
+        />
+        <View style={[styles.justify_center, styles.flex_1]}>
+          <Text style={[styles.text_md, styles.text_content]}>{symbol}</Text>
+          <Text
+            style={[styles.text_sm, styles.text_content_secondary]}
+            numberOfLines={1}
+            ellipsizeMode="tail">
+            {explorer}
+          </Text>
+        </View>
+      </View>
     </TouchableOpacity>
-  );
-};
-
-const BrowserList = (props: any) => {
-  const {data} = props;
-  return (
-    <View style={[styles.flex_row, styles.flex_wrap, styles.items_center]}>
-      {data.map((coin: any, index: number) => {
-        return (
-          <BrowserItem data={coin} key={`browser_${index}`} index={index} />
-        );
-      })}
-    </View>
   );
 };
 
@@ -93,12 +81,19 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
     );
   }
 
+  const renderCoinItem = (prop: any) => {
+    const {item} = prop;
+    return <BrowserItem data={item} />;
+  };
+
   return (
-    <ScrollView
+    <FlatList
+      data={coinList}
+      renderItem={renderCoinItem}
       showsVerticalScrollIndicator={false}
-      style={[styles.screen_container]}>
-      <BrowserList data={coinList} />
-    </ScrollView>
+      keyExtractor={item => item.symbol}
+      style={[styles.screen_container]}
+    />
   );
 };
 

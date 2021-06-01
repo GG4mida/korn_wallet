@@ -127,7 +127,7 @@ const OperateScreen = ({navigation}: any) => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={styles.screen_container_with_padding}>
-      <OperateList data={userOperates} loading={loading} />
+      <OperateList data={userOperates} />
     </ScrollView>
   );
 };

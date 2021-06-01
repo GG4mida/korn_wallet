@@ -45,6 +45,8 @@ const HomeJumbo = () => {
     navigation.navigate(RouteConfig.Wallet.name);
   }, [navigation]);
 
+  console.info(renderData);
+
   return (
     <LinearGradient
       colors={[styleConfig.color.yellow, styleConfig.color.red]}

@@ -20,11 +20,11 @@ const WalletItem = (props: any) => {
           {label}
         </Text>
         <View style={[styles.flex_container_center]}>
-          <Text style={[styles.text_lg, styles.text_content]}>{value}</Text>
+          <Text style={[styles.text_md, styles.text_content, styles.text_bold]}>
+            {value}
+          </Text>
           {suffix ? (
-            <Text style={[styles.text_lg, styles.text_content, styles.ml_1]}>
-              {suffix}
-            </Text>
+            <Text style={[styles.text_md, styles.text_content]}>{suffix}</Text>
           ) : null}
         </View>
       </View>

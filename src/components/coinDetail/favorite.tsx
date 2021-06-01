@@ -57,7 +57,7 @@ const CoinFavorite = () => {
   const iconStyle =
     favoriteStatus === true
       ? styleConfig.color.yellow
-      : styleConfig.color.gray_200;
+      : styleConfig.color.gray_300;
 
   return (
     <View style={[styles.flex_container_center, styles.px_4]}>
