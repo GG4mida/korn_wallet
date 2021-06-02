@@ -3,10 +3,11 @@ import {View, Text} from 'react-native';
 import {Formater} from '@/utils';
 import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const CoinMeta = () => {
   const route = useRoute();
+  const {styles} = useTheme();
 
   const coin: any = route.params;
   const {symbol} = coin;

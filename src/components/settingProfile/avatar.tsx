@@ -9,9 +9,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const SettingAvatar = (props: any) => {
+  const {styles} = useTheme();
   const {value, onChange} = props;
   const dispatch = useDispatch();
 

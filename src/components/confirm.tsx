@@ -8,19 +8,18 @@ import {
 } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const AnimatedView = Animated.View;
 const fall = new Animated.Value(1);
 
 const ConfirmShadow = (props: any) => {
+  const {styles} = useTheme();
   const {status, handlePress} = props;
-
   const animatedShadowOpacity = Animated.interpolate(fall, {
     inputRange: [0, 1],
     outputRange: [0.5, 0],
   });
-
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <AnimatedView
@@ -38,6 +37,7 @@ const ConfirmShadow = (props: any) => {
 };
 
 const ConfirmContent = (props: any) => {
+  const {styles} = useTheme();
   const {title, text, handleSubmit, handleCancel} = props;
   return (
     <View style={[styles.bg_foreground, customStyle.content]}>

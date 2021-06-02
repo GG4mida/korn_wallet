@@ -1,5 +1,6 @@
 enum StorageKeys {
   USER_TOKEN = 'USERTOKEN',
+  THEME_TYPE = 'THEMETYPE',
 }
 
 enum SortRule {
@@ -25,4 +26,16 @@ enum CoinOpDirection {
   SELL = -1,
 }
 
-export {StorageKeys, ResponseCode, SortRule, SortField, CoinOpDirection};
+enum ThemeType {
+  DARK = 'DARK',
+  LIGHT = 'LIGHT',
+}
+
+export {
+  StorageKeys,
+  ResponseCode,
+  SortRule,
+  SortField,
+  CoinOpDirection,
+  ThemeType,
+};

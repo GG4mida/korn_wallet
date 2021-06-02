@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const NewsHeader = (props: any) => {
+  const {styles} = useTheme();
   const {data} = props;
   return (
     <View

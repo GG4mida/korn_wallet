@@ -1,11 +1,12 @@
 import React, {useState, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {DateTime} from '@/utils';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const NUM_OF_CONTENT = 3;
 
 const NewsItem = (props: any) => {
+  const {styles} = useTheme();
   const [numberOfLines, setNumberOfLines] = useState(0);
   const [collapseText, setCollapseText] = useState('查看全文');
   const [showCollapse, setShowCollapse] = useState(false);

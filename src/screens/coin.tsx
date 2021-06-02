@@ -3,9 +3,9 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {coinTab} from '@/constants/tab';
 import {CoinSorter, CoinTab, CoinItem} from '@/components/coinList';
-import {styleConfig, styles} from '@/styles';
 import {SortField, SortRule} from '@/constants/enum';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
+import useTheme from '@/core/theme';
 
 const SorterFunc = (data: any, sorter: any) => {
   if (!data || data.length === 0) {
@@ -56,6 +56,7 @@ const SorterFunc = (data: any, sorter: any) => {
 };
 
 const CoinAll = (props: any) => {
+  const {styles} = useTheme();
   const {data, sorter} = props;
 
   const coinList = useMemo(() => {
@@ -90,12 +91,11 @@ const CoinAll = (props: any) => {
 };
 
 const CoinFavorites = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {data, sorter} = props;
-
   const coinList = useMemo(() => {
     return SorterFunc(data, sorter);
   }, [data, sorter]);
-
   if (data.length === 0) {
     return (
       <View
@@ -149,6 +149,7 @@ const CoinContent = (props: any) => {
 };
 
 const CoinScreen = ({}: any) => {
+  const {styles} = useTheme();
   const [tab, setTab] = useState(coinTab.ALL);
   const [sorter, setSorter] = useState({
     name: SortField.NAME,

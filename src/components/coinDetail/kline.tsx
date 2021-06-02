@@ -11,13 +11,14 @@ import {LineChart, Grid} from 'react-native-svg-charts';
 import {useRoute} from '@react-navigation/native';
 import {Storage, DateTime} from '@/utils';
 import {klineTab} from '@/constants/tab';
-import {styleConfig, styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 interface IProps {
   type: klineTab;
 }
 
 const CoinKline = (props: IProps) => {
+  const {styleConfig, styles} = useTheme();
   const {type} = props;
   const route = useRoute();
   const coin: any = route.params;
@@ -70,9 +71,17 @@ const CoinKline = (props: IProps) => {
 
   const {value} = klineFormatedData;
 
+  const styleChartContainer = [
+    styles.flex_container_center,
+    styles.py_4,
+    styles.bg_foreground,
+    styles.border_b,
+    customStyles.chart_container,
+  ];
+
   if (loading === true) {
     return (
-      <View style={customStyles.chart_container}>
+      <View style={styleChartContainer}>
         <ActivityIndicator />
       </View>
     );
@@ -80,14 +89,16 @@ const CoinKline = (props: IProps) => {
 
   if (value.length === 0) {
     return (
-      <View style={customStyles.chart_container}>
-        <Text style={[styles.text_md, styles.text_hint]}>暂无数据</Text>
+      <View style={styleChartContainer}>
+        <Text style={[styles.text_md, styles.text_hint, styles.text_center]}>
+          暂无数据
+        </Text>
       </View>
     );
   }
 
   return (
-    <View style={customStyles.chart_container}>
+    <View style={styleChartContainer}>
       <LineChart
         animate={true}
         style={customStyles.chart_content}
@@ -102,10 +113,6 @@ const CoinKline = (props: IProps) => {
 
 const customStyles = StyleSheet.create({
   chart_container: {
-    ...styles.flex_container_center,
-    ...styles.py_4,
-    ...styles.bg_foreground,
-    ...styles.border_b,
     height: 240,
   },
   chart_content: {

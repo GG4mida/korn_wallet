@@ -7,9 +7,10 @@ import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import {IconArrowRight} from '@/components/icons';
-import {styleConfig, styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const LoginScreen: React.FC = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const [username, setUserName] = useState('fuckusername');
   const [password, setPassword] = useState('fuckpassword');
 

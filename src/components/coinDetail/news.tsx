@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const CoinNews = () => {
+  const {styles} = useTheme();
   return (
     <View style={[styles.mt_3]}>
       <View style={[styles.bg_foreground, styles.p_4]}>

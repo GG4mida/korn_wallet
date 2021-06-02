@@ -3,8 +3,7 @@ import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
 import HeaderBack from '@/components/header/back';
-import {styleConfig, styles} from '@/styles';
-
+import useTheme from '@/core/theme';
 import {
   CoinAction,
   CoinKline,
@@ -17,6 +16,7 @@ import {
 } from '@/components/coinDetail';
 
 const CoinDetailScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const [tab, setTab] = useState(klineTab.DAY);
 
   const route = useRoute();
@@ -30,7 +30,7 @@ const CoinDetailScreen = ({navigation}: any) => {
       headerBackImage: () => <HeaderBack />,
       headerRight: () => <CoinFavorite />,
     });
-  }, [navigation, name]);
+  }, [navigation, name, styleConfig]);
 
   const actionBuyInRef: any = useRef();
   const actionSellRef: any = useRef();

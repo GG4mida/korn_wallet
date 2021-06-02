@@ -5,11 +5,12 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {RouteConfig} from '@/constants/navigation';
 import {Formater} from '@/utils';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
 const HomeJumbo = () => {
   const navigation = useNavigation();
+  const {styleConfig, styles} = useTheme();
   const {info: userInfo, holds: userHolds} = useSelector(
     (state: any) => state.user,
   );
@@ -44,8 +45,6 @@ const HomeJumbo = () => {
   const handleDetailPress = useCallback(() => {
     navigation.navigate(RouteConfig.Wallet.name);
   }, [navigation]);
-
-  console.info(renderData);
 
   return (
     <LinearGradient

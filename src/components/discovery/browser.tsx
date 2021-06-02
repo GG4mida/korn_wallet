@@ -1,11 +1,12 @@
 import React, {useCallback} from 'react';
-import {styleConfig} from '@/styles';
 import {RouteConfig} from '@/constants/navigation';
 import {useNavigation} from '@react-navigation/native';
 import {IconDiscoveryBrowser} from '@/components/icons';
 import DiscoveryItem from './item';
+import useTheme from '@/core/theme';
 
 const DiscoveryBrowser = () => {
+  const {styleConfig} = useTheme();
   const navigation = useNavigation();
 
   const handlePress = useCallback(() => {

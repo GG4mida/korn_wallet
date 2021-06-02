@@ -4,9 +4,10 @@ import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {RouteConfig} from '@/constants/navigation';
 import {IconArrowRight} from '@/components/icons';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const HomeSectionHeader = () => {
+  const {styleConfig, styles} = useTheme();
   const navigation = useNavigation();
   const {holds} = useSelector((state: any) => state.user);
 

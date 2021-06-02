@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text, View, TextInput} from 'react-native';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const SettingEmail = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {value, onChange} = props;
   return (
     <View style={[styles.mb_3]}>
@@ -21,6 +22,8 @@ const SettingEmail = (props: any) => {
             styles.border_t,
             styles.border_b,
             styles.bg_foreground,
+            styles.text_content,
+            styles.text_md,
             styles.py_3,
             styles.px_4,
           ]}

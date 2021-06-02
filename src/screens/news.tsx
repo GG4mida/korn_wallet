@@ -2,9 +2,10 @@ import React, {useEffect, useCallback} from 'react';
 import {SectionList, View, RefreshControl} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {NewsItem, NewsHeader} from '@/components/news';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const NewsScreen = ({}: any) => {
+  const {styles} = useTheme();
   const dispatch = useDispatch();
   const fetchData = useCallback(async () => {
     await dispatch({

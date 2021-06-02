@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, ActivityIndicator} from 'react-native';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const SettingSubmit = (props: any) => {
+  const {styles} = useTheme();
   const {loading, handlePress} = props;
   if (loading === true) {
     return (

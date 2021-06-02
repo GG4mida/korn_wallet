@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {coinTabs} from '@/constants/tab';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const CoinTabItem = (props: any) => {
+  const {styles} = useTheme();
   const {data, value, onChange} = props;
   let containerStyle = null;
   let textStyle = null;
@@ -54,6 +55,7 @@ const CoinTabList = (props: any) => {
 };
 
 const CoinTab = (props: any) => {
+  const {styles} = useTheme();
   const {value, onChange} = props;
   return (
     <View

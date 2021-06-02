@@ -4,7 +4,7 @@ import {find} from 'lodash';
 import {useRoute} from '@react-navigation/native';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Formater} from '@/utils';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 interface IProps {
   handleBuyInPress: () => void;
@@ -13,7 +13,7 @@ interface IProps {
 
 const CoinAction = (props: IProps) => {
   const {handleBuyInPress, handleSellPress} = props;
-
+  const {styles} = useTheme();
   const route = useRoute();
   const coin: any = route.params;
   const {symbol} = coin;

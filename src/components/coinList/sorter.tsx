@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {IconSortAsc, IconSortDesc, IconSortNone} from '@/components/icons';
 import {SortRule, SortField} from '@/constants/enum';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const SORT_HEADERS = [
   {
@@ -23,10 +23,11 @@ const SORT_HEADERS = [
 ];
 
 const SorterIcon = (props: any) => {
+  const {styleConfig} = useTheme();
   const {rule, name, item} = props;
   const {name: itemName} = item;
   const fillSize = 12;
-  const fillColor = styleConfig.color.gray_500;
+  const fillColor = styleConfig.color.hint;
   if (name === itemName) {
     if (rule === SortRule.ASC) {
       return (
@@ -43,6 +44,7 @@ const SorterIcon = (props: any) => {
 };
 
 const CoinSorter = (props: any) => {
+  const {styles} = useTheme();
   const {sorter, onChange} = props;
   const {name, rule} = sorter;
 

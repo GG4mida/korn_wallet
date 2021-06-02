@@ -6,9 +6,10 @@ import {ResponseCode} from '@/constants/enum';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import HeaderBack from '@/components/header/back';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const SignupScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');

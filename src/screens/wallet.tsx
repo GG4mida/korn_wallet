@@ -3,9 +3,10 @@ import {ScrollView, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {Formater, DateTime} from '@/utils';
-import {styleConfig, styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const WalletItem = (props: any) => {
+  const {styles} = useTheme();
   const {label, value, descr, suffix} = props;
   return (
     <View style={[styles.my_2]}>
@@ -39,12 +40,13 @@ const WalletItem = (props: any) => {
 };
 
 const WalletScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
-  }, [navigation]);
+  }, [navigation, styleConfig]);
 
   const {info: userInfo, holds: userHolds} = useSelector(
     (state: any) => state.user,

@@ -6,9 +6,10 @@ import {Toaster} from '@/utils';
 import {useRoute} from '@react-navigation/native';
 import {IconFavorite} from '@/components/icons';
 import {ResponseCode} from '@/constants/enum';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const CoinFavorite = () => {
+  const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
   const route = useRoute();
   const coin: any = route.params;

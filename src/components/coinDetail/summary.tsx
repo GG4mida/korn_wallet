@@ -3,9 +3,10 @@ import {View, Text, Image} from 'react-native';
 import {Formater} from '@/utils';
 import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const CoinSummary = () => {
+  const {styles} = useTheme();
   const route = useRoute();
   const coin: any = route.params;
   const {name, symbol, logo_png} = coin;

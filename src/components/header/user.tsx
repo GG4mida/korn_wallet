@@ -2,9 +2,10 @@ import React, {useCallback} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RouteConfig} from '@/constants/navigation';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const HeaderUser = (props: any) => {
+  const {styles} = useTheme();
   const {navigation} = props;
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {avatar} = userInfo;

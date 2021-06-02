@@ -11,9 +11,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {useNavigation} from '@react-navigation/core';
 import {RouteConfig} from '@/constants/navigation';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const BrowserItem = (props: any) => {
+  const {styles} = useTheme();
   const {data} = props;
   const {logo_png, symbol, explorer} = data;
   const navigation = useNavigation();
@@ -52,6 +53,7 @@ const BrowserItem = (props: any) => {
 };
 
 const DiscoveryBrowserScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
   const {all: coinList} = useSelector((state: any) => state.coin);
   const loading = useSelector(
@@ -71,7 +73,7 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
-  }, [navigation]);
+  }, [navigation, styleConfig]);
 
   if (loading === true) {
     return (

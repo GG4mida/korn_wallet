@@ -3,9 +3,10 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Formater} from '@/utils';
 import {RouteConfig} from '@/constants/navigation';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const CoinItem = (props: any) => {
+  const {styles} = useTheme();
   const {data} = props;
   const {name, symbol, logo_png, priceUSD, priceCNY, change} = data;
 

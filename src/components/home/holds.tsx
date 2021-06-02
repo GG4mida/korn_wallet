@@ -10,11 +10,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {RouteConfig} from '@/constants/navigation';
-import {styleConfig, styles} from '@/styles';
 import {Formater} from '@/utils';
+import useTheme from '@/core/theme';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
 
 const HomeHoldItem = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {data} = props;
   const {coin, volumn, amount} = data;
   const {logo_png, name, symbol} = coin;
@@ -71,6 +72,7 @@ const HomeHoldList = (props: any) => {
 };
 
 const HomeHolds = () => {
+  const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
   const navigation = useNavigation();
 

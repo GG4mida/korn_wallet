@@ -1,9 +1,10 @@
 import React from 'react';
-import {styleConfig} from '@/styles';
 import {IconDiscoveryReminder} from '@/components/icons';
 import DiscoveryItem from './item';
+import useTheme from '@/core/theme';
 
 const DiscoveryReminder = () => {
+  const {styleConfig} = useTheme();
   const config = {
     title: '价格提醒',
     descr: '数字货币价格实时提醒',

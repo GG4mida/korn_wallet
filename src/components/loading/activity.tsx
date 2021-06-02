@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const LoadingActivity = (props: any) => {
+  const {styles} = useTheme();
   const {loading} = props;
   if (!loading) {
     return null;

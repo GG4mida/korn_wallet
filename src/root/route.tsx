@@ -1,12 +1,17 @@
 import React from 'react';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
 import HeaderHelper from '@/core/header';
 import {RouteConfig} from '@/constants/navigation';
 import Screen from '@/screens';
-import {styleConfig, styles} from '@/styles';
+import useTheme from '@/core/theme';
+import {ThemeType} from '@/constants/enum';
 import {
   IconTabHome,
   IconTabNews,
@@ -18,6 +23,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const MainTabs = ({navigation, route}: any) => {
+  const {styleConfig, styles} = useTheme();
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: HeaderHelper.getHeaderTitle(route),
@@ -182,21 +188,24 @@ const AnonymousRoutes = () => {
 const RouteContainer = () => {
   const {token} = useSelector((state: any) => state.account);
   const {info} = useSelector((state: any) => state.user);
-  const {initialized} = useSelector((state: any) => state.system);
+  const {initialized, theme} = useSelector((state: any) => state.system);
+
   if (initialized === false) {
     return null;
   }
 
+  const navigationTheme = theme === ThemeType.DARK ? DarkTheme : DefaultTheme;
+
   if (token && info && info.id) {
     return (
-      <NavigationContainer theme={DefaultTheme}>
+      <NavigationContainer theme={navigationTheme}>
         <AuthorizedRoutes />
       </NavigationContainer>
     );
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <AnonymousRoutes />
     </NavigationContainer>
   );

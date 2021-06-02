@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {styles, styleConfig} from '@/styles';
 import {IconForward} from '@/components/icons';
+import useTheme from '@/core/theme';
 
 const DiscoveryItem = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {colors, title, descr, handlePress, icon} = props;
-
   return (
     <TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
       <LinearGradient

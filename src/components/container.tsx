@@ -3,7 +3,7 @@ import {StatusBar} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
-import {StorageKeys, ResponseCode} from '@/constants/enum';
+import {StorageKeys, ResponseCode, ThemeType} from '@/constants/enum';
 
 const TIMER_INTERVAL = 500000;
 const SPLASH_INTERVAL = 2000;
@@ -11,6 +11,7 @@ const SPLASH_INTERVAL = 2000;
 const Container: React.FC = props => {
   const dispatch = useDispatch();
   const {info: userInfo} = useSelector((state: any) => state.user);
+  const {theme} = useSelector((state: any) => state.system);
 
   useEffect(() => {
     let marketTimer: any = null;
@@ -55,6 +56,16 @@ const Container: React.FC = props => {
         }
       }
 
+      const themeType = await Storage.getItem(StorageKeys.THEME_TYPE);
+      if (themeType) {
+        await dispatch({
+          type: 'system/setTheme',
+          payload: {
+            theme: themeType,
+          },
+        });
+      }
+
       const systemInfoRes: any = await dispatch({
         type: 'system/info',
       });
@@ -80,9 +91,12 @@ const Container: React.FC = props => {
     };
   }, [dispatch]);
 
+  const statusBarTheme =
+    theme === ThemeType.DARK ? 'light-content' : 'dark-content';
+
   return (
     <React.Fragment>
-      <StatusBar animated={true} barStyle="dark-content" />
+      <StatusBar animated={true} barStyle={statusBarTheme} />
       {props.children}
     </React.Fragment>
   );

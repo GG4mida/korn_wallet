@@ -2,25 +2,21 @@ import React, {useEffect} from 'react';
 import {ScrollView, View, Text, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
-import {styles, styleConfig} from '@/styles';
 import HeaderBack from '@/components/header/back';
 import {CoinOpDirection} from '@/constants/enum';
 import {Formater} from '@/utils';
+import useTheme from '@/core/theme';
 
 const OperateItem = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {data} = props;
-
   const {operate} = data;
-
   const {coin_code, volumn, amount, price, direction} = operate;
-
   const panelStyle =
     direction === CoinOpDirection.BUYIN
       ? [styleConfig.color.yellow, styleConfig.color.red]
       : [styleConfig.color.gray_500, styleConfig.color.green];
-
   const operateName = direction === CoinOpDirection.BUYIN ? '买入' : '卖出';
-
   return (
     <LinearGradient
       colors={panelStyle}
@@ -73,6 +69,7 @@ const OperateItem = (props: any) => {
 };
 
 const OperateList = (props: any) => {
+  const {styles} = useTheme();
   const {data} = props;
   const dataCount = data.length;
 
@@ -95,6 +92,7 @@ const OperateList = (props: any) => {
 };
 
 const OperateScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
   const {operates: userOperates} = useSelector((state: any) => state.user);
 
@@ -107,7 +105,7 @@ const OperateScreen = ({navigation}: any) => {
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
-  }, [navigation]);
+  }, [navigation, styleConfig]);
 
   useEffect(() => {
     dispatch({

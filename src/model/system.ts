@@ -1,6 +1,6 @@
 import produce from 'immer';
 import SystemService from '@/services/system';
-import {ResponseCode} from '@/constants/enum';
+import {ResponseCode, ThemeType} from '@/constants/enum';
 
 const SystemModel = {
   namespace: 'system',
@@ -8,6 +8,7 @@ const SystemModel = {
     initialized: false,
     info: {},
     avatars: [],
+    theme: ThemeType.LIGHT,
   },
   effects: {
     *info({payload}: any, {call, put}: any): any {
@@ -45,6 +46,13 @@ const SystemModel = {
     setAvatars(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.avatars = action.payload;
+      });
+      return nextState;
+    },
+
+    setTheme(state: any, action: any) {
+      const nextState = produce(state, (draftState: any) => {
+        draftState.theme = action.payload.theme;
       });
       return nextState;
     },

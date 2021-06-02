@@ -1,9 +1,10 @@
 import React from 'react';
-import {styleConfig} from '@/styles';
 import {IconDiscoveryBinance} from '@/components/icons';
 import DiscoveryItem from './item';
+import useTheme from '@/core/theme';
 
 const DiscoveryBinance = () => {
+  const {styleConfig} = useTheme();
   const config = {
     title: '币安（binance）',
     descr: '领先的数字货币交易平台',

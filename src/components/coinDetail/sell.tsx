@@ -16,12 +16,13 @@ import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
 import Slider from '@react-native-community/slider';
 import {Formater} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
-import {styles, styleConfig} from '@/styles';
+import useTheme from '@/core/theme';
 
 const AnimatedView = Animated.View;
 let fall = new Animated.Value(1);
 
 const PanelShadow = (props: any) => {
+  const {styles} = useTheme();
   const {status, handlePress} = props;
 
   const animatedShadowOpacity = Animated.interpolate(fall, {
@@ -46,6 +47,7 @@ const PanelShadow = (props: any) => {
 };
 
 const PanelContent = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {handleSubmitSuccess} = props;
   const [value, setValue] = useState(0);
   const route = useRoute();

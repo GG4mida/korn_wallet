@@ -1,9 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
 import {IconBack} from '@/components/icons';
-import {styleConfig, styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 const HeaderBack = () => {
+  const {styleConfig, styles} = useTheme();
   return (
     <View style={[styles.ml_3, styles.mr_1]}>
       <IconBack width={20} height={20} fill={styleConfig.color.blue} />

@@ -2,7 +2,6 @@ import React, {useState, useCallback} from 'react';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
-import {styles, styleConfig} from '@/styles';
 import {Toaster} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
 import {
@@ -11,10 +10,11 @@ import {
   SettingEmail,
   SettingSubmit,
 } from '@/components/settingProfile';
+import useTheme from '@/core/theme';
 
 const SettingProfileScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
-
   const {info: userInfo} = useSelector((state: any) => state.user);
   const loading = useSelector(
     (state: any) => state.loading.effects['user/update'],
@@ -56,7 +56,7 @@ const SettingProfileScreen = ({navigation}: any) => {
         <SettingSubmit handlePress={handleSubmit} loading={loading} />
       ),
     });
-  }, [navigation, handleSubmit, loading]);
+  }, [navigation, handleSubmit, loading, styleConfig]);
 
   return (
     <View style={[styles.screen_container]}>

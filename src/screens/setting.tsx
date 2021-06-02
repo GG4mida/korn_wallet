@@ -9,13 +9,16 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {styles, styleConfig} from '@/styles';
 import HeaderBack from '@/components/header/back';
 import {IconForward} from '@/components/icons';
 import Confirm from '@/components/confirm';
+import {ThemeType, StorageKeys} from '@/constants/enum';
 import {RouteConfig} from '@/constants/navigation';
+import useTheme from '@/core/theme';
+import Storage from '@/utils/storage';
 
 const SettingItem = (props: any) => {
+  const {styleConfig, styles} = useTheme();
   const {data} = props;
   return (
     <TouchableOpacity
@@ -43,6 +46,7 @@ const SettingItem = (props: any) => {
 };
 
 const SettingGroup = (props: any) => {
+  const {styles} = useTheme();
   const {data} = props;
   return (
     <View style={[styles.mb_3]}>
@@ -54,6 +58,27 @@ const SettingGroup = (props: any) => {
 };
 
 const SettingTheme = () => {
+  const dispatch = useDispatch();
+  const {theme: themeType} = useSelector((state: any) => state.system);
+  const defaultChecked = themeType === ThemeType.DARK;
+  const [checked, setChecked] = useState(defaultChecked);
+  const {styleConfig, styles} = useTheme();
+
+  const handleCheckedChange = useCallback(
+    (checkStatus: any) => {
+      const theme = checkStatus === true ? ThemeType.DARK : ThemeType.LIGHT;
+      dispatch({
+        type: 'system/setTheme',
+        payload: {
+          theme,
+        },
+      });
+      Storage.setItem(StorageKeys.THEME_TYPE, theme);
+      setChecked(checkStatus);
+    },
+    [dispatch],
+  );
+
   return (
     <TouchableOpacity
       onPress={() => null}
@@ -72,13 +97,13 @@ const SettingTheme = () => {
       <View>
         <Switch
           trackColor={{
-            false: styleConfig.color.gray_500,
+            false: styleConfig.color.gray_100,
             true: styleConfig.color.green,
           }}
           thumbColor={styleConfig.color.white}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={() => null}
-          value={true}
+          ios_backgroundColor={styleConfig.color.gray_200}
+          onValueChange={handleCheckedChange}
+          value={checked}
         />
       </View>
     </TouchableOpacity>
@@ -86,6 +111,7 @@ const SettingTheme = () => {
 };
 
 const SettingProfile = () => {
+  const {styleConfig, styles} = useTheme();
   const navigation = useNavigation();
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {nick_name, login_name, avatar} = userInfo;
@@ -128,6 +154,7 @@ const SettingProfile = () => {
 };
 
 const SettingContent = (props: any) => {
+  const {styles} = useTheme();
   const {data} = props;
   return (
     <View style={[styles.mb_3]}>
@@ -139,6 +166,7 @@ const SettingContent = (props: any) => {
 };
 
 const SettingScreen = ({navigation}: any) => {
+  const {styleConfig, styles} = useTheme();
   const [logoutConfirmVisible, setLogoutConfirmVisible] = useState(false);
   const [resetConfirmVisible, setResetConfirmVisible] = useState(false);
   const dispatch = useDispatch();
@@ -147,7 +175,7 @@ const SettingScreen = ({navigation}: any) => {
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
-  }, [navigation]);
+  }, [navigation, styleConfig]);
 
   const handleLogoutPress = useCallback(() => {
     setLogoutConfirmVisible(true);

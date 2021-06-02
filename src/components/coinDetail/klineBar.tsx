@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {klineTab, klineTabs} from '@/constants/tab';
-import {styles} from '@/styles';
+import useTheme from '@/core/theme';
 
 interface IProps {
   value: klineTab;
@@ -10,6 +10,7 @@ interface IProps {
 
 const CoinKlineBarItem = (props: any) => {
   const {value, data, onChange} = props;
+  const {styles} = useTheme();
 
   const itemStyle: any = [
     styles.rounded_full,
@@ -55,6 +56,7 @@ const CoinKlineBarList = (props: any) => {
 
 const CoinKlineBar = (props: IProps) => {
   const {value, onChange} = props;
+  const {styles} = useTheme();
   return (
     <View
       style={[
