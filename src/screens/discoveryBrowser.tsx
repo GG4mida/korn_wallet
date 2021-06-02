@@ -19,8 +19,12 @@ const BrowserItem = (props: any) => {
   const {logo_png, symbol, explorer} = data;
   const navigation = useNavigation();
   const handleItemPress = useCallback(() => {
-    navigation.navigate(RouteConfig.DiscoveryBrowserItem.name, data);
-  }, [navigation, data]);
+    const params = {
+      title: symbol,
+      url: explorer,
+    };
+    navigation.navigate(RouteConfig.WebView.name, params);
+  }, [navigation, symbol, explorer]);
 
   return (
     <TouchableOpacity

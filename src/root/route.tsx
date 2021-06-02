@@ -130,12 +130,6 @@ const AuthorizedRoutes = () => {
       />
 
       <Stack.Screen
-        name={RouteConfig.DiscoveryBrowserItem.name}
-        component={Screen.DiscoveryBrowserItemScreen}
-        options={{title: RouteConfig.DiscoveryBrowserItem.title}}
-      />
-
-      <Stack.Screen
         name={RouteConfig.Setting.name}
         component={Screen.SettingScreen}
         options={{title: RouteConfig.Setting.title}}
@@ -163,6 +157,12 @@ const AuthorizedRoutes = () => {
         name={RouteConfig.SettingAbout.name}
         component={Screen.SettingAboutScreen}
         options={{title: RouteConfig.SettingAbout.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.WebView.name}
+        component={Screen.WebViewScreen}
+        options={{title: RouteConfig.WebView.title}}
       />
     </Stack.Navigator>
   );

@@ -43,10 +43,6 @@ const RouteConfig = {
     name: 'DISCOVERY-BROWSER',
     title: '区块浏览器',
   },
-  DiscoveryBrowserItem: {
-    name: 'DISCOVERY-BROWSER-ITEM',
-    title: '区块浏览器',
-  },
   Setting: {
     name: 'SETTING',
     title: '设置',
@@ -66,6 +62,10 @@ const RouteConfig = {
   SettingAbout: {
     name: 'SETTING-ABOUT',
     title: '关于我们',
+  },
+  WebView: {
+    name: 'WEBVIEW',
+    title: '浏览器',
   },
 };
 

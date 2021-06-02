@@ -5,7 +5,7 @@ import HeaderBack from '@/components/header/back';
 import {WebView} from 'react-native-webview';
 import useTheme from '@/core/theme';
 
-const Loading = () => {
+const WebViewLoading = () => {
   const {styles} = useTheme();
   return (
     <View style={[styles.absolute_fill, styles.flex_container_center]}>
@@ -14,23 +14,22 @@ const Loading = () => {
   );
 };
 
-const DiscoveryBrowserItemScreen = ({navigation}: any) => {
+const WebViewScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
   const route = useRoute();
   const data: any = route.params;
-  const {symbol} = data;
+
+  const {title, url} = data;
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: symbol,
+      headerTitle: title,
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
-  }, [navigation, symbol, styleConfig]);
+  }, [navigation, title, styleConfig]);
 
-  const {explorer} = data;
-
-  if (!explorer) {
+  if (!url) {
     return (
       <View style={[styles.flex_1, styles.flex_container_center]}>
         <Text style={[styles.text_md, styles.text_hint]}>未获取到地址信息</Text>
@@ -40,11 +39,11 @@ const DiscoveryBrowserItemScreen = ({navigation}: any) => {
 
   return (
     <WebView
-      source={{uri: explorer}}
+      source={{uri: url}}
       startInLoadingState={true}
-      renderLoading={() => <Loading />}
+      renderLoading={() => <WebViewLoading />}
     />
   );
 };
 
-export default DiscoveryBrowserItemScreen;
+export default WebViewScreen;

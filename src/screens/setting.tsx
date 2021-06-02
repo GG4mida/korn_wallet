@@ -92,7 +92,7 @@ const SettingTheme = () => {
         styles.border_b,
       ]}>
       <View style={[styles.flex_container_center]}>
-        <Text style={[styles.text_md, styles.text_content]}>主题</Text>
+        <Text style={[styles.text_md, styles.text_content]}>暗黑模式</Text>
       </View>
       <View>
         <Switch
@@ -212,7 +212,7 @@ const SettingScreen = ({navigation}: any) => {
     [
       {
         name: '帮助文档',
-        handlePress: () => handleHelpPress(),
+        handlePress: handleHelpPress,
       },
       {
         name: '使用反馈',

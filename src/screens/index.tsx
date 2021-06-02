@@ -8,7 +8,7 @@ import CoinScreen from './coin';
 import CoinDetailScreen from './coinDetail';
 import DiscoveryScreen from './discovery';
 import DiscoveryBrowserScreen from './discoveryBrowser';
-import DiscoveryBrowserItemScreen from './discoveryBrowserItem';
+import WebViewScreen from './webview';
 import SettingScreen from './setting';
 import SettingHelpScreen from './settingHelp';
 import SettingFeedbackScreen from './settingFeedback';
@@ -26,10 +26,10 @@ export default {
   CoinDetailScreen,
   DiscoveryScreen,
   DiscoveryBrowserScreen,
-  DiscoveryBrowserItemScreen,
   SettingScreen,
   SettingHelpScreen,
   SettingAboutScreen,
   SettingFeedbackScreen,
   SettingProfileScreen,
+  WebViewScreen,
 };
