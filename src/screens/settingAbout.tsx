@@ -1,11 +1,13 @@
 import React, {useCallback} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, Linking} from 'react-native';
 import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {IconForward} from '@/components/icons';
 import Version from '@/components/version';
+import {Toaster} from '@/utils';
 import {RouteConfig} from '@/constants/navigation';
+import {useSelector} from 'react-redux';
 
 const SettingAboutJumbo = () => {
   const {styles} = useTheme();
@@ -103,74 +105,73 @@ const SettingAboutScreen = ({navigation}: any) => {
     });
   }, [navigation, styleConfig]);
 
+  const {info: systemInfo} = useSelector((state: any) => state.system);
+
+  const {site_url, git_url, email} = systemInfo;
+
   const handleSitePress = useCallback(() => {
     const params = {
       title: 'Site',
-      url: 'https://www.baidu.com',
+      url: site_url,
     };
     navigation.navigate(RouteConfig.WebView.name, params);
-  }, [navigation]);
+  }, [navigation, site_url]);
 
   const handleGithubPress = useCallback(() => {
     const params = {
       title: 'Github',
-      url: 'https://www.baidu.com',
+      url: git_url,
     };
     navigation.navigate(RouteConfig.WebView.name, params);
-  }, [navigation]);
+  }, [navigation, git_url]);
 
-  const handleTelegramPress = useCallback(() => {
-    console.info('wtf');
-  }, []);
+  const handleEmailPress = useCallback(async () => {
+    const emailLink = `mailto:${email}`;
+    const emailLinkSupported = await Linking.canOpenURL(emailLink).catch(() => {
+      Toaster.show('打开邮件客户端失败');
+    });
 
-  const handleWeChatPress = useCallback(() => {
-    console.info('wtf');
-  }, []);
+    if (emailLinkSupported) {
+      await Linking.openURL(emailLink);
+    } else {
+      Toaster.show('打开邮件客户端失败');
+    }
+  }, [email]);
 
-  const handleEmailPress = useCallback(() => {
-    console.info('wtf');
-  }, []);
+  const aboutItems = [];
+  if (site_url) {
+    aboutItems.push({
+      name: '官方网站',
+      isTail: true,
+      handlePress: handleSitePress,
+    });
+  }
 
-  const aboutItems = [
-    [
-      {
-        name: '官方网站',
-        isTail: true,
-        handlePress: handleSitePress,
-      },
-      {
-        name: 'Github',
-        isTail: true,
-        handlePress: handleGithubPress,
-      },
-      {
-        name: '微信',
-        value: 'Mcmurphy',
-        isTail: false,
-        handlePress: handleWeChatPress,
-      },
-      {
-        name: 'Telegram',
-        value: 'jackslowfak',
-        isTail: false,
-        handlePress: handleTelegramPress,
-      },
-      {
-        name: '电子邮箱',
-        value: 'sleepsleep@foxmail.com',
-        isTail: false,
-        handlePress: handleEmailPress,
-      },
-    ],
-  ];
+  if (git_url) {
+    aboutItems.push({
+      name: 'Github',
+      isTail: true,
+      handlePress: handleGithubPress,
+    });
+  }
+
+  if (email) {
+    aboutItems.push({
+      name: '电子邮箱',
+      value: email,
+      isTail: false,
+      handlePress: handleEmailPress,
+    });
+  }
+
+  const aboutGroups = [aboutItems];
 
   return (
     <View style={[styles.screen_container]}>
       <View style={[styles.flex_1]}>
         <SettingAboutJumbo />
-        <SettingAboutContent data={aboutItems} />
+        <SettingAboutContent data={aboutGroups} />
       </View>
-
       <Version />
     </View>
   );

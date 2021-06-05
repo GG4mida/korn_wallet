@@ -36,15 +36,11 @@ const SettingProfileScreen = ({navigation}: any) => {
 
     const {code, content} = updateRes;
     if (code === ResponseCode.SUCCESS) {
+      Toaster.show(content);
       await dispatch({
         type: 'user/info',
       });
-
-      Toaster.show(content, {
-        onHidden: () => {
-          navigation.goBack();
-        },
-      });
+      navigation.goBack();
     }
   }, [dispatch, navigation, userNickName, userEmail, userAvatar]);
 

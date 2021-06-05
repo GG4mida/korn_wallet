@@ -4,6 +4,7 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {Toaster, Validator, Device} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
 import LogoSvg from '@/assets/svg/logo.svg';
+import Version from '@/components/version';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
@@ -159,9 +160,7 @@ const SignupScreen = ({navigation}: any) => {
           </View>
         </View>
       </View>
-      <View style={[styles.flex_container_center, styles.mb_5]}>
-        <Text style={[styles.text_md, styles.text_hint]}>3.2.3</Text>
-      </View>
+      <Version />
       <LoadingMask loading={loading} />
     </View>
   );
