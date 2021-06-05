@@ -32,7 +32,7 @@ const SettingEmail = (props: any) => {
           autoCapitalize="none"
           autoCompleteType="off"
           autoCorrect={false}
-          textContentType="username"
+          textContentType="emailAddress"
           onChangeText={onChange}
           placeholder="电子邮箱..."
           placeholderTextColor={styleConfig.color.hint}

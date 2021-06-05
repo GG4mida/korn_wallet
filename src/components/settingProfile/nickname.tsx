@@ -32,7 +32,7 @@ const SettingNickName = (props: any) => {
           autoCapitalize="none"
           autoCompleteType="off"
           autoCorrect={false}
-          textContentType="username"
+          textContentType="nickname"
           onChangeText={onChange}
           placeholder="昵称..."
           placeholderTextColor={styleConfig.color.hint}

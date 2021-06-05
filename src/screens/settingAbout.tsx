@@ -111,7 +111,7 @@ const SettingAboutScreen = ({navigation}: any) => {
 
   const handleSitePress = useCallback(() => {
     const params = {
-      title: 'Site',
+      title: '官方网站',
       url: site_url,
     };
     navigation.navigate(RouteConfig.WebView.name, params);

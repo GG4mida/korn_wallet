@@ -12,10 +12,11 @@ import {useNavigation} from '@react-navigation/native';
 import HeaderBack from '@/components/header/back';
 import {IconForward} from '@/components/icons';
 import Confirm from '@/components/confirm';
-import {ThemeType, StorageKeys} from '@/constants/enum';
+import {ThemeType, StorageKeys, ResponseCode} from '@/constants/enum';
 import {RouteConfig} from '@/constants/navigation';
 import useTheme from '@/core/theme';
 import Storage from '@/utils/storage';
+import {Toaster} from '@/utils';
 
 const SettingItem = (props: any) => {
   const {styleConfig, styles} = useTheme();
@@ -192,33 +193,28 @@ const SettingScreen = ({navigation}: any) => {
     setResetConfirmVisible(true);
   }, []);
 
-  const handleResetSubmit = useCallback(() => {
+  const handleResetSubmit = useCallback(async () => {
     setResetConfirmVisible(false);
-  }, []);
 
-  const handleHelpPress = useCallback(() => {
-    navigation.navigate(RouteConfig.SettingHelp.name);
-  }, [navigation]);
+    setLogoutConfirmVisible(false);
+    const resetRes: any = await dispatch({
+      type: 'user/reset',
+    });
 
-  const handleFeedbackPress = useCallback(() => {
-    navigation.navigate(RouteConfig.SettingFeedback.name);
-  }, [navigation]);
+    const {code, content} = resetRes;
+    if (code === ResponseCode.SUCCESS) {
+      Toaster.show(content);
+      await dispatch({
+        type: 'account/logout',
+      });
+    }
+  }, [dispatch]);
 
   const handleAboutPress = useCallback(() => {
     navigation.navigate(RouteConfig.SettingAbout.name);
   }, [navigation]);
 
   const settingItems = [
-    [
-      {
-        name: '帮助文档',
-        handlePress: handleHelpPress,
-      },
-      {
-        name: '使用反馈',
-        handlePress: handleFeedbackPress,
-      },
-    ],
     [
       {
         name: '关于我们',

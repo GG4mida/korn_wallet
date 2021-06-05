@@ -49,6 +49,10 @@ const UserModel = {
     *update({payload}: any, {call}: any): any {
       return yield call(UserService.update, payload);
     },
+
+    *reset({payload}: any, {call}: any): any {
+      return yield call(UserService.reset, payload);
+    },
   },
 
   reducers: {
