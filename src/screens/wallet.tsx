@@ -21,9 +21,7 @@ const WalletItem = (props: any) => {
           {label}
         </Text>
         <View style={[styles.flex_container_center]}>
-          <Text style={[styles.text_md, styles.text_content, styles.text_bold]}>
-            {value}
-          </Text>
+          <Text style={[styles.text_md, styles.text_content]}>{value}</Text>
           {suffix ? (
             <Text style={[styles.text_md, styles.text_content]}>{suffix}</Text>
           ) : null}
@@ -82,6 +80,8 @@ const WalletScreen = ({navigation}: any) => {
       createtime: createtime,
     };
   }, [userInfo, marketList, userHolds]);
+
+  console.info(userSummaryData);
 
   return (
     <ScrollView

@@ -4,9 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode, ThemeType} from '@/constants/enum';
-
-const TIMER_INTERVAL = 10000;
-const SPLASH_INTERVAL = 2000;
+import Config from 'react-native-config';
 
 const Container: React.FC = props => {
   const dispatch = useDispatch();
@@ -29,7 +27,10 @@ const Container: React.FC = props => {
         });
       };
       handler();
-      marketTimer = setInterval(handler, TIMER_INTERVAL);
+      marketTimer = setInterval(
+        handler,
+        Config.MARKET_REFRESH_INTERVAL || 5000,
+      );
     }
 
     fetchMarket();
@@ -82,7 +83,7 @@ const Container: React.FC = props => {
 
         initTimer = setTimeout(() => {
           setInitialized();
-        }, SPLASH_INTERVAL);
+        }, 2000);
       }
     }
     fetchData();

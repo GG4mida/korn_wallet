@@ -6,7 +6,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import {RouteConfig} from '@/constants/navigation';
 import {Formater} from '@/utils';
 import useTheme from '@/core/theme';
-import {IconArrowDown, IconArrowTop} from '@/components/icons';
 
 const HomeJumbo = () => {
   const navigation = useNavigation();
@@ -63,19 +62,6 @@ const HomeJumbo = () => {
           ${Formater.formatAmount(renderData.totalAmount)}
         </Text>
         <View style={styles.flex_container_center}>
-          {renderData.totalProfit >= 0 ? (
-            <IconArrowTop
-              width={16}
-              height={16}
-              fill={styleConfig.color.white}
-            />
-          ) : (
-            <IconArrowDown
-              width={16}
-              height={16}
-              fill={styleConfig.color.white}
-            />
-          )}
           <Text style={[styles.text_white, styles.text_lg]}>
             {Formater.formatProfitRatio(renderData.totalProfitRatio)}
           </Text>

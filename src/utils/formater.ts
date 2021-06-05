@@ -2,7 +2,7 @@ const formatProfitRatio = (ratio: string | number) => {
   if (!ratio) {
     return '0.00%';
   }
-  const ratioNumber = (Math.abs(parseFloat(ratio + '')) * 100).toFixed(2);
+  const ratioNumber = (parseFloat(ratio + '') * 100).toFixed(2);
   return `${ratioNumber}%`;
 };
 
