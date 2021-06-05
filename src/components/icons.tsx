@@ -13,9 +13,14 @@ export {default as IconTabCoin} from '@/assets/svg/tab-coin.svg';
 export {default as IconTabNews} from '@/assets/svg/tab-news.svg';
 export {default as IconTabProfile} from '@/assets/svg/tab-profile.svg';
 export {default as IconTabDiscovery} from '@/assets/svg/tab-discovery.svg';
-export {default as IconDiscoveryRank} from '@/assets/svg/discovery-rank.svg';
 export {default as IconDiscoveryBinance} from '@/assets/svg/discovery-binance.svg';
 export {default as IconDiscoveryBrowser} from '@/assets/svg/discovery-browser.svg';
-export {default as IconDiscoveryReminder} from '@/assets/svg/discovery-reminder.svg';
+export {default as IconDiscoveryImToken} from '@/assets/svg/discovery-imtoken.svg';
+
+export {default as IconDiscoveryNew} from '@/assets/svg/discovery-new.svg';
+export {default as IconDiscoveryTrade} from '@/assets/svg/discovery-trade.svg';
+export {default as IconDiscoveryBye} from '@/assets/svg/discovery-bye.svg';
+export {default as IconDiscoveryTopic} from '@/assets/svg/discovery-topic.svg';
+
 export {default as IconEmpty} from '@/assets/svg/empty.svg';
 export {default as IconUser} from '@/assets/svg/user.svg';

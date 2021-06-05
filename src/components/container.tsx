@@ -11,6 +11,8 @@ const Container: React.FC = props => {
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {theme} = useSelector((state: any) => state.system);
 
+  console.info(Config.MARKET_REFRESH_INTERVAL);
+
   useEffect(() => {
     let marketTimer: any = null;
     async function fetchMarket() {
@@ -27,10 +29,7 @@ const Container: React.FC = props => {
         });
       };
       handler();
-      marketTimer = setInterval(
-        handler,
-        Config.MARKET_REFRESH_INTERVAL || 5000,
-      );
+      marketTimer = setInterval(handler, 5000);
     }
 
     fetchMarket();
@@ -73,7 +72,7 @@ const Container: React.FC = props => {
 
       if (systemInfoRes.code === ResponseCode.SUCCESS) {
         const setInitialized = async () => {
-          await dispatch({
+          dispatch({
             type: 'system/setInitialized',
             payload: true,
           });

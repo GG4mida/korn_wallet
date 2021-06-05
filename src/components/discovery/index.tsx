@@ -1,4 +1,3 @@
-export {default as DiscoveryRank} from './rank';
-export {default as DiscoveryBinance} from './binance';
-export {default as DiscoveryBrowser} from './browser';
-export {default as DiscoveryReminder} from './reminder';
+export {default as DiscoveryTools} from './tools';
+export {default as DiscoveryAirDrop} from './airdrop';
+export {default as DiscoveryTopic} from './topic';
