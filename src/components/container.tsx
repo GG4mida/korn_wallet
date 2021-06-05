@@ -5,7 +5,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode, ThemeType} from '@/constants/enum';
 
-const TIMER_INTERVAL = 500000;
+const TIMER_INTERVAL = 10000;
 const SPLASH_INTERVAL = 2000;
 
 const Container: React.FC = props => {
@@ -16,10 +16,10 @@ const Container: React.FC = props => {
   useEffect(() => {
     let marketTimer: any = null;
     async function fetchMarket() {
-      if (!userInfo || !userInfo.id) {
-        return;
-      }
       const handler = () => {
+        if (!userInfo || !userInfo.id) {
+          return;
+        }
         dispatch({
           type: 'market/get',
         });

@@ -187,6 +187,9 @@ const SettingScreen = ({navigation}: any) => {
     dispatch({
       type: 'account/logout',
     });
+    dispatch({
+      type: 'user/resetInfo',
+    });
   }, [dispatch]);
 
   const handleResetPress = useCallback(() => {

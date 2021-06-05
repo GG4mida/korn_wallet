@@ -63,6 +63,13 @@ const UserModel = {
       return nextState;
     },
 
+    resetInfo(state: any) {
+      const nextState = produce(state, (draftState: any) => {
+        draftState.info = {};
+      });
+      return nextState;
+    },
+
     setHolds(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.holds = action.payload;
