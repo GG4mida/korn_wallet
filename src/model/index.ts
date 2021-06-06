@@ -5,6 +5,7 @@ import CoinModel from './coin';
 import MarketModel from './market';
 import SystemModel from './system';
 import NewsModel from './news';
+import TopicModel from './topic';
 import ExchangeModel from './exchange';
 
 export default [
@@ -15,5 +16,6 @@ export default [
   MarketModel,
   KlineModel,
   NewsModel,
+  TopicModel,
   ExchangeModel,
 ];
