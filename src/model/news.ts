@@ -14,9 +14,7 @@ const NewsModel = {
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setData',
-          payload: {
-            data: content,
-          },
+          payload: content,
         });
       }
       return data;
@@ -26,8 +24,7 @@ const NewsModel = {
   reducers: {
     setData(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        const {data} = action.payload;
-        draftState.list = data;
+        draftState.list = action.payload;
       });
       return nextState;
     },

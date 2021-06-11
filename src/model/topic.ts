@@ -5,18 +5,29 @@ import {ResponseCode} from '@/constants/enum';
 const TopicModel = {
   namespace: 'topic',
   state: {
-    list: {},
+    list: [],
+    detail: {},
   },
   effects: {
-    *get({payload}: any, {call, put}: any): any {
-      const data = yield call(TopicService.list, payload);
+    *getList({payload}: any, {call, put}: any): any {
+      const data = yield call(TopicService.getList, payload);
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         yield put({
           type: 'setList',
-          payload: {
-            data: content,
-          },
+          payload: content,
+        });
+      }
+      return data;
+    },
+
+    *getDetail({payload}: any, {call, put}: any): any {
+      const data = yield call(TopicService.getDetail, payload);
+      const {code, content} = data;
+      if (ResponseCode.SUCCESS === code) {
+        yield put({
+          type: 'setDetail',
+          payload: content,
         });
       }
       return data;
@@ -26,8 +37,14 @@ const TopicModel = {
   reducers: {
     setList(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        const {data} = action.payload;
-        draftState.list = data;
+        draftState.list = action.payload;
+      });
+      return nextState;
+    },
+
+    setDetail(state: any, action: any) {
+      const nextState = produce(state, (draftState: any) => {
+        draftState.detail = action.payload;
       });
       return nextState;
     },

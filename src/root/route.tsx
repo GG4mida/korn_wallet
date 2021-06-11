@@ -130,6 +130,18 @@ const AuthorizedRoutes = () => {
       />
 
       <Stack.Screen
+        name={RouteConfig.DiscoveryTopic.name}
+        component={Screen.DiscoveryTopicScreen}
+        options={{title: RouteConfig.DiscoveryTopic.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.DiscoveryTopicDetail.name}
+        component={Screen.DiscoveryTopicDetailScreen}
+        options={{title: RouteConfig.DiscoveryTopicDetail.title}}
+      />
+
+      <Stack.Screen
         name={RouteConfig.Setting.name}
         component={Screen.SettingScreen}
         options={{title: RouteConfig.Setting.title}}

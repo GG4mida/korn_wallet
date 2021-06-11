@@ -1,9 +1,14 @@
 import request from './request';
 
-const list = (data: any) => {
+const getList = (data: any) => {
+  return request.get('/api/topic/list', data);
+};
+
+const getDetail = (data: any) => {
   return request.get('/api/topic/list', data);
 };
 
 export default {
-  list,
+  getList,
+  getDetail,
 };

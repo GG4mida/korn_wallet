@@ -43,6 +43,14 @@ const RouteConfig = {
     name: 'DISCOVERY-BROWSER',
     title: '区块浏览器',
   },
+  DiscoveryTopic: {
+    name: 'DISCOVERY-TOPIC',
+    title: '文章列表',
+  },
+  DiscoveryTopicDetail: {
+    name: 'DISCOVERY-TOPIC-DETAIL',
+    title: '文章详情',
+  },
   Setting: {
     name: 'SETTING',
     title: '设置',

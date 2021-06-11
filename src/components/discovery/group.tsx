@@ -1,13 +1,45 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 import useTheme from '@/core/theme';
 import DiscoveryItem from './item';
 
+const DiscoveryContent = (props: any) => {
+  const {styles} = useTheme();
+  const {data, col, loading, handlePress} = props;
+  if (loading === true) {
+    return (
+      <View style={[styles.flex_container_center, styles.flex_1, styles.py_5]}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+  if (!data || data.length === 0) {
+    return (
+      <View style={[styles.flex_container_center, styles.flex_1, styles.py_5]}>
+        <Text style={[styles.text_hint, styles.text_base]}>暂无数据</Text>
+      </View>
+    );
+  }
+  return (
+    <React.Fragment>
+      {data.map((item: any, index: number) => {
+        return (
+          <DiscoveryItem
+            data={item}
+            key={`item_${index}`}
+            col={col}
+            handlePress={handlePress}
+          />
+        );
+      })}
+    </React.Fragment>
+  );
+};
+
 const DiscoveryGroup = (props: any) => {
   const {styles} = useTheme();
-  const {data, col} = props;
+  const {data, col, loading, handlePress} = props;
   const {title, descr, items} = data;
-
   return (
     <View style={[styles.my_3]}>
       <Text
@@ -30,9 +62,12 @@ const DiscoveryGroup = (props: any) => {
           styles.flex_row,
           styles.flex_wrap,
         ]}>
-        {items.map((item: any, index: number) => {
-          return <DiscoveryItem data={item} key={`item_${index}`} col={col} />;
-        })}
+        <DiscoveryContent
+          data={items}
+          col={col}
+          loading={loading}
+          handlePress={handlePress}
+        />
       </View>
     </View>
   );

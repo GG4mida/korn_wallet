@@ -1,19 +1,19 @@
 import produce from 'immer';
-import ExchangeService from '@/services/exchange';
+import TopicCategoryService from '@/services/topicCategory';
 import {ResponseCode} from '@/constants/enum';
 
-const ExchangeModel = {
-  namespace: 'exchange',
+const TopicCategoryModel = {
+  namespace: 'topicCategory',
   state: {
-    exchange: '',
+    list: [],
   },
   effects: {
-    *get({payload}: any, {call, put}: any): any {
-      const data = yield call(ExchangeService.get, payload);
+    *getList({payload}: any, {call, put}: any): any {
+      const data = yield call(TopicCategoryService.list, payload);
       const {code, content} = data;
       if (ResponseCode.SUCCESS === code) {
         yield put({
-          type: 'setExchange',
+          type: 'setList',
           payload: content,
         });
       }
@@ -22,13 +22,13 @@ const ExchangeModel = {
   },
 
   reducers: {
-    setExchange(state: any, action: any) {
+    setList(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
-        draftState.exchange = action.payload;
+        draftState.list = action.payload;
       });
       return nextState;
     },
   },
 };
 
-export default ExchangeModel;
+export default TopicCategoryModel;

@@ -7,6 +7,7 @@ import SystemModel from './system';
 import NewsModel from './news';
 import TopicModel from './topic';
 import ExchangeModel from './exchange';
+import TopicCategoryModel from './topicCategory';
 
 export default [
   AccountModel,
@@ -18,4 +19,5 @@ export default [
   NewsModel,
   TopicModel,
   ExchangeModel,
+  TopicCategoryModel,
 ];
