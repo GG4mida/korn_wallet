@@ -5,7 +5,7 @@ const getList = (data: any) => {
 };
 
 const getDetail = (data: any) => {
-  return request.get('/api/topic/list', data);
+  return request.get('/api/topic/detail', data);
 };
 
 export default {
