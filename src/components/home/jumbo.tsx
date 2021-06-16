@@ -1,5 +1,5 @@
 import React, {useMemo, useCallback} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -50,25 +50,59 @@ const HomeJumbo = () => {
       colors={[styleConfig.color.yellow, styleConfig.color.red]}
       start={{x: 1, y: 0}}
       end={{x: 0.2, y: 0}}
-      style={[styles.p_5, styles.rounded_2xl]}>
+      style={[styles.p_4, styles.rounded_2xl, styles.m_3]}>
       <View style={[styles.flex_container_between, styles.mb_3]}>
-        <Text style={[styles.text_white, styles.text_md]}>账户资产</Text>
+        <Text style={[styles.text_white, styles.text_md]}>
+          总市值（人民币）
+        </Text>
         <TouchableOpacity activeOpacity={0.5} onPress={handleDetailPress}>
           <Text style={[styles.text_white, styles.text_md]}>详情</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.flex_container_between}>
-        <Text style={[styles.text_bold, styles.text_white, styles.text_2xl]}>
-          ${Formater.formatAmount(renderData.totalAmount)}
+      <View style={[styles.flex_container_between]}>
+        <Text style={[styles.text_bold, styles.text_white, styles.text_3xl]}>
+          23,231,12
         </Text>
-        <View style={styles.flex_container_center}>
-          <Text style={[styles.text_white, styles.text_lg]}>
-            {Formater.formatProfitRatio(renderData.totalProfitRatio)}
+      </View>
+
+      <View style={customStyle.border} />
+
+      <View style={styles.flex_container_between}>
+        <View style={[styles.flex_col, styles.items_center]}>
+          <Text style={[styles.text_gray_50, styles.text_sm, styles.mb_1]}>
+            今日盈亏
           </Text>
+          <Text style={[styles.text_white, styles.text_sm]}>2035.00</Text>
+        </View>
+        <View style={[styles.flex_col, styles.items_center]}>
+          <Text style={[styles.text_gray_50, styles.text_sm, styles.mb_1]}>
+            今日盈亏率
+          </Text>
+          <Text style={[styles.text_white, styles.text_sm]}>+12.32%</Text>
+        </View>
+        <View style={[styles.flex_col, styles.items_center]}>
+          <Text style={[styles.text_gray_50, styles.text_sm, styles.mb_1]}>
+            累计盈亏
+          </Text>
+          <Text style={[styles.text_white, styles.text_sm]}>2035.00</Text>
+        </View>
+        <View style={[styles.flex_col, styles.items_center]}>
+          <Text style={[styles.text_gray_50, styles.text_sm, styles.mb_1]}>
+            累计盈亏率
+          </Text>
+          <Text style={[styles.text_white, styles.text_sm]}>-32.33%</Text>
         </View>
       </View>
     </LinearGradient>
   );
 };
+
+const customStyle = StyleSheet.create({
+  border: {
+    marginVertical: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255, 255, 0.1)',
+  },
+});
 
 export default HomeJumbo;

@@ -28,6 +28,7 @@ const MainTabs = ({navigation, route}: any) => {
     navigation.setOptions({
       headerTitle: HeaderHelper.getHeaderTitle(route),
       headerRight: HeaderHelper.getHeaderRight(navigation, route),
+      headerLeft: HeaderHelper.getHeaderLeft(navigation, route),
     });
   }, [navigation, route]);
 
@@ -175,6 +176,12 @@ const AuthorizedRoutes = () => {
         name={RouteConfig.WebView.name}
         component={Screen.WebViewScreen}
         options={{title: RouteConfig.WebView.title}}
+      />
+
+      <Stack.Screen
+        name={RouteConfig.Plan.name}
+        component={Screen.PlanScreen}
+        options={{title: RouteConfig.Plan.title}}
       />
     </Stack.Navigator>
   );

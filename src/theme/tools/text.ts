@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 
 const getTextStyle = ({fontSize, color}: any) => {
   return StyleSheet.create({
+    text_es: {
+      fontSize: fontSize.size_es,
+      lineHeight: 14,
+    },
     text_sm: {
       fontSize: fontSize.size_sm,
       lineHeight: 20,

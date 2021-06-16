@@ -2,6 +2,8 @@ export {default as IconArrowRight} from '@/assets/svg/arrow-right.svg';
 export {default as IconArrowLeft} from '@/assets/svg/arrow-left.svg';
 export {default as IconArrowTop} from '@/assets/svg/arrow-top.svg';
 export {default as IconArrowDown} from '@/assets/svg/arrow-down.svg';
+export {default as IconArrowDownSolid} from '@/assets/svg/arrow-down-solid.svg';
+
 export {default as IconBack} from '@/assets/svg/back.svg';
 export {default as IconForward} from '@/assets/svg/forward.svg';
 export {default as IconFavorite} from '@/assets/svg/favorite.svg';
@@ -24,3 +26,4 @@ export {default as IconDiscoveryTopic} from '@/assets/svg/discovery-topic.svg';
 
 export {default as IconEmpty} from '@/assets/svg/empty.svg';
 export {default as IconUser} from '@/assets/svg/user.svg';
+export {default as IconDetete} from '@/assets/svg/delete.svg';

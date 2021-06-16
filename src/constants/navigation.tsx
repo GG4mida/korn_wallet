@@ -75,6 +75,10 @@ const RouteConfig = {
     name: 'WEBVIEW',
     title: '浏览器',
   },
+  Plan: {
+    name: 'Plan',
+    title: '方案列表',
+  },
 };
 
 export {RouteConfig};

@@ -15,7 +15,7 @@ const getCustomStyle = (toolStyle: any) => {
 
     screen_container_with_padding: {
       ..._baseStyles.container,
-      ...toolStyle.p_4,
+      ...toolStyle.p_3,
     },
 
     tab_container: {

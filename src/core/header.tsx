@@ -1,7 +1,7 @@
 import React from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {RouteConfig} from '@/constants/navigation';
-import {HeaderUser} from '@/components/header';
+import {HeaderUser, HeaderPlan} from '@/components/header';
 
 const getHeaderTitle = (route: any) => {
   const routeName =
@@ -35,7 +35,23 @@ const getHeaderRight = (navigation: any, route: any) => {
   return () => headerRightComponent;
 };
 
+const getHeaderLeft = (navigation: any, route: any) => {
+  const routeName =
+    getFocusedRouteNameFromRoute(route) ?? RouteConfig.Home.name;
+  let headerLeftComponent: any = null;
+  switch (routeName) {
+    case RouteConfig.Home.name:
+      headerLeftComponent = <HeaderPlan navigation={navigation} />;
+      break;
+    default:
+      return null;
+  }
+
+  return () => headerLeftComponent;
+};
+
 export default {
   getHeaderTitle,
   getHeaderRight,
+  getHeaderLeft,
 };

@@ -11,6 +11,7 @@ import DiscoveryBrowserScreen from './discoveryBrowser';
 import DiscoveryTopicScreen from './discoveryTopic';
 import DiscoveryTopicDetailScreen from './discoveryTopicDetail';
 import WebViewScreen from './webview';
+import PlanScreen from './plan';
 import SettingScreen from './setting';
 import SettingHelpScreen from './settingHelp';
 import SettingFeedbackScreen from './settingFeedback';
@@ -36,4 +37,5 @@ export default {
   SettingFeedbackScreen,
   SettingProfileScreen,
   WebViewScreen,
+  PlanScreen,
 };

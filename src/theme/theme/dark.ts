@@ -32,6 +32,7 @@ const color = {
 };
 
 const fontSize = {
+  size_es: 12,
   size_sm: 14,
   size_md: 16,
   size_lg: 18,
