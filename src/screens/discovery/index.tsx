@@ -6,6 +6,7 @@ import {
   DiscoveryAirDrop,
   DiscoveryTopic,
 } from '@/components/discovery';
+import {String} from '@/utils';
 
 const DiscoveryScreen = ({}: any) => {
   const {styles} = useTheme();
@@ -20,4 +21,8 @@ const DiscoveryScreen = ({}: any) => {
   );
 };
 
-export default DiscoveryScreen;
+export default {
+  name: String.getUUID(),
+  title: '发现',
+  screen: DiscoveryScreen,
+};

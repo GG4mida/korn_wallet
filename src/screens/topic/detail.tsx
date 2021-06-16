@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import MarkdownRender from '@/components/markdown/render';
-import {DateTime} from '@/utils';
+import {DateTime, String} from '@/utils';
 import useTheme from '@/core/theme';
 import HeaderBack from '@/components/header/back';
 
@@ -71,4 +71,8 @@ const DiscoveryTopicDetailScreen = ({navigation, route}: any) => {
   );
 };
 
-export default DiscoveryTopicDetailScreen;
+export default {
+  name: String.getUUID(),
+  title: '文章详情',
+  screen: DiscoveryTopicDetailScreen,
+};

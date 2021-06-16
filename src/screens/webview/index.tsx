@@ -4,6 +4,7 @@ import {useRoute} from '@react-navigation/native';
 import HeaderBack from '@/components/header/back';
 import {WebView} from 'react-native-webview';
 import useTheme from '@/core/theme';
+import {String} from '@/utils';
 
 const WebViewLoading = () => {
   const {styles} = useTheme();
@@ -46,4 +47,8 @@ const WebViewScreen = ({navigation}: any) => {
   );
 };
 
-export default WebViewScreen;
+export default {
+  name: String.getUUID(),
+  title: '浏览器',
+  screen: WebViewScreen,
+};

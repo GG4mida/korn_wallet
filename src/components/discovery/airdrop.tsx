@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import useTheme from '@/core/theme';
 import DiscoveryGroup from './group';
 import {useNavigation} from '@react-navigation/native';
-import {RouteConfig} from '@/constants/navigation';
+import * as Screens from '@/screens';
 import Avatar from '@/components/avatar';
 
 const DiscoveryAirDrop = () => {
@@ -16,7 +16,7 @@ const DiscoveryAirDrop = () => {
         title: data.name,
         url: data.url,
       };
-      navigation.navigate(RouteConfig.WebView.name, params);
+      navigation.navigate(Screens.Webview.name, params);
     },
     [navigation],
   );

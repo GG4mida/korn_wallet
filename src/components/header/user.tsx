@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
-import {RouteConfig} from '@/constants/navigation';
+import * as Screens from '@/screens';
 import useTheme from '@/core/theme';
 
 const HeaderUser = (props: any) => {
@@ -10,7 +10,7 @@ const HeaderUser = (props: any) => {
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {avatar} = userInfo;
   const handleItemPress = useCallback(() => {
-    navigation.navigate(RouteConfig.Setting.name);
+    navigation.navigate(Screens.Setting.name);
   }, [navigation]);
 
   return (
