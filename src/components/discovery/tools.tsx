@@ -14,6 +14,17 @@ const DiscoveryTools = () => {
 
   const navigation = useNavigation();
 
+  const handleItemPress = useCallback(
+    data => {
+      const params = {
+        title: data.name,
+        url: data.url,
+      };
+      navigation.navigate(RouteConfig.WebView.name, params);
+    },
+    [navigation],
+  );
+
   const handleBrowserPress = useCallback(() => {
     navigation.navigate(RouteConfig.DiscoveryBrowser.name);
   }, [navigation]);
@@ -34,6 +45,7 @@ const DiscoveryTools = () => {
       },
       {
         name: '币安(Binance)',
+        url: 'https://www.baidu.com',
         icon: (
           <IconDiscoveryBinance
             width={36}
@@ -41,10 +53,10 @@ const DiscoveryTools = () => {
             fill={styleConfig.color.red}
           />
         ),
-        handlePress: handleBrowserPress,
       },
       {
         name: '钱包(imToken)',
+        url: 'https://www.cnblogs.com',
         icon: (
           <IconDiscoveryImToken
             width={36}
@@ -52,12 +64,17 @@ const DiscoveryTools = () => {
             fill={styleConfig.color.yellow}
           />
         ),
-        handlePress: handleBrowserPress,
       },
     ],
   };
 
-  return <DiscoveryGroup data={discoveryConfig} col={3} />;
+  return (
+    <DiscoveryGroup
+      data={discoveryConfig}
+      col={3}
+      handlePress={handleItemPress}
+    />
+  );
 };
 
 export default DiscoveryTools;

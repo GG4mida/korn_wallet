@@ -5,12 +5,16 @@ import useTheme from '@/core/theme';
 const DiscoveryItem = (props: any) => {
   const {styles} = useTheme();
   const {data, col = 4, handlePress} = props;
-  const {icon, name} = data;
+  const {icon, name, handlePress: handleItemPress} = data;
 
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={() => handlePress(data)}
+      onPress={() =>
+        handleItemPress && typeof handleItemPress === 'function'
+          ? handleItemPress(data)
+          : handlePress(data)
+      }
       style={[
         styles.flex_col,
         styles.items_center,

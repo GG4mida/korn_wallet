@@ -82,15 +82,16 @@ const DiscoveryTopicScreen = ({navigation, route}: any) => {
   const {styles, styleConfig} = useTheme();
   const dispatch = useDispatch();
 
+  const data: any = route.params;
+  const {id: categoryId, name} = data;
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      headerTitle: name,
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
-  }, [navigation, styleConfig]);
-
-  const data: any = route.params;
-  const {id: categoryId} = data;
+  }, [navigation, styleConfig, name]);
 
   useEffect(() => {
     dispatch({

@@ -38,7 +38,7 @@ const DiscoveryContent = (props: any) => {
 
 const DiscoveryGroup = (props: any) => {
   const {styles} = useTheme();
-  const {data, col, loading, handlePress} = props;
+  const {data, handlePress, col, loading} = props;
   const {title, descr, items} = data;
   return (
     <View style={[styles.my_3]}>

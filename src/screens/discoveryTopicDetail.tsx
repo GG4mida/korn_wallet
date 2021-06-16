@@ -6,7 +6,7 @@ import {DateTime} from '@/utils';
 import useTheme from '@/core/theme';
 import HeaderBack from '@/components/header/back';
 
-const DiscoveryTopicDetailHeader = props => {
+const DiscoveryTopicDetailHeader = (props: any) => {
   const {data} = props;
   const {title, createtime} = data;
   const {styles} = useTheme();
