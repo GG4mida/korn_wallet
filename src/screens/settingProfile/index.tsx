@@ -4,13 +4,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {Toaster, String} from '@/utils';
 import {ResponseCode, ScreenType} from '@/constants/enum';
+import useTheme from '@/core/theme';
 import {
   SettingAvatar,
   SettingNickName,
   SettingEmail,
   SettingSubmit,
-} from '@/components/settingProfile';
-import useTheme from '@/core/theme';
+} from './components';
 
 const SettingProfileScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();

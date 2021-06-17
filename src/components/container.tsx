@@ -4,15 +4,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import {Storage} from '@/utils';
 import {StorageKeys, ResponseCode, ThemeType} from '@/constants/enum';
-import Config from 'react-native-config';
 
 const Container: React.FC = props => {
   const dispatch = useDispatch();
   const {info: userInfo} = useSelector((state: any) => state.user);
   const {theme} = useSelector((state: any) => state.system);
-
-  console.info(Config.MARKET_REFRESH_INTERVAL);
-
   useEffect(() => {
     let marketTimer: any = null;
     async function fetchMarket() {
@@ -31,7 +27,6 @@ const Container: React.FC = props => {
       handler();
       marketTimer = setInterval(handler, 5000);
     }
-
     fetchMarket();
     return () => {
       marketTimer && clearInterval(marketTimer);
@@ -55,7 +50,6 @@ const Container: React.FC = props => {
           Storage.removeItem(StorageKeys.USER_TOKEN);
         }
       }
-
       const themeType = await Storage.getItem(StorageKeys.THEME_TYPE);
       if (themeType) {
         await dispatch({
@@ -65,11 +59,9 @@ const Container: React.FC = props => {
           },
         });
       }
-
       const systemInfoRes: any = await dispatch({
         type: 'system/info',
       });
-
       if (systemInfoRes.code === ResponseCode.SUCCESS) {
         const setInitialized = async () => {
           dispatch({
@@ -79,7 +71,6 @@ const Container: React.FC = props => {
 
           SplashScreen.hide();
         };
-
         initTimer = setTimeout(() => {
           setInitialized();
         }, 2000);
@@ -90,10 +81,8 @@ const Container: React.FC = props => {
       initTimer && clearTimeout(initTimer);
     };
   }, [dispatch]);
-
   const statusBarTheme =
     theme === ThemeType.DARK ? 'light-content' : 'dark-content';
-
   return (
     <React.Fragment>
       <StatusBar animated={true} barStyle={statusBarTheme} />

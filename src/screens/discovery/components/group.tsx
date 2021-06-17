@@ -16,7 +16,7 @@ const DiscoveryContent = (props: any) => {
   if (!data || data.length === 0) {
     return (
       <View style={[styles.flex_container_center, styles.flex_1, styles.py_5]}>
-        <Text style={[styles.text_hint, styles.text_base]}>暂无数据</Text>
+        <Text style={[styles.text_hint, styles.text_md]}>暂无数据</Text>
       </View>
     );
   }

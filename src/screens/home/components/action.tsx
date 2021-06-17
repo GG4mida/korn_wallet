@@ -2,13 +2,13 @@ import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {RouteConfig} from '@/constants/navigation';
 import {
   IconTabHome,
   IconTabCoin,
   IconTabDiscovery,
   IconTabNews,
 } from '@/components/icons';
+import {OperateScreen} from '@/screens';
 import useTheme from '@/core/theme';
 
 const HomeAction = () => {
@@ -17,7 +17,7 @@ const HomeAction = () => {
   const {holds} = useSelector((state: any) => state.user);
 
   const handleOperatePress = useCallback(() => {
-    navigation.navigate(RouteConfig.Operate.name);
+    navigation.navigate(OperateScreen.name);
   }, [navigation]);
 
   return (

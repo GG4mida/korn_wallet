@@ -1,10 +1,10 @@
 import React, {useEffect, useCallback} from 'react';
 import {SectionList, View, RefreshControl} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {NewsItem, NewsHeader} from '@/components/news';
 import {ScreenType} from '@/constants/enum';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
+import {NewsItem, NewsHeader} from './components';
 
 const NewsScreen = ({}: any) => {
   const {styles} = useTheme();

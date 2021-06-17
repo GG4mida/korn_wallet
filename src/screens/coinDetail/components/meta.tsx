@@ -5,7 +5,7 @@ import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import useTheme from '@/core/theme';
 
-const CoinMeta = () => {
+const CoinDetailMeta = () => {
   const route = useRoute();
   const {styles} = useTheme();
 
@@ -85,4 +85,4 @@ const CoinMeta = () => {
   );
 };
 
-export default CoinMeta;
+export default CoinDetailMeta;

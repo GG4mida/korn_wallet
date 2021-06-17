@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import useTheme from '@/core/theme';
 
-const SettingSubmit = (props: any) => {
+const PlanCreate = (props: any) => {
   const {styles} = useTheme();
   const {handlePress} = props;
   return (
@@ -14,4 +14,4 @@ const SettingSubmit = (props: any) => {
   );
 };
 
-export default SettingSubmit;
+export default PlanCreate;

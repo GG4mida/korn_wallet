@@ -26,7 +26,6 @@ const ConfirmShadow = (props: any) => {
         pointerEvents={status === true ? 'auto' : 'none'}
         style={[
           styles.absolute_fill,
-          styles.bg_black,
           {
             opacity: animatedShadowOpacity,
           },

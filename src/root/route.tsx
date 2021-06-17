@@ -8,7 +8,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
 import HeaderHelper from '@/core/header';
-import * as Screens from '@/Screens';
+import * as Screens from '@/screens';
 import useTheme from '@/core/theme';
 import {ScreenType, ThemeType} from '@/constants/enum';
 import {

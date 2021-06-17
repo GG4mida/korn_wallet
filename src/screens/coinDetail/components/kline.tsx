@@ -17,7 +17,7 @@ interface IProps {
   type: klineTab;
 }
 
-const CoinKline = (props: IProps) => {
+const CoinDetailKline = (props: IProps) => {
   const {styleConfig, styles} = useTheme();
   const {type} = props;
   const route = useRoute();
@@ -121,4 +121,4 @@ const customStyles = StyleSheet.create({
   },
 });
 
-export default CoinKline;
+export default CoinDetailKline;

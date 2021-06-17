@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, TouchableOpacity, ActivityIndicator} from 'react-native';
 import useTheme from '@/core/theme';
 
-const SettingSubmit = (props: any) => {
+const SettingProfileSubmit = (props: any) => {
   const {styles} = useTheme();
   const {loading, handlePress} = props;
   if (loading === true) {
@@ -22,4 +22,4 @@ const SettingSubmit = (props: any) => {
   );
 };
 
-export default SettingSubmit;
+export default SettingProfileSubmit;

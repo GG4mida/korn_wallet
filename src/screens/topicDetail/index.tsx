@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import MarkdownRender from '@/components/markdown/render';
+import MarkdownRender from '@/components/markdown';
 import {DateTime, String} from '@/utils';
 import useTheme from '@/core/theme';
 import {ScreenType} from '@/constants/enum';

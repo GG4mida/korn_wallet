@@ -11,7 +11,7 @@ interface IProps {
   handleSellPress: () => void;
 }
 
-const CoinAction = (props: IProps) => {
+const CoinDetailAction = (props: IProps) => {
   const {handleBuyInPress, handleSellPress} = props;
   const {styles} = useTheme();
   const route = useRoute();
@@ -98,4 +98,4 @@ const CoinAction = (props: IProps) => {
   );
 };
 
-export default CoinAction;
+export default CoinDetailAction;

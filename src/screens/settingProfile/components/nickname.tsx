@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, TextInput} from 'react-native';
 import useTheme from '@/core/theme';
 
-const SettingEmail = (props: any) => {
+const SettingProfileNickName = (props: any) => {
   const {styleConfig, styles} = useTheme();
   const {value, onChange} = props;
   return (
@@ -15,7 +15,7 @@ const SettingEmail = (props: any) => {
             styles.px_4,
             styles.my_2,
           ]}>
-          电子邮箱
+          昵称
         </Text>
         <TextInput
           style={[
@@ -32,19 +32,19 @@ const SettingEmail = (props: any) => {
           autoCapitalize="none"
           autoCompleteType="off"
           autoCorrect={false}
-          textContentType="emailAddress"
+          textContentType="nickname"
           onChangeText={onChange}
-          placeholder="电子邮箱..."
+          placeholder="昵称..."
           placeholderTextColor={styleConfig.color.hint}
           value={value}
         />
       </View>
       <Text
         style={[styles.px_4, styles.my_2, styles.text_sm, styles.text_hint]}>
-        完善电子邮箱地址可用于找回密码
+        昵称可用于排行榜、应用内聊天等栏目的显示
       </Text>
     </View>
   );
 };
 
-export default SettingEmail;
+export default SettingProfileNickName;

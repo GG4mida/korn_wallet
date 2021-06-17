@@ -8,7 +8,7 @@ interface IProps {
   onChange: any;
 }
 
-const CoinKlineBarItem = (props: any) => {
+const CoinDetailKlineBarItem = (props: any) => {
   const {value, data, onChange} = props;
   const {styles} = useTheme();
 
@@ -36,13 +36,13 @@ const CoinKlineBarItem = (props: any) => {
   );
 };
 
-const CoinKlineBarList = (props: any) => {
+const CoinDetailKlineBarList = (props: any) => {
   const {value, onChange} = props;
   return (
     <React.Fragment>
       {klineTabs.map((tabItem: any, index: number) => {
         return (
-          <CoinKlineBarItem
+          <CoinDetailKlineBarItem
             data={tabItem}
             value={value}
             key={`bar_${index}`}
@@ -54,7 +54,7 @@ const CoinKlineBarList = (props: any) => {
   );
 };
 
-const CoinKlineBar = (props: IProps) => {
+const CoinDetailKlineBar = (props: IProps) => {
   const {value, onChange} = props;
   const {styles} = useTheme();
   return (
@@ -65,7 +65,7 @@ const CoinKlineBar = (props: IProps) => {
         styles.px_3,
         styles.py_2,
       ]}>
-      <CoinKlineBarList value={value} onChange={onChange} />
+      <CoinDetailKlineBarList value={value} onChange={onChange} />
     </View>
   );
 };
@@ -76,4 +76,4 @@ const customStyle = StyleSheet.create({
   },
 });
 
-export default CoinKlineBar;
+export default CoinDetailKlineBar;

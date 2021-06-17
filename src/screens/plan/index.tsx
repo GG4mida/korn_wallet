@@ -1,10 +1,10 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import HeaderBack from '@/components/header/back';
-import {PlanList, PlanCreate} from '@/components/plan';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
+import {PlanList, PlanCreate} from './components';
 
 const PlanScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();

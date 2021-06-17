@@ -2,12 +2,12 @@ import React, {useEffect, useState, useMemo} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {coinTab} from '@/constants/tab';
-import {CoinSorter, CoinTab, CoinItem} from '@/components/coinList';
 import {SortField, SortRule} from '@/constants/enum';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
 import useTheme from '@/core/theme';
+import {CoinSorter, CoinTab, CoinItem} from './components';
 
 const SorterFunc = (data: any, sorter: any) => {
   if (!data || data.length === 0) {

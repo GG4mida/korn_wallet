@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import useTheme from '@/core/theme';
 
-const CoinNews = () => {
+const CoinDetailNews = () => {
   const {styles} = useTheme();
   return (
     <View style={[styles.mt_3]}>
@@ -37,4 +37,4 @@ const CoinNews = () => {
   );
 };
 
-export default CoinNews;
+export default CoinDetailNews;

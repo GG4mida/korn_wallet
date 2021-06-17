@@ -35,7 +35,6 @@ const PanelShadow = (props: any) => {
         pointerEvents={status === true ? 'auto' : 'none'}
         style={[
           styles.absolute_fill,
-          styles.bg_black,
           {
             opacity: animatedShadowOpacity,
           },
@@ -189,7 +188,7 @@ interface IProps {
   refs: any;
 }
 
-const CoinBuyInPanel = (props: IProps) => {
+const CoinDetailBuyInPanel = (props: IProps) => {
   const [status, setStatus] = useState(false);
   const {refs} = props;
 
@@ -226,4 +225,4 @@ const customStyle = StyleSheet.create({
   },
 });
 
-export default CoinBuyInPanel;
+export default CoinDetailBuyInPanel;

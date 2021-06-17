@@ -53,6 +53,9 @@ const getBackgroundStyle = ({color}: any) => {
     bg_gray_900: {
       backgroundColor: color.gray_900,
     },
+    bg_black: {
+      backgroundColor: color.black,
+    },
   });
 };
 export default getBackgroundStyle;

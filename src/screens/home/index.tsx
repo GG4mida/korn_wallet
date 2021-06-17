@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
-import {HomeJumbo, HomeHolds, HomeAction} from '@/components/home';
+import {HomeJumbo, HomeHolds, HomeAction} from './components';
 
 const HomeScreen = ({}: any) => {
   const dispatch = useDispatch();
@@ -31,5 +31,5 @@ export default {
   name: String.getUUID(),
   title: '首页',
   screen: HomeScreen,
-  type: [ScreenType.STACK, ScreenType.TAB],
+  type: [ScreenType.TAB],
 };

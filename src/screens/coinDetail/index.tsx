@@ -7,15 +7,15 @@ import useTheme from '@/core/theme';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
 import {
-  CoinAction,
-  CoinKline,
-  CoinKlineBar,
-  CoinSummary,
-  CoinMeta,
-  CoinFavorite,
-  CoinBuyInPanel,
-  CoinSellPanel,
-} from '@/components/coinDetail';
+  CoinDetailAction,
+  CoinDetailKline,
+  CoinDetailKlineBar,
+  CoinDetailSummary,
+  CoinDetailMeta,
+  CoinDetailFavorite,
+  CoinDetailBuyIn,
+  CoinDetailSell,
+} from './components';
 
 const CoinDetailScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -30,7 +30,7 @@ const CoinDetailScreen = ({navigation}: any) => {
       headerTitle: name,
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
-      headerRight: () => <CoinFavorite />,
+      headerRight: () => <CoinDetailFavorite />,
     });
   }, [navigation, name, styleConfig]);
 
@@ -50,17 +50,17 @@ const CoinDetailScreen = ({navigation}: any) => {
       <ScrollView
         style={[styles.screen_container]}
         showsVerticalScrollIndicator={false}>
-        <CoinSummary />
-        <CoinMeta />
-        <CoinKlineBar value={tab} onChange={setTab} />
-        <CoinKline type={tab} />
+        <CoinDetailSummary />
+        <CoinDetailMeta />
+        <CoinDetailKlineBar value={tab} onChange={setTab} />
+        <CoinDetailKline type={tab} />
       </ScrollView>
-      <CoinAction
+      <CoinDetailAction
         handleBuyInPress={handleBuyInPress}
         handleSellPress={handleSellPress}
       />
-      <CoinSellPanel refs={actionSellRef} />
-      <CoinBuyInPanel refs={actionBuyInRef} />
+      <CoinDetailSell refs={actionSellRef} />
+      <CoinDetailBuyIn refs={actionBuyInRef} />
     </View>
   );
 };

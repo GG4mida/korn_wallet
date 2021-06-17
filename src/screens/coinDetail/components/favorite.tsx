@@ -8,7 +8,7 @@ import {IconFavorite} from '@/components/icons';
 import {ResponseCode} from '@/constants/enum';
 import useTheme from '@/core/theme';
 
-const CoinFavorite = () => {
+const CoinDetailFavorite = () => {
   const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
   const route = useRoute();
@@ -72,4 +72,4 @@ const CoinFavorite = () => {
   );
 };
 
-export default CoinFavorite;
+export default CoinDetailFavorite;

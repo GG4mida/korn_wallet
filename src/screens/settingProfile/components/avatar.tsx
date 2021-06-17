@@ -11,7 +11,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import useTheme from '@/core/theme';
 
-const SettingAvatar = (props: any) => {
+const SettingProfileAvatar = (props: any) => {
   const {styles} = useTheme();
   const {value, onChange} = props;
   const dispatch = useDispatch();
@@ -103,4 +103,4 @@ const customStyles = StyleSheet.create({
   },
 });
 
-export default SettingAvatar;
+export default SettingProfileAvatar;
