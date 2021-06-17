@@ -26,4 +26,5 @@ export {default as IconDiscoveryTopic} from '@/assets/svg/discovery-topic.svg';
 
 export {default as IconEmpty} from '@/assets/svg/empty.svg';
 export {default as IconUser} from '@/assets/svg/user.svg';
+export {default as IconPlan} from '@/assets/svg/plan.svg';
 export {default as IconDetete} from '@/assets/svg/delete.svg';

@@ -1,13 +1,15 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
-import {PlanCreateSubmit} from './components';
+import {PlanCreateSubmit, PlanCreateName} from './components';
 
 const PlanCreateScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
+
+  const [name, setName] = useState('');
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -19,7 +21,9 @@ const PlanCreateScreen = ({navigation}: any) => {
 
   return (
     <View style={[styles.screen_container]}>
-      <Text>创建</Text>
+      <View style={[styles.my_4]}>
+        <PlanCreateName value={name} onChange={setName} />
+      </View>
     </View>
   );
 };

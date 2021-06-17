@@ -6,7 +6,7 @@ const PlanCreateSubmit = (props: any) => {
   const {styles} = useTheme();
   const {handlePress} = props;
   return (
-    <View style={[styles.flex_container_center, styles.px_4]}>
+    <View style={[styles.flex_container_center, styles.px_3]}>
       <TouchableOpacity onPress={handlePress} activeOpacity={0.5}>
         <Text style={[styles.text_md, styles.text_red]}>提交</Text>
       </TouchableOpacity>

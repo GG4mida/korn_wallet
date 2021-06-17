@@ -6,7 +6,7 @@ import useTheme from '@/core/theme';
 const HeaderBack = () => {
   const {styleConfig, styles} = useTheme();
   return (
-    <View style={[styles.ml_3, styles.mr_1]}>
+    <View style={[styles.ml_2]}>
       <IconBack width={20} height={20} fill={styleConfig.color.blue} />
     </View>
   );

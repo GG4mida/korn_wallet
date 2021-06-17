@@ -52,16 +52,14 @@ const HomeJumbo = () => {
       end={{x: 0.2, y: 0}}
       style={[styles.p_4, styles.rounded_2xl, styles.m_3]}>
       <View style={[styles.flex_container_between, styles.mb_3]}>
-        <Text style={[styles.text_white, styles.text_md]}>
-          总市值（人民币）
-        </Text>
+        <Text style={[styles.text_white, styles.text_md]}>总市值</Text>
         <TouchableOpacity activeOpacity={0.5} onPress={handleDetailPress}>
           <Text style={[styles.text_white, styles.text_md]}>详情</Text>
         </TouchableOpacity>
       </View>
       <View style={[styles.flex_container_between]}>
         <Text style={[styles.text_bold, styles.text_white, styles.text_3xl]}>
-          23,231,12
+          ¥23,231,12
         </Text>
       </View>
 
