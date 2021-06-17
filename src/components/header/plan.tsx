@@ -1,15 +1,14 @@
 import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import useTheme from '@/core/theme';
-
-import {RouteConfig} from '@/constants/navigation';
+import {PlanScreen} from '@/screens';
 import {IconArrowDownSolid} from '@/components/icons';
 
 const HeaderUser = ({navigation}: any) => {
   const {styles, styleConfig} = useTheme();
 
   const handlePress = useCallback(() => {
-    navigation.navigate(RouteConfig.Plan.name);
+    navigation.navigate(PlanScreen.name);
   }, [navigation]);
 
   return (

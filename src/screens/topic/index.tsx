@@ -9,10 +9,11 @@ import {
 import useTheme from '@/core/theme';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
-import * as Screens from '@/screens';
+import {TopicDetailScreen} from '@/screens';
+import {ScreenType} from '@/constants/enum';
 import {DateTime, String} from '@/utils';
 
-const DiscoveryTopicItem = (props: any) => {
+const TopicItem = (props: any) => {
   const {styles} = useTheme();
   const {data, handlePress} = props;
   const {title, summary, createtime} = data;
@@ -40,7 +41,7 @@ const DiscoveryTopicItem = (props: any) => {
   );
 };
 
-const DiscoveryTopicList = (props: any) => {
+const TopicList = (props: any) => {
   const {styles} = useTheme();
   const {loading, data, handlePress} = props;
   if (loading === true) {
@@ -56,14 +57,14 @@ const DiscoveryTopicList = (props: any) => {
     return (
       <View
         style={[styles.flex_container_center, styles.flex_col, styles.flex_1]}>
-        <Text style={[styles.text_hint, styles.text_base]}>暂无数据</Text>
+        <Text style={[styles.text_hint, styles.text_md]}>暂无数据</Text>
       </View>
     );
   }
 
   const renderTopicItem = (prop: any) => {
     const {item} = prop;
-    return <DiscoveryTopicItem data={item} handlePress={handlePress} />;
+    return <TopicItem data={item} handlePress={handlePress} />;
   };
 
   return (
@@ -78,7 +79,7 @@ const DiscoveryTopicList = (props: any) => {
   );
 };
 
-const DiscoveryTopicScreen = ({navigation, route}: any) => {
+const TopicScreen = ({navigation, route}: any) => {
   const {styles, styleConfig} = useTheme();
   const dispatch = useDispatch();
 
@@ -104,7 +105,7 @@ const DiscoveryTopicScreen = ({navigation, route}: any) => {
 
   const handleItemPress = useCallback(
     item => {
-      navigation.navigate(Screens.TopicDetail.name, item);
+      navigation.navigate(TopicDetailScreen.name, item);
     },
     [navigation],
   );
@@ -116,7 +117,7 @@ const DiscoveryTopicScreen = ({navigation, route}: any) => {
 
   return (
     <View style={styles.screen_container}>
-      <DiscoveryTopicList
+      <TopicList
         loading={loading}
         data={topicList}
         handlePress={handleItemPress}
@@ -128,5 +129,6 @@ const DiscoveryTopicScreen = ({navigation, route}: any) => {
 export default {
   name: String.getUUID(),
   title: '文章列表',
-  screen: DiscoveryTopicScreen,
+  screen: TopicScreen,
+  type: [ScreenType.STACK],
 };

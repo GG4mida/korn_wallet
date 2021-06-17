@@ -10,9 +10,10 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {useNavigation} from '@react-navigation/core';
-import * as Screens from '@/screens';
+import {WebviewScreen} from '@/screens';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
+import {ScreenType} from '@/constants/enum';
 
 const BrowserItem = (props: any) => {
   const {styles} = useTheme();
@@ -24,7 +25,7 @@ const BrowserItem = (props: any) => {
       title: symbol,
       url: explorer,
     };
-    navigation.navigate(Screens.Webview.name, params);
+    navigation.navigate(WebviewScreen.name, params);
   }, [navigation, symbol, explorer]);
 
   return (
@@ -108,4 +109,5 @@ export default {
   name: String.getUUID(),
   title: '区块浏览器',
   screen: DiscoveryBrowserScreen,
+  type: [ScreenType.STACK],
 };

@@ -2,7 +2,21 @@ import produce from 'immer';
 import SystemService from '@/services/system';
 import {ResponseCode, ThemeType} from '@/constants/enum';
 
-const SystemModel = {
+export type State = {
+  initialized: boolean;
+  info: object;
+  avatars: Array<{}>;
+  theme: ThemeType;
+};
+
+export interface IModel {
+  namespace: 'system';
+  state: State;
+  effects: any;
+  reducers: any;
+}
+
+const SystemModel: IModel = {
   namespace: 'system',
   state: {
     initialized: false,

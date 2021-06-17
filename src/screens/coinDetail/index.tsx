@@ -5,6 +5,7 @@ import {klineTab} from '@/constants/tab';
 import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
+import {ScreenType} from '@/constants/enum';
 import {
   CoinAction,
   CoinKline,
@@ -68,4 +69,5 @@ export default {
   name: String.getUUID(),
   title: '行情',
   screen: CoinDetailScreen,
+  type: [ScreenType.STACK],
 };

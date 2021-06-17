@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import useTheme from '@/core/theme';
+import {String} from '@/utils';
+import {ScreenType} from '@/constants/enum';
 import {HomeJumbo, HomeHolds, HomeAction} from '@/components/home';
 
 const HomeScreen = ({}: any) => {
@@ -25,4 +27,9 @@ const HomeScreen = ({}: any) => {
   );
 };
 
-export default HomeScreen;
+export default {
+  name: String.getUUID(),
+  title: '首页',
+  screen: HomeScreen,
+  type: [ScreenType.STACK, ScreenType.TAB],
+};

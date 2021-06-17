@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {Toaster, Validator, Device, String} from '@/utils';
-import {ResponseCode} from '@/constants/enum';
+import {ResponseCode, ScreenType} from '@/constants/enum';
 import LogoSvg from '@/assets/svg/logo.svg';
 import Version from '@/components/version';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
@@ -170,4 +170,5 @@ export default {
   name: String.getUUID(),
   title: '注册',
   screen: SignupScreen,
+  type: [ScreenType.NOAUTH],
 };

@@ -6,9 +6,9 @@ import themes from '@/theme';
 const useTheme = () => {
   const {theme = ThemeType.LIGHT} = useSelector((state: any) => state.system);
   const themeStyle = useMemo(() => {
-    return (themes as any)[theme];
+    return themes[theme as ThemeType];
   }, [theme]);
-  return themeStyle as any;
+  return themeStyle;
 };
 
 export default useTheme;

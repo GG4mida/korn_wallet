@@ -12,8 +12,13 @@ import {useNavigation} from '@react-navigation/native';
 import HeaderBack from '@/components/header/back';
 import {IconForward} from '@/components/icons';
 import Confirm from '@/components/confirm';
-import {ThemeType, StorageKeys, ResponseCode} from '@/constants/enum';
-import * as Screens from '@/screens';
+import {
+  ThemeType,
+  StorageKeys,
+  ResponseCode,
+  ScreenType,
+} from '@/constants/enum';
+import {SettingProfileScreen, SettingAboutScreen} from '@/screens';
 import useTheme from '@/core/theme';
 import {String, Storage} from '@/utils';
 import {Toaster} from '@/utils';
@@ -118,7 +123,7 @@ const SettingProfile = () => {
   const {nick_name, login_name, avatar} = userInfo;
 
   const handleProfilePress = useCallback(() => {
-    navigation.navigate(Screens.SettingProfile.name);
+    navigation.navigate(SettingProfileScreen.name);
   }, [navigation]);
 
   return (
@@ -214,7 +219,7 @@ const SettingScreen = ({navigation}: any) => {
   }, [dispatch]);
 
   const handleAboutPress = useCallback(() => {
-    navigation.navigate(Screens.SettingAbout.name);
+    navigation.navigate(SettingAboutScreen.name);
   }, [navigation]);
 
   const settingItems = [
@@ -270,4 +275,5 @@ export default {
   name: String.getUUID(),
   title: '设置',
   screen: SettingScreen,
+  type: [ScreenType.STACK],
 };

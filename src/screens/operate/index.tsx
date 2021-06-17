@@ -3,7 +3,7 @@ import {ScrollView, View, Text, ActivityIndicator} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
-import {CoinOpDirection} from '@/constants/enum';
+import {CoinOpDirection, ScreenType} from '@/constants/enum';
 import {Formater, String} from '@/utils';
 import useTheme from '@/core/theme';
 
@@ -134,4 +134,5 @@ export default {
   name: String.getUUID(),
   title: '交易记录',
   screen: OperateScreen,
+  type: [ScreenType.STACK],
 };

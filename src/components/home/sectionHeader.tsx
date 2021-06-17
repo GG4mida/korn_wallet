@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import * as Screens from '@/screens';
+import {OperateScreen} from '@/screens';
 import {IconArrowRight} from '@/components/icons';
 import useTheme from '@/core/theme';
 
@@ -12,7 +12,7 @@ const HomeSectionHeader = () => {
   const {holds} = useSelector((state: any) => state.user);
 
   const handleOperatePress = useCallback(() => {
-    navigation.navigate(Screens.Operate.name);
+    navigation.navigate(OperateScreen.name);
   }, [navigation]);
 
   return (

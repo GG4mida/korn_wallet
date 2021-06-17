@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {Toaster, String} from '@/utils';
-import {ResponseCode} from '@/constants/enum';
+import {ResponseCode, ScreenType} from '@/constants/enum';
 import {
   SettingAvatar,
   SettingNickName,
@@ -69,4 +69,5 @@ export default {
   name: String.getUUID(),
   title: '个人信息',
   screen: SettingProfileScreen,
+  type: [ScreenType.STACK],
 };

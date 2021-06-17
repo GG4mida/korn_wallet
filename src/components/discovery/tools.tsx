@@ -7,7 +7,7 @@ import {
   IconDiscoveryImToken,
 } from '@/components/icons';
 import {useNavigation} from '@react-navigation/native';
-import * as Screens from '@/screens';
+import {WebviewScreen, DiscoveryBrowserScreen} from '@/screens';
 
 const DiscoveryTools = () => {
   const {styleConfig} = useTheme();
@@ -20,13 +20,13 @@ const DiscoveryTools = () => {
         title: data.name,
         url: data.url,
       };
-      navigation.navigate(Screens.Webview.name, params);
+      navigation.navigate(WebviewScreen.name, params);
     },
     [navigation],
   );
 
   const handleBrowserPress = useCallback(() => {
-    navigation.navigate(Screens.DiscoveryBrowser.name);
+    navigation.navigate(DiscoveryBrowserScreen.name);
   }, [navigation]);
 
   const discoveryConfig = {

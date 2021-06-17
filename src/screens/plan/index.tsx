@@ -3,6 +3,8 @@ import {ScrollView} from 'react-native';
 import HeaderBack from '@/components/header/back';
 import {PlanList, PlanCreate} from '@/components/plan';
 import useTheme from '@/core/theme';
+import {String} from '@/utils';
+import {ScreenType} from '@/constants/enum';
 
 const PlanScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -24,4 +26,9 @@ const PlanScreen = ({navigation}: any) => {
   );
 };
 
-export default PlanScreen;
+export default {
+  name: String.getUUID(),
+  title: '组合列表',
+  screen: PlanScreen,
+  type: [ScreenType.STACK],
+};

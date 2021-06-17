@@ -31,6 +31,12 @@ enum ThemeType {
   LIGHT = 'LIGHT',
 }
 
+enum ScreenType {
+  TAB = 'TAB',
+  STACK = 'STACK',
+  NOAUTH = 'NOAUTH',
+}
+
 export {
   StorageKeys,
   ResponseCode,
@@ -38,4 +44,5 @@ export {
   SortField,
   CoinOpDirection,
   ThemeType,
+  ScreenType,
 };

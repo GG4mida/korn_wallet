@@ -2,8 +2,8 @@ import React, {useCallback, useEffect, useMemo} from 'react';
 import {View, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
-import {RouteConfig} from '@/constants/navigation';
 import {Formater} from '@/utils';
+import {CoinDetailScreen, CoinScreen} from '@/screens';
 import useTheme from '@/core/theme';
 import {
   IconEmpty,
@@ -56,7 +56,7 @@ const HomeHoldItem = (props: any) => {
 
   const navigation = useNavigation();
   const handleItemPress = useCallback(() => {
-    navigation.navigate(RouteConfig.CoinDetail.name, data.coin);
+    navigation.navigate(CoinDetailScreen.name, data.coin);
   }, [navigation, data]);
 
   return (
@@ -165,7 +165,7 @@ const HomeHolds = () => {
 
   if (userHoldList.length === 0) {
     const handleCoinPress = () => {
-      const coinAction = TabActions.jumpTo(RouteConfig.Coin.name);
+      const coinAction = TabActions.jumpTo(CoinScreen.name);
       navigation.dispatch(coinAction);
     };
 

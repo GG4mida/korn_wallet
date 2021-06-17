@@ -3,6 +3,8 @@ import {View, Text} from 'react-native';
 import HeaderBack from '@/components/header/back';
 import {PlanCreate} from '@/components/plan';
 import useTheme from '@/core/theme';
+import {String} from '@/utils';
+import {ScreenType} from '@/constants/enum';
 
 const PlanCreateScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -22,4 +24,9 @@ const PlanCreateScreen = ({navigation}: any) => {
   );
 };
 
-export default PlanCreateScreen;
+export default {
+  name: String.getUUID(),
+  title: '组合创建',
+  screen: PlanCreateScreen,
+  type: [ScreenType.STACK],
+};

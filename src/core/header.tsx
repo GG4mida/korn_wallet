@@ -1,31 +1,29 @@
 import React from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-import {RouteConfig} from '@/constants/navigation';
+import {HomeScreen, CoinScreen, NewsScreen, DiscoveryScreen} from '@/screens';
 import {HeaderUser, HeaderPlan} from '@/components/header';
 
 const getHeaderTitle = (route: any) => {
-  const routeName =
-    getFocusedRouteNameFromRoute(route) ?? RouteConfig.Home.name;
+  const routeName = getFocusedRouteNameFromRoute(route) ?? HomeScreen.name;
   switch (routeName) {
-    case RouteConfig.Home.name:
-      return RouteConfig.Home.title;
-    case RouteConfig.Coin.name:
-      return RouteConfig.Coin.title;
-    case RouteConfig.News.name:
-      return RouteConfig.News.title;
-    case RouteConfig.Discovery.name:
-      return RouteConfig.Discovery.title;
+    case HomeScreen.name:
+      return HomeScreen.title;
+    case CoinScreen.name:
+      return CoinScreen.title;
+    case NewsScreen.name:
+      return NewsScreen.title;
+    case DiscoveryScreen.name:
+      return DiscoveryScreen.title;
     default:
       return '';
   }
 };
 
 const getHeaderRight = (navigation: any, route: any) => {
-  const routeName =
-    getFocusedRouteNameFromRoute(route) ?? RouteConfig.Home.name;
+  const routeName = getFocusedRouteNameFromRoute(route) ?? HomeScreen.name;
   let headerRightComponent: any = null;
   switch (routeName) {
-    case RouteConfig.Home.name:
+    case HomeScreen.name:
       headerRightComponent = <HeaderUser navigation={navigation} />;
       break;
     default:
@@ -36,11 +34,10 @@ const getHeaderRight = (navigation: any, route: any) => {
 };
 
 const getHeaderLeft = (navigation: any, route: any) => {
-  const routeName =
-    getFocusedRouteNameFromRoute(route) ?? RouteConfig.Home.name;
+  const routeName = getFocusedRouteNameFromRoute(route) ?? HomeScreen.name;
   let headerLeftComponent: any = null;
   switch (routeName) {
-    case RouteConfig.Home.name:
+    case HomeScreen.name:
       headerLeftComponent = <HeaderPlan navigation={navigation} />;
       break;
     default:

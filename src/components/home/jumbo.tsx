@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import * as Screens from '@/screens';
+import {WalletScreen} from '@/screens';
 import {Formater} from '@/utils';
 import useTheme from '@/core/theme';
 
@@ -42,7 +42,7 @@ const HomeJumbo = () => {
   }, [userInfo, marketList, userHolds]);
 
   const handleDetailPress = useCallback(() => {
-    navigation.navigate(Screens.Wallet.name);
+    navigation.navigate(WalletScreen.name);
   }, [navigation]);
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Formater} from '@/utils';
-import * as Screens from '@/screens';
+import {CoinDetailScreen} from '@/screens';
 import useTheme from '@/core/theme';
 
 const CoinItem = (props: any) => {
@@ -19,7 +19,7 @@ const CoinItem = (props: any) => {
 
   const navigation = useNavigation();
   const handleItemPress = (item: any) => {
-    navigation.navigate(Screens.CoinDetail.name, item);
+    navigation.navigate(CoinDetailScreen.name, item);
   };
 
   return (

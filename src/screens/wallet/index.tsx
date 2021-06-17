@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {Formater, DateTime, String} from '@/utils';
 import useTheme from '@/core/theme';
+import {ScreenType} from '@/constants/enum';
 
 const WalletItem = (props: any) => {
   const {styles} = useTheme();
@@ -138,4 +139,5 @@ export default {
   name: String.getUUID(),
   title: '账户详情',
   screen: WalletScreen,
+  type: [ScreenType.STACK],
 };

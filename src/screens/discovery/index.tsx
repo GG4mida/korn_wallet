@@ -6,6 +6,7 @@ import {
   DiscoveryAirDrop,
   DiscoveryTopic,
 } from '@/components/discovery';
+import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
 
 const DiscoveryScreen = ({}: any) => {
@@ -25,4 +26,5 @@ export default {
   name: String.getUUID(),
   title: '发现',
   screen: DiscoveryScreen,
+  type: [ScreenType.TAB],
 };

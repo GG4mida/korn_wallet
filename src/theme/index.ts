@@ -8,7 +8,8 @@ const getToolThemeStyle = (config: any) => {
   return getToolStyle(config);
 };
 
-const getStyle = (config: any) => {
+const getStyle = (themeType: ThemeType) => {
+  const config = themeType === ThemeType.LIGHT ? LightConfig : DarkConfig;
   const toolStyle = getToolThemeStyle(config);
   const customStyle = getCustomStyle(toolStyle);
   return {
@@ -21,8 +22,8 @@ const getStyle = (config: any) => {
 };
 
 const getThemes = () => {
-  const darkStyle = getStyle(DarkConfig);
-  const lightStyle = getStyle(LightConfig);
+  const darkStyle = getStyle(ThemeType.DARK);
+  const lightStyle = getStyle(ThemeType.LIGHT);
   return {
     [ThemeType.DARK]: darkStyle,
     [ThemeType.LIGHT]: lightStyle,

@@ -4,9 +4,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import MarkdownRender from '@/components/markdown/render';
 import {DateTime, String} from '@/utils';
 import useTheme from '@/core/theme';
+import {ScreenType} from '@/constants/enum';
 import HeaderBack from '@/components/header/back';
 
-const DiscoveryTopicDetailHeader = (props: any) => {
+const TopicDetailHeader = (props: any) => {
   const {data} = props;
   const {title, createtime} = data;
   const {styles} = useTheme();
@@ -29,7 +30,7 @@ const DiscoveryTopicDetailHeader = (props: any) => {
   );
 };
 
-const DiscoveryTopicDetailScreen = ({navigation, route}: any) => {
+const TopicDetailScreen = ({navigation, route}: any) => {
   const {styles, styleConfig} = useTheme();
   const dispatch = useDispatch();
   React.useLayoutEffect(() => {
@@ -59,12 +60,10 @@ const DiscoveryTopicDetailScreen = ({navigation, route}: any) => {
 
   const {content = ''} = topicDetail;
 
-  console.info(topicDetail);
-
   return (
     <View style={[styles.screen_container, styles.bg_foreground]}>
       <ScrollView showsVerticalScrollIndicator={false} style={[styles.p_4]}>
-        <DiscoveryTopicDetailHeader data={topicDetail} />
+        <TopicDetailHeader data={topicDetail} />
         <MarkdownRender content={content} />
       </ScrollView>
     </View>
@@ -74,5 +73,6 @@ const DiscoveryTopicDetailScreen = ({navigation, route}: any) => {
 export default {
   name: String.getUUID(),
   title: '文章详情',
-  screen: DiscoveryTopicDetailScreen,
+  screen: TopicDetailScreen,
+  type: [ScreenType.STACK],
 };

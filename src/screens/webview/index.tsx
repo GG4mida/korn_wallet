@@ -4,6 +4,7 @@ import {useRoute} from '@react-navigation/native';
 import HeaderBack from '@/components/header/back';
 import {WebView} from 'react-native-webview';
 import useTheme from '@/core/theme';
+import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
 
 const WebViewLoading = () => {
@@ -51,4 +52,5 @@ export default {
   name: String.getUUID(),
   title: '浏览器',
   screen: WebViewScreen,
+  type: [ScreenType.STACK],
 };

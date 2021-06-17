@@ -1,41 +1,18 @@
-import LoginScreen from './login';
-import SignupScreen from './signup';
-import HomeScreen from './home';
-import NewsScreen from './news';
-import WalletScreen from './wallet';
-import OperateScreen from './operate';
-import CoinScreen from './coin';
-import CoinDetailScreen from './coinDetail';
-import DiscoveryScreen from './discovery';
-import DiscoveryBrowserScreen from './discoveryBrowser';
-import DiscoveryTopicScreen from './discoveryTopic';
-import DiscoveryTopicDetailScreen from './discoveryTopicDetail';
-import WebViewScreen from './webview';
-import PlanScreen from './plan';
-import SettingScreen from './setting';
-import SettingHelpScreen from './settingHelp';
-import SettingFeedbackScreen from './settingFeedback';
-import SettingAboutScreen from './settingAbout';
-import SettingProfileScreen from './settingProfile';
-
-export default {
-  LoginScreen,
-  SignupScreen,
-  HomeScreen,
-  NewsScreen,
-  WalletScreen,
-  OperateScreen,
-  CoinScreen,
-  CoinDetailScreen,
-  DiscoveryScreen,
-  DiscoveryBrowserScreen,
-  DiscoveryTopicScreen,
-  DiscoveryTopicDetailScreen,
-  SettingScreen,
-  SettingHelpScreen,
-  SettingAboutScreen,
-  SettingFeedbackScreen,
-  SettingProfileScreen,
-  WebViewScreen,
-  PlanScreen,
-};
+export {default as SigninScreen} from './signin';
+export {default as SignupScreen} from './signup';
+export {default as HomeScreen} from './home';
+export {default as NewsScreen} from './news';
+export {default as WalletScreen} from './wallet';
+export {default as OperateScreen} from './operate';
+export {default as CoinScreen} from './coin';
+export {default as CoinDetailScreen} from './coinDetail';
+export {default as DiscoveryScreen} from './discovery';
+export {default as DiscoveryBrowserScreen} from './discoveryBrowser';
+export {default as TopicScreen} from './topic';
+export {default as TopicDetailScreen} from './topicDetail';
+export {default as WebviewScreen} from './webview';
+export {default as PlanScreen} from './plan';
+export {default as PlanCreateScreen} from './planCreate';
+export {default as SettingScreen} from './setting';
+export {default as SettingAboutScreen} from './settingAbout';
+export {default as SettingProfileScreen} from './settingProfile';

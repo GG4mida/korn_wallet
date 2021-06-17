@@ -4,9 +4,10 @@ import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
 import LogoSvg from '@/assets/svg/logo.svg';
 import {IconForward} from '@/components/icons';
+import {ScreenType} from '@/constants/enum';
 import Version from '@/components/version';
 import {Toaster, String} from '@/utils';
-import * as Screens from '@/screens';
+import {WebviewScreen} from '@/screens';
 import {useSelector} from 'react-redux';
 
 const SettingAboutJumbo = () => {
@@ -114,7 +115,7 @@ const SettingAboutScreen = ({navigation}: any) => {
       title: '官方网站',
       url: site_url,
     };
-    navigation.navigate(Screens.Webview.name, params);
+    navigation.navigate(WebviewScreen.name, params);
   }, [navigation, site_url]);
 
   const handleGithubPress = useCallback(() => {
@@ -122,7 +123,7 @@ const SettingAboutScreen = ({navigation}: any) => {
       title: 'Github',
       url: git_url,
     };
-    navigation.navigate(Screens.Webview.name, params);
+    navigation.navigate(WebviewScreen.name, params);
   }, [navigation, git_url]);
 
   const handleEmailPress = useCallback(async () => {
@@ -181,4 +182,5 @@ export default {
   name: String.getUUID(),
   title: '关于我们',
   screen: SettingAboutScreen,
+  type: [ScreenType.STACK],
 };
