@@ -4,6 +4,7 @@ import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
 import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
+import {String} from '@/utils';
 import {
   CoinAction,
   CoinKline,
@@ -63,4 +64,8 @@ const CoinDetailScreen = ({navigation}: any) => {
   );
 };
 
-export default CoinDetailScreen;
+export default {
+  name: String.getUUID(),
+  title: '行情',
+  screen: CoinDetailScreen,
+};

@@ -9,7 +9,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {RouteConfig} from '@/constants/navigation';
+import * as Screens from '@/screens';
 import {Formater} from '@/utils';
 import useTheme from '@/core/theme';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
@@ -23,7 +23,7 @@ const HomeHoldItem = (props: any) => {
 
   const navigation = useNavigation();
   const handleItemPress = useCallback(() => {
-    navigation.navigate(RouteConfig.CoinDetail.name, data.coin);
+    navigation.navigate(Screens.CoinDetail.name, data.coin);
   }, [navigation, data]);
 
   return (
@@ -122,7 +122,7 @@ const HomeHolds = () => {
 
   if (userHoldList.length === 0) {
     const handleCoinPress = () => {
-      const coinAction = TabActions.jumpTo(RouteConfig.Coin.name);
+      const coinAction = TabActions.jumpTo(Screens.Coin.name);
       navigation.dispatch(coinAction);
     };
 

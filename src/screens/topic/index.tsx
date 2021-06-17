@@ -9,8 +9,8 @@ import {
 import useTheme from '@/core/theme';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
-import {RouteConfig} from '@/constants/navigation';
-import {DateTime} from '@/utils';
+import * as Screens from '@/screens';
+import {DateTime, String} from '@/utils';
 
 const DiscoveryTopicItem = (props: any) => {
   const {styles} = useTheme();
@@ -104,7 +104,7 @@ const DiscoveryTopicScreen = ({navigation, route}: any) => {
 
   const handleItemPress = useCallback(
     item => {
-      navigation.navigate(RouteConfig.DiscoveryTopicDetail.name, item);
+      navigation.navigate(Screens.TopicDetail.name, item);
     },
     [navigation],
   );
@@ -125,4 +125,8 @@ const DiscoveryTopicScreen = ({navigation, route}: any) => {
   );
 };
 
-export default DiscoveryTopicScreen;
+export default {
+  name: String.getUUID(),
+  title: '文章列表',
+  screen: DiscoveryTopicScreen,
+};

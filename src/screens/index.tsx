@@ -1,39 +1,16 @@
-import LoginScreen from './login';
-import SignupScreen from './signup';
-import HomeScreen from './home';
-import NewsScreen from './news';
-import WalletScreen from './wallet';
-import OperateScreen from './operate';
-import CoinScreen from './coin';
-import CoinDetailScreen from './coinDetail';
-import DiscoveryScreen from './discovery';
-import DiscoveryBrowserScreen from './discoveryBrowser';
-import DiscoveryTopicScreen from './discoveryTopic';
-import DiscoveryTopicDetailScreen from './discoveryTopicDetail';
-import WebViewScreen from './webview';
-import SettingScreen from './setting';
-import SettingHelpScreen from './settingHelp';
-import SettingFeedbackScreen from './settingFeedback';
-import SettingAboutScreen from './settingAbout';
-import SettingProfileScreen from './settingProfile';
-
-export default {
-  LoginScreen,
-  SignupScreen,
-  HomeScreen,
-  NewsScreen,
-  WalletScreen,
-  OperateScreen,
-  CoinScreen,
-  CoinDetailScreen,
-  DiscoveryScreen,
-  DiscoveryBrowserScreen,
-  DiscoveryTopicScreen,
-  DiscoveryTopicDetailScreen,
-  SettingScreen,
-  SettingHelpScreen,
-  SettingAboutScreen,
-  SettingFeedbackScreen,
-  SettingProfileScreen,
-  WebViewScreen,
-};
+export {default as Signin} from './signin';
+export {default as Signup} from './signup';
+export {default as Home} from './home';
+export {default as News} from './news';
+export {default as Wallet} from './wallet';
+export {default as Operate} from './operate';
+export {default as Coin} from './coin/index';
+export {default as CoinDetail} from './coin/detail';
+export {default as Discovery} from './discovery/index';
+export {default as DiscoveryBrowser} from './discovery/browser';
+export {default as Topic} from './topic';
+export {default as TopicDetail} from './topic/detail';
+export {default as Webview} from './webview';
+export {default as Setting} from './setting';
+export {default as SettingAbout} from './setting/about';
+export {default as SettingProfile} from './setting/profile';

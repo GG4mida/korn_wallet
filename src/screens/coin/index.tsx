@@ -5,6 +5,7 @@ import {coinTab} from '@/constants/tab';
 import {CoinSorter, CoinTab, CoinItem} from '@/components/coinList';
 import {SortField, SortRule} from '@/constants/enum';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
+import {String} from '@/utils';
 import useTheme from '@/core/theme';
 
 const SorterFunc = (data: any, sorter: any) => {
@@ -213,4 +214,8 @@ const CoinScreen = ({}: any) => {
   );
 };
 
-export default CoinScreen;
+export default {
+  name: String.getUUID(),
+  title: '行情',
+  screen: CoinScreen,
+};

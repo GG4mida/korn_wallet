@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {Toaster, Validator, Device} from '@/utils';
+import {Toaster, Validator, Device, String} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
 import LogoSvg from '@/assets/svg/logo.svg';
 import Version from '@/components/version';
@@ -166,4 +166,8 @@ const SignupScreen = ({navigation}: any) => {
   );
 };
 
-export default SignupScreen;
+export default {
+  name: String.getUUID(),
+  title: '注册',
+  screen: SignupScreen,
+};

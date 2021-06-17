@@ -3,7 +3,7 @@ import {Image, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import DiscoveryGroup from './group';
 import {useNavigation} from '@react-navigation/native';
-import {RouteConfig} from '@/constants/navigation';
+import * as Screens from '@/screens';
 import useTheme from '@/core/theme';
 
 const DiscoveryTopic = () => {
@@ -27,7 +27,7 @@ const DiscoveryTopic = () => {
 
   const handleItemPress = useCallback(
     data => {
-      navigation.navigate(RouteConfig.DiscoveryTopic.name, data);
+      navigation.navigate(Screens.Topic.name, data);
     },
     [navigation],
   );

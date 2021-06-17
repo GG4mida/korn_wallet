@@ -1,31 +1,29 @@
 import React from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-import {RouteConfig} from '@/constants/navigation';
+import * as Screens from '@/screens';
 import {HeaderUser} from '@/components/header';
 
 const getHeaderTitle = (route: any) => {
-  const routeName =
-    getFocusedRouteNameFromRoute(route) ?? RouteConfig.Home.name;
+  const routeName = getFocusedRouteNameFromRoute(route) ?? Screens.Home.name;
   switch (routeName) {
-    case RouteConfig.Home.name:
-      return RouteConfig.Home.title;
-    case RouteConfig.Coin.name:
-      return RouteConfig.Coin.title;
-    case RouteConfig.News.name:
-      return RouteConfig.News.title;
-    case RouteConfig.Discovery.name:
-      return RouteConfig.Discovery.title;
+    case Screens.Home.name:
+      return Screens.Home.title;
+    case Screens.Coin.name:
+      return Screens.Coin.title;
+    case Screens.News.name:
+      return Screens.News.title;
+    case Screens.Discovery.name:
+      return Screens.Discovery.title;
     default:
       return '';
   }
 };
 
 const getHeaderRight = (navigation: any, route: any) => {
-  const routeName =
-    getFocusedRouteNameFromRoute(route) ?? RouteConfig.Home.name;
+  const routeName = getFocusedRouteNameFromRoute(route) ?? Screens.Home.name;
   let headerRightComponent: any = null;
   switch (routeName) {
-    case RouteConfig.Home.name:
+    case Screens.Home.name:
       headerRightComponent = <HeaderUser navigation={navigation} />;
       break;
     default:

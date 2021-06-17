@@ -2,7 +2,7 @@ import React, {useMemo} from 'react';
 import {ScrollView, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
-import {Formater, DateTime} from '@/utils';
+import {Formater, DateTime, String} from '@/utils';
 import useTheme from '@/core/theme';
 
 const WalletItem = (props: any) => {
@@ -134,4 +134,8 @@ const WalletScreen = ({navigation}: any) => {
   );
 };
 
-export default WalletScreen;
+export default {
+  name: String.getUUID(),
+  title: '账户详情',
+  screen: WalletScreen,
+};

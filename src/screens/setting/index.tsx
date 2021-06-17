@@ -13,9 +13,9 @@ import HeaderBack from '@/components/header/back';
 import {IconForward} from '@/components/icons';
 import Confirm from '@/components/confirm';
 import {ThemeType, StorageKeys, ResponseCode} from '@/constants/enum';
-import {RouteConfig} from '@/constants/navigation';
+import * as Screens from '@/screens';
 import useTheme from '@/core/theme';
-import Storage from '@/utils/storage';
+import {String, Storage} from '@/utils';
 import {Toaster} from '@/utils';
 
 const SettingItem = (props: any) => {
@@ -118,7 +118,7 @@ const SettingProfile = () => {
   const {nick_name, login_name, avatar} = userInfo;
 
   const handleProfilePress = useCallback(() => {
-    navigation.navigate(RouteConfig.SettingProfile.name);
+    navigation.navigate(Screens.SettingProfile.name);
   }, [navigation]);
 
   return (
@@ -214,7 +214,7 @@ const SettingScreen = ({navigation}: any) => {
   }, [dispatch]);
 
   const handleAboutPress = useCallback(() => {
-    navigation.navigate(RouteConfig.SettingAbout.name);
+    navigation.navigate(Screens.SettingAbout.name);
   }, [navigation]);
 
   const settingItems = [
@@ -266,4 +266,8 @@ const SettingScreen = ({navigation}: any) => {
   );
 };
 
-export default SettingScreen;
+export default {
+  name: String.getUUID(),
+  title: '设置',
+  screen: SettingScreen,
+};
