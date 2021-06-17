@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {CoinOpDirection} from '@/constants/enum';
-import {Formater} from '@/utils';
+import {Formater, String} from '@/utils';
 import useTheme from '@/core/theme';
 
 const OperateItem = (props: any) => {
@@ -130,4 +130,8 @@ const OperateScreen = ({navigation}: any) => {
   );
 };
 
-export default OperateScreen;
+export default {
+  name: String.getUUID(),
+  title: '交易记录',
+  screen: OperateScreen,
+};

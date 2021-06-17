@@ -1,36 +1,33 @@
-import React, {useState, useCallback} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {RouteConfig} from '@/constants/navigation';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {Toaster, Validator, Device, String} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
-import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import Version from '@/components/version';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
-import {IconArrowRight} from '@/components/icons';
+import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
 
-const LoginScreen: React.FC = ({navigation}: any) => {
+const SignupScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
-  const [username, setUserName] = useState('fuckusername');
-  const [password, setPassword] = useState('fuckpassword');
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [repassword, setRepassword] = useState('');
 
   const dispatch = useDispatch();
   const loading = useSelector(
-    (state: any) => state.loading.effects['account/login'],
+    (state: any) => state.loading.effects['account/signup'],
   );
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      headerBackImage: () => <HeaderBack />,
       headerRight: () => <LoadingActivity loading={loading} />,
     });
   }, [navigation, loading]);
 
-  const handleSigninPress = useCallback(() => {
-    navigation.navigate(RouteConfig.Signup.name);
-  }, [navigation]);
-
-  const handleSubmitPress = useCallback(async () => {
+  const handleSubmitPress = async () => {
     if (loading === true) {
       return false;
     }
@@ -53,22 +50,36 @@ const LoginScreen: React.FC = ({navigation}: any) => {
       Toaster.show('用户密码格式错误');
       return false;
     }
-    const loginRes: any = await dispatch({
-      type: 'account/login',
+
+    if (!repassword) {
+      Toaster.show('请再次输入密码');
+      return false;
+    }
+
+    if (password !== repassword) {
+      Toaster.show('两次输入密码不一致');
+      return false;
+    }
+
+    const signupRes: any = await dispatch({
+      type: 'account/signup',
       payload: {
         username,
         password,
+        repassword,
+        uniqueId: Device.getUniqueId(),
       },
     });
 
-    const {code} = loginRes;
-
+    const {code, content} = signupRes;
     if (code === ResponseCode.SUCCESS) {
-      dispatch({
-        type: 'user/info',
+      Toaster.show(content, {
+        onHidden: () => {
+          navigation.goBack();
+        },
       });
     }
-  }, [username, password, loading, dispatch]);
+  };
 
   return (
     <View style={[styles.screen_container_with_padding, styles.bg_foreground]}>
@@ -119,9 +130,23 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               secureTextEntry={true}
               textContentType="password"
               onChangeText={setPassword}
-              placeholder="用户密码..."
+              placeholder="登录密码..."
               placeholderTextColor={styleConfig.color.hint}
               value={password}
+            />
+          </View>
+          <View style={styles.mb_4}>
+            <TextInput
+              style={styles.text_input}
+              autoCapitalize="none"
+              autoCompleteType="off"
+              autoCorrect={false}
+              secureTextEntry={true}
+              textContentType="password"
+              onChangeText={setRepassword}
+              placeholder="确认密码..."
+              placeholderTextColor={styleConfig.color.hint}
+              value={repassword}
             />
           </View>
           <View style={styles.mb_4}>
@@ -130,22 +155,7 @@ const LoginScreen: React.FC = ({navigation}: any) => {
               activeOpacity={0.5}
               disabled={loading}
               style={styles.button_green}>
-              <Text style={[styles.text_md, styles.text_white]}>登录</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={[styles.flex_container_center]}
-              activeOpacity={0.5}
-              onPress={handleSigninPress}>
-              <Text style={[styles.text_md, styles.text_content_secondary]}>
-                没有账户，免费注册
-              </Text>
-              <IconArrowRight
-                width={16}
-                height={16}
-                fill={styleConfig.color.content_secondary}
-              />
+              <Text style={[styles.text_md, styles.text_white]}>注册</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -156,4 +166,8 @@ const LoginScreen: React.FC = ({navigation}: any) => {
   );
 };
 
-export default LoginScreen;
+export default {
+  name: String.getUUID(),
+  title: '注册',
+  screen: SignupScreen,
+};

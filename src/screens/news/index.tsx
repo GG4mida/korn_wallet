@@ -3,6 +3,7 @@ import {SectionList, View, RefreshControl} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {NewsItem, NewsHeader} from '@/components/news';
 import useTheme from '@/core/theme';
+import {String} from '@/utils';
 
 const NewsScreen = ({}: any) => {
   const {styles} = useTheme();
@@ -52,4 +53,8 @@ const NewsScreen = ({}: any) => {
   );
 };
 
-export default NewsScreen;
+export default {
+  name: String.getUUID(),
+  title: '资讯',
+  screen: NewsScreen,
+};
