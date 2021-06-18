@@ -1,10 +1,11 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
 import HeaderBack from '@/components/header/back';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
+import {BuyInScreen, SellScreen} from '@/screens';
 import {ScreenType} from '@/constants/enum';
 import {
   CoinDetailAction,
@@ -37,13 +38,13 @@ const CoinDetailScreen = ({navigation}: any) => {
   const actionBuyInRef: any = useRef();
   const actionSellRef: any = useRef();
 
-  const handleBuyInPress = () => {
-    actionBuyInRef.current.snapTo(0);
-  };
+  const handleBuyInPress = useCallback(() => {
+    navigation.navigate(BuyInScreen.name, coin);
+  }, [navigation, coin]);
 
-  const handleSellPress = () => {
-    actionSellRef.current.snapTo(0);
-  };
+  const handleSellPress = useCallback(() => {
+    navigation.navigate(SellScreen.name, coin);
+  }, [navigation, coin]);
 
   return (
     <View style={[styles.screen_container, styles.bg_green]}>
@@ -55,10 +56,12 @@ const CoinDetailScreen = ({navigation}: any) => {
         <CoinDetailKlineBar value={tab} onChange={setTab} />
         <CoinDetailKline type={tab} />
       </ScrollView>
+
       <CoinDetailAction
         handleBuyInPress={handleBuyInPress}
         handleSellPress={handleSellPress}
       />
+
       <CoinDetailSell refs={actionSellRef} />
       <CoinDetailBuyIn refs={actionBuyInRef} />
     </View>

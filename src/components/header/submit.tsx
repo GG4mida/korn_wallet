@@ -1,10 +1,16 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {Text, View, ActivityIndicator, TouchableOpacity} from 'react-native';
 import useTheme from '@/core/theme';
 
-const SettingProfileSubmit = (props: any) => {
+interface IProps {
+  loading?: boolean;
+  text?: string;
+  handlePress: () => void;
+}
+
+const HeaderSubmit = (props: IProps) => {
   const {styles} = useTheme();
-  const {loading, handlePress} = props;
+  const {handlePress, loading, text = '提交'} = props;
   if (loading === true) {
     return (
       <View style={[styles.flex_container_center, styles.px_3]}>
@@ -12,14 +18,13 @@ const SettingProfileSubmit = (props: any) => {
       </View>
     );
   }
-
   return (
     <View style={[styles.flex_container_center, styles.px_3]}>
       <TouchableOpacity onPress={handlePress} activeOpacity={0.5}>
-        <Text style={[styles.text_md, styles.text_red]}>更新</Text>
+        <Text style={[styles.text_md, styles.text_red]}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default SettingProfileSubmit;
+export default HeaderSubmit;

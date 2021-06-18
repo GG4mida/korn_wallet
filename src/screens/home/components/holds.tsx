@@ -15,7 +15,13 @@ import {
 const HomeHoldHeader = () => {
   const {styles, styleConfig} = useTheme();
   return (
-    <View style={[styles.flex_container_between, styles.py_2, styles.border_b]}>
+    <View
+      style={[
+        styles.flex_container_between,
+        styles.py_2,
+        styles.border_b,
+        styles.border_t,
+      ]}>
       <View style={[styles.w_1_4]}>
         <View style={[styles.flex_row, styles.items_center]}>
           <Text style={[styles.text_content_secondary]}>币种</Text>
@@ -32,7 +38,7 @@ const HomeHoldHeader = () => {
       <View style={[styles.w_1_4]}>
         <View
           style={[styles.flex_row, styles.justify_end, styles.items_center]}>
-          <Text style={[styles.text_content_secondary]}>现价/成本</Text>
+          <Text style={[styles.text_content_secondary]}>现价</Text>
           <IconSortNone fill={styleConfig.color.hint} width={12} height={12} />
         </View>
       </View>
@@ -75,19 +81,21 @@ const HomeHoldItem = (props: any) => {
           </View>
           <View style={[styles.w_1_4]}>
             <View style={[styles.flex_col, styles.items_end]}>
-              <Text style={[styles.text_md, styles.text_leading]}>3790.00</Text>
+              <Text style={[styles.text_md, styles.text_leading]}>
+                14000.32
+              </Text>
               <Text style={[styles.text_sm, styles.text_content_secondary]}>
-                500
+                12341.33
               </Text>
             </View>
           </View>
           <View style={[styles.w_1_4]}>
             <View style={[styles.flex_col, styles.items_end]}>
               <Text style={[styles.text_md, styles.text_leading]}>
-                14000.32
+                $3790.00
               </Text>
               <Text style={[styles.text_sm, styles.text_content_secondary]}>
-                12341.33
+                ¥123891.12
               </Text>
             </View>
           </View>

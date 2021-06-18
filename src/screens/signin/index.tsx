@@ -1,33 +1,37 @@
-import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, {useState, useCallback} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {Toaster, Validator, Device, String} from '@/utils';
+import {useSelector, useDispatch} from 'react-redux';
 import {ResponseCode, ScreenType} from '@/constants/enum';
+import {Toaster, Validator} from '@/utils';
 import LogoSvg from '@/assets/svg/logo.svg';
 import Version from '@/components/version';
+import {SignupScreen} from '@/screens';
+import {String} from '@/utils';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
-import HeaderBack from '@/components/header/back';
+import {IconArrowRight} from '@/components/icons';
 import useTheme from '@/core/theme';
 
-const SignupScreen = ({navigation}: any) => {
+const SigninScreen: React.FC = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
-  const [username, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const [repassword, setRepassword] = useState('');
+  const [username, setUserName] = useState('fuckusername');
+  const [password, setPassword] = useState('fuckpassword');
 
   const dispatch = useDispatch();
   const loading = useSelector(
-    (state: any) => state.loading.effects['account/signup'],
+    (state: any) => state.loading.effects['account/login'],
   );
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerBackImage: () => <HeaderBack />,
       headerRight: () => <LoadingActivity loading={loading} />,
     });
   }, [navigation, loading]);
 
-  const handleSubmitPress = async () => {
+  const handleSigninPress = useCallback(() => {
+    navigation.navigate(SignupScreen.name);
+  }, [navigation]);
+
+  const handleSubmitPress = useCallback(async () => {
     if (loading === true) {
       return false;
     }
@@ -50,36 +54,22 @@ const SignupScreen = ({navigation}: any) => {
       Toaster.show('用户密码格式错误');
       return false;
     }
-
-    if (!repassword) {
-      Toaster.show('请再次输入密码');
-      return false;
-    }
-
-    if (password !== repassword) {
-      Toaster.show('两次输入密码不一致');
-      return false;
-    }
-
-    const signupRes: any = await dispatch({
-      type: 'account/signup',
+    const loginRes: any = await dispatch({
+      type: 'account/login',
       payload: {
         username,
         password,
-        repassword,
-        uniqueId: Device.getUniqueId(),
       },
     });
 
-    const {code, content} = signupRes;
+    const {code} = loginRes;
+
     if (code === ResponseCode.SUCCESS) {
-      Toaster.show(content, {
-        onHidden: () => {
-          navigation.goBack();
-        },
+      dispatch({
+        type: 'user/info',
       });
     }
-  };
+  }, [username, password, loading, dispatch]);
 
   return (
     <View style={[styles.screen_container_with_padding, styles.bg_foreground]}>
@@ -130,23 +120,9 @@ const SignupScreen = ({navigation}: any) => {
               secureTextEntry={true}
               textContentType="password"
               onChangeText={setPassword}
-              placeholder="登录密码..."
+              placeholder="用户密码..."
               placeholderTextColor={styleConfig.color.hint}
               value={password}
-            />
-          </View>
-          <View style={styles.mb_4}>
-            <TextInput
-              style={styles.text_input}
-              autoCapitalize="none"
-              autoCompleteType="off"
-              autoCorrect={false}
-              secureTextEntry={true}
-              textContentType="password"
-              onChangeText={setRepassword}
-              placeholder="确认密码..."
-              placeholderTextColor={styleConfig.color.hint}
-              value={repassword}
             />
           </View>
           <View style={styles.mb_4}>
@@ -155,7 +131,22 @@ const SignupScreen = ({navigation}: any) => {
               activeOpacity={0.5}
               disabled={loading}
               style={styles.button_green}>
-              <Text style={[styles.text_md, styles.text_white]}>注册</Text>
+              <Text style={[styles.text_md, styles.text_white]}>登录</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={[styles.flex_container_center]}
+              activeOpacity={0.5}
+              onPress={handleSigninPress}>
+              <Text style={[styles.text_md, styles.text_content_secondary]}>
+                没有账户，免费注册
+              </Text>
+              <IconArrowRight
+                width={16}
+                height={16}
+                fill={styleConfig.color.content_secondary}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -165,10 +156,9 @@ const SignupScreen = ({navigation}: any) => {
     </View>
   );
 };
-
 export default {
   name: String.getUUID(),
-  title: '注册',
-  screen: SignupScreen,
+  title: '登录',
+  screen: SigninScreen,
   type: [ScreenType.NOAUTH],
 };

@@ -2,15 +2,11 @@ import React, {useState, useCallback} from 'react';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
+import HeaderSubmit from '@/components/header/submit';
 import {Toaster, String} from '@/utils';
 import {ResponseCode, ScreenType} from '@/constants/enum';
 import useTheme from '@/core/theme';
-import {
-  SettingAvatar,
-  SettingNickName,
-  SettingEmail,
-  SettingSubmit,
-} from './components';
+import {SettingAvatar, SettingNickName, SettingEmail} from './components';
 
 const SettingProfileScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -49,7 +45,11 @@ const SettingProfileScreen = ({navigation}: any) => {
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
       headerRight: () => (
-        <SettingSubmit handlePress={handleSubmit} loading={loading} />
+        <HeaderSubmit
+          handlePress={handleSubmit}
+          loading={loading}
+          text="更新"
+        />
       ),
     });
   }, [navigation, handleSubmit, loading, styleConfig]);

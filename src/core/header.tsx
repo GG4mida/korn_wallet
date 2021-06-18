@@ -1,7 +1,7 @@
 import React from 'react';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import {HomeScreen, CoinScreen, NewsScreen, DiscoveryScreen} from '@/screens';
-import {HeaderUser, HeaderPlan} from '@/components/header';
+import {HeaderUser} from '@/components/header';
 
 const getHeaderTitle = (route: any) => {
   const routeName = getFocusedRouteNameFromRoute(route) ?? HomeScreen.name;
@@ -33,17 +33,8 @@ const getHeaderRight = (navigation: any, route: any) => {
   return () => headerRightComponent;
 };
 
-const getHeaderLeft = (navigation: any, route: any) => {
-  const routeName = getFocusedRouteNameFromRoute(route) ?? HomeScreen.name;
+const getHeaderLeft = () => {
   let headerLeftComponent: any = null;
-  switch (routeName) {
-    case HomeScreen.name:
-      headerLeftComponent = <HeaderPlan navigation={navigation} />;
-      break;
-    default:
-      return null;
-  }
-
   return () => headerLeftComponent;
 };
 

@@ -6,39 +6,9 @@ import {Formater, DateTime, String} from '@/utils';
 import useTheme from '@/core/theme';
 import {ScreenType} from '@/constants/enum';
 
-const WalletItem = (props: any) => {
-  const {styles} = useTheme();
-  const {label, value, descr, suffix} = props;
-  return (
-    <View style={[styles.my_2]}>
-      <View
-        style={[
-          styles.flex_container_between,
-          styles.bg_foreground,
-          styles.px_4,
-          styles.py_3,
-        ]}>
-        <Text style={[styles.text_md, styles.text_content_secondary]}>
-          {label}
-        </Text>
-        <View style={[styles.flex_container_center]}>
-          <Text style={[styles.text_md, styles.text_content]}>{value}</Text>
-          {suffix ? (
-            <Text style={[styles.text_md, styles.text_content]}>{suffix}</Text>
-          ) : null}
-        </View>
-      </View>
-      {descr ? (
-        <Text
-          style={[styles.text_sm, styles.text_hint, styles.mx_4, styles.my_2]}>
-          {descr}
-        </Text>
-      ) : null}
-    </View>
-  );
-};
+import {OverViewItem, OverViewJumbo} from './components';
 
-const WalletScreen = ({navigation}: any) => {
+const OverViewScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -88,42 +58,20 @@ const WalletScreen = ({navigation}: any) => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={styles.screen_container}>
+      <OverViewJumbo />
       <View style={styles.py_2}>
-        <WalletItem
-          label="累计资产"
-          descr="当前账户累计资产，累计资产 = 账户余额 + 持仓价值"
-          value={Formater.formatAmount(userSummaryData.totalAmount)}
-          suffix="$"
-        />
-
-        <WalletItem
-          label="账户余额"
-          descr="当前账户余额"
-          value={Formater.formatAmount(userSummaryData.balanceCurrent)}
-          suffix="$"
-        />
-
-        <WalletItem
-          label="持仓价值"
-          descr="当前持仓的累计价值"
-          value={Formater.formatAmount(userSummaryData.holdAmount)}
-          suffix="$"
-        />
-
-        <WalletItem
-          label="累计盈利"
-          descr="账户盈利金额"
+        <OverViewItem
+          label="累计盈亏"
           value={Formater.formatAmount(userSummaryData.totalProfit)}
           suffix="$"
         />
 
-        <WalletItem
-          label="盈利率"
-          descr="账户盈利率"
+        <OverViewItem
+          label="累计盈亏率"
           value={Formater.formatProfitRatio(userSummaryData.totalProfitRatio)}
         />
 
-        <WalletItem
+        <OverViewItem
           label="注册时间"
           value={DateTime.format(
             userSummaryData.createtime,
@@ -138,6 +86,6 @@ const WalletScreen = ({navigation}: any) => {
 export default {
   name: String.getUUID(),
   title: '账户详情',
-  screen: WalletScreen,
+  screen: OverViewScreen,
   type: [ScreenType.STACK],
 };

@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import {WalletScreen} from '@/screens';
+import {OverViewScreen} from '@/screens';
 import {Formater} from '@/utils';
 import useTheme from '@/core/theme';
 
@@ -42,7 +42,7 @@ const HomeJumbo = () => {
   }, [userInfo, marketList, userHolds]);
 
   const handleDetailPress = useCallback(() => {
-    navigation.navigate(WalletScreen.name);
+    navigation.navigate(OverViewScreen.name);
   }, [navigation]);
 
   return (
@@ -50,7 +50,7 @@ const HomeJumbo = () => {
       colors={[styleConfig.color.yellow, styleConfig.color.red]}
       start={{x: 1, y: 0}}
       end={{x: 0.2, y: 0}}
-      style={[styles.p_4, styles.rounded_2xl, styles.m_3]}>
+      style={[styles.p_4, styles.rounded_2xl, styles.m_3, styles.mb_2]}>
       <View style={[styles.flex_container_between, styles.mb_3]}>
         <Text style={[styles.text_white, styles.text_md]}>总市值</Text>
         <TouchableOpacity activeOpacity={0.5} onPress={handleDetailPress}>
