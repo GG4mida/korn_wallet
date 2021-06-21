@@ -36,6 +36,7 @@ const HomeAction = () => {
       style={[
         styles.flex_container_between,
         styles.py_3,
+        styles.my_2,
         styles.bg_foreground,
       ]}>
       <HomeActionItem
@@ -84,7 +85,6 @@ const HomeAction = () => {
         }
         text="我的自选"
         handlePress={handleFavoritePress}
-        bordered
       />
     </View>
   );

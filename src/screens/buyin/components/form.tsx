@@ -18,7 +18,7 @@ const BuyInForm = (props: IProps) => {
           style={[
             styles.text_md,
             styles.text_content,
-            styles.px_3,
+            styles.px_4,
             styles.my_2,
           ]}>
           买入金额
@@ -36,7 +36,7 @@ const BuyInForm = (props: IProps) => {
         />
       </View>
       <Text
-        style={[styles.px_3, styles.my_2, styles.text_sm, styles.text_hint]}>
+        style={[styles.px_4, styles.my_2, styles.text_sm, styles.text_hint]}>
         拖动划块确定买入金额。
       </Text>
     </View>

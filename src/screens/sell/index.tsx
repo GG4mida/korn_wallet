@@ -11,7 +11,7 @@ import {
   CoinDetailMeta,
 } from '@/screens/coinDetail/components';
 
-import {SellForm, SellSummary} from './components';
+import {SellForm, SellAccount, SellSummary} from './components';
 
 const SellScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -31,6 +31,7 @@ const SellScreen = ({navigation}: any) => {
       <CoinDetailMeta />
 
       <View style={[styles.my_4]}>
+        <SellAccount />
         <SellForm value={amount} handleChange={setAmount} />
         <SellSummary />
       </View>

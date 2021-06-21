@@ -3,7 +3,7 @@ import {Text, TouchableOpacity} from 'react-native';
 import useTheme from '@/core/theme';
 
 interface IProps {
-  bordered: boolean;
+  bordered?: boolean;
   text: string;
   icon: any;
   handlePress: () => void;
@@ -11,11 +11,8 @@ interface IProps {
 
 const HomeActionItem = (props: IProps) => {
   const {styles} = useTheme();
-  const {text, handlePress, icon, bordered} = props;
+  const {text, handlePress, icon} = props;
   const itemStyles: any = [styles.flex_col, styles.w_1_4, styles.items_center];
-  if (bordered === true) {
-    itemStyles.push(styles.border_r);
-  }
   return (
     <TouchableOpacity
       activeOpacity={0.5}

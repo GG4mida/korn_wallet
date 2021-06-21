@@ -8,7 +8,12 @@ const BuyInSummary = () => {
 
   return (
     <View
-      style={[styles.flex_container_between, styles.p_3, styles.bg_foreground]}>
+      style={[
+        styles.flex_container_between,
+        styles.px_4,
+        styles.py_3,
+        styles.bg_foreground,
+      ]}>
       <Text style={[styles.text_md, styles.text_content_secondary]}>
         买入汇总
       </Text>

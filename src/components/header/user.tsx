@@ -14,7 +14,7 @@ const HeaderUser = (props: any) => {
   }, [navigation]);
 
   return (
-    <View style={[styles.px_3, styles.flex_container_center]}>
+    <View style={[styles.px_4, styles.flex_container_center]}>
       <TouchableOpacity onPress={handleItemPress} activeOpacity={0.5}>
         <Image
           source={{uri: avatar}}

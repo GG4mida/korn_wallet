@@ -5,13 +5,11 @@ import HeaderSubmit from '@/components/header/submit';
 import useTheme from '@/core/theme';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
-
 import {
   CoinDetailSummary,
   CoinDetailMeta,
 } from '@/screens/coinDetail/components';
-
-import {BuyInForm, BuyInSummary} from './components';
+import {BuyInForm, BuyInAccount, BuyInSummary} from './components';
 
 const BuyInScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -31,6 +29,7 @@ const BuyInScreen = ({navigation}: any) => {
       <CoinDetailMeta />
 
       <View style={[styles.my_4]}>
+        <BuyInAccount />
         <BuyInForm value={amount} handleChange={setAmount} />
         <BuyInSummary />
       </View>

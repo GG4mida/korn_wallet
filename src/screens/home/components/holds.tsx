@@ -1,57 +1,18 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {View, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import {CoinScreen, CoinDetailScreen} from '@/screens';
 import {Formater} from '@/utils';
-import {CoinDetailScreen, CoinScreen} from '@/screens';
 import useTheme from '@/core/theme';
-import {
-  IconEmpty,
-  IconArrowRight,
-  IconSortDesc,
-  IconSortNone,
-} from '@/components/icons';
-
-const HomeHoldHeader = () => {
-  const {styles, styleConfig} = useTheme();
-  return (
-    <View
-      style={[
-        styles.flex_container_between,
-        styles.py_2,
-        styles.border_b,
-        styles.border_t,
-      ]}>
-      <View style={[styles.w_1_4]}>
-        <View style={[styles.flex_row, styles.items_center]}>
-          <Text style={[styles.text_content_secondary]}>币种</Text>
-          <IconSortDesc fill={styleConfig.color.hint} width={12} height={12} />
-        </View>
-      </View>
-      <View style={[styles.w_1_4]}>
-        <View
-          style={[styles.flex_row, styles.justify_end, styles.items_center]}>
-          <Text style={[styles.text_content_secondary]}>市值/数量</Text>
-          <IconSortNone fill={styleConfig.color.hint} width={12} height={12} />
-        </View>
-      </View>
-      <View style={[styles.w_1_4]}>
-        <View
-          style={[styles.flex_row, styles.justify_end, styles.items_center]}>
-          <Text style={[styles.text_content_secondary]}>现价</Text>
-          <IconSortNone fill={styleConfig.color.hint} width={12} height={12} />
-        </View>
-      </View>
-      <View style={[styles.w_1_4]}>
-        <View
-          style={[styles.flex_row, styles.justify_end, styles.items_center]}>
-          <Text style={[styles.text_content_secondary]}>累计盈亏</Text>
-          <IconSortNone fill={styleConfig.color.hint} width={12} height={12} />
-        </View>
-      </View>
-    </View>
-  );
-};
+import {IconEmpty, IconArrowRight} from '@/components/icons';
 
 const HomeHoldItem = (props: any) => {
   const {styleConfig, styles} = useTheme();
@@ -67,46 +28,32 @@ const HomeHoldItem = (props: any) => {
 
   return (
     <TouchableOpacity onPress={handleItemPress} activeOpacity={0.5}>
-      <View style={[styles.py_2, styles.border_b]}>
+      <LinearGradient
+        colors={[styleConfig.color.background, styleConfig.color.background]}
+        style={[styles.rounded_xl, styles.mb_3, styles.p_4]}>
         <View style={[styles.flex_container_between]}>
-          <View style={[styles.w_1_4]}>
+          <View style={[styles.flex_container_center]}>
+            <Image
+              source={{uri: logo_png}}
+              style={[styles.img_coin, styles.rounded_xl, styles.mr_3]}
+            />
             <View>
-              <Text style={[styles.text_md, styles.text_leading]}>
+              <Text style={[styles.text_lg, styles.text_leading]}>
                 {symbol}
               </Text>
-              <Text style={[styles.text_sm, styles.text_content_secondary]}>
-                {name}
-              </Text>
+              <Text style={[styles.text_md, styles.text_content]}>{name}</Text>
             </View>
           </View>
-          <View style={[styles.w_1_4]}>
-            <View style={[styles.flex_col, styles.items_end]}>
-              <Text style={[styles.text_md, styles.text_leading]}>
-                14000.32
-              </Text>
-              <Text style={[styles.text_sm, styles.text_content_secondary]}>
-                12341.33
-              </Text>
-            </View>
-          </View>
-          <View style={[styles.w_1_4]}>
-            <View style={[styles.flex_col, styles.items_end]}>
-              <Text style={[styles.text_md, styles.text_leading]}>
-                $3790.00
-              </Text>
-              <Text style={[styles.text_sm, styles.text_content_secondary]}>
-                ¥123891.12
-              </Text>
-            </View>
-          </View>
-          <View style={[styles.w_1_4]}>
-            <View style={[styles.flex_col, styles.items_end]}>
-              <Text style={[styles.text_md, styles.text_green]}>-2000.32</Text>
-              <Text style={[styles.text_sm, styles.text_green]}>-12.33%</Text>
-            </View>
+          <View style={[styles.items_end]}>
+            <Text style={[styles.text_content, styles.text_md]}>
+              {holdCount}
+            </Text>
+            <Text style={[styles.text_leading, styles.text_lg]}>
+              ${Formater.formatAmount(amount)}
+            </Text>
           </View>
         </View>
-      </View>
+      </LinearGradient>
     </TouchableOpacity>
   );
 };
@@ -202,8 +149,7 @@ const HomeHolds = () => {
   }
 
   return (
-    <View style={[styles.mb_5, styles.bg_foreground, styles.px_3]}>
-      <HomeHoldHeader />
+    <View style={[styles.mb_5]}>
       <HomeHoldList data={userHoldList} />
     </View>
   );

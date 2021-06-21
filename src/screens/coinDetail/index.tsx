@@ -47,7 +47,7 @@ const CoinDetailScreen = ({navigation}: any) => {
   }, [navigation, coin]);
 
   return (
-    <View style={[styles.screen_container, styles.bg_green]}>
+    <View style={[styles.screen_container, styles.bg_foreground]}>
       <ScrollView
         style={[styles.screen_container]}
         showsVerticalScrollIndicator={false}>

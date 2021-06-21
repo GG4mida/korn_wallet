@@ -18,7 +18,7 @@ const SellForm = (props: IProps) => {
           style={[
             styles.text_md,
             styles.text_content,
-            styles.px_3,
+            styles.px_4,
             styles.my_2,
           ]}>
           卖出数量
@@ -36,7 +36,7 @@ const SellForm = (props: IProps) => {
         />
       </View>
       <Text
-        style={[styles.px_3, styles.my_2, styles.text_sm, styles.text_hint]}>
+        style={[styles.px_4, styles.my_2, styles.text_sm, styles.text_hint]}>
         拖动划块确定卖出数量。
       </Text>
     </View>

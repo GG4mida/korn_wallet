@@ -3,11 +3,11 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {ResponseCode, ScreenType} from '@/constants/enum';
 import {Toaster, Validator} from '@/utils';
-import LogoSvg from '@/assets/svg/logo.svg';
 import Version from '@/components/version';
 import {SignupScreen} from '@/screens';
 import {String} from '@/utils';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
+import Jumbo from '@/components/jumbo';
 import {IconArrowRight} from '@/components/icons';
 import useTheme from '@/core/theme';
 
@@ -74,27 +74,7 @@ const SigninScreen: React.FC = ({navigation}: any) => {
   return (
     <View style={[styles.screen_container_with_padding, styles.bg_foreground]}>
       <View style={[styles.flex_1]}>
-        <View
-          style={[
-            styles.flex_container_center,
-            styles.flex_col,
-            styles.py_5,
-            styles.mb_3,
-          ]}>
-          <LogoSvg width={64} height={64} />
-          <Text
-            style={[
-              styles.text_lg,
-              styles.mb_1,
-              styles.mt_2,
-              styles.text_leading,
-            ]}>
-            Korn
-          </Text>
-          <Text style={[styles.text_md, styles.text_content]}>
-            Nothing else matters
-          </Text>
-        </View>
+        <Jumbo />
         <View style={[styles.px_3]}>
           <View style={styles.mb_4}>
             <TextInput

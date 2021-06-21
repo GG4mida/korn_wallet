@@ -6,7 +6,7 @@ const HistoryItem = () => {
   const {styles} = useTheme();
   return (
     <View
-      style={[styles.border_b, styles.px_3, styles.bg_foreground, styles.mb_3]}>
+      style={[styles.border_b, styles.px_4, styles.bg_foreground, styles.mb_3]}>
       <View
         style={[styles.flex_container_between, styles.border_b, styles.py_2]}>
         <View style={[styles.flex_container_center]}>
@@ -14,9 +14,7 @@ const HistoryItem = () => {
             source={{uri: 'http://127.0.0.1:7070/public/coin/btc.png'}}
             style={[styles.rounded_full, styles.mr_1, styles.img_header]}
           />
-          <Text style={[styles.text_content, styles.text_md, styles.text_bold]}>
-            BTC
-          </Text>
+          <Text style={[styles.text_leading, styles.text_md]}>BTC</Text>
         </View>
         <Text style={[styles.text_green, styles.text_md]}>买入</Text>
       </View>
