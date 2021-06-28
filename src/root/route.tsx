@@ -7,9 +7,8 @@ import {
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
-import HeaderHelper from '@/core/header';
 import * as Screens from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {ScreenType, ThemeType} from '@/constants/enum';
 import {
   IconTabHome,
@@ -17,6 +16,8 @@ import {
   IconTabDiscovery,
   IconTabCoin,
 } from '@/components/icons';
+
+import HeaderHelper from './header';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

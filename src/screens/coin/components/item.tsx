@@ -3,7 +3,7 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Formater} from '@/utils';
 import {CoinDetailScreen} from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const CoinItem = (props: any) => {
   const {styles} = useTheme();

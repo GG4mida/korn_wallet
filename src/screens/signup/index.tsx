@@ -7,7 +7,7 @@ import Version from '@/components/version';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import HeaderBack from '@/components/header/back';
 import Jumbo from '@/components/jumbo';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const SignupScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();

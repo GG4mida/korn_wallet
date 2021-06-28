@@ -1,6 +1,6 @@
 import React from 'react';
 import {Platform, StyleSheet} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import Markdown from 'react-native-markdown-display';
 
 const MarkdownRender = (props: any) => {

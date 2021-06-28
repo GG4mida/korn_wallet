@@ -1,16 +1,11 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {Text, View} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
+import {Formater} from '@/utils';
 
-interface IProps {
-  text: string;
-  value: string;
-}
-
-const SellAccountItem = (props: IProps) => {
+const SellAccountItem = (props: {text: string; value: string}) => {
   const {styles} = useTheme();
   const {text, value} = props;
-
   return (
     <View
       style={[
@@ -29,13 +24,35 @@ const SellAccountItem = (props: IProps) => {
   );
 };
 
-const SellAccount = () => {
+const SellAccount = (props: {coin: any}) => {
   const {styles} = useTheme();
+
+  const {coin} = props;
+
+  const renderData = useMemo(() => {
+    const {user_balance, coin_price, coin_hold_volumn} = coin;
+    const result = {
+      volumn: '0',
+      amount: '0.00',
+      balance: Formater.formatAmount(user_balance),
+    };
+    result.volumn = Formater.fixed(coin_hold_volumn, 4);
+    result.amount = Formater.formatAmount(
+      parseFloat(coin_price) * parseFloat(coin_hold_volumn),
+    );
+    return result;
+  }, [coin]);
+
+  const {coin_symbol} = coin;
 
   return (
     <View style={[styles.mb_3, styles.bg_foreground]}>
-      <SellAccountItem text="当前持仓" value="12.3212 BTC" />
-      <SellAccountItem text="持仓市值" value="$20000.00" />
+      <SellAccountItem
+        text="当前持仓"
+        value={`${renderData.volumn} ${coin_symbol}`}
+      />
+      <SellAccountItem text="持仓市值" value={`$${renderData.amount}`} />
+      <SellAccountItem text="账户余额" value={`$${renderData.balance}`} />
     </View>
   );
 };

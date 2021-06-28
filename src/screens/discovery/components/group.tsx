@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, Text, View} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import DiscoveryItem from './item';
 
 const DiscoveryContent = (props: any) => {

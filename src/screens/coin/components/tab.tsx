@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {coinTabs} from '@/constants/tab';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const CoinTabItem = (props: any) => {
   const {styles} = useTheme();

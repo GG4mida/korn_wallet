@@ -3,7 +3,7 @@ import {ScrollView, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {Formater, DateTime, String} from '@/utils';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
 
 import {OverViewItem, OverViewJumbo} from './components';

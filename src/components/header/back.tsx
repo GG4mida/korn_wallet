@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {IconBack} from '@/components/icons';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const HeaderBack = () => {
   const {styleConfig, styles} = useTheme();

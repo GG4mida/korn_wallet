@@ -2,7 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {View, Text, Switch, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ThemeType, StorageKeys} from '@/constants/enum';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {Storage} from '@/utils';
 
 const SettingTheme = () => {

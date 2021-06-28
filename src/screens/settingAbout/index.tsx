@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {View, Linking} from 'react-native';
 import HeaderBack from '@/components/header/back';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
 import Version from '@/components/version';
 import {Toaster, String} from '@/utils';

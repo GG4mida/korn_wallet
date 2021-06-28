@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const CoinDetailNews = () => {
   const {styles} = useTheme();

@@ -9,7 +9,7 @@ import {String} from '@/utils';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import Jumbo from '@/components/jumbo';
 import {IconArrowRight} from '@/components/icons';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const SigninScreen: React.FC = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();

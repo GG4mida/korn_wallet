@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const AnimatedView = Animated.View;
 const fall = new Animated.Value(1);

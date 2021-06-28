@@ -11,7 +11,7 @@ import {LineChart, Grid} from 'react-native-svg-charts';
 import {useRoute} from '@react-navigation/native';
 import {Storage, DateTime} from '@/utils';
 import {klineTab} from '@/constants/tab';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 interface IProps {
   type: klineTab;

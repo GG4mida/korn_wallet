@@ -3,7 +3,7 @@ import {View, Text, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import MarkdownRender from '@/components/markdown';
 import {DateTime, String} from '@/utils';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
 import HeaderBack from '@/components/header/back';
 

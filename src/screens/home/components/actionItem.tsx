@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 interface IProps {
   bordered?: boolean;

@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const Avatar = (props: any) => {
   const {styles, styleConfig} = useTheme();

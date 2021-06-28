@@ -15,7 +15,7 @@ import ArrowRightSvg from '@/assets/svg/arrow-right.svg';
 import Slider from '@react-native-community/slider';
 import {Formater} from '@/utils';
 import {ResponseCode} from '@/constants/enum';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const AnimatedView = Animated.View;
 let fall = new Animated.Value(1);

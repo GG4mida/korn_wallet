@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {SettingScreen} from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const HeaderUser = (props: any) => {
   const {styles} = useTheme();

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TextInput} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const SettingProfileEmail = (props: any) => {
   const {styleConfig, styles} = useTheme();

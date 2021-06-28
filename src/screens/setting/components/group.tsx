@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import SettingItem from './item';
 
 interface IProps {

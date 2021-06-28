@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {IconForward} from '@/components/icons';
 import {SettingProfileScreen} from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const SettingProfile = () => {
   const {styleConfig, styles} = useTheme();

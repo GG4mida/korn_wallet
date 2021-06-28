@@ -2,7 +2,7 @@ import React, {useEffect, useCallback} from 'react';
 import {SectionList, View, RefreshControl} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {ScreenType} from '@/constants/enum';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {String} from '@/utils';
 import {NewsItem, NewsHeader} from './components';
 

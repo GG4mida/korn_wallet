@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, ActivityIndicator, TouchableOpacity} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 interface IProps {
   loading?: boolean;

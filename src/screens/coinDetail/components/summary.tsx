@@ -3,7 +3,7 @@ import {View, Text, Image} from 'react-native';
 import {Formater} from '@/utils';
 import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const CoinSummary = () => {
   const {styles} = useTheme();

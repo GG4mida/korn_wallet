@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import Slider from '@react-native-community/slider';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 interface IProps {
   value: number;
@@ -14,15 +14,11 @@ const SellForm = (props: IProps) => {
   return (
     <View style={[styles.mb_3]}>
       <View style={[styles.bg_foreground]}>
-        <Text
-          style={[
-            styles.text_md,
-            styles.text_content,
-            styles.px_4,
-            styles.my_2,
-          ]}>
-          卖出数量
-        </Text>
+        <View style={[styles.flex_container_between, styles.px_4, styles.py_2]}>
+          <Text style={[styles.text_md, styles.text_content]}>卖出数量</Text>
+          <Text
+            style={[styles.text_md, styles.text_content]}>{`${value}%`}</Text>
+        </View>
         <Slider
           value={value}
           onValueChange={handleChange}

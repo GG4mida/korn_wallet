@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import LogoSvg from '@/assets/svg/logo.svg';
 
 const Jumbo = () => {

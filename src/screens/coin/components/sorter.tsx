@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {IconSortAsc, IconSortDesc, IconSortNone} from '@/components/icons';
 import {SortRule, SortField} from '@/constants/enum';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const SORT_HEADERS = [
   {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, View, Text, ActivityIndicator} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import TopicItem from './item';
 
 const TopicList = (props: any) => {

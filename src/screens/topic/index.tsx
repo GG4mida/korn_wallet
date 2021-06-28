@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import {View} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {TopicDetailScreen} from '@/screens';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {IconForward} from '@/components/icons';
 
 const SettingAboutItems = (props: any) => {

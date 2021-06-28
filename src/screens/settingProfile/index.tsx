@@ -5,7 +5,7 @@ import HeaderBack from '@/components/header/back';
 import HeaderSubmit from '@/components/header/submit';
 import {Toaster, String} from '@/utils';
 import {ResponseCode, ScreenType} from '@/constants/enum';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {SettingAvatar, SettingNickName, SettingEmail} from './components';
 
 const SettingProfileScreen = ({navigation}: any) => {

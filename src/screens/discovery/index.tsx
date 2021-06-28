@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
 import {DiscoveryTools, DiscoveryAirDrop, DiscoveryTopic} from './components';

@@ -3,7 +3,7 @@ import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
 import HeaderBack from '@/components/header/back';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {String} from '@/utils';
 import {BuyInScreen, SellScreen} from '@/screens';
 import {ScreenType} from '@/constants/enum';

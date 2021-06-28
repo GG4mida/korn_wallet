@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const LoadingActivity = (props: any) => {
   const {styles} = useTheme();

@@ -7,7 +7,7 @@ import {
   IconTabDiscovery,
   IconTabNews,
 } from '@/components/icons';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {HistoryScreen} from '@/screens';
 import HomeActionItem from './actionItem';
 

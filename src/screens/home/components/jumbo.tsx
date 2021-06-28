@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {OverViewScreen} from '@/screens';
 import {Formater} from '@/utils';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const HomeJumbo = () => {
   const navigation = useNavigation();

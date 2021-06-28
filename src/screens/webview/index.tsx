@@ -3,7 +3,7 @@ import {View, Text, ActivityIndicator} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import HeaderBack from '@/components/header/back';
 import {WebView} from 'react-native-webview';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
 

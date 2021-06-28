@@ -11,7 +11,7 @@ import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {CoinScreen, CoinDetailScreen} from '@/screens';
 import {Formater} from '@/utils';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
 
 const HomeHoldItem = (props: any) => {

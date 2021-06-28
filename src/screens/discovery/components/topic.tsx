@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import DiscoveryGroup from './group';
 import {useNavigation} from '@react-navigation/native';
 import {TopicScreen} from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const DiscoveryTopic = () => {
   const navigation = useNavigation();

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
 import {HomeJumbo, HomeHolds, HomeAction} from './components';

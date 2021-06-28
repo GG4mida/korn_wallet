@@ -27,5 +27,3 @@ export {default as IconDiscoveryTopic} from '@/assets/svg/discovery-topic.svg';
 export {default as IconEmpty} from '@/assets/svg/empty.svg';
 export {default as IconUser} from '@/assets/svg/user.svg';
 export {default as IconDetete} from '@/assets/svg/delete.svg';
-export {default as IconBuyIn} from '@/assets/svg/buyin.svg';
-export {default as IconSell} from '@/assets/svg/sell.svg';

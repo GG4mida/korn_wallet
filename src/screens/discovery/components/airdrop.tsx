@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import DiscoveryGroup from './group';
 import {useNavigation} from '@react-navigation/native';
 import {WebviewScreen} from '@/screens';

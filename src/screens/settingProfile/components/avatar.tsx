@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const SettingProfileAvatar = (props: any) => {
   const {styles} = useTheme();

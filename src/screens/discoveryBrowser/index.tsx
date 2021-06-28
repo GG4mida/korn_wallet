@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {useNavigation} from '@react-navigation/core';
 import {WebviewScreen} from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {String} from '@/utils';
 import {ScreenType} from '@/constants/enum';
 

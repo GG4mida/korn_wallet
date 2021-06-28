@@ -5,7 +5,7 @@ import HeaderBack from '@/components/header/back';
 import Confirm from '@/components/confirm';
 import {ResponseCode, ScreenType} from '@/constants/enum';
 import {SettingAboutScreen} from '@/screens';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 import {String} from '@/utils';
 import {Toaster} from '@/utils';
 

@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {DateTime} from '@/utils';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const NUM_OF_CONTENT = 3;
 

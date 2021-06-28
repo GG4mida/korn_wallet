@@ -6,7 +6,7 @@ import {Toaster} from '@/utils';
 import {useRoute} from '@react-navigation/native';
 import {IconFavorite} from '@/components/icons';
 import {ResponseCode} from '@/constants/enum';
-import useTheme from '@/core/theme';
+import {useTheme} from '@/hooks';
 
 const CoinDetailFavorite = () => {
   const {styleConfig, styles} = useTheme();
