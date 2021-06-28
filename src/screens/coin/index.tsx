@@ -176,11 +176,15 @@ const CoinScreen = ({}: any) => {
       all: [],
       favorites: [],
     };
+
     const handler = (list: any): any => {
       const result = [];
       for (let item of list) {
         const {symbol} = item;
         const marketInfo = marketList[symbol];
+        if (!marketInfo) {
+          continue;
+        }
         const {c: marketPrice, P: marketChange} = marketInfo;
         const marketPriceCNY = parseFloat(marketPrice) * parseFloat(exchange);
         result.push({
