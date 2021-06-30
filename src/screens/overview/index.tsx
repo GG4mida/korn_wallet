@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {ScrollView, View, Text} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {Formater, DateTime, String} from '@/utils';

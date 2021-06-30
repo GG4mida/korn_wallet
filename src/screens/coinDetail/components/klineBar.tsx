@@ -19,7 +19,7 @@ const CoinDetailKlineBarItem = (props: any) => {
     customStyle.bar_item,
   ];
 
-  let labelStyle = [styles.text_content_secondary];
+  let labelStyle = [styles.text_md, styles.text_content_secondary];
 
   if (data.name === value) {
     itemStyle.push(...[styles.bg_red]);
@@ -63,7 +63,7 @@ const CoinDetailKlineBar = (props: IProps) => {
         styles.flex_container_between,
         styles.border_b,
         styles.px_3,
-        styles.py_2,
+        styles.py_1,
       ]}>
       <CoinDetailKlineBarList value={value} onChange={onChange} />
     </View>

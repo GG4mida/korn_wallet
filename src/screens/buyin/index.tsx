@@ -7,8 +7,8 @@ import {useDispatch} from 'react-redux';
 import {String, Formater, Toaster} from '@/utils';
 import {ScreenType, ResponseCode} from '@/constants/enum';
 import {
-  CoinDetailSummary,
-  CoinDetailMeta,
+  CoinDetailOverview,
+  CoinDetailStatistic,
 } from '@/screens/coinDetail/components';
 import {useCoin} from '@/hooks';
 import {BuyInForm, BuyInAccount, BuyInSummary} from './components';
@@ -60,8 +60,8 @@ const BuyInScreen = ({navigation, route}: any) => {
 
   return (
     <View style={[styles.screen_container]}>
-      <CoinDetailSummary />
-      <CoinDetailMeta />
+      <CoinDetailOverview />
+      <CoinDetailStatistic />
       <View style={[styles.my_4]}>
         <BuyInAccount coin={coinData} />
         <BuyInForm value={percent} handleChange={setPercent} />

@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "echo 'ok'",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prepare": "husky install"
   },
   "dependencies": {

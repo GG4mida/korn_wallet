@@ -13,7 +13,7 @@ const SettingAboutItems = (props: any) => {
       activeOpacity={0.5}
       style={[
         styles.flex_container_between,
-        styles.px_5,
+        styles.px_4,
         styles.py_3,
         styles.bg_foreground,
         styles.border_b,
@@ -33,11 +33,7 @@ const SettingAboutItems = (props: any) => {
           </Text>
         ) : null}
         {isTail === true ? (
-          <IconForward
-            width={18}
-            height={18}
-            fill={styleConfig.color.content_secondary}
-          />
+          <IconForward width={18} height={18} fill={styleConfig.color.hint} />
         ) : null}
       </View>
     </TouchableOpacity>

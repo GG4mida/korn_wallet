@@ -5,7 +5,7 @@ import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {useTheme} from '@/hooks';
 
-const CoinSummary = () => {
+const CoinDetailOverview = () => {
   const {styles} = useTheme();
   const route = useRoute();
   const coin: any = route.params;
@@ -66,4 +66,4 @@ const CoinSummary = () => {
   );
 };
 
-export default CoinSummary;
+export default CoinDetailOverview;

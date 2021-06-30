@@ -9,7 +9,6 @@ const show = (message: string, config: any = {}) => {
     delay: 0,
     shadow: false,
   };
-
   Toast.show(message, {...defaultConfig, ...config});
 };
 

@@ -1,10 +1,7 @@
 import React, {useMemo} from 'react';
 import {Text, View} from 'react-native';
 import {useTheme} from '@/hooks';
-import {find} from 'lodash';
-import {useSelector} from 'react-redux';
 import {IconArrowRight} from '@/components/icons';
-import {useRoute} from '@react-navigation/native';
 import {Formater} from '@/utils';
 
 interface IProps {
@@ -14,9 +11,7 @@ interface IProps {
 
 const SellSummary = (props: IProps) => {
   const {styles, styleConfig} = useTheme();
-
   const {value, coin} = props;
-
   const renderData = useMemo(() => {
     const result = {
       amount: '0.00',

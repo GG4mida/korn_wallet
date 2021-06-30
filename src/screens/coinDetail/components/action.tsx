@@ -17,7 +17,7 @@ const CoinDetailAction = (props: IProps) => {
     <View style={[customStyles.container]}>
       <TouchableOpacity
         onPress={handleBuyInPress}
-        activeOpacity={0.5}
+        activeOpacity={0.8}
         style={[
           styles.flex_col,
           styles.bg_foreground,
@@ -30,7 +30,7 @@ const CoinDetailAction = (props: IProps) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={handleSellPress}
-        activeOpacity={0.5}
+        activeOpacity={0.8}
         style={[
           styles.flex_col,
           styles.bg_foreground,
@@ -66,7 +66,7 @@ const customStyles = StyleSheet.create({
   item_text: {
     color: '#fff',
     fontSize: 24,
-    fontWeight: '300',
+    fontWeight: '400',
   },
 });
 

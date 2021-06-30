@@ -11,9 +11,10 @@ import {
   CoinDetailAction,
   CoinDetailKline,
   CoinDetailKlineBar,
-  CoinDetailSummary,
-  CoinDetailMeta,
+  CoinDetailOverview,
+  CoinDetailStatistic,
   CoinDetailFavorite,
+  CoinDetailMeta,
 } from './components';
 
 const CoinDetailScreen = ({navigation}: any) => {
@@ -46,10 +47,11 @@ const CoinDetailScreen = ({navigation}: any) => {
       <ScrollView
         style={[styles.screen_container]}
         showsVerticalScrollIndicator={false}>
-        <CoinDetailSummary />
-        <CoinDetailMeta />
+        <CoinDetailOverview />
+        <CoinDetailStatistic />
         <CoinDetailKlineBar value={tab} onChange={setTab} />
         <CoinDetailKline type={tab} />
+        <CoinDetailMeta data={coin} />
       </ScrollView>
 
       <CoinDetailAction

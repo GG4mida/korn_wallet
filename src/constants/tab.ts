@@ -19,7 +19,6 @@ enum klineTab {
   WEEK = 'WEEK',
   MONTH = 'MONTH',
   YEAR = 'YEAR',
-  ALL = 'ALL',
 }
 
 const klineTabs = [
@@ -38,10 +37,6 @@ const klineTabs = [
   {
     name: klineTab.YEAR,
     label: '年',
-  },
-  {
-    name: klineTab.ALL,
-    label: '所有',
   },
 ];
 

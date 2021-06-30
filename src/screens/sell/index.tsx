@@ -8,8 +8,8 @@ import {String, Formater, Toaster} from '@/utils';
 import {ScreenType, ResponseCode} from '@/constants/enum';
 
 import {
-  CoinDetailSummary,
-  CoinDetailMeta,
+  CoinDetailOverview,
+  CoinDetailStatistic,
 } from '@/screens/coinDetail/components';
 import {useCoin} from '@/hooks';
 
@@ -61,9 +61,8 @@ const SellScreen = ({navigation, route}: any) => {
 
   return (
     <View style={[styles.screen_container]}>
-      <CoinDetailSummary />
-      <CoinDetailMeta />
-
+      <CoinDetailOverview />
+      <CoinDetailStatistic />
       <View style={[styles.my_4]}>
         <SellAccount coin={coinData} />
         <SellForm value={percent} handleChange={setPercent} />
