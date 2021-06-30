@@ -81,7 +81,7 @@ const CoinDetailMeta = (props: {data: any}) => {
   return (
     <View style={[styles.bg_foreground, styles.mt_3]}>
       <CoinDetailMetaDescription text={description} />
-      <CoinDetailMetaItem label="官网" url={website} />
+      <CoinDetailMetaItem label="官方网站" url={website} />
       <CoinDetailMetaItem label="白皮书" url={white_paper} />
       <CoinDetailMetaItem label="研究报告" url={research} />
       <CoinDetailMetaItem label="源代码" url={source_code} />

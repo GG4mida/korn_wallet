@@ -33,7 +33,7 @@ const WebViewScreen = ({navigation}: any) => {
 
   if (!url) {
     return (
-      <View style={[styles.flex_1, styles.flex_container_center]}>
+      <View style={[styles.flex_container_center_screen]}>
         <Text style={[styles.text_md, styles.text_hint]}>未获取到地址信息</Text>
       </View>
     );

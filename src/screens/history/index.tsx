@@ -32,7 +32,7 @@ const HistoryScreen = ({navigation}: any) => {
 
   if (loading === true) {
     return (
-      <View style={[styles.flex_1, styles.flex_container_center]}>
+      <View style={[styles.flex_container_center_screen]}>
         <ActivityIndicator />
       </View>
     );
@@ -40,7 +40,7 @@ const HistoryScreen = ({navigation}: any) => {
 
   if (userOperates.length === 0) {
     return (
-      <View style={[styles.flex_1, styles.flex_container_center]}>
+      <View style={[styles.flex_container_center_screen]}>
         <Text style={[styles.text_md, styles.text_hint]}>暂无数据</Text>
       </View>
     );

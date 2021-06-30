@@ -57,9 +57,7 @@ const TopicDetailScreen = ({navigation, route}: any) => {
   // const loading = useSelector(
   //   (state: any) => state.loading.effects['topic/getDetail'],
   // );
-
   const {content = ''} = topicDetail;
-
   return (
     <View style={[styles.screen_container, styles.bg_foreground]}>
       <ScrollView showsVerticalScrollIndicator={false} style={[styles.p_4]}>

@@ -8,8 +8,7 @@ const TopicList = (props: any) => {
   const {loading, data, handlePress} = props;
   if (loading === true) {
     return (
-      <View
-        style={[styles.flex_container_center, styles.flex_col, styles.flex_1]}>
+      <View style={[styles.flex_container_center_screen]}>
         <ActivityIndicator />
       </View>
     );
@@ -17,8 +16,7 @@ const TopicList = (props: any) => {
 
   if (!data || data.length === 0) {
     return (
-      <View
-        style={[styles.flex_container_center, styles.flex_col, styles.flex_1]}>
+      <View style={[styles.flex_container_center_screen]}>
         <Text style={[styles.text_hint, styles.text_md]}>暂无数据</Text>
       </View>
     );

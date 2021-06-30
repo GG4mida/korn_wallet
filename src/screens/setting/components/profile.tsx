@@ -38,11 +38,7 @@ const SettingProfile = () => {
           </View>
         </View>
         <View>
-          <IconForward
-            width={18}
-            height={18}
-            fill={styleConfig.color.content_secondary}
-          />
+          <IconForward width={18} height={18} fill={styleConfig.color.hint} />
         </View>
       </View>
     </TouchableOpacity>

@@ -67,8 +67,7 @@ const CoinAll = (props: any) => {
 
   if (data.length === 0) {
     return (
-      <View
-        style={[styles.flex_container_center, styles.flex_1, styles.flex_col]}>
+      <View style={[styles.flex_container_center_screen]}>
         <IconEmpty width={80} height={80} style={[styles.mb_2]} />
         <Text style={[styles.mb_2, styles.text_hint, styles.text_md]}>
           暂无行情数据
@@ -100,8 +99,7 @@ const CoinFavorites = (props: any) => {
   }, [data, sorter]);
   if (data.length === 0) {
     return (
-      <View
-        style={[styles.flex_container_center, styles.flex_1, styles.flex_col]}>
+      <View style={[styles.flex_container_center_screen]}>
         <IconEmpty width={80} height={80} style={[styles.mb_2]} />
         <Text style={[styles.mb_3, styles.text_hint, styles.text_md]}>
           暂无自选

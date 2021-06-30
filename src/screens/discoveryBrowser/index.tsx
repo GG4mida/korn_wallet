@@ -83,7 +83,7 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
 
   if (loading === true) {
     return (
-      <View style={[styles.flex_1, styles.flex_container_center]}>
+      <View style={[styles.flex_container_center_screen]}>
         <ActivityIndicator />
       </View>
     );

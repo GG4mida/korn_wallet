@@ -25,11 +25,7 @@ const SettingItem = (props: IProps) => {
         <Text style={[styles.text_md, styles.text_content]}>{data.name}</Text>
       </View>
       <View>
-        <IconForward
-          width={18}
-          height={18}
-          fill={styleConfig.color.content_secondary}
-        />
+        <IconForward width={18} height={18} fill={styleConfig.color.hint} />
       </View>
     </TouchableOpacity>
   );

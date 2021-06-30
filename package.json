@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
+    "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "prepare": "husky install"
+    "release-android": "cross-env ENVFILE=.env.production && cd android && gradlew assembleRelease"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",

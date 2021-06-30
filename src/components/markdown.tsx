@@ -1,13 +1,17 @@
 import React from 'react';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, View, StyleSheet} from 'react-native';
 import {useTheme} from '@/hooks';
 import Markdown from 'react-native-markdown-display';
 
 const MarkdownRender = (props: any) => {
   const {content} = props;
-  const {styleConfig} = useTheme();
+  const {styles, styleConfig} = useTheme();
   const markdownStyles = getMarkdownStyles(styleConfig);
-  return <Markdown style={markdownStyles}>{content}</Markdown>;
+  return (
+    <View style={[styles.mb_5]}>
+      <Markdown style={markdownStyles}>{content}</Markdown>
+    </View>
+  );
 };
 
 const getMarkdownStyles = (styleConfig: any) => {

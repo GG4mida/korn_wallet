@@ -35,6 +35,13 @@ const getCustomStyle = (toolStyle: any) => {
       ...toolStyle.justify_between,
     },
 
+    flex_container_center_screen: {
+      ...toolStyle.flex_col,
+      ...toolStyle.items_center,
+      ...toolStyle.justify_center,
+      ...toolStyle.flex_1,
+    },
+
     bg_mask: {
       ...toolStyle.absolute_fill,
       ...toolStyle.flex_1,
