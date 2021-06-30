@@ -80,14 +80,12 @@ const SettingScreen = ({navigation}: any) => {
         name: '关于我们',
         handlePress: handleAboutPress,
       },
-    ],
-    [
       {
-        name: '退出登录',
+        name: '退出',
         handlePress: handleLogoutPress,
       },
       {
-        name: '重置',
+        name: '账户重置',
         handlePress: handleResetPress,
       },
     ],
