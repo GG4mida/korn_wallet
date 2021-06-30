@@ -6,24 +6,17 @@ import {useTheme} from '@/hooks';
 const CoinTabItem = (props: any) => {
   const {styles} = useTheme();
   const {data, value, onChange} = props;
-  let containerStyle = null;
+  let containerStyle = [
+    styles.flex_container_center,
+    styles.px_5,
+    styles.rounded_3xl,
+    customStyles.tab_item,
+  ];
   let textStyle = null;
   if (data.name === value) {
-    containerStyle = [
-      styles.flex_container_center,
-      styles.px_5,
-      styles.bg_red,
-      styles.rounded_3xl,
-      customStyles.tab_item,
-    ];
+    containerStyle.push(...[styles.bg_red]);
     textStyle = [styles.text_white];
   } else {
-    containerStyle = [
-      styles.flex_container_center,
-      styles.px_5,
-      styles.rounded_3xl,
-      customStyles.tab_item,
-    ];
     textStyle = [styles.text_content];
   }
   return (
@@ -58,13 +51,7 @@ const CoinTab = (props: any) => {
   const {styles} = useTheme();
   const {value, onChange} = props;
   return (
-    <View
-      style={[
-        styles.flex_container_center,
-        styles.bg_background,
-        styles.border_b,
-        styles.py_3,
-      ]}>
+    <View style={[styles.flex_container_center, styles.border_b, styles.py_3]}>
       <View style={[styles.flex_row, styles.bg_foreground, styles.rounded_3xl]}>
         <CoinTabList value={value} onChange={onChange} />
       </View>

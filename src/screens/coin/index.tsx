@@ -211,7 +211,7 @@ const CoinScreen = ({route}: any) => {
   }, [all, favorites, marketList, exchange]);
 
   return (
-    <View style={styles.screen_container}>
+    <View style={[styles.screen_container]}>
       <CoinTab value={tab} onChange={setTab} />
       <CoinSorter sorter={sorter} onChange={setSorter} />
       <CoinContent

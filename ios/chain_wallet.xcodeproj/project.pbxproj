@@ -12,8 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		32E0A9194456871B0B32EE02 /* libPods-chain_wallet-chain_walletTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 498002B306878BBA9D66AE6F /* libPods-chain_wallet-chain_walletTests.a */; };
-		9E168F1A26808E34000A2F09 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E168F1926808E34000A2F09 /* logo.png */; };
 		9E47DF47265395A7000E8E4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E47DF46265395A7000E8E4D /* LaunchScreen.storyboard */; };
+		9E55FA16268C887900573019 /* logo-rounded.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E55FA15268C887900573019 /* logo-rounded.png */; };
 		B8773066F2604172DC15CB5E /* libPods-chain_wallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2459FC64BE6C1DD00070F8CF /* libPods-chain_wallet.a */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +41,8 @@
 		2E6790ED52B07B040ECCF0EC /* Pods-chain_wallet-chain_walletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chain_wallet-chain_walletTests.release.xcconfig"; path = "Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests.release.xcconfig"; sourceTree = "<group>"; };
 		498002B306878BBA9D66AE6F /* libPods-chain_wallet-chain_walletTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chain_wallet-chain_walletTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FDA557AA7677DD9866FAFE /* Pods-chain_wallet-chain_walletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chain_wallet-chain_walletTests.debug.xcconfig"; path = "Target Support Files/Pods-chain_wallet-chain_walletTests/Pods-chain_wallet-chain_walletTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9E168F1926808E34000A2F09 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../src/assets/logo.png; sourceTree = "<group>"; };
 		9E47DF46265395A7000E8E4D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9E55FA15268C887900573019 /* logo-rounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-rounded.png"; path = "../src/assets/logo-rounded.png"; sourceTree = "<group>"; };
 		D795AD4B28D6E3963E808C75 /* Pods-chain_wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chain_wallet.debug.xcconfig"; path = "Target Support Files/Pods-chain_wallet/Pods-chain_wallet.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F0AA2BF611F6A827998CC026 /* Pods-chain_wallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chain_wallet.release.xcconfig"; path = "Target Support Files/Pods-chain_wallet/Pods-chain_wallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		13B07FAE1A68108700A75B9A /* chain_wallet */ = {
 			isa = PBXGroup;
 			children = (
-				9E168F1926808E34000A2F09 /* logo.png */,
+				9E55FA15268C887900573019 /* logo-rounded.png */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -244,8 +244,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				9E55FA16268C887900573019 /* logo-rounded.png in Resources */,
 				9E47DF47265395A7000E8E4D /* LaunchScreen.storyboard in Resources */,
-				9E168F1A26808E34000A2F09 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
