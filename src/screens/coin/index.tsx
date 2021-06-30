@@ -111,9 +111,8 @@ const CoinFavorites = (props: any) => {
           activeOpacity={0.5}
           style={styles.button_green}>
           <Text style={[styles.text_md, styles.text_white]}>
-            请前往行情页面添加
+            前往行情页面添加
           </Text>
-
           <IconArrowRight
             width={16}
             height={16}
@@ -150,7 +149,7 @@ const CoinContent = (props: any) => {
   );
 };
 
-const CoinScreen = ({}: any) => {
+const CoinScreen = ({route}: any) => {
   const {styles} = useTheme();
   const [tab, setTab] = useState(coinTab.ALL);
   const [sorter, setSorter] = useState({
@@ -161,6 +160,12 @@ const CoinScreen = ({}: any) => {
   const {all, favorites} = useSelector((state: any) => state.coin);
   const {list: marketList} = useSelector((state: any) => state.market);
   const {exchange} = useSelector((state: any) => state.exchange);
+
+  useEffect(() => {
+    if (route.params && route.params.activeTab) {
+      setTab(route.params.activeTab);
+    }
+  }, [route.params]);
 
   useEffect(() => {
     dispatch({

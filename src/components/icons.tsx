@@ -27,3 +27,8 @@ export {default as IconDiscoveryTopic} from '@/assets/svg/discovery-topic.svg';
 export {default as IconEmpty} from '@/assets/svg/empty.svg';
 export {default as IconUser} from '@/assets/svg/user.svg';
 export {default as IconDetete} from '@/assets/svg/delete.svg';
+
+export {default as IconActionAdd} from '@/assets/svg/action-add.svg';
+export {default as IconActionOverview} from '@/assets/svg/action-overview.svg';
+export {default as IconActionFavorite} from '@/assets/svg/action-favorite.svg';
+export {default as IconActionHistory} from '@/assets/svg/action-history.svg';

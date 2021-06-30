@@ -42,10 +42,10 @@ const NewsScreen = ({}: any) => {
     <View style={styles.screen_container}>
       <SectionList
         showsVerticalScrollIndicator={false}
+        sections={newsData}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={handleLoading} />
         }
-        sections={newsData}
         renderItem={renderSectionItem}
         renderSectionHeader={renderSectionHeader}
         keyExtractor={item => item.id}

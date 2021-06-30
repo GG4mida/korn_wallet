@@ -52,18 +52,15 @@ const OverViewScreen = ({navigation}: any) => {
     };
   }, [userInfo, marketList, userHolds]);
 
-  console.info(userSummaryData);
-
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={styles.screen_container}>
-      <OverViewJumbo />
+      <OverViewJumbo data={userSummaryData} />
       <View style={styles.py_2}>
         <OverViewItem
           label="累计盈亏"
-          value={Formater.formatAmount(userSummaryData.totalProfit)}
-          suffix="$"
+          value={`$${Formater.formatAmount(userSummaryData.totalProfit)}`}
         />
 
         <OverViewItem

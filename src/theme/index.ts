@@ -1,5 +1,5 @@
-import * as DarkConfig from './theme/dark';
-import * as LightConfig from './theme/light';
+import * as DarkConfig from './config/dark';
+import * as LightConfig from './config/light';
 import getToolStyle from './tools';
 import getCustomStyle from './custom';
 import {ThemeType} from '@/constants/enum';

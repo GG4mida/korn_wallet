@@ -25,7 +25,7 @@ const SettingAboutItems = (props: any) => {
         {value ? (
           <Text
             style={[
-              styles.text_sm,
+              styles.text_md,
               styles.text_content_secondary,
               styles.mr_1,
             ]}>

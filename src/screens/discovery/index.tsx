@@ -12,8 +12,8 @@ const DiscoveryScreen = ({}: any) => {
       showsVerticalScrollIndicator={false}
       style={styles.screen_container}>
       <DiscoveryTopic />
-      <DiscoveryTools />
       <DiscoveryAirDrop />
+      <DiscoveryTools />
     </ScrollView>
   );
 };

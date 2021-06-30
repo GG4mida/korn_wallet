@@ -1,11 +1,5 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {TabActions, useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -77,10 +71,6 @@ const HomeHolds = () => {
   const {holds: userHolds} = useSelector((state: any) => state.user);
   const {list: marketList} = useSelector((state: any) => state.market);
 
-  const loading = useSelector(
-    (state: any) => state.loading.effects['user/holds'],
-  );
-
   useEffect(() => {
     dispatch({
       type: 'user/holds',
@@ -110,14 +100,6 @@ const HomeHolds = () => {
     return result;
   }, [userHolds, marketList]);
 
-  if (loading === true) {
-    return (
-      <View style={[styles.flex_container_center, styles.py_5]}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
-
   if (userHoldList.length === 0) {
     const handleCoinPress = () => {
       const coinAction = TabActions.jumpTo(CoinScreen.name);
@@ -125,7 +107,8 @@ const HomeHolds = () => {
     };
 
     return (
-      <View style={[styles.flex_container_center, styles.flex_col]}>
+      <View
+        style={[styles.flex_container_center, styles.flex_col, styles.my_5]}>
         <IconEmpty width={80} height={80} style={[styles.mb_3]} />
         <Text style={[styles.text_md, styles.text_hint, styles.mb_3]}>
           暂无持仓

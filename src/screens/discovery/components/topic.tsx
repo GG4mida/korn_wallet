@@ -33,10 +33,10 @@ const DiscoveryTopic = () => {
   );
 
   const discoveryConfig = useMemo(() => {
-    const config: any = {
-      title: '文章',
-    };
     if (topicCategoryList && topicCategoryList.length) {
+      const config: any = {
+        title: '文章',
+      };
       const configItems: any = [];
       for (let category of topicCategoryList) {
         const {id, icon, name} = category;
@@ -53,9 +53,13 @@ const DiscoveryTopic = () => {
         configItems.push(item);
       }
       config.items = configItems;
+      return config;
     }
-    return config;
   }, [topicCategoryList, styles]);
+
+  if (!discoveryConfig) {
+    return null;
+  }
 
   return (
     <DiscoveryGroup

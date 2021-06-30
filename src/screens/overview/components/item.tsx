@@ -2,9 +2,14 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useTheme} from '@/hooks';
 
-const OverViewItem = (props: any) => {
+interface IProps {
+  label: string;
+  value: string;
+}
+
+const OverViewItem = (props: IProps) => {
   const {styles} = useTheme();
-  const {label, value, descr, suffix} = props;
+  const {label, value} = props;
   return (
     <View style={[styles.border_b]}>
       <View
@@ -19,17 +24,8 @@ const OverViewItem = (props: any) => {
         </Text>
         <View style={[styles.flex_container_center]}>
           <Text style={[styles.text_md, styles.text_content]}>{value}</Text>
-          {suffix ? (
-            <Text style={[styles.text_md, styles.text_content]}>{suffix}</Text>
-          ) : null}
         </View>
       </View>
-      {descr ? (
-        <Text
-          style={[styles.text_sm, styles.text_hint, styles.mx_4, styles.my_2]}>
-          {descr}
-        </Text>
-      ) : null}
     </View>
   );
 };

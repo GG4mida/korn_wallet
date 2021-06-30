@@ -1,34 +1,43 @@
 import React, {useCallback} from 'react';
 import {View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {TabActions, useNavigation} from '@react-navigation/native';
 import {
-  IconTabHome,
-  IconTabCoin,
-  IconTabDiscovery,
-  IconTabNews,
+  IconActionAdd,
+  IconActionHistory,
+  IconActionOverview,
+  IconActionFavorite,
 } from '@/components/icons';
 import {useTheme} from '@/hooks';
-import {HistoryScreen} from '@/screens';
+import {coinTab} from '@/constants/tab';
+import {HistoryScreen, CoinScreen, OverViewScreen} from '@/screens';
 import HomeActionItem from './actionItem';
+
+const ICON_SIZE = 26;
 
 const HomeAction = () => {
   const {styleConfig, styles} = useTheme();
   const navigation = useNavigation();
 
   const handleTradePress = useCallback(() => {
-    navigation.navigate(HistoryScreen.name);
+    const coinAction = TabActions.jumpTo(CoinScreen.name, {
+      activeTab: coinTab.ALL,
+    });
+    navigation.dispatch(coinAction);
   }, [navigation]);
 
   const handleHistoryPress = useCallback(() => {
     navigation.navigate(HistoryScreen.name);
   }, [navigation]);
 
-  const handleCoinPress = useCallback(() => {
-    navigation.navigate(HistoryScreen.name);
+  const handleOverviewPress = useCallback(() => {
+    navigation.navigate(OverViewScreen.name);
   }, [navigation]);
 
   const handleFavoritePress = useCallback(() => {
-    navigation.navigate(HistoryScreen.name);
+    const coinAction = TabActions.jumpTo(CoinScreen.name, {
+      activeTab: coinTab.FAVORITES,
+    });
+    navigation.dispatch(coinAction);
   }, [navigation]);
 
   return (
@@ -41,9 +50,9 @@ const HomeAction = () => {
       ]}>
       <HomeActionItem
         icon={
-          <IconTabHome
-            width={24}
-            height={24}
+          <IconActionAdd
+            width={ICON_SIZE}
+            height={ICON_SIZE}
             fill={styleConfig.color.gray_600}
           />
         }
@@ -53,9 +62,9 @@ const HomeAction = () => {
       />
       <HomeActionItem
         icon={
-          <IconTabCoin
-            width={24}
-            height={24}
+          <IconActionHistory
+            width={ICON_SIZE}
+            height={ICON_SIZE}
             fill={styleConfig.color.gray_600}
           />
         }
@@ -65,26 +74,26 @@ const HomeAction = () => {
       />
       <HomeActionItem
         icon={
-          <IconTabDiscovery
-            width={24}
-            height={24}
-            fill={styleConfig.color.gray_600}
-          />
-        }
-        text="查看行情"
-        handlePress={handleCoinPress}
-        bordered
-      />
-      <HomeActionItem
-        icon={
-          <IconTabNews
-            width={24}
-            height={24}
+          <IconActionFavorite
+            width={ICON_SIZE}
+            height={ICON_SIZE}
             fill={styleConfig.color.gray_600}
           />
         }
         text="我的自选"
         handlePress={handleFavoritePress}
+      />
+      <HomeActionItem
+        icon={
+          <IconActionOverview
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+            fill={styleConfig.color.gray_600}
+          />
+        }
+        text="账户详情"
+        handlePress={handleOverviewPress}
+        bordered
       />
     </View>
   );

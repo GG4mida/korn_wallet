@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import {ScrollView, View, ActivityIndicator} from 'react-native';
+import {ScrollView, Text, View, ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderBack from '@/components/header/back';
 import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
 import {useTheme} from '@/hooks';
 
-import {HistoryHeader, HistoryList} from './component';
+import {HistoryList} from './component';
 
 const HistoryScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
@@ -38,11 +38,19 @@ const HistoryScreen = ({navigation}: any) => {
     );
   }
 
+  if (userOperates.length === 0) {
+    return (
+      <View style={[styles.flex_1, styles.flex_container_center]}>
+        <Text style={[styles.text_md, styles.text_hint]}>暂无数据</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={[styles.screen_container, styles.bg_background]}>
-      <HistoryList />
+      <HistoryList data={userOperates} />
     </ScrollView>
   );
 };

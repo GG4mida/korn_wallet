@@ -1,9 +1,16 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {useTheme} from '@/hooks';
+import {Formater} from '@/utils';
 
-const OverViewJumbo = () => {
+interface IProps {
+  data: any;
+}
+
+const OverViewJumbo = (props: IProps) => {
   const {styles} = useTheme();
+  const {data} = props;
+  const {balanceCurrent, balanceInit, holdAmount, totalAmount} = data;
   return (
     <View style={[styles.bg_foreground]}>
       <View
@@ -11,14 +18,14 @@ const OverViewJumbo = () => {
           styles.flex_col,
           styles.items_center,
           styles.py_5,
+          styles.my_5,
           styles.border_b,
         ]}>
-        <Text
-          style={[styles.text_md, styles.text_content_secondary, styles.mb_1]}>
+        <Text style={[styles.text_md, styles.text_hint, styles.mb_2]}>
           总资产
         </Text>
-        <Text style={[styles.text_2xl, styles.text_bold, styles.text_content]}>
-          $328982.12
+        <Text style={[styles.text_3xl, styles.text_bold, styles.text_content]}>
+          ${Formater.formatAmount(totalAmount)}
         </Text>
       </View>
 
@@ -32,11 +39,12 @@ const OverViewJumbo = () => {
             styles.border_r,
           ]}>
           <Text style={[styles.text_md, styles.text_hint, styles.mb_1]}>
-            持仓价值
+            账户余额
           </Text>
-          <Text style={[styles.text_md, styles.text_content]}>$128972.12</Text>
+          <Text style={[styles.text_md, styles.text_content]}>
+            ${Formater.formatAmount(balanceCurrent)}
+          </Text>
         </View>
-
         <View
           style={[
             styles.w_1_3,
@@ -46,11 +54,12 @@ const OverViewJumbo = () => {
             styles.border_r,
           ]}>
           <Text style={[styles.text_md, styles.text_hint, styles.mb_1]}>
-            账户余额
+            持仓价值
           </Text>
-          <Text style={[styles.text_md, styles.text_content]}>$128972.12</Text>
+          <Text style={[styles.text_md, styles.text_content]}>
+            ${Formater.formatAmount(holdAmount)}
+          </Text>
         </View>
-
         <View
           style={[
             styles.w_1_3,
@@ -61,7 +70,9 @@ const OverViewJumbo = () => {
           <Text style={[styles.text_md, styles.text_hint, styles.mb_1]}>
             本金
           </Text>
-          <Text style={[styles.text_md, styles.text_content]}>$100000.00</Text>
+          <Text style={[styles.text_md, styles.text_content]}>
+            ${Formater.formatAmount(balanceInit)}
+          </Text>
         </View>
       </View>
     </View>

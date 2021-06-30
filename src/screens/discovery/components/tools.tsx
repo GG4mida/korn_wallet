@@ -45,7 +45,7 @@ const DiscoveryTools = () => {
       },
       {
         name: '币安(Binance)',
-        url: 'https://www.baidu.com',
+        url: 'https://accounts.binancezh.sh/zh-CN/register?ref=19397276',
         icon: (
           <IconDiscoveryBinance
             width={36}
@@ -56,7 +56,7 @@ const DiscoveryTools = () => {
       },
       {
         name: '钱包(imToken)',
-        url: 'https://www.cnblogs.com',
+        url: 'https://token.im/download',
         icon: (
           <IconDiscoveryImToken
             width={36}

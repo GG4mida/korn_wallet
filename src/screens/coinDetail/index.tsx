@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
@@ -14,8 +14,6 @@ import {
   CoinDetailSummary,
   CoinDetailMeta,
   CoinDetailFavorite,
-  CoinDetailBuyIn,
-  CoinDetailSell,
 } from './components';
 
 const CoinDetailScreen = ({navigation}: any) => {
@@ -34,9 +32,6 @@ const CoinDetailScreen = ({navigation}: any) => {
       headerRight: () => <CoinDetailFavorite />,
     });
   }, [navigation, name, styleConfig]);
-
-  const actionBuyInRef: any = useRef();
-  const actionSellRef: any = useRef();
 
   const handleBuyInPress = useCallback(() => {
     navigation.navigate(BuyInScreen.name, coin);
@@ -61,9 +56,6 @@ const CoinDetailScreen = ({navigation}: any) => {
         handleBuyInPress={handleBuyInPress}
         handleSellPress={handleSellPress}
       />
-
-      <CoinDetailSell refs={actionSellRef} />
-      <CoinDetailBuyIn refs={actionBuyInRef} />
     </View>
   );
 };

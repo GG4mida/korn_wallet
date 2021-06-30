@@ -18,15 +18,7 @@ const SettingProfileEmail = (props: any) => {
           电子邮箱
         </Text>
         <TextInput
-          style={[
-            styles.border_t,
-            styles.border_b,
-            styles.bg_foreground,
-            styles.text_content,
-            styles.text_md,
-            styles.py_3,
-            styles.px_4,
-          ]}
+          style={styles.text_input_flat}
           maxFontSizeMultiplier={2}
           allowFontScaling={false}
           autoCapitalize="none"

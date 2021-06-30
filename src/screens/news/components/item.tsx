@@ -34,7 +34,7 @@ const NewsItem = (props: any) => {
   const dateTime = DateTime.format(createtime, DateTime.FORMATER_TIME);
   return (
     <View
-      style={[styles.bg_foreground, styles.border_b, styles.px_5, styles.py_3]}>
+      style={[styles.bg_foreground, styles.border_b, styles.px_4, styles.py_3]}>
       <View style={[styles.flex_container_between, styles.mb_1]}>
         <Text style={[styles.text_sm, styles.text_gray_500]}>{dateTime}</Text>
       </View>
