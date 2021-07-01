@@ -8,7 +8,7 @@ import {
   IconActionFavorite,
 } from '@/components/icons';
 import {useTheme} from '@/hooks';
-import {coinTab} from '@/constants/tab';
+import {coinTab} from '@/constants/config';
 import {HistoryScreen, CoinScreen, OverViewScreen} from '@/screens';
 import HomeActionItem from './actionItem';
 

@@ -1,7 +1,7 @@
 import React, {useState, useLayoutEffect, useCallback} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
-import {klineTab} from '@/constants/tab';
+import {klineTab} from '@/constants/config';
 import {HeaderBack} from '@/components/header';
 import {useTheme} from '@/hooks';
 import {String} from '@/utils';

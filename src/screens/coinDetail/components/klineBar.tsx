@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {klineTab, klineTabs} from '@/constants/tab';
+import {klineTab, klineTabs} from '@/constants/config';
 import {useTheme} from '@/hooks';
 
 interface IProps {

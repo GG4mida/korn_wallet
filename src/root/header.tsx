@@ -29,7 +29,6 @@ const getHeaderRight = (navigation: any, route: any) => {
     default:
       return null;
   }
-
   return () => headerRightComponent;
 };
 

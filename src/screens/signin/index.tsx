@@ -2,10 +2,9 @@ import React, {useState, useCallback, useLayoutEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {ResponseCode, ScreenType} from '@/constants/enum';
-import {Toaster, Validator} from '@/utils';
-import Version from '@/components/version';
+import {Toaster, Validator, String} from '@/utils';
 import {SignupScreen} from '@/screens';
-import {String} from '@/utils';
+import Version from '@/components/version';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
 import Jumbo from '@/components/jumbo';
 import {IconArrowRight} from '@/components/icons';
@@ -13,8 +12,8 @@ import {useTheme} from '@/hooks';
 
 const SigninScreen: React.FC = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
-  const [username, setUserName] = useState('fuckusername');
-  const [password, setPassword] = useState('fuckpassword');
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const loading = useSelector(

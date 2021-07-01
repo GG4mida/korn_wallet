@@ -16,14 +16,11 @@ const MarkdownRender = (props: any) => {
 
 const getMarkdownStyles = (styleConfig: any) => {
   return StyleSheet.create({
-    // The main container
     body: {
       color: styleConfig.color.content,
       fontSize: styleConfig.fontSize.size_md,
       lineHeight: 24,
     },
-
-    // Headings
     heading1: {
       flexDirection: 'row',
       fontSize: 32,
@@ -66,14 +63,10 @@ const getMarkdownStyles = (styleConfig: any) => {
       lineHeight: 16,
       marginVertical: 10,
     },
-
-    // Horizontal Rule
     hr: {
       backgroundColor: '#000000',
       height: 1,
     },
-
-    // Emphasis
     strong: {
       fontWeight: 'bold',
     },
@@ -83,8 +76,6 @@ const getMarkdownStyles = (styleConfig: any) => {
     s: {
       textDecorationLine: 'line-through',
     },
-
-    // Blockquotes
     blockquote: {
       backgroundColor: '#f8f9fa',
       borderColor: '#999',
@@ -93,8 +84,6 @@ const getMarkdownStyles = (styleConfig: any) => {
       marginVertical: 10,
       marginLeft: 0,
     },
-
-    // Lists
     bullet_list: {
       marginVertical: 10,
     },
@@ -105,26 +94,20 @@ const getMarkdownStyles = (styleConfig: any) => {
       flexDirection: 'row',
       justifyContent: 'flex-start',
     },
-    // @pseudo class, does not have a unique render rule
     bullet_list_icon: {
       marginLeft: 10,
       marginRight: 10,
     },
-    // @pseudo class, does not have a unique render rule
     bullet_list_content: {
       flex: 1,
     },
-    // @pseudo class, does not have a unique render rule
     ordered_list_icon: {
       marginLeft: 10,
       marginRight: 10,
     },
-    // @pseudo class, does not have a unique render rule
     ordered_list_content: {
       flex: 1,
     },
-
-    // Code
     code_inline: {
       borderWidth: 1,
       borderColor: '#CCCCCC',
@@ -170,8 +153,6 @@ const getMarkdownStyles = (styleConfig: any) => {
         },
       }),
     },
-
-    // Tables
     table: {
       borderWidth: 1,
       borderColor: '#000000',
@@ -192,8 +173,6 @@ const getMarkdownStyles = (styleConfig: any) => {
       flex: 1,
       padding: 5,
     },
-
-    // Links
     link: {
       textDecorationLine: 'underline',
       color: styleConfig.color.blue,
@@ -203,14 +182,10 @@ const getMarkdownStyles = (styleConfig: any) => {
       borderColor: '#000000',
       borderBottomWidth: 1,
     },
-
-    // Images
     image: {
       flex: 1,
       marginVertical: 10,
     },
-
-    // Text Output
     text: {},
     textgroup: {},
     paragraph: {
@@ -227,8 +202,6 @@ const getMarkdownStyles = (styleConfig: any) => {
       height: 1,
     },
     softbreak: {},
-
-    // Believe these are never used but retained for completeness
     pre: {},
     inline: {},
     span: {},

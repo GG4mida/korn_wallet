@@ -1,6 +1,6 @@
 import React, {useState, useLayoutEffect, useCallback} from 'react';
-import {View, ScrollView} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {View, Share, ScrollView} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {HeaderBack} from '@/components/header';
 import Confirm from '@/components/confirm';
 import {ResponseCode, ScreenType} from '@/constants/enum';
@@ -26,6 +26,8 @@ const SettingScreen = ({navigation}: any) => {
   const [logoutConfirmVisible, setLogoutConfirmVisible] = useState(false);
   const [resetConfirmVisible, setResetConfirmVisible] = useState(false);
   const dispatch = useDispatch();
+  const {info: systemInfo} = useSelector((state: any) => state.system);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
@@ -50,6 +52,14 @@ const SettingScreen = ({navigation}: any) => {
   const handleResetPress = useCallback(() => {
     setResetConfirmVisible(true);
   }, []);
+
+  const handleSharePress = useCallback(async () => {
+    const {name, slogan, site_url} = systemInfo;
+    const shareMsg = `${name} | ${slogan}(${site_url})`;
+    await Share.share({
+      message: shareMsg,
+    });
+  }, [systemInfo]);
 
   const handleResetSubmit = useCallback(async () => {
     setResetConfirmVisible(false);
@@ -80,7 +90,13 @@ const SettingScreen = ({navigation}: any) => {
         handlePress: handleAboutPress,
       },
       {
-        name: '退出',
+        name: '应用分享',
+        handlePress: handleSharePress,
+      },
+    ],
+    [
+      {
+        name: '退出登录',
         handlePress: handleLogoutPress,
       },
       {

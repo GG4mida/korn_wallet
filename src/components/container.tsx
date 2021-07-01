@@ -19,7 +19,6 @@ const Container: React.FC = props => {
         dispatch({
           type: 'market/get',
         });
-
         dispatch({
           type: 'exchange/get',
         });

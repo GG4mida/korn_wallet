@@ -1,11 +1,10 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {coinTab} from '@/constants/tab';
-import {SortField, SortRule} from '@/constants/enum';
+import {coinTab} from '@/constants/config';
+import {SortField, SortRule, ScreenType} from '@/constants/enum';
 import {IconEmpty, IconArrowRight} from '@/components/icons';
 import {String} from '@/utils';
-import {ScreenType} from '@/constants/enum';
 import {useTheme} from '@/hooks';
 import {CoinSorter, CoinTab, CoinItem} from './components';
 

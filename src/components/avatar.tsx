@@ -1,25 +1,25 @@
-import React, {useCallback} from 'react';
+import React, {useMemo} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {useTheme} from '@/hooks';
 
 const Avatar = (props: any) => {
   const {styles, styleConfig} = useTheme();
+  const {text, color} = props;
 
-  const getRandomColor = useCallback(() => {
-    const colors = [
-      styleConfig.color.green,
-      styleConfig.color.blue,
-      styleConfig.color.red,
-      styleConfig.color.yellow,
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }, [styleConfig]);
-
-  let {text, color} = props;
   const avatarText = text.slice(0, 1);
-  if (!color) {
-    color = getRandomColor();
-  }
+  const avatarColor = useMemo(() => {
+    let result = color;
+    if (!result) {
+      const colors = [
+        styleConfig.color.green,
+        styleConfig.color.blue,
+        styleConfig.color.red,
+        styleConfig.color.yellow,
+      ];
+      result = colors[Math.floor(Math.random() * colors.length)];
+    }
+    return result;
+  }, [color, styleConfig]);
 
   return (
     <View
@@ -28,7 +28,7 @@ const Avatar = (props: any) => {
         styles.rounded_full,
         customStyles.container,
         {
-          backgroundColor: color,
+          backgroundColor: avatarColor,
         },
       ]}>
       <Text style={[styles.text_white, styles.text_bold, styles.text_2xl]}>

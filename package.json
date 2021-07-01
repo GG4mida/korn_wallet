@@ -9,7 +9,9 @@
     "ios": "react-native run-ios",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "release-android": "cross-env ENVFILE=.env.production && cd android && gradlew assembleRelease"
+    "release-android": "cross-env ENVFILE=.env.production && cd android && gradlew assembleRelease",
+    "push-ios": "appcenter codepush release-react -a kornapp/korn-wallet-ios -d Production",
+    "push-android": "appcenter codepush release-react -a kornapp/korn-wallet-android -d Production"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
@@ -27,6 +29,7 @@
     "lodash": "^4.17.21",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-code-push": "^7.0.1",
     "react-native-config": "^1.4.2",
     "react-native-device-info": "^8.1.3",
     "react-native-gesture-handler": "^1.10.3",

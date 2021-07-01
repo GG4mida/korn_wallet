@@ -14,6 +14,7 @@ export interface IModel {
   effects: any;
   reducers: any;
 }
+
 const SystemModel: IModel = {
   namespace: 'system',
   state: {

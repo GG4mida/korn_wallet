@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {LineChart, Grid} from 'react-native-svg-charts';
 import {useRoute} from '@react-navigation/native';
 import {Storage, DateTime} from '@/utils';
-import {klineTab} from '@/constants/tab';
+import {klineTab} from '@/constants/config';
 import {useTheme} from '@/hooks';
 
 interface IProps {
