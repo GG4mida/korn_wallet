@@ -11,9 +11,7 @@ import {WebviewScreen, DiscoveryBrowserScreen} from '@/screens';
 
 const DiscoveryTools = () => {
   const {styleConfig} = useTheme();
-
   const navigation = useNavigation();
-
   const handleItemPress = useCallback(
     data => {
       const params = {
@@ -24,11 +22,9 @@ const DiscoveryTools = () => {
     },
     [navigation],
   );
-
   const handleBrowserPress = useCallback(() => {
     navigation.navigate(DiscoveryBrowserScreen.name);
   }, [navigation]);
-
   const discoveryConfig = {
     title: '工具',
     items: [
@@ -67,7 +63,6 @@ const DiscoveryTools = () => {
       },
     ],
   };
-
   return (
     <DiscoveryGroup
       data={discoveryConfig}

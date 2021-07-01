@@ -38,13 +38,11 @@ const NewsItem = (props: any) => {
       <View style={[styles.flex_container_between, styles.mb_1]}>
         <Text style={[styles.text_sm, styles.text_gray_500]}>{dateTime}</Text>
       </View>
-
       <View style={[styles.mb_1]}>
         <Text style={[styles.text_leading, styles.text_bold, styles.text_md]}>
           {title}
         </Text>
       </View>
-
       <View style={[styles.mb_1]}>
         <Text
           numberOfLines={
@@ -60,7 +58,6 @@ const NewsItem = (props: any) => {
           {content}
         </Text>
       </View>
-
       {numberOfLines > NUM_OF_CONTENT ? (
         <TouchableOpacity activeOpacity={0.5} onPress={handleCollapsePress}>
           <Text style={[styles.text_md, styles.text_blue]}>{collapseText}</Text>

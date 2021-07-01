@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useTheme} from '@/hooks';
 import {CoinOpDirection} from '@/constants/enum';
-import {Formater} from '@/utils';
+import {Formater, DateTime} from '@/utils';
 
 interface IProps {
   data: any;
@@ -11,7 +11,7 @@ interface IProps {
 const HistoryItem = (props: IProps) => {
   const {data} = props;
   const {operate} = data;
-  const {coin_code, volumn, amount, price, direction} = operate;
+  const {coin_code, volumn, amount, price, direction, createtime} = operate;
   const {styles} = useTheme();
   const operateStyle =
     direction === CoinOpDirection.BUYIN ? styles.text_green : styles.text_red;
@@ -28,7 +28,6 @@ const HistoryItem = (props: IProps) => {
         </View>
         <Text style={[operateStyle, styles.text_md]}>{operateName}</Text>
       </View>
-
       <View
         style={[
           styles.flex_container_between,
@@ -62,7 +61,7 @@ const HistoryItem = (props: IProps) => {
               数量
             </Text>
             <Text style={[styles.text_md, styles.text_content]}>
-              {Formater.fixed(volumn, 4)} {coin_code}
+              {Formater.fixed(volumn, 4)}
             </Text>
           </View>
         </View>
@@ -93,7 +92,7 @@ const HistoryItem = (props: IProps) => {
               时间
             </Text>
             <Text style={[styles.text_md, styles.text_content]}>
-              2021-06-18
+              {DateTime.format(createtime, DateTime.FORMATER_DATE)}
             </Text>
           </View>
         </View>

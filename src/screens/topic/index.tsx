@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useLayoutEffect, useEffect} from 'react';
 import {View} from 'react-native';
 import {useTheme} from '@/hooks';
 import {useDispatch, useSelector} from 'react-redux';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import {TopicDetailScreen} from '@/screens';
 import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
@@ -11,11 +11,9 @@ import {TopicList} from './components';
 const TopicScreen = ({navigation, route}: any) => {
   const {styles, styleConfig} = useTheme();
   const dispatch = useDispatch();
+  const {id: categoryId, name}: any = route.params;
 
-  const data: any = route.params;
-  const {id: categoryId, name} = data;
-
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: name,
       headerBackTitleStyle: styleConfig.color.blue,

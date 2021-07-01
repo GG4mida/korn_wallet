@@ -20,7 +20,6 @@ const ExchangeModel = {
       return data;
     },
   },
-
   reducers: {
     setExchange(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {

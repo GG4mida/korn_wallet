@@ -8,14 +8,10 @@ import {useTheme} from '@/hooks';
 const CoinDetailStatistic = () => {
   const route = useRoute();
   const {styles} = useTheme();
-
-  const coin: any = route.params;
-  const {symbol} = coin;
-
+  const {symbol}: any = route.params;
   const {list: marketList} = useSelector((state: any) => state.market);
   const marketInfo = marketList[symbol];
   const {h: dayHigh, l: dayLow, n: dayCount, v: dayVolumn} = marketInfo;
-
   const dayCountData: any = Formater.formatBigNumber(dayCount);
   const dayVolumnData: any = Formater.formatBigNumber(dayVolumn);
 

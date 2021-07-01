@@ -20,7 +20,6 @@ const NewsModel = {
       return data;
     },
   },
-
   reducers: {
     setData(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {

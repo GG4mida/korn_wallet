@@ -46,9 +46,7 @@ const CoinDetailMetaItem = (props: {label: string; url?: string}) => {
 const CoinDetailMetaDescription = (props: {text: string}) => {
   const {styles} = useTheme();
   const {text} = props;
-
   const paragraphList = text.split('\n');
-
   return (
     <View style={[styles.px_4, styles.py_2, styles.border_b]}>
       <Text style={[styles.text_md, styles.text_content, styles.mb_1]}>

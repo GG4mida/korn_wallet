@@ -26,9 +26,7 @@ const BuyInAccountItem = (props: {text: string; value: string}) => {
 
 const BuyInAccount = (props: {coin: any}) => {
   const {styles} = useTheme();
-
   const {coin} = props;
-
   const renderData = useMemo(() => {
     const {user_balance, coin_price, coin_hold_volumn} = coin;
     const result = {
@@ -44,7 +42,6 @@ const BuyInAccount = (props: {coin: any}) => {
   }, [coin]);
 
   const {coin_symbol} = coin;
-
   return (
     <View style={[styles.mb_3, styles.bg_foreground]}>
       <BuyInAccountItem

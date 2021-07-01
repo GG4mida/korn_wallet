@@ -20,7 +20,6 @@ const MarketModel = {
       return data;
     },
   },
-
   reducers: {
     setList(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {

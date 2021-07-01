@@ -21,13 +21,10 @@ const CoinDetailKline = (props: IProps) => {
   const {styleConfig, styles} = useTheme();
   const {type} = props;
   const route = useRoute();
-  const coin: any = route.params;
-  const {symbol} = coin;
-
+  const {symbol}: any = route.params;
   const dispatch = useDispatch();
   const {data} = useSelector((state: any) => state.kline);
   const loading = useSelector((state: any) => state.loading.models.kline);
-
   const dataKey = `${symbol}${type}`;
   const klineData = data[dataKey];
 
@@ -36,14 +33,12 @@ const CoinDetailKline = (props: IProps) => {
     if (klineData && klineData.length) {
       klineData.forEach((item: any) => {
         const [time, price] = item;
-
         let formatedTime = null;
         if (type === klineTab.DAY) {
           formatedTime = DateTime.format(time, DateTime.FORMATER_TIME);
         } else {
           formatedTime = DateTime.format(time, DateTime.FORMATER_DAY);
         }
-
         result.label.push(formatedTime);
         result.value.push(parseFloat(price));
       });
@@ -65,12 +60,9 @@ const CoinDetailKline = (props: IProps) => {
         },
       });
     }
-
     fetchData();
   }, [dispatch, type, symbol, dataKey]);
-
   const {value} = klineFormatedData;
-
   const styleChartContainer = [
     styles.flex_container_center,
     styles.py_4,
@@ -78,7 +70,6 @@ const CoinDetailKline = (props: IProps) => {
     styles.border_b,
     customStyles.chart_container,
   ];
-
   if (loading === true) {
     return (
       <View style={styleChartContainer}>
@@ -86,7 +77,6 @@ const CoinDetailKline = (props: IProps) => {
       </View>
     );
   }
-
   if (value.length === 0) {
     return (
       <View style={styleChartContainer}>
@@ -96,7 +86,6 @@ const CoinDetailKline = (props: IProps) => {
       </View>
     );
   }
-
   return (
     <View style={styleChartContainer}>
       <LineChart

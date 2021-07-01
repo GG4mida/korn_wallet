@@ -27,7 +27,8 @@ const DiscoveryTopic = () => {
 
   const handleItemPress = useCallback(
     data => {
-      navigation.navigate(TopicScreen.name, data);
+      const {id, name} = data;
+      navigation.navigate(TopicScreen.name, {id, name});
     },
     [navigation],
   );

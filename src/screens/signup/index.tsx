@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {Toaster, Validator, Device, String} from '@/utils';
 import {ResponseCode, ScreenType} from '@/constants/enum';
 import Version from '@/components/version';
 import {LoadingActivity, LoadingMask} from '@/components/loading';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import Jumbo from '@/components/jumbo';
 import {useTheme} from '@/hooks';
 
@@ -20,7 +20,7 @@ const SignupScreen = ({navigation}: any) => {
     (state: any) => state.loading.effects['account/signup'],
   );
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackImage: () => <HeaderBack />,
       headerRight: () => <LoadingActivity loading={loading} />,
@@ -35,32 +35,26 @@ const SignupScreen = ({navigation}: any) => {
       Toaster.show('请输入用户名');
       return false;
     }
-
     if (!Validator.usernameValidator(username)) {
       Toaster.show('用户名格式错误');
       return false;
     }
-
     if (!password) {
       Toaster.show('请输入用户密码');
       return false;
     }
-
     if (!Validator.passwordValidator(password)) {
       Toaster.show('用户密码格式错误');
       return false;
     }
-
     if (!repassword) {
       Toaster.show('请再次输入密码');
       return false;
     }
-
     if (password !== repassword) {
       Toaster.show('两次输入密码不一致');
       return false;
     }
-
     const signupRes: any = await dispatch({
       type: 'account/signup',
       payload: {
@@ -70,7 +64,6 @@ const SignupScreen = ({navigation}: any) => {
         uniqueId: Device.getUniqueId(),
       },
     });
-
     const {code, content} = signupRes;
     if (code === ResponseCode.SUCCESS) {
       Toaster.show(content, {

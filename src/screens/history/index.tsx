@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {ScrollView, Text, View, ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import {ScreenType} from '@/constants/enum';
 import {String} from '@/utils';
 import {useTheme} from '@/hooks';
@@ -17,7 +17,7 @@ const HistoryScreen = ({navigation}: any) => {
     (state: any) => state.loading.effects['user/operates'],
   );
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,

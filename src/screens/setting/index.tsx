@@ -1,14 +1,12 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useLayoutEffect, useCallback} from 'react';
 import {View, ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import Confirm from '@/components/confirm';
 import {ResponseCode, ScreenType} from '@/constants/enum';
 import {SettingAboutScreen} from '@/screens';
 import {useTheme} from '@/hooks';
-import {String} from '@/utils';
-import {Toaster} from '@/utils';
-
+import {String, Toaster} from '@/utils';
 import {SettingProfile, SettingTheme, SettingGroup} from './components';
 
 const SettingContent = (props: any) => {
@@ -28,7 +26,7 @@ const SettingScreen = ({navigation}: any) => {
   const [logoutConfirmVisible, setLogoutConfirmVisible] = useState(false);
   const [resetConfirmVisible, setResetConfirmVisible] = useState(false);
   const dispatch = useDispatch();
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
@@ -55,17 +53,18 @@ const SettingScreen = ({navigation}: any) => {
 
   const handleResetSubmit = useCallback(async () => {
     setResetConfirmVisible(false);
-
     setLogoutConfirmVisible(false);
     const resetRes: any = await dispatch({
       type: 'user/reset',
     });
-
     const {code, content} = resetRes;
     if (code === ResponseCode.SUCCESS) {
       Toaster.show(content);
       await dispatch({
         type: 'account/logout',
+      });
+      dispatch({
+        type: 'user/resetInfo',
       });
     }
   }, [dispatch]);

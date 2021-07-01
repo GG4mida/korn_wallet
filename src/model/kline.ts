@@ -15,7 +15,6 @@ const KlineModel = {
       if (ResponseCode.SUCCESS === code) {
         const {coin, type} = payload;
         const dataKey = `${coin}${type}`;
-
         yield put({
           type: 'setData',
           payload: {
@@ -23,13 +22,11 @@ const KlineModel = {
             key: dataKey,
           },
         });
-
         Storage.setItem(dataKey, true, 30 * 1000);
       }
       return data;
     },
   },
-
   reducers: {
     setData(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {

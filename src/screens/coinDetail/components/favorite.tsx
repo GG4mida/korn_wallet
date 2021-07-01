@@ -12,28 +12,22 @@ const CoinDetailFavorite = () => {
   const {styleConfig, styles} = useTheme();
   const dispatch = useDispatch();
   const route = useRoute();
-  const coin: any = route.params;
-
+  const {symbol}: any = route.params;
   const {favorites: userFavorites} = useSelector((state: any) => state.coin);
   const loading = useSelector((state: any) => state.loading.models.coin);
 
   const favoriteStatus = useMemo(() => {
-    const {symbol} = coin;
-
     if (!userFavorites || userFavorites.length === 0) {
       return false;
     }
-
     const favoriteItem = find(userFavorites, (item: any) => {
       return item.symbol === symbol;
     });
-
     return !!favoriteItem;
-  }, [coin, userFavorites]);
+  }, [symbol, userFavorites]);
 
   const handleFavoritePress = useCallback(() => {
     async function favoriteHandler() {
-      const {symbol} = coin;
       const dispatchType =
         favoriteStatus === true ? 'coin/delFavorite' : 'coin/addFavorite';
       const favoriteRes: any = await dispatch({
@@ -42,7 +36,6 @@ const CoinDetailFavorite = () => {
           coin: symbol,
         },
       });
-
       const {code, content} = favoriteRes;
       if (code === ResponseCode.SUCCESS) {
         Toaster.show(content);
@@ -51,9 +44,8 @@ const CoinDetailFavorite = () => {
         });
       }
     }
-
     favoriteHandler();
-  }, [dispatch, coin, favoriteStatus]);
+  }, [dispatch, symbol, favoriteStatus]);
 
   const iconStyle =
     favoriteStatus === true

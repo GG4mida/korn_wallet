@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useLayoutEffect} from 'react';
 import {
   NavigationContainer,
   DefaultTheme,
@@ -35,11 +35,11 @@ const getScreens = (screenType: ScreenType) => {
 
 const MainTabs = ({navigation, route}: any) => {
   const {styleConfig, styles} = useTheme();
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: HeaderHelper.getHeaderTitle(route),
       headerRight: HeaderHelper.getHeaderRight(navigation, route),
-      headerLeft: HeaderHelper.getHeaderLeft(navigation, route),
+      headerLeft: HeaderHelper.getHeaderLeft(),
     });
   }, [navigation, route]);
 

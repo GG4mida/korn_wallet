@@ -11,21 +11,17 @@ interface IProps {
 const CoinDetailKlineBarItem = (props: any) => {
   const {value, data, onChange} = props;
   const {styles} = useTheme();
-
   const itemStyle: any = [
     styles.rounded_full,
     styles.px_4,
     styles.border,
     customStyle.bar_item,
   ];
-
   let labelStyle = [styles.text_md, styles.text_content_secondary];
-
   if (data.name === value) {
     itemStyle.push(...[styles.bg_red]);
     labelStyle = [styles.text_white];
   }
-
   return (
     <TouchableOpacity
       activeOpacity={0.5}

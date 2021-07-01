@@ -21,7 +21,6 @@ const CoinModel = {
       }
       return data;
     },
-
     *favorites({payload}: any, {call, put}: any): any {
       const data = yield call(CoinService.favorites, payload);
       const {code, content} = data;
@@ -46,7 +45,6 @@ const CoinModel = {
       return yield call(CoinService.sell, payload);
     },
   },
-
   reducers: {
     setAll(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {

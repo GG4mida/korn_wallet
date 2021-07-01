@@ -8,8 +8,7 @@ import {useTheme} from '@/hooks';
 const CoinDetailOverview = () => {
   const {styles} = useTheme();
   const route = useRoute();
-  const coin: any = route.params;
-  const {name, symbol, logo_png} = coin;
+  const {name, symbol, logo_png}: any = route.params;
   const {list: marketList} = useSelector((state: any) => state.market);
   const {exchange} = useSelector((state: any) => state.exchange);
   const marketInfo = marketList[symbol];

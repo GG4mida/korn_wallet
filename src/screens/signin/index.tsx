@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useLayoutEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {ResponseCode, ScreenType} from '@/constants/enum';
@@ -21,7 +21,7 @@ const SigninScreen: React.FC = ({navigation}: any) => {
     (state: any) => state.loading.effects['account/login'],
   );
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => <LoadingActivity loading={loading} />,
     });

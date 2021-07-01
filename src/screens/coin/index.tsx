@@ -58,7 +58,7 @@ const SorterFunc = (data: any, sorter: any) => {
 };
 
 const CoinAll = (props: any) => {
-  const {styles} = useTheme();
+  const {styles, styleConfig} = useTheme();
   const {data, sorter} = props;
 
   const coinList = useMemo(() => {
@@ -68,7 +68,12 @@ const CoinAll = (props: any) => {
   if (data.length === 0) {
     return (
       <View style={[styles.flex_container_center_screen]}>
-        <IconEmpty width={80} height={80} style={[styles.mb_2]} />
+        <IconEmpty
+          width={36}
+          height={36}
+          style={[styles.mb_4]}
+          fill={styleConfig.color.hint}
+        />
         <Text style={[styles.mb_2, styles.text_hint, styles.text_md]}>
           暂无行情数据
         </Text>
@@ -92,7 +97,7 @@ const CoinAll = (props: any) => {
 };
 
 const CoinFavorites = (props: any) => {
-  const {styleConfig, styles} = useTheme();
+  const {styles, styleConfig} = useTheme();
   const {data, sorter} = props;
   const coinList = useMemo(() => {
     return SorterFunc(data, sorter);
@@ -100,7 +105,12 @@ const CoinFavorites = (props: any) => {
   if (data.length === 0) {
     return (
       <View style={[styles.flex_container_center_screen]}>
-        <IconEmpty width={80} height={80} style={[styles.mb_2]} />
+        <IconEmpty
+          width={36}
+          height={36}
+          style={[styles.mb_4]}
+          fill={styleConfig.color.hint}
+        />
         <Text style={[styles.mb_3, styles.text_hint, styles.text_md]}>
           暂无自选
         </Text>

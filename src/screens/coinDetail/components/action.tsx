@@ -12,7 +12,6 @@ const ACTION_SIZE = 50;
 const CoinDetailAction = (props: IProps) => {
   const {handleBuyInPress, handleSellPress} = props;
   const {styles} = useTheme();
-
   return (
     <View style={[customStyles.container]}>
       <TouchableOpacity

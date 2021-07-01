@@ -109,7 +109,12 @@ const HomeHolds = () => {
     return (
       <View
         style={[styles.flex_container_center, styles.flex_col, styles.my_5]}>
-        <IconEmpty width={80} height={80} style={[styles.mb_3]} />
+        <IconEmpty
+          width={36}
+          height={36}
+          style={[styles.mb_4]}
+          fill={styleConfig.color.hint}
+        />
         <Text style={[styles.text_md, styles.text_hint, styles.mb_3]}>
           暂无持仓
         </Text>

@@ -1,6 +1,6 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useLayoutEffect} from 'react';
 import {View, Linking} from 'react-native';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
 import Version from '@/components/version';
@@ -12,7 +12,7 @@ import {SettingAboutContent} from './components';
 
 const SettingAboutScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,

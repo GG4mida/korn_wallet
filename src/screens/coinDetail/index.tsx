@@ -1,8 +1,8 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useLayoutEffect, useCallback} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {klineTab} from '@/constants/tab';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import {useTheme} from '@/hooks';
 import {String} from '@/utils';
 import {BuyInScreen, SellScreen} from '@/screens';
@@ -25,7 +25,7 @@ const CoinDetailScreen = ({navigation}: any) => {
   const coin: any = route.params;
   const {name} = coin;
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: name,
       headerBackTitleStyle: styleConfig.color.blue,

@@ -1,9 +1,8 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useLayoutEffect} from 'react';
 import {View} from 'react-native';
-import HeaderBack from '@/components/header/back';
-import HeaderSubmit from '@/components/header/submit';
+import {HeaderBack, HeaderSubmit} from '@/components/header/';
 import {useTheme} from '@/hooks';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {String, Formater, Toaster} from '@/utils';
 import {ScreenType, ResponseCode} from '@/constants/enum';
 import {
@@ -19,10 +18,13 @@ const MIN_BUYIN_AMOUNT = 100;
 const BuyInScreen = ({navigation, route}: any) => {
   const {styleConfig, styles} = useTheme();
   const [percent, setPercent] = useState(DEFAULT_FORM_PERCENT);
-
   const {symbol}: any = route.params;
   const coinData = useCoin(symbol);
   const dispatch = useDispatch();
+
+  const loading = useSelector(
+    (state: any) => state.loading.effects['coin/buyin'],
+  );
 
   const handleSubmit = useCallback(async () => {
     const {coin_symbol, user_balance} = coinData;
@@ -47,16 +49,19 @@ const BuyInScreen = ({navigation, route}: any) => {
         type: 'user/holds',
       });
       Toaster.show(content);
+      navigation.goBack();
     }
-  }, [percent, coinData, dispatch]);
+  }, [navigation, percent, coinData, dispatch]);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
-      headerRight: () => <HeaderSubmit handlePress={handleSubmit} />,
+      headerRight: () => (
+        <HeaderSubmit handlePress={handleSubmit} loading={loading} />
+      ),
     });
-  }, [navigation, styleConfig, handleSubmit]);
+  }, [navigation, styleConfig, loading, handleSubmit]);
 
   return (
     <View style={[styles.screen_container]}>

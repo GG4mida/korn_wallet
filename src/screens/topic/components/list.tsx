@@ -13,7 +13,6 @@ const TopicList = (props: any) => {
       </View>
     );
   }
-
   if (!data || data.length === 0) {
     return (
       <View style={[styles.flex_container_center_screen]}>
@@ -21,12 +20,10 @@ const TopicList = (props: any) => {
       </View>
     );
   }
-
   const renderTopicItem = (prop: any) => {
     const {item} = prop;
     return <TopicItem data={item} handlePress={handlePress} />;
   };
-
   return (
     <View style={[styles.my_3]}>
       <FlatList

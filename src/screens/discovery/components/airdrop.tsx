@@ -7,9 +7,7 @@ import Avatar from '@/components/avatar';
 
 const DiscoveryAirDrop = () => {
   const {styleConfig} = useTheme();
-
   const navigation = useNavigation();
-
   const handleItemPress = useCallback(
     data => {
       const params = {
@@ -20,7 +18,6 @@ const DiscoveryAirDrop = () => {
     },
     [navigation],
   );
-
   const discoveryConfig = {
     title: '空投',
     items: [
@@ -46,7 +43,6 @@ const DiscoveryAirDrop = () => {
       },
     ],
   };
-
   return (
     <DiscoveryGroup
       handlePress={handleItemPress}

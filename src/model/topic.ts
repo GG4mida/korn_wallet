@@ -20,7 +20,6 @@ const TopicModel = {
       }
       return data;
     },
-
     *getDetail({payload}: any, {call, put}: any): any {
       const data = yield call(TopicService.getDetail, payload);
       const {code, content} = data;
@@ -33,7 +32,6 @@ const TopicModel = {
       return data;
     },
   },
-
   reducers: {
     setList(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
@@ -41,7 +39,6 @@ const TopicModel = {
       });
       return nextState;
     },
-
     setDetail(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.detail = action.payload;

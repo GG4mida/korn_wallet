@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {
   Text,
   View,
@@ -8,8 +8,63 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import {shuffle} from 'lodash';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTheme} from '@/hooks';
+
+const SettingProfileAvatarItem = (props: any) => {
+  const {item, onChange} = props;
+  const {styles} = useTheme();
+  return (
+    <TouchableOpacity
+      activeOpacity={0.5}
+      onPress={() => onChange(item.url)}
+      style={[styles.m_1]}>
+      <Image
+        source={{
+          uri: item.url,
+        }}
+        style={[customStyles.avatar, styles.rounded_full]}
+      />
+    </TouchableOpacity>
+  );
+};
+
+const SettingProfileAvatarList = (props: any) => {
+  const {loading, data, onChange} = props;
+  const {styles} = useTheme();
+  if (loading === true) {
+    return (
+      <View style={[styles.py_4]}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <View style={[styles.py_4]}>
+        <Text style={[styles.text_sm, styles.text_hint, styles.text_center]}>
+          未获取到头像数据
+        </Text>
+      </View>
+    );
+  }
+
+  return (
+    <FlatList
+      data={data}
+      contentContainerStyle={[styles.px_3, styles.pb_3]}
+      renderItem={(attr: any) => (
+        <SettingProfileAvatarItem {...attr} onChange={onChange} />
+      )}
+      horizontal={true}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      keyExtractor={item => item.name}
+    />
+  );
+};
 
 const SettingProfileAvatar = (props: any) => {
   const {styles} = useTheme();
@@ -27,54 +82,9 @@ const SettingProfileAvatar = (props: any) => {
     (state: any) => state.loading.effects['system/avatars'],
   );
 
-  const renderItem = (data: any) => {
-    const {item} = data;
-    return (
-      <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={() => onChange(item.url)}
-        style={[styles.m_1]}>
-        <Image
-          source={{
-            uri: item.url,
-          }}
-          style={[customStyles.avatar, styles.rounded_full]}
-        />
-      </TouchableOpacity>
-    );
-  };
-
-  const renderList = () => {
-    if (loading === true) {
-      return (
-        <View style={[styles.py_4]}>
-          <ActivityIndicator />
-        </View>
-      );
-    }
-
-    if (avatars.length === 0) {
-      return (
-        <View style={[styles.py_4]}>
-          <Text style={[styles.text_sm, styles.text_hint, styles.text_center]}>
-            未获取到头像数据
-          </Text>
-        </View>
-      );
-    }
-
-    return (
-      <FlatList
-        data={avatars}
-        contentContainerStyle={[styles.px_3, styles.pb_3]}
-        renderItem={renderItem}
-        horizontal={true}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item.name}
-      />
-    );
-  };
+  const avatarsShuffle = useMemo(() => {
+    return shuffle(avatars);
+  }, [avatars]);
 
   return (
     <View style={[styles.mb_3]}>
@@ -86,7 +96,11 @@ const SettingProfileAvatar = (props: any) => {
             style={[styles.rounded_full, styles.img_header]}
           />
         </View>
-        {renderList()}
+        <SettingProfileAvatarList
+          loading={loading}
+          data={avatarsShuffle}
+          onChange={onChange}
+        />
       </View>
       <Text
         style={[styles.px_4, styles.my_2, styles.text_sm, styles.text_hint]}>

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useLayoutEffect, useEffect} from 'react';
 import {
   View,
   Image,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import {useNavigation} from '@react-navigation/core';
 import {WebviewScreen} from '@/screens';
 import {useTheme} from '@/hooks';
@@ -74,7 +74,7 @@ const DiscoveryBrowserScreen = ({navigation}: any) => {
     }
   }, [dispatch, coinList]);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,

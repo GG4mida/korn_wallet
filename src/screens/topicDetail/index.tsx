@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import MarkdownRender from '@/components/markdown';
 import {DateTime, String} from '@/utils';
 import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 
 const TopicDetailHeader = (props: any) => {
   const {data} = props;
@@ -33,16 +33,14 @@ const TopicDetailHeader = (props: any) => {
 const TopicDetailScreen = ({navigation, route}: any) => {
   const {styles, styleConfig} = useTheme();
   const dispatch = useDispatch();
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
     });
   }, [navigation, styleConfig]);
 
-  const data: any = route.params;
-
-  const {id: topicId} = data;
+  const {id: topicId}: any = route.params;
 
   useEffect(() => {
     dispatch({
@@ -54,9 +52,6 @@ const TopicDetailScreen = ({navigation, route}: any) => {
   }, [dispatch, topicId]);
 
   const {detail: topicDetail} = useSelector((state: any) => state.topic);
-  // const loading = useSelector(
-  //   (state: any) => state.loading.effects['topic/getDetail'],
-  // );
   const {content = ''} = topicDetail;
   return (
     <View style={[styles.screen_container, styles.bg_foreground]}>

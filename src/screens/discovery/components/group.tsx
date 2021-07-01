@@ -52,7 +52,6 @@ const DiscoveryGroup = (props: any) => {
           {descr}
         </Text>
       ) : null}
-
       <View
         style={[
           styles.bg_foreground,

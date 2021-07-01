@@ -8,14 +8,12 @@ export type State = {
   avatars: Array<{}>;
   theme: ThemeType;
 };
-
 export interface IModel {
   namespace: 'system';
   state: State;
   effects: any;
   reducers: any;
 }
-
 const SystemModel: IModel = {
   namespace: 'system',
   state: {
@@ -48,7 +46,6 @@ const SystemModel: IModel = {
       return data;
     },
   },
-
   reducers: {
     setInfo(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
@@ -56,21 +53,18 @@ const SystemModel: IModel = {
       });
       return nextState;
     },
-
     setAvatars(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.avatars = action.payload;
       });
       return nextState;
     },
-
     setTheme(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.theme = action.payload.theme;
       });
       return nextState;
     },
-
     setInitialized(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.initialized = action.payload;

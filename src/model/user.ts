@@ -21,7 +21,6 @@ const UserModel = {
       }
       return data;
     },
-
     *holds({payload}: any, {call, put}: any): any {
       const data = yield call(UserService.holds, payload);
       const {code, content} = data;
@@ -33,7 +32,6 @@ const UserModel = {
       }
       return data;
     },
-
     *operates({payload}: any, {call, put}: any): any {
       const data = yield call(UserService.operates, payload);
       const {code, content} = data;
@@ -45,16 +43,13 @@ const UserModel = {
       }
       return data;
     },
-
     *update({payload}: any, {call}: any): any {
       return yield call(UserService.update, payload);
     },
-
     *reset({payload}: any, {call}: any): any {
       return yield call(UserService.reset, payload);
     },
   },
-
   reducers: {
     setInfo(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
@@ -62,21 +57,18 @@ const UserModel = {
       });
       return nextState;
     },
-
     resetInfo(state: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.info = {};
       });
       return nextState;
     },
-
     setHolds(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.holds = action.payload;
       });
       return nextState;
     },
-
     setOperates(state: any, action: any) {
       const nextState = produce(state, (draftState: any) => {
         draftState.operates = action.payload;

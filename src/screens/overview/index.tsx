@@ -1,16 +1,15 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useLayoutEffect} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useSelector} from 'react-redux';
-import HeaderBack from '@/components/header/back';
+import {HeaderBack} from '@/components/header';
 import {Formater, DateTime, String} from '@/utils';
 import {useTheme} from '@/hooks';
 import {ScreenType} from '@/constants/enum';
-
 import {OverViewItem, OverViewJumbo} from './components';
 
 const OverViewScreen = ({navigation}: any) => {
   const {styleConfig, styles} = useTheme();
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
@@ -60,14 +59,12 @@ const OverViewScreen = ({navigation}: any) => {
       <View style={styles.py_2}>
         <OverViewItem
           label="累计盈亏"
-          value={`$${Formater.formatAmount(userSummaryData.totalProfit)}`}
+          value={`${Formater.formatAmount(userSummaryData.totalProfit)}$`}
         />
-
         <OverViewItem
           label="累计盈亏率"
           value={Formater.formatProfitRatio(userSummaryData.totalProfitRatio)}
         />
-
         <OverViewItem
           label="注册时间"
           value={DateTime.format(

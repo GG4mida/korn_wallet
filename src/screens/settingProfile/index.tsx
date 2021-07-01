@@ -1,8 +1,7 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useLayoutEffect} from 'react';
 import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import HeaderBack from '@/components/header/back';
-import HeaderSubmit from '@/components/header/submit';
+import {HeaderBack, HeaderSubmit} from '@/components/header';
 import {Toaster, String} from '@/utils';
 import {ResponseCode, ScreenType} from '@/constants/enum';
 import {useTheme} from '@/hooks';
@@ -40,7 +39,7 @@ const SettingProfileScreen = ({navigation}: any) => {
     }
   }, [dispatch, navigation, userNickName, userEmail, userAvatar]);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitleStyle: styleConfig.color.blue,
       headerBackImage: () => <HeaderBack />,
